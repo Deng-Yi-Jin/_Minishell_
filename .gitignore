@@ -1,0 +1,8 @@
+.vscode/
+examples/
+a.out
+*.o
+minishell
+minishell.dSYM
+valgrind-out.txt
+```
