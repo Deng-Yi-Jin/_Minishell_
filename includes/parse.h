@@ -37,4 +37,5 @@ t_ast	*ast_first_last(t_ast *ast, bool is_last);
 void	free_ast(t_ast **ast);
 void	print_ast(t_ast *ast);
 void print_ast_all(t_ast **ast);
+
 #endif

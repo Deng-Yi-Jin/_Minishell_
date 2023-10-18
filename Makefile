@@ -6,7 +6,7 @@
 #    By: root <root@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 06:55:38 by codespace         #+#    #+#              #
-#    Updated: 2023/09/25 20:37:42 by root             ###   ########.fr        #
+#    Updated: 2023/10/14 14:41:16 by root             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ SRCS_FILES = $(addprefix $(MAIN_DIR)/, main.c initialize.c signals.c prompt.c) \
 			 $(addprefix $(ENV_DIR)/, env.c env_utils.c) \
 			 $(addprefix $(EXEC_DIR)/, commands.c cd.c welcome.c export.c) \
 			 $(addprefix $(LEXER_DIR)/, lexer.c lexer_utils.c lexer_linked_list_utils.c lexer_check_separator.c ft_checksymb.c) \
-			 $(addprefix $(PARSE_DIR)/, parse_linked_list.c parse.c parsing_piping.c) \
+			 $(addprefix $(PARSE_DIR)/, parse_linked_list.c parse.c parsing_piping.c dbpp_linkedlist.c) \
 
 SRCS = $(addprefix $(SRCS_DIR)/,$(SRCS_FILES))
 
