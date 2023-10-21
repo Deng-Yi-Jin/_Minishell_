@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 19:00:34 by sinlee            #+#    #+#             */
-/*   Updated: 2023/10/18 17:24:26 by root             ###   ########.fr       */
+/*   Updated: 2023/10/21 15:50:40 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,50 +33,30 @@ void	parse_input(char *input, char **envp)
 	while (input[i])
 	{
 		count_words = 0;
-		j = i;
-		while (input[i] && ft_symbol(input[i]) == false)
-		{
+		while (input[i] == ' ' || input[i] == '\t')
 			i++;
-			count_words++;
-		}
-		(*tokens) = add_tokens((*tokens), ft_substr(input, j, count_words), WORD);
-		if (input[i] == ' ')
-			i++;
-		else if (input[i] == '>' || input[i] == '<')
+		if (ft_symbol(input[i]) == false && input[i])
 		{
-			if (input[i] == '>' && input[i + 1] == '>')
+			j = i;
+			while (ft_symbol(input[i]) == false && input[i])
 			{
-				(*tokens) = add_tokens((*tokens), ft_substr(input, i, 2), REDIR_OUT);
-				i += 2;
-			}
-			else if (input[i] == '<' && input[i + 1] == '<')
-			{
-				(*tokens) = add_tokens((*tokens), ft_substr(input, i, 2), REDIR_IN);
-				i += 2;
-			}
-			else
-			{
-				(*tokens) = add_tokens((*tokens), ft_substr(input, i, 1), ft_return_op(input[i]));
 				i++;
+				count_words++;
 			}
+			(*tokens) = add_tokens((*tokens), ft_substr(input, j, count_words), WORD);
+		}
+		if (input[i] == '>' || input[i] == '<')
+		{
+			ft_redir(input, &i, tokens);
 		}
 		else if (input[i] == '|')
 		{
-			if (input[i + 1] == '|')
-			{
-				(*tokens) = add_tokens((*tokens), ft_substr(input, i, 2), OR);
-				i += 2;
-			}
-			else
-			{
-				(*tokens) = add_tokens((*tokens), ft_substr(input, i, 1), PIPE);
-				i++;
-			}
+			ft_pipe(input, &i, tokens);
 		}
 	}
 	(*tokens) = add_null_token(*tokens);
-	// parse(tokens);
-	print_stack(*tokens);
+	parse(tokens);
+	// print_stack(*tokens);
 	free_stack(tokens, del, true);
 	free(tokens);
 }

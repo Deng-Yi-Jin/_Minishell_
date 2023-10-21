@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:06:06 by sinlee            #+#    #+#             */
-/*   Updated: 2023/10/18 17:25:32 by root             ###   ########.fr       */
+/*   Updated: 2023/10/19 10:58:29 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,8 @@ void		is_word(char *str, int *i, t_token **tokens);
 void		space_skip(char *str, int *i);
 bool		ft_symbol(char input);
 int 		ft_return_op(char input);
+void		ft_redir(char *input, int *i, t_token **tokens);
+void		ft_pipe(char *input, int *i, t_token **tokens);
 
 void		print_token(t_token *tokens, bool to_first, char *str);
 

@@ -15,41 +15,33 @@
 void	parse(t_token **tokens)
 {
 	t_ast	**ast;
+	t_ast	**new_ast;
+
 	(*tokens) = lst_first_last(*tokens, false);
-	ast = malloc(sizeof(t_ast *));
+	ast = (t_ast **)malloc(sizeof(t_ast *));
 	*ast = NULL;
 	while ((*tokens)->cmd != NULL)
 	{
-		while ((*tokens)->type != PIPE && (*tokens)->cmd != NULL)
+		while ((*tokens)->type != PIPE || (*tokens)->type != OR)
 		{
-			if ((*tokens)->type == DOLLAR && (*tokens)->next->type == WORD)
+			if (((*tokens)->prev == NULL || (*tokens)->prev->type == PIPE)
+			|| (*tokens)->next != NULL || (*tokens)->next->type != PIPE)
 			{
-				*ast = add_ast(*ast, ft_strjoin((*tokens)->cmd, (*tokens)->next->cmd));
-				(*tokens) = (*tokens)->next->next;
-			}
-			else if((*tokens)->type == WORD)
-			{
-				*ast = add_ast(*ast, ft_strdup((*tokens)->cmd));
+				(*ast) = add_child(*ast, (*tokens)->cmd);
+				(*ast) = (*ast)->next_grandchild;
 				(*tokens) = (*tokens)->next;
 			}
-			else if((*tokens)->type == MINUS && (*tokens)->next->type == WORD)
+			else if ((*tokens)->next == NULL || (*tokens)->next->type == PIPE)
 			{
-				*ast = add_ast(*ast, ft_strjoin((*tokens)->cmd, (*tokens)->next->cmd));
-				(*tokens) = (*tokens)->next->next;
-			}
-			else
-			{
-				*ast = add_ast(*ast, ft_strdup((*tokens)->cmd));
+				(*ast) = add_last_child(*ast, (*tokens)->cmd);
+				(*ast)->next = add_db_node(*ast);
+				(*ast) = (*ast)->next;
 				(*tokens) = (*tokens)->next;
 			}
 		}
-		if ((*tokens)->type == PIPE)
-		{
+		if ((*tokens)->type == PIPE || (*tokens)->type == OR)
 			(*tokens) = (*tokens)->next;
-			
-		}
 	}
-	*ast = ast_first_last(*ast, false);
 	// printf("%s\n", (*ast)->cmd);
 	// printf("%p\n", (*tokens));
 	// *ast = NULL;
