@@ -21,18 +21,14 @@ typedef struct s_ast
 	int				type;
 	struct s_ast	*next_grandchild;
 	struct s_ast	*prev_grandchild;
-	struct s_ast	*prev;
-	struct s_ast	*next;
+	struct s_ast	*prev_child;
+	struct s_ast	*next_child;
 	struct s_ast	*parent;
 }	t_ast;
 
 void	parse(t_token **tokens);
-char	*ast_strjoin(t_token **tokens, char *str);
-t_ast	*add_ast(t_ast	*ast, char *cmd);
 t_ast	*create_ast_node(char *cmd);
-t_ast	*ast_first_last(t_ast *ast, bool is_last);
-t_ast	*add_child(t_ast *ast, char *cmd);;
-t_ast	*add_last_child(t_ast *ast, char *cmd);
+t_ast	*ast_first_last(t_ast *ast, bool go_child, bool go_sibling);
 t_ast	*add_db_node(t_ast *ast);
 void	free_ast(t_ast **ast);
 void	print_ast(t_ast *ast);

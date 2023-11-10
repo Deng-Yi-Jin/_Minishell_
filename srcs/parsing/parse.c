@@ -15,36 +15,37 @@
 void	parse(t_token **tokens)
 {
 	t_ast	**ast;
-	t_ast	**new_ast;
 
 	(*tokens) = lst_first_last(*tokens, false);
 	ast = (t_ast **)malloc(sizeof(t_ast *));
 	*ast = NULL;
+	(*ast) = create_ast_node(NULL);
 	while ((*tokens)->cmd != NULL)
 	{
-		while ((*tokens)->type != PIPE || (*tokens)->type != OR)
+		if ((*tokens)->prev == NULL && (*tokens)->type != PIPE)
 		{
-			if (((*tokens)->prev == NULL || (*tokens)->prev->type == PIPE)
-			|| (*tokens)->next != NULL || (*tokens)->next->type != PIPE)
-			{
-				(*ast) = add_child(*ast, (*tokens)->cmd);
-				(*ast) = (*ast)->next_grandchild;
-				(*tokens) = (*tokens)->next;
-			}
-			else if ((*tokens)->next == NULL || (*tokens)->next->type == PIPE)
-			{
-				(*ast) = add_last_child(*ast, (*tokens)->cmd);
-				(*ast)->next = add_db_node(*ast);
-				(*ast) = (*ast)->next;
-				(*tokens) = (*tokens)->next;
-			}
+			(*ast)->next_child = create_ast_node(ft_strdup((*tokens)->cmd));
+			(*ast)->next_child->parent = (*ast);
+			(*ast) = (*ast)->next_child;
 		}
-		if ((*tokens)->type == PIPE || (*tokens)->type == OR)
+		else if ((*tokens)->type != PIPE && (*tokens)->cmd != NULL)
+		{
+			(*ast)->next_grandchild = create_ast_node(ft_strdup((*tokens)->cmd));
+			(*ast)->next_grandchild->prev_grandchild = (*ast);
+			(*ast) = (*ast)->next_grandchild;
+		}
+		else if ((*tokens)->type == PIPE)
+		{
 			(*tokens) = (*tokens)->next;
+			(*ast) = ast_first_last((*ast), true, false);
+			(*ast)->next_child = create_ast_node(ft_strdup((*tokens)->cmd));
+			(*ast)->next_child->parent = (*ast)->parent;
+			(*ast)->next_child->prev_child = (*ast);
+			(*ast) = (*ast)->next_child;
+		}
+		(*tokens) = (*tokens)->next;
 	}
-	// printf("%s\n", (*ast)->cmd);
-	// printf("%p\n", (*tokens));
-	// *ast = NULL;
+	(*ast) = ast_first_last(*ast, true, true);
 	print_ast_all(ast);
 	free_ast(ast);
 	free(ast);
