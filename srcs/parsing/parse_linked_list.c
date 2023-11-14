@@ -94,3 +94,18 @@ void 	print_ast_all(t_ast **ast)
 	// 	print_ast_all(&((*ast)->next_child));
 	// }
 }
+
+int	num_of_pipes(t_token **tokens)
+{
+	int	pipe;
+
+	pipe = 0;
+	while ((*tokens)->cmd != NULL && (*tokens))
+	{
+		if ((*tokens)->type == PIPE)
+			pipe++;
+		(*tokens) = (*tokens)->next;
+	}
+	(*tokens) = lst_first_last(*tokens, false);
+	return (pipe);
+}

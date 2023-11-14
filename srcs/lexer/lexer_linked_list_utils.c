@@ -68,6 +68,13 @@ t_token	*lst_first_last(t_token *tokens, bool is_last)
 	return (tokens);
 }
 
+t_token	*lst_go_back(t_token *tokens)
+{
+	while ((tokens)->prev != NULL && (tokens)->prev->type != PIPE)
+		tokens = tokens->prev;
+	return (tokens);
+}
+
 void	free_stack(t_token **tokens, void (*del)(void *), bool loop)
 {
 	t_token	*tmp;

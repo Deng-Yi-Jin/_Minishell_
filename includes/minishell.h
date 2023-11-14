@@ -97,6 +97,7 @@ void		free_stack(t_token **tokens, void (*del)(void *), bool loop);
 void		del(void *content);
 void		print_stack(t_token *tokens);
 void		free_split(char *str);
+t_token		*lst_go_back(t_token *tokens);
 t_token		*add_null_token(t_token *tokens);
 
 // Lexer utils
