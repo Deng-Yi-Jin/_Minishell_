@@ -29,10 +29,10 @@ typedef struct s_ast
 void	parse(t_token **tokens);
 t_ast	*create_ast_node(char *cmd);
 t_ast	*ast_first_last(t_ast *ast, bool go_child, bool go_sibling);
-t_ast	*add_db_node(t_ast *ast);
 void	free_ast(t_ast **ast);
 void	print_ast(t_ast *ast);
 void 	print_ast_all(t_ast **ast);
 int		num_of_pipes(t_token **tokens);
+char	*ft_strcat(char	*dest, char	*src);
 
 #endif
