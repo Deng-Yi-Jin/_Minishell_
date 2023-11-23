@@ -35,16 +35,17 @@ void	parse(t_token **tokens)
 		*tokens = lst_go_back(*tokens);
 		while ((*tokens)->type != PIPE && (*tokens)->cmd != NULL)
 		{
-			// if (is_child == true && (*tokens)->prev->type == PIPE)
-			// {
-			// 	(*ast)->next_child = create_ast_node(ft_strdup(tmp));
-			// 	free(tmp);
-			// 	tmp = "";
-			// 	(*ast)->next_child->parent = (*ast);
-			// 	(*ast)->next_child->prev_child = (*ast);
-			// 	(*ast) = (*ast)->next_child;
-			// 	is_child = false;
-			// }
+			// printf("cmd: %s %p\n", (*tokens)->cmd, (*tokens)->prev);  rm -rf valorant
+			if (is_child == true && (*tokens)->prev != NULL && (*tokens)->prev->type == PIPE)
+			{
+				(*ast)->next_child = create_ast_node(ft_strdup(tmp));
+				free(tmp);
+				tmp = "";
+				(*ast)->next_child->parent = (*ast);
+				(*ast)->next_child->prev_child = (*ast);
+				(*ast) = (*ast)->next_child;
+				is_child = false;
+			}
 			if (is_child == true)
 			{
 				(*ast)->next_child = create_ast_node(ft_strdup(tmp));
