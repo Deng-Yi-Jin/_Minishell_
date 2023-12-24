@@ -15,7 +15,7 @@
 void	parse(t_token **tokens)
 {
 	t_ast	**ast;
-	t_token	**tmp_token;
+	t_ast	**minishell;
 	char	*tmp;
 	bool	is_child;
 
@@ -24,6 +24,7 @@ void	parse(t_token **tokens)
 	ast = (t_ast **)malloc(sizeof(t_ast *));
 	*ast = NULL;
 	(*ast) = create_ast_node(NULL);
+	*minishell = (*ast);
 	while ((*tokens)->cmd != NULL)
 	{
 		is_child = true;
@@ -73,6 +74,7 @@ void	parse(t_token **tokens)
 	(*ast) = ast_first_last(*ast, true, true);
 	print_ast_all(ast);
 	free_ast(ast);
+	free (*minishell);
 	free(ast);
 }
 

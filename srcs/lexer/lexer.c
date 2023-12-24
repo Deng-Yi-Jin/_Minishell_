@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 19:00:34 by sinlee            #+#    #+#             */
-/*   Updated: 2023/10/21 15:50:40 by root             ###   ########.fr       */
+/*   Updated: 2023/11/25 19:40:10 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ void	parse_input(char *input, char **envp)
 {
 	t_token **tokens;
 	t_ast	*ast;
+	char	*tmp;
+	int		double_quote;
+	int		single_quote;
 	int		i;
 	int		j;
 	int		count_words;
@@ -45,6 +48,29 @@ void	parse_input(char *input, char **envp)
 			}
 			(*tokens) = add_tokens((*tokens), ft_substr(input, j, count_words), WORD);
 		}
+		// if (input[i] == '"' || input[i] == '\'')
+		// {
+		// 	if (input[i] == '"')
+		// 		double_quote++;
+		// 	else
+		// 		single_quote++;
+		// 	i++;
+		// 	while (input[i] != '"' && input[i] != '\'')
+		// 	{
+		// 		count_words++;
+		// 		i++;
+		// 	}
+		// 	if (input[i] == '"' || input[i] == '\'')
+		// 	{
+		// 		if (input[i] == '"')
+		// 			double_quote++;
+		// 		else
+		// 			single_quote++;
+		// 	}
+		// 	j = i;
+		// 	(*tokens) = add_tokens((*tokens), ft_substr(input, j, count_words), WORD);
+		// 	i++;
+		// }
 		if (input[i] == '>' || input[i] == '<')
 		{
 			ft_redir(input, &i, tokens);

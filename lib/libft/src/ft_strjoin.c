@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sinlee <sinlee@student42.fr>               +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:08:15 by sinlee            #+#    #+#             */
-/*   Updated: 2023/05/05 14:16:15 by sinlee           ###   ########.fr       */
+/*   Updated: 2023/12/19 10:45:04 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	while (s2[++i])
 		str[ft_strlen(s1) + i] = s2[i];
 	str[ft_strlen(s1) + i] = '\0';
+	// free ((char *)s1);
 	return (str);
 }
 

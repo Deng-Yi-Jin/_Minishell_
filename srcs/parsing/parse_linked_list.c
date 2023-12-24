@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 12:33:37 by root              #+#    #+#             */
-/*   Updated: 2023/10/21 15:48:26 by root             ###   ########.fr       */
+/*   Updated: 2023/12/22 12:31:12 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ t_ast	*ast_first_last(t_ast *ast, bool go_child, bool go_sibling)
 	if (go_child == true)
 	{
 		while ((ast)->prev_grandchild != NULL)
+		{
 			(ast) = (ast)->prev_grandchild;
+			// printf("%s\n", (ast)->cmd);
+		}	
 	}
 	if (go_sibling == true)
 	{
@@ -44,18 +47,43 @@ t_ast	*ast_first_last(t_ast *ast, bool go_child, bool go_sibling)
 	return (ast);
 }
 
+t_ast	*ast_first(t_ast *ast, bool go_child, bool go_sibling)
+{
+	if (go_child == true)
+	{
+		while ((ast)->prev_grandchild != NULL)
+		{
+			(ast) = (ast)->prev_grandchild;
+		}	
+	}
+	if (go_sibling == true)
+	{
+		while ((ast)->prev_child != NULL)
+		{
+			(ast) = (ast)->prev_child;
+		}
+	}
+	return (ast);
+}
+
 void	free_ast(t_ast **ast)
 {
-	t_ast	*tmp;
+	// t_ast	*tmp;
+	// t_ast	*child;
 
-	(*ast) = ast_first_last(*ast, true, true);
-	while (*ast)
-	{
-		tmp	= (*ast)->next_grandchild;
-		free((*ast)->cmd);
-		free(*ast);
-		*ast = tmp;
-	}
+	// *ast = ast_first(*ast, true, true);
+	// while ((*ast)->next_child != NULL)
+	// {
+	// 	child = *ast;
+	// 	while ((*ast)->next_grandchild != NULL)
+	// 	{
+	// 		tmp = (*ast)->next_grandchild;
+	// 		free((*ast)->cmd);
+	// 		free(*ast);
+	// 		(*ast) = tmp;
+	// 	}
+	// 	(*ast) = (*ast)->next_child;
+	// }
 }
 
 void print_ast(t_ast *ast)
