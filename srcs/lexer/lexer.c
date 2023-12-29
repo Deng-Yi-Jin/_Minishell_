@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 19:00:34 by sinlee            #+#    #+#             */
-/*   Updated: 2023/11/25 19:40:10 by root             ###   ########.fr       */
+/*   Updated: 2023/12/29 09:34:21 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,22 @@
 void	del(void *content)
 {
 	free(content);
+}
+
+void	quoting(char *input, int *i, int *count_words, char quote)
+{
+	(*i)++;
+	(*count_words)++;
+	while (input[*i] != quote && input[*i])
+	{
+		(*i)++;
+		(*count_words)++;
+	}
+	if (input[*i] == quote)
+	{
+		(*i)++;
+		(*count_words)++;
+	}
 }
 
 void	parse_input(char *input, char **envp)
@@ -43,34 +59,22 @@ void	parse_input(char *input, char **envp)
 			j = i;
 			while (ft_symbol(input[i]) == false && input[i])
 			{
-				i++;
-				count_words++;
+				if (input[i] == '\'')
+				{
+					quoting(input, &i, &count_words, '\'');
+				}
+				else if (input[i] == '\"')
+				{
+					quoting(input, &i, &count_words, '\"');
+				}
+				else
+				{
+					i++;
+					count_words++;
+				}
 			}
 			(*tokens) = add_tokens((*tokens), ft_substr(input, j, count_words), WORD);
 		}
-		// if (input[i] == '"' || input[i] == '\'')
-		// {
-		// 	if (input[i] == '"')
-		// 		double_quote++;
-		// 	else
-		// 		single_quote++;
-		// 	i++;
-		// 	while (input[i] != '"' && input[i] != '\'')
-		// 	{
-		// 		count_words++;
-		// 		i++;
-		// 	}
-		// 	if (input[i] == '"' || input[i] == '\'')
-		// 	{
-		// 		if (input[i] == '"')
-		// 			double_quote++;
-		// 		else
-		// 			single_quote++;
-		// 	}
-		// 	j = i;
-		// 	(*tokens) = add_tokens((*tokens), ft_substr(input, j, count_words), WORD);
-		// 	i++;
-		// }
 		if (input[i] == '>' || input[i] == '<')
 		{
 			ft_redir(input, &i, tokens);
@@ -81,8 +85,8 @@ void	parse_input(char *input, char **envp)
 		}
 	}
 	(*tokens) = add_null_token(*tokens);
-	parse(tokens);
-	// print_stack(*tokens);
+	//parse(tokens);
+	print_stack(*tokens);
 	free_stack(tokens, del, true);
 	free(tokens);
 }

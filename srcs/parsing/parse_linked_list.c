@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_linked_list.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 12:33:37 by root              #+#    #+#             */
-/*   Updated: 2023/12/22 12:31:12 by root             ###   ########.fr       */
+/*   Updated: 2023/12/29 05:56:12 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,22 +68,24 @@ t_ast	*ast_first(t_ast *ast, bool go_child, bool go_sibling)
 
 void	free_ast(t_ast **ast)
 {
-	// t_ast	*tmp;
-	// t_ast	*child;
+	t_ast	*tmp;
+	t_ast	*head_child;
 
-	// *ast = ast_first(*ast, true, true);
-	// while ((*ast)->next_child != NULL)
-	// {
-	// 	child = *ast;
-	// 	while ((*ast)->next_grandchild != NULL)
-	// 	{
-	// 		tmp = (*ast)->next_grandchild;
-	// 		free((*ast)->cmd);
-	// 		free(*ast);
-	// 		(*ast) = tmp;
-	// 	}
-	// 	(*ast) = (*ast)->next_child;
-	// }
+	if ((*ast) == NULL)
+		return ;
+	if ((*ast)->prev_grandchild != NULL)
+		(*ast) = ast_first(*ast, true, false);
+	head_child = (*ast);
+	while ((*ast)->next_grandchild != NULL)
+	{
+		tmp = (*ast)->next_grandchild;
+		free((*ast)->cmd);
+		free((*ast));
+		(*ast) = tmp;
+	}
+	(*ast) = head_child;
+	(*ast) = (*ast)->prev_child;
+	free_ast(ast);
 }
 
 void print_ast(t_ast *ast)
