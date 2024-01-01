@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sinlee <sinlee@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 19:00:34 by sinlee            #+#    #+#             */
-/*   Updated: 2024/01/01 09:38:51 by codespace        ###   ########.fr       */
+/*   Updated: 2024/01/01 23:11:20 by sinlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,9 @@ void	parse_input(char *input, char **envp)
 			while (ft_symbol(input[i]) == false && input[i])
 			{
 				if (input[i] == '\'')
-				{
 					quoting(input, &i, &count_words, '\'');
-				}
 				else if (input[i] == '\"')
-				{
 					quoting(input, &i, &count_words, '\"');
-				}
 				else
 				{
 					i++;
@@ -76,9 +72,7 @@ void	parse_input(char *input, char **envp)
 			(*tokens) = add_tokens((*tokens), ft_substr(input, j, count_words), WORD);
 		}
 		if (input[i] == '>' || input[i] == '<')
-		{
 			ft_redir(input, &i, tokens);
-		}
 		else if (input[i] == '|')
 		{
 			ft_pipe(input, &i, tokens);

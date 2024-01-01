@@ -72,7 +72,7 @@ void	parse(t_token **tokens)
 	print_ast_all(ast);
 	free_ast(ast);
 	//printf("\n%p\n", *ast);
-	//free(*ast);
+	// free(*ast);
 	free(ast);
 }
 
