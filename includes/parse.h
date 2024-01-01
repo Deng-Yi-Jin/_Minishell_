@@ -18,7 +18,6 @@
 typedef struct s_ast
 {
 	char			*cmd;
-	int				type;
 	struct s_ast	*next_grandchild;
 	struct s_ast	*prev_grandchild;
 	struct s_ast	*prev_child;

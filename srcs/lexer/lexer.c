@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 19:00:34 by sinlee            #+#    #+#             */
-/*   Updated: 2023/12/29 09:34:21 by codespace        ###   ########.fr       */
+/*   Updated: 2024/01/01 09:38:51 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ void	parse_input(char *input, char **envp)
 		}
 	}
 	(*tokens) = add_null_token(*tokens);
-	//parse(tokens);
-	print_stack(*tokens);
+	parse(tokens);
+	//print_stack(*tokens);
 	free_stack(tokens, del, true);
 	free(tokens);
 }

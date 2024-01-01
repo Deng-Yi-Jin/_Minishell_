@@ -15,19 +15,18 @@
 void	parse(t_token **tokens)
 {
 	t_ast	**ast;
-	t_ast	**minishell;
+	t_ast	*ast_tmp;
 	char	*tmp;
 	bool	is_child;
 
-	tmp = "";
 	(*tokens) = lst_first_last(*tokens, false);
 	ast = (t_ast **)malloc(sizeof(t_ast *));
 	*ast = NULL;
 	(*ast) = create_ast_node(NULL);
-	*minishell = (*ast);
 	while ((*tokens)->cmd != NULL)
 	{
 		is_child = true;
+		tmp = ft_calloc(1, sizeof(char));
 		while ((*tokens)->type != PIPE && (*tokens)->cmd != NULL)
 		{
 			tmp = ft_strjoin(tmp, (*tokens)->cmd);
@@ -41,7 +40,6 @@ void	parse(t_token **tokens)
 			{
 				(*ast)->next_child = create_ast_node(ft_strdup(tmp));
 				free(tmp);
-				tmp = "";
 				(*ast)->next_child->parent = (*ast);
 				(*ast)->next_child->prev_child = (*ast);
 				(*ast) = (*ast)->next_child;
@@ -51,7 +49,6 @@ void	parse(t_token **tokens)
 			{
 				(*ast)->next_child = create_ast_node(ft_strdup(tmp));
 				free(tmp);
-				tmp = "";
 				(*ast)->next_child->parent = (*ast);
 				(*ast) = (*ast)->next_child;
 				is_child = false;
@@ -74,7 +71,8 @@ void	parse(t_token **tokens)
 	(*ast) = ast_first_last(*ast, true, true);
 	print_ast_all(ast);
 	free_ast(ast);
-	free (*minishell);
+	//printf("\n%p\n", *ast);
+	//free(*ast);
 	free(ast);
 }
 

@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 12:33:37 by root              #+#    #+#             */
-/*   Updated: 2023/12/29 05:56:12 by codespace        ###   ########.fr       */
+/*   Updated: 2024/01/01 13:45:25 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ t_ast	*create_ast_node(char *cmd)
 	if (!new_node)
 		return (NULL);
 	new_node->cmd = cmd;
-	new_node->type = 0;
 	new_node->next_grandchild = NULL;
 	new_node->prev_grandchild = NULL;	
 	new_node->prev_child = NULL;
@@ -69,29 +68,37 @@ t_ast	*ast_first(t_ast *ast, bool go_child, bool go_sibling)
 void	free_ast(t_ast **ast)
 {
 	t_ast	*tmp;
-	t_ast	*head_child;
+	t_ast	*child_tmp;
 
-	if ((*ast) == NULL)
-		return ;
-	if ((*ast)->prev_grandchild != NULL)
-		(*ast) = ast_first(*ast, true, false);
-	head_child = (*ast);
 	while ((*ast)->next_grandchild != NULL)
+		(*ast) = (*ast)->next_grandchild;
+	while ((*ast)->prev_grandchild != NULL)
 	{
+		(*ast) = (*ast)->prev_grandchild;
 		tmp = (*ast)->next_grandchild;
-		free((*ast)->cmd);
-		free((*ast));
-		(*ast) = tmp;
+		free(tmp->cmd);
+		free(tmp);
 	}
-	(*ast) = head_child;
-	(*ast) = (*ast)->prev_child;
-	free_ast(ast);
+	if ((*ast)->next_child != NULL)
+	{
+		tmp = (*ast);
+		(*ast) = (*ast)->next_child;
+		free(tmp->cmd);
+		free(tmp);
+		free_ast(&(*ast));
+	}
+	else if ((*ast)->next_child == NULL)
+	{
+		tmp = (*ast);
+		(*ast) = (*ast)->parent;
+		free(tmp->cmd);
+		free(tmp);
+	}
 }
 
 void print_ast(t_ast *ast)
 {
 	printf("cmd: %s\n", ast->cmd);
-	printf("type: %d\n", ast->type);
 	printf("Current address:%p\n", ast);
 	printf("next_sibling: %p\n", ast->next_grandchild);
 	printf("prev_sibling: %p\n", ast->prev_grandchild);
