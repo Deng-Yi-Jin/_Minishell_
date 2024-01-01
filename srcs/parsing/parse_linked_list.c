@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 12:33:37 by root              #+#    #+#             */
-/*   Updated: 2024/01/01 13:45:25 by codespace        ###   ########.fr       */
+/*   Updated: 2024/01/01 14:31:14 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ void print_ast(t_ast *ast)
 	printf("prev: %p\n", ast->prev_child);
 	printf("next: %p\n", ast->next_child);
 	printf("parent: %p\n", ast->parent);
+	printf("\n");
 }
 
 void 	print_ast_all(t_ast **ast)
