@@ -16,13 +16,15 @@ void	parse(t_token **tokens)
 {
 	t_ast	**ast;
 	t_ast	*ast_tmp;
+	t_ast	*minishell;
 	char	*tmp;
 	bool	is_child;
 
 	(*tokens) = lst_first_last(*tokens, false);
 	ast = (t_ast **)malloc(sizeof(t_ast *));
 	*ast = NULL;
-	(*ast) = create_ast_node(NULL);
+	(*ast) = create_parent_node(NULL);
+	minishell = (*ast);
 	while ((*tokens)->cmd != NULL)
 	{
 		is_child = true;
@@ -38,7 +40,7 @@ void	parse(t_token **tokens)
 			// printf("cmd: %s %p\n", (*tokens)->cmd, (*tokens)->prev);  rm -rf valorant
 			if (is_child == true && (*tokens)->prev != NULL && (*tokens)->prev->type == PIPE)
 			{
-				(*ast)->next_child = create_ast_node(ft_strdup(tmp));
+				(*ast)->next_child = create_ast_node(ft_strdup(tmp), PIPE);
 				free(tmp);
 				(*ast)->next_child->parent = (*ast);
 				(*ast)->next_child->prev_child = (*ast);
@@ -47,7 +49,7 @@ void	parse(t_token **tokens)
 			}
 			if (is_child == true)
 			{
-				(*ast)->next_child = create_ast_node(ft_strdup(tmp));
+				(*ast)->next_child = create_ast_node(ft_strdup(tmp), PIPE);
 				free(tmp);
 				(*ast)->next_child->parent = (*ast);
 				(*ast) = (*ast)->next_child;
@@ -55,7 +57,7 @@ void	parse(t_token **tokens)
 			}
 			if ((*tokens)->type != PIPE && (*tokens)->cmd != NULL)
 			{
-				(*ast)->next_grandchild = create_ast_node(ft_strdup((*tokens)->cmd));
+				(*ast)->next_grandchild = create_ast_node(ft_strdup((*tokens)->cmd), 0);
 				(*ast)->next_grandchild->prev_grandchild = (*ast);
 				(*ast) = (*ast)->next_grandchild;
 				(*tokens) = (*tokens)->next;
@@ -71,8 +73,7 @@ void	parse(t_token **tokens)
 	(*ast) = ast_first_last(*ast, true, true);
 	print_ast_all(ast);
 	free_ast(ast);
-	//printf("\n%p\n", *ast);
-	// free(*ast);
+	free(minishell);
 	free(ast);
 }
 

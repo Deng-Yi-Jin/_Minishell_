@@ -6,17 +6,34 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 12:33:37 by root              #+#    #+#             */
-/*   Updated: 2024/01/01 14:31:14 by codespace        ###   ########.fr       */
+/*   Updated: 2024/01/02 06:30:03 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_ast	*create_ast_node(char *cmd)
+t_ast	*create_ast_node(char *cmd, int type)
 {
 	t_ast	*new_node;
 
 	new_node = malloc(sizeof(t_ast));
+	if (!new_node)
+		return (NULL);
+	new_node->cmd = cmd;
+	new_node->type = type;
+	new_node->next_grandchild = NULL;
+	new_node->prev_grandchild = NULL;	
+	new_node->prev_child = NULL;
+	new_node->next_child = NULL;
+	new_node->parent = NULL;
+	return (new_node);
+}
+
+t_ast	*create_parent_node(char *cmd)
+{
+	t_ast	*new_node;
+
+	new_node = ft_calloc(1, sizeof(t_ast));
 	if (!new_node)
 		return (NULL);
 	new_node->cmd = cmd;
@@ -99,6 +116,7 @@ void	free_ast(t_ast **ast)
 void print_ast(t_ast *ast)
 {
 	printf("cmd: %s\n", ast->cmd);
+	printf("type: %d\n", ast->type);
 	printf("Current address:%p\n", ast);
 	printf("next_sibling: %p\n", ast->next_grandchild);
 	printf("prev_sibling: %p\n", ast->prev_grandchild);

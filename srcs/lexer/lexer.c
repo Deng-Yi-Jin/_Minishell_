@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sinlee <sinlee@student.42kl.edu.my>        +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 19:00:34 by sinlee            #+#    #+#             */
-/*   Updated: 2024/01/01 23:11:20 by sinlee           ###   ########.fr       */
+/*   Updated: 2024/01/02 04:42:46 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,30 @@ void	quoting(char *input, int *i, int *count_words, char quote)
 	{
 		(*i)++;
 		(*count_words)++;
+	}
+}
+
+void	dollar(char *input, int *i, int *count_words)
+{
+	(*i)++;
+	(*count_words)++;
+	if (input[*i] == '(')
+		quoting(input, i, count_words, ')');
+	else if (input[*i] == '{')
+		quoting(input, i, count_words, '}');
+	else if (input[*i] == '\"')
+		quoting(input, i, count_words, '\"');
+	else if (input[*i] == '\'')
+		quoting(input, i, count_words, '\'');
+	else if (input[*i] == '[')
+		quoting(input, i, count_words, ']');
+	else
+	{
+		while (ft_symbol(input[*i]) == false && input[*i])
+		{
+			(*i)++;
+			(*count_words)++;
+		}
 	}
 }
 
@@ -63,6 +87,10 @@ void	parse_input(char *input, char **envp)
 					quoting(input, &i, &count_words, '\'');
 				else if (input[i] == '\"')
 					quoting(input, &i, &count_words, '\"');
+				else if (input[i] == '$')
+				{
+					dollar(input, &i, &count_words);
+				}
 				else
 				{
 					i++;
