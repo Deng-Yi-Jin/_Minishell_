@@ -60,6 +60,9 @@ void	parse(t_token **tokens)
 				(*ast)->next_grandchild = create_ast_node(ft_strdup((*tokens)->cmd), 0);
 				(*ast)->next_grandchild->prev_grandchild = (*ast);
 				(*ast) = (*ast)->next_grandchild;
+				if ((*tokens)->type == REDIR_IN || (*tokens)->type == REDIR_OUT
+				|| (*tokens)->type == REDIR_OUT_APPEND || (*tokens)->type == HERE_DOC)
+					(*ast)->type = (*tokens)->type;
 				(*tokens) = (*tokens)->next;
 			}
 

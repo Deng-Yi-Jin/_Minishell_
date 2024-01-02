@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 08:27:44 by codespace         #+#    #+#             */
-/*   Updated: 2023/12/29 08:51:43 by codespace        ###   ########.fr       */
+/*   Updated: 2024/01/02 07:22:51 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ void	ft_redir(char *input, int *i, t_token **tokens)
 {
 	if (input[*i] == '>' && input[(*i) + 1] == '>')
 	{
-		(*tokens) = add_tokens((*tokens), ft_substr(input, *i, 2), REDIR_OUT);
+		(*tokens) = add_tokens((*tokens), ft_substr(input, *i, 2), REDIR_OUT_APPEND);
 		*i += 2;
 	}
 	else if (input[*i] == '<' && input[(*i) + 1] == '<')
 	{
-		(*tokens) = add_tokens((*tokens), ft_substr(input, *i, 2), REDIR_IN);
+		(*tokens) = add_tokens((*tokens), ft_substr(input, *i, 2), HERE_DOC);
 		*i += 2;
 	}
 	else
