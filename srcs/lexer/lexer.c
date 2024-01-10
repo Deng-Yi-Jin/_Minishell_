@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 19:00:34 by sinlee            #+#    #+#             */
-/*   Updated: 2024/01/02 07:33:28 by codespace        ###   ########.fr       */
+/*   Updated: 2024/01/09 04:00:45 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,16 @@ void	del(void *content)
 {
 	free(content);
 }
+
+//char	*dquote(char *str)
+//{
+//	int		i;
+//	char	*tmp;
+
+//	tmp = str;
+//	i = 0;
+//	while (tmp[i] != NULL)
+//}
 
 void	quoting(char *input, int *i, int *count_words, char quote)
 {
@@ -63,8 +73,6 @@ void	parse_input(char *input, char **envp)
 	t_token **tokens;
 	t_ast	*ast;
 	char	*tmp;
-	int		double_quote;
-	int		single_quote;
 	int		i;
 	int		j;
 	int		count_words;

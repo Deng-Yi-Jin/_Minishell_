@@ -61,20 +61,22 @@ void	parse(t_token **tokens)
 				(*ast)->next_grandchild->prev_grandchild = (*ast);
 				(*ast) = (*ast)->next_grandchild;
 				if ((*tokens)->type == REDIR_IN || (*tokens)->type == REDIR_OUT
-				|| (*tokens)->type == REDIR_OUT_APPEND || (*tokens)->type == HERE_DOC)
+				|| (*tokens)->type == REDIR_OUT_APPEND || (*tokens)->type == HERE_DOC
+				|| (*tokens)->type == DOLLAR)
 					(*ast)->type = (*tokens)->type;
 				(*tokens) = (*tokens)->next;
 			}
-
 		}
 		if ((*tokens)->type == PIPE)
 		{
+			(*ast) = ast_first_last((*ast), true, false);
+			dollar_deal(ast);
 			(*ast) = ast_first_last((*ast), true, false);
 			(*tokens) = (*tokens)->next;
 		}
 	}
 	(*ast) = ast_first_last(*ast, true, true);
-	print_ast_all(ast);
+	//print_ast_all(ast);
 	free_ast(ast);
 	free(minishell);
 	free(ast);
