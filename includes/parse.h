@@ -19,10 +19,12 @@ typedef struct s_ast
 {
 	char			*cmd;
 	int				type;
+	struct s_ast	*next_child;
+	struct s_ast	*prev_child;
+	struct s_ast	*prev_cmd;
+	struct s_ast	*next_cmd;
 	struct s_ast	*next_grandchild;
 	struct s_ast	*prev_grandchild;
-	struct s_ast	*prev_child;
-	struct s_ast	*next_child;
 	struct s_ast	*parent;
 }	t_ast;
 

@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:10:17 by codespace         #+#    #+#             */
-/*   Updated: 2024/01/10 14:25:27 by codespace        ###   ########.fr       */
+/*   Updated: 2024/01/11 13:35:09 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,31 @@
 
 void	dollar_deal(t_ast **ast)
 {
-	int		dollar;
-	int		open_brack;
-	int		close_brack;
-	int		i;
-	int		strlen;
 	char	*strtrim;
+	int		i;
+	int		count_words;
 
-	dollar = 0;
-	open_brack = 0;
-	close_brack = 0;
+	count_words = 0;
 	i = 0;
-	(*ast) = ast_first_last((*ast), true, false);
 	while ((*ast)->type != DOLLAR)
 		(*ast) = (*ast)->next_grandchild;
-	while ((*ast)->cmd[i])
+	if ((*ast)->type == DOLLAR)
+		strtrim = ft_strtrim((*ast)->cmd, "$()");
+	while (strtrim[i])
 	{
-		if ((*ast)->cmd[i] == '$')
-			dollar++;
-		else if ((*ast)->cmd[i] == '(')
-			open_brack++;
-		else if ((*ast)->cmd[i] == ')')
-			close_brack++;
-		i++;
+		if (strtrim[i] == ' ' || strtrim[i] == '\t')
+			i++;
+		else if ((strtrim[i] !=  ' ' && strtrim[i] != '\t') && strtrim[i])
+		{
+			while (strtrim[i] != ' '  && strtrim[i] != '\t' && strtrim[i])
+			{
+				i++;
+				count_words++;
+			}
+			
+		}
 	}
-	if (dollar > 0 && open_brack > 0 && close_brack > 0)
-	{
-		strlen = ft_strlen((*ast)->cmd) - dollar - open_brack - close_brack;
-		strtrim = malloc(sizeof(char) * strlen);
-		
-	}
-	free(strtrim);
-	printf("%d\n%d\n%d\n%d\n", dollar, open_brack, close_brack, strlen);
+	printf("%s\n", strtrim);
 	printf("%s\n", (*ast)->cmd);
+	free(strtrim);
 }
