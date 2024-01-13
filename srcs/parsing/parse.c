@@ -76,7 +76,7 @@ void	parse(t_token **tokens)
 		}
 	}
 	(*ast) = ast_first_last(*ast, true, true);
-	//print_ast_all(ast);
+//	print_ast_all(ast);
 	free_ast(ast);
 	free(minishell);
 	free(ast);

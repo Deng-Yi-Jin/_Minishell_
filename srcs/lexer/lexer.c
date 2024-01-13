@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 19:00:34 by sinlee            #+#    #+#             */
-/*   Updated: 2024/01/09 04:00:45 by codespace        ###   ########.fr       */
+/*   Updated: 2024/01/12 06:58:45 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,16 @@ void	quoting(char *input, int *i, int *count_words, char quote)
 		(*i)++;
 		(*count_words)++;
 	}
-	if (input[*i] == quote)
-	{
-		(*i)++;
-		(*count_words)++;
-	}
+	(*i)++;
+	(*i)++;
+	(*count_words)++;
 }
 
 void	dollar(char *input, int *i, int *count_words, t_token **tokens)
 {
+	int	j;
+
+	j = *i;
 	(*i)++;
 	(*count_words)++;
 	if (input[*i] == '(')
@@ -65,7 +66,7 @@ void	dollar(char *input, int *i, int *count_words, t_token **tokens)
 			(*count_words)++;
 		}
 	}
-	(*tokens) = add_tokens((*tokens), ft_substr(input, *i - *count_words, *count_words), DOLLAR);
+	(*tokens) = add_tokens((*tokens), ft_substr(input, j, *count_words + 1), DOLLAR);
 }
 
 void	parse_input(char *input, char **envp)
