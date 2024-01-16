@@ -66,17 +66,19 @@ void	parse(t_token **tokens)
 					(*ast)->type = (*tokens)->type;
 				(*tokens) = (*tokens)->next;
 			}
+			if ((*ast)->type == DOLLAR)
+				dollar_deal(*ast);
+			printf("type: %d\n", (*ast)->type);
 		}
+	
 		if ((*tokens)->type == PIPE)
 		{
-			(*ast) = ast_first_last((*ast), true, false);
-			dollar_deal(ast);
 			(*ast) = ast_first_last((*ast), true, false);
 			(*tokens) = (*tokens)->next;
 		}
 	}
 	(*ast) = ast_first_last(*ast, true, true);
-//	print_ast_all(ast);
+	//print_ast_all(ast);
 	free_ast(ast);
 	free(minishell);
 	free(ast);

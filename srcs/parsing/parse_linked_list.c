@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 12:33:37 by root              #+#    #+#             */
-/*   Updated: 2024/01/02 07:11:11 by codespace        ###   ########.fr       */
+/*   Updated: 2024/01/16 07:08:03 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_ast	*ast_first_last(t_ast *ast, bool go_child, bool go_sibling)
 {
 	if (go_child == true)
 	{
-		while ((ast)->prev_grandchild != NULL)
+		while ((ast)->prev_grandchild != NULL && (ast) != NULL)
 		{
 			(ast) = (ast)->prev_grandchild;
 			// printf("%s\n", (ast)->cmd);
@@ -57,7 +57,7 @@ t_ast	*ast_first_last(t_ast *ast, bool go_child, bool go_sibling)
 	}
 	if (go_sibling == true)
 	{
-		while ((ast)->prev_child != NULL)
+		while ((ast)->prev_child != NULL && (ast))
 			(ast) = (ast)->prev_child;
 	}
 	return (ast);
@@ -87,16 +87,16 @@ void	free_ast(t_ast **ast)
 	t_ast	*tmp;
 	t_ast	*child_tmp;
 
-	while ((*ast)->next_grandchild != NULL)
+	while ((*ast) && (*ast)->next_grandchild != NULL)
 		(*ast) = (*ast)->next_grandchild;
-	while ((*ast)->prev_grandchild != NULL)
+	while ((*ast) && (*ast)->prev_grandchild != NULL)
 	{
 		(*ast) = (*ast)->prev_grandchild;
 		tmp = (*ast)->next_grandchild;
 		free(tmp->cmd);
 		free(tmp);
 	}
-	if ((*ast)->next_child != NULL)
+	if ((*ast) && (*ast)->next_child != NULL)
 	{
 		tmp = (*ast);
 		(*ast) = (*ast)->next_child;
@@ -104,7 +104,7 @@ void	free_ast(t_ast **ast)
 		free(tmp);
 		free_ast(&(*ast));
 	}
-	else if ((*ast)->next_child == NULL)
+	else if ((*ast) && (*ast)->next_child == NULL)
 	{
 		tmp = (*ast);
 		(*ast) = (*ast)->parent;
