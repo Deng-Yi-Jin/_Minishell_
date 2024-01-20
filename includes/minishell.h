@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:06:06 by sinlee            #+#    #+#             */
-/*   Updated: 2023/10/19 10:58:29 by root             ###   ########.fr       */
+/*   Updated: 2024/01/20 04:00:25 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,15 +101,17 @@ t_token		*lst_go_back(t_token *tokens);
 t_token		*add_null_token(t_token *tokens);
 
 // Lexer utils
-void		check_type(char *input);
-void		is_symbol(char *input, int *i, t_token **tokens);
-void		is_word(char *str, int *i, t_token **tokens);
+bool		ft_bracket(char input);
 void		space_skip(char *str, int *i);
 bool		ft_symbol(char input);
 int 		ft_return_op(char input);
 void		ft_redir(char *input, int *i, t_token **tokens);
 void		ft_pipe(char *input, int *i, t_token **tokens);
+void		quoting(char *str, int *i, int *count_words, char c);
+void		dollar(char *input, int *i, int *count_words);
 
 void		print_token(t_token *tokens, bool to_first, char *str);
+
+void 		test_traverse(void);
 
 #endif

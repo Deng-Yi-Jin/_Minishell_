@@ -12,6 +12,11 @@
 
 #include "minishell.h"
 
+void custom_print(void *cmd)
+{
+	printf("%s", (char *)cmd);
+}
+
 void	parse(t_token **tokens)
 {
 	t_ast	**ast;
@@ -19,6 +24,7 @@ void	parse(t_token **tokens)
 	t_ast	*minishell;
 	char	*tmp;
 	bool	is_child;
+	bool	create_sibling;
 
 	(*tokens) = lst_first_last(*tokens, false);
 	ast = (t_ast **)malloc(sizeof(t_ast *));
@@ -28,6 +34,7 @@ void	parse(t_token **tokens)
 	while ((*tokens)->cmd != NULL)
 	{
 		is_child = true;
+		create_sibling = false;
 		tmp = ft_calloc(1, sizeof(char));
 		while ((*tokens)->type != PIPE && (*tokens)->cmd != NULL)
 		{
@@ -37,50 +44,58 @@ void	parse(t_token **tokens)
 		*tokens = lst_go_back(*tokens);
 		while ((*tokens)->type != PIPE && (*tokens)->cmd != NULL)
 		{
-			// printf("cmd: %s %p\n", (*tokens)->cmd, (*tokens)->prev);  rm -rf valorant
 			if (is_child == true && (*tokens)->prev != NULL && (*tokens)->prev->type == PIPE)
 			{
-				(*ast)->next_child = create_ast_node(ft_strdup(tmp), PIPE);
+				(*ast)->next = create_ast_node(ft_strdup(tmp), PIPE);
 				free(tmp);
-				(*ast)->next_child->parent = (*ast);
-				(*ast)->next_child->prev_child = (*ast);
-				(*ast) = (*ast)->next_child;
+				(*ast)->next->parent = (*ast)->parent;
+				(*ast)->next->prev = (*ast);
+				(*ast) = (*ast)->next;
 				is_child = false;
 			}
-			if (is_child == true)
+			else if (is_child == true)
 			{
-				(*ast)->next_child = create_ast_node(ft_strdup(tmp), PIPE);
+				(*ast)->child = create_ast_node(ft_strdup(tmp), PIPE);
 				free(tmp);
-				(*ast)->next_child->parent = (*ast);
-				(*ast) = (*ast)->next_child;
+				(*ast)->child->parent = (*ast);
+				(*ast) = (*ast)->child;
 				is_child = false;
 			}
-			if ((*tokens)->type != PIPE && (*tokens)->cmd != NULL)
+			if ((*tokens)->type != PIPE && (*tokens)->cmd != NULL && is_child == false)
 			{
-				(*ast)->next_grandchild = create_ast_node(ft_strdup((*tokens)->cmd), 0);
-				(*ast)->next_grandchild->prev_grandchild = (*ast);
-				(*ast) = (*ast)->next_grandchild;
-				if ((*tokens)->type == REDIR_IN || (*tokens)->type == REDIR_OUT
-				|| (*tokens)->type == REDIR_OUT_APPEND || (*tokens)->type == HERE_DOC
-				|| (*tokens)->type == DOLLAR)
-					(*ast)->type = (*tokens)->type;
-				(*tokens) = (*tokens)->next;
+				if (create_sibling == false)
+				{
+					(*ast)->child = create_ast_node(ft_strdup((*tokens)->cmd), 0);
+					(*ast)->child->parent = (*ast);
+					(*ast) = (*ast)->child;
+					if ((*tokens)->next != NULL && (*tokens)->next->type != PIPE)
+						create_sibling = true;
+					(*tokens) = (*tokens)->next;
+				}
+				else if (create_sibling == true)
+				{
+					(*ast)->next = create_ast_node(ft_strdup((*tokens)->cmd), 0);
+					(*ast)->next->parent = (*ast)->parent;
+					(*ast)->next->prev = (*ast);
+					(*ast) = (*ast)->next;
+					(*tokens) = (*tokens)->next;
+				}
 			}
-			if ((*ast)->type == DOLLAR)
-				dollar_deal(*ast);
-			printf("type: %d\n", (*ast)->type);
+		//	print_ast((*ast));
 		}
-	
 		if ((*tokens)->type == PIPE)
 		{
-			(*ast) = ast_first_last((*ast), true, false);
+			(*ast) = (*ast)->parent;
 			(*tokens) = (*tokens)->next;
 		}
 	}
-	(*ast) = ast_first_last(*ast, true, true);
+	while ((*ast)->parent != NULL)
+		(*ast) = (*ast)->parent;
+	// traverse(ast, custom_print, 0, false);
+	traverse(ast, free, 0, false);
 	//print_ast_all(ast);
-	free_ast(ast);
-	free(minishell);
+	//free_ast(ast);
+	// free(minishell);
 	free(ast);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:01:17 by codespace         #+#    #+#             */
-/*   Updated: 2023/09/14 16:43:09 by root             ###   ########.fr       */
+/*   Updated: 2024/01/20 06:56:37 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	main(int argc, char **argv, char **envp)
 	if (argc != 1 || argv[1])
 		error_exit("Error: too many arguments\n", false);
 	init(envp);
+	//test_traverse();
 	while (1)
 	{
 		input = readline(prompt_msg(prompt));

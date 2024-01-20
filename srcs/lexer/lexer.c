@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 19:00:34 by sinlee            #+#    #+#             */
-/*   Updated: 2024/01/12 06:58:45 by codespace        ###   ########.fr       */
+/*   Updated: 2024/01/18 03:24:24 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,7 @@ void	del(void *content)
 //	while (tmp[i] != NULL)
 //}
 
-void	quoting(char *input, int *i, int *count_words, char quote)
-{
-	(*i)++;
-	(*count_words)++;
-	while (input[*i] != quote && input[*i])
-	{
-		(*i)++;
-		(*count_words)++;
-	}
-	(*i)++;
-	(*i)++;
-	(*count_words)++;
-}
-
-void	dollar(char *input, int *i, int *count_words, t_token **tokens)
+void	dollar(char *input, int *i, int *count_words)
 {
 	int	j;
 
@@ -66,8 +52,26 @@ void	dollar(char *input, int *i, int *count_words, t_token **tokens)
 			(*count_words)++;
 		}
 	}
-	(*tokens) = add_tokens((*tokens), ft_substr(input, j, *count_words + 1), DOLLAR);
 }
+
+void	quoting(char *str, int *i, int *count_words, char c)
+{
+	(*i)++;
+	(*count_words)++;
+	while (str[*i] != c && str[*i] != '\0')
+	{
+		if (str[*i] == '$')
+			dollar(str, i, count_words);
+		else
+		{
+			(*i)++;
+			(*count_words)++;
+		}
+	}
+	(*i)++;
+	(*count_words)++;
+}
+
 
 void	parse_input(char *input, char **envp)
 {
@@ -89,7 +93,11 @@ void	parse_input(char *input, char **envp)
 		while (input[i] == ' ' || input[i] == '\t')
 			i++;
 		if (input[i] == '$')
-			dollar(input, &i, &count_words, tokens);
+		{
+			j = i;
+			dollar(input, &i, &count_words);
+			(*tokens) = add_tokens((*tokens), ft_substr(input, j, count_words + 1), DOLLAR);
+		}
 		if (ft_symbol(input[i]) == false && input[i])
 		{
 			j = i;

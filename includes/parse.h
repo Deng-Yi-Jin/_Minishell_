@@ -19,13 +19,11 @@ typedef struct s_ast
 {
 	char			*cmd;
 	int				type;
-	struct s_ast	*next_child;
-	struct s_ast	*prev_child;
-	struct s_ast	*prev_cmd;
-	struct s_ast	*next_cmd;
-	struct s_ast	*next_grandchild;
-	struct s_ast	*prev_grandchild;
+	struct s_ast	*child;
+	struct s_ast	*prev;
+	struct s_ast	*next;
 	struct s_ast	*parent;
+
 }	t_ast;
 
 void	parse(t_token **tokens);
@@ -38,6 +36,7 @@ void 	print_ast_all(t_ast **ast);
 int		num_of_pipes(t_token **tokens);
 t_ast	*ast_first(t_ast *ast, bool go_child, bool go_sibling);
 void	dollar_deal(t_ast *ast);
+bool traverse(t_ast **ast, void (*f)(void *), int depth, bool print);
 
 
 #endif

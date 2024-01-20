@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 08:27:44 by codespace         #+#    #+#             */
-/*   Updated: 2024/01/02 07:22:51 by codespace        ###   ########.fr       */
+/*   Updated: 2024/01/16 12:21:58 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 bool	ft_symbol(char input)
 {
 	if (input == '>' || input == '<' || input == '|' || input == ' ')
+		return (true);
+	return (false);
+}
+
+bool	ft_bracket(char input)
+{
+	if (input == '(' || input == ')' || input == '{' || input == '}')
 		return (true);
 	return (false);
 }
