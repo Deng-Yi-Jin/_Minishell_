@@ -68,9 +68,13 @@ void	parse(t_token **tokens)
 					(*ast)->child = create_ast_node(ft_strdup((*tokens)->cmd), 0);
 					(*ast)->child->parent = (*ast);
 					(*ast) = (*ast)->child;
+					if ((*tokens)->type == DOLLAR)
+					{
+						(*ast)->type = DOLLAR;
+						dollar_deal((*ast), create_sibling);
+					}
 					if ((*tokens)->next != NULL && (*tokens)->next->type != PIPE)
 						create_sibling = true;
-					(*tokens) = (*tokens)->next;
 				}
 				else if (create_sibling == true)
 				{
@@ -78,8 +82,13 @@ void	parse(t_token **tokens)
 					(*ast)->next->parent = (*ast)->parent;
 					(*ast)->next->prev = (*ast);
 					(*ast) = (*ast)->next;
-					(*tokens) = (*tokens)->next;
+					if ((*tokens)->type == DOLLAR)
+					{
+						(*ast)->type = DOLLAR;
+						dollar_deal((*ast), create_sibling);
+					}
 				}
+				(*tokens) = (*tokens)->next;
 			}
 		//	print_ast((*ast));
 		}
@@ -92,7 +101,7 @@ void	parse(t_token **tokens)
 	while ((*ast)->parent != NULL)
 		(*ast) = (*ast)->parent;
 	// traverse(ast, custom_print, 0, false);
-	traverse(ast, free, 0, false);
+	traverse(ast, free, 0, false); 
 	//print_ast_all(ast);
 	//free_ast(ast);
 	// free(minishell);

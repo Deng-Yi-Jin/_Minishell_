@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 19:00:34 by sinlee            #+#    #+#             */
-/*   Updated: 2024/01/18 03:24:24 by codespace        ###   ########.fr       */
+/*   Updated: 2024/01/24 09:34:13 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ void	parse_input(char *input, char **envp)
 					quoting(input, &i, &count_words, '\'');
 				else if (input[i] == '\"')
 					quoting(input, &i, &count_words, '\"');
+				else if (input[i] == '`')
+					quoting(input, &i, &count_words, '`');
 				else
 				{
 					i++;

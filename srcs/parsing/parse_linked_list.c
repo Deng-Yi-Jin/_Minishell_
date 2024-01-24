@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 12:33:37 by root              #+#    #+#             */
-/*   Updated: 2024/01/20 08:57:14 by codespace        ###   ########.fr       */
+/*   Updated: 2024/01/21 08:11:55 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ void test_traverse(void)
     // Free the memory
     // free_nodes(node1);
 
-    return 0;
+    return ;
 }
 
 // void	free_ast(t_ast **ast)

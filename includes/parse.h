@@ -35,8 +35,8 @@ void	print_ast(t_ast *ast);
 void 	print_ast_all(t_ast **ast);
 int		num_of_pipes(t_token **tokens);
 t_ast	*ast_first(t_ast *ast, bool go_child, bool go_sibling);
-void	dollar_deal(t_ast *ast);
-bool traverse(t_ast **ast, void (*f)(void *), int depth, bool print);
+void	dollar_deal(t_ast *ast, bool create_sibling);
+bool 	traverse(t_ast **ast, void (*f)(void *), int depth, bool print);
 
 
 #endif
