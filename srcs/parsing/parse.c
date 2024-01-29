@@ -17,7 +17,7 @@ void custom_print(void *cmd)
 	printf("%s", (char *)cmd);
 }
 
-void	parse(t_token **tokens)
+void	parse(t_token **tokens, char **envp)
 {
 	t_ast	**ast;
 	t_ast	*ast_tmp;
@@ -73,6 +73,8 @@ void	parse(t_token **tokens)
 						(*ast)->type = DOLLAR;
 						dollar_deal((*ast), create_sibling);
 					}
+					else
+						(*ast)->type = CMD;
 					if ((*tokens)->next != NULL && (*tokens)->next->type != PIPE)
 						create_sibling = true;
 				}
@@ -100,7 +102,9 @@ void	parse(t_token **tokens)
 	}
 	while ((*ast)->parent != NULL)
 		(*ast) = (*ast)->parent;
-	// traverse(ast, custom_print, 0, false);
+	execute(ast, envp);
+	while ((*ast)->parent != NULL)
+		(*ast) = (*ast)->parent;
 	traverse(ast, free, 0, false); 
 	//print_ast_all(ast);
 	//free_ast(ast);

@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 12:33:37 by root              #+#    #+#             */
-/*   Updated: 2024/01/21 08:11:55 by codespace        ###   ########.fr       */
+/*   Updated: 2024/01/29 06:23:55 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 t_ast	*create_ast_node(char *cmd, int type)
 {
 	t_ast	*new_node;
+	char	*tmp;
 
+	// free(cmd);
 	new_node = malloc(sizeof(t_ast));
 	if (!new_node)
 		return (NULL);
@@ -44,28 +46,25 @@ t_ast	*create_parent_node(char *cmd)
 	return (new_node);
 }
 
-bool traverse(t_ast **ast, void (*f)(void *), int depth, bool print) {
-    if (*ast == NULL) {
+bool traverse(t_ast **ast, void (*f)(void *), int depth, bool print) 
+{
+    if (*ast == NULL)
         return false;
-    }
 	t_ast *temp = (*ast)->next;
 	
-	
 	// Print the command of the current node with indentation
-	if (print == false && (*ast)->cmd != NULL)
-	{
-		printf("%s\n", (*ast)->cmd);
-	}
-	
+	// if (print == false && (*ast)->cmd != NULL)
+	// {
+	// 	printf("%s\n", (*ast)->cmd);
+	// }
     // Traverse the child with increased depth
     traverse(&((*ast)->child), f, depth + 1, print);
 
     // Print the command of the current node with indentation
-    f((*ast)->cmd);
+	f((*ast)->cmd);
 	f((*ast));
     // Traverse the next sibling with the same depth
     traverse(&temp, f, depth, print);
-
     return (true);
 }
 
@@ -75,69 +74,69 @@ void custom_print1(void *cmd)
 	printf("%s\n", (char *)cmd);
 }
 
-void test_traverse(void) 
-{
-    // Your test function with the updated traverse function
-    t_ast *node1 = malloc(sizeof(t_ast));
-    t_ast *node2 = malloc(sizeof(t_ast));
-    t_ast *node3 = malloc(sizeof(t_ast));
-    t_ast *node4 = malloc(sizeof(t_ast));
-    t_ast *node5 = malloc(sizeof(t_ast));
-    t_ast *node6 = malloc(sizeof(t_ast));
-	t_ast *node7 = malloc(sizeof(t_ast));
-	t_ast *node8 = malloc(sizeof(t_ast));
-	t_ast *node9 = malloc(sizeof(t_ast));
-	t_ast *node10 = malloc(sizeof(t_ast));
+// void test_traverse(void) 
+// {
+//     // Your test function with the updated traverse function
+//     t_ast *node1 = malloc(sizeof(t_ast));
+//     t_ast *node2 = malloc(sizeof(t_ast));
+//     t_ast *node3 = malloc(sizeof(t_ast));
+//     t_ast *node4 = malloc(sizeof(t_ast));
+//     t_ast *node5 = malloc(sizeof(t_ast));
+//     t_ast *node6 = malloc(sizeof(t_ast));
+// 	t_ast *node7 = malloc(sizeof(t_ast));
+// 	t_ast *node8 = malloc(sizeof(t_ast));
+// 	t_ast *node9 = malloc(sizeof(t_ast));
+// 	t_ast *node10 = malloc(sizeof(t_ast));
 
-    // Set up your tree structure here...
-	node1->cmd = "command1";
-    node1->next = node2;
-    node1->child = node4;
+//     // Set up your tree structure here...
+// 	node1->cmd = "command1";
+//     node1->next = node2;
+//     node1->child = node4;
 
-    node2->cmd = "command2";
-    node2->next = node3;
-    node2->child = NULL;
+//     node2->cmd = "command2";
+//     node2->next = node3;
+//     node2->child = NULL;
 
-    node3->cmd = "command3";
-    node3->next = NULL;
-    node3->child = node8;
+//     node3->cmd[0] = "command3";
+//     node3->next = NULL;
+//     node3->child = node8;
 
-    node4->cmd = "child1";
-    node4->next = node5;
-    node4->child = NULL;
+//     node4->cmd[0] = "child1";
+//     node4->next = node5;
+//     node4->child = NULL;
 
-    node5->cmd = "child2";
-    node5->next = node6;
-    node5->child = node7;
+//     node5->cmd[0] = "child2";
+//     node5->next = node6;
+//     node5->child = node7;
 
-    node6->cmd = "child3";
-    node6->next = NULL;
-    node6->child = NULL;
+//     node6->cmd[0] = "child3";
+//     node6->next = NULL;
+//     node6->child = NULL;
 
-    node7->cmd = "grandchild1";
-    node7->next = NULL;
-    node7->child = NULL;
+//     node7->cmd[0] = "grandchild1";
+//     node7->next = NULL;
+//     node7->child = NULL;
 
-    node8->cmd = "child4";
-    node8->next = node9;
-    node8->child = node10;
+//     node8->cmd = "child4";
+//     node8->next = node9;
+//     node8->child = node10;
 
-    node9->cmd = "grandchild2";
-    node9->next = NULL;
-    node9->child = NULL;
+//     node9->cmd = "grandchild2";
+//     node9->next = NULL;
+//     node9->child = NULL;
 
-    node10->cmd = "grandchild3";
-    node10->next = NULL;
-    node10->child = NULL;
+//     node10->cmd = "grandchild3";
+//     node10->next = NULL;
+//     node10->child = NULL;
 
-    printf("Fancy Tree Output:\n");
-    traverse(&node1, free, 0, true);
+//     printf("Fancy Tree Output:\n");
+//     traverse(&node1, free, 0, true);
 
-    // Free the memory
-    // free_nodes(node1);
+//     // Free the memory
+//     // free_nodes(node1);
 
-    return ;
-}
+//     return ;
+// }
 
 // void	free_ast(t_ast **ast)
 // {
@@ -170,18 +169,18 @@ void test_traverse(void)
 // 	}
 // }
 
-void print_ast(t_ast *ast)
-{
-	printf("cmd: %s\n", ast->cmd);
-	printf("pipe_cmd: %s\n", ast->parent->cmd);
-	printf("type: %d\n", ast->type);
-	printf("Current address:%p\n", ast);
-	printf("next_sibling: %p\n", ast->next);
-	printf("prev_sibling: %p\n", ast->prev);
-	printf("child: %p\n", ast->child);
-	printf("parent: %p\n", ast->parent);
-	printf("big boss: %p\n", ast->parent->parent);
-}
+// void print_ast(t_ast *ast)
+// {
+// 	printf("cmd: %s\n", ast->cmd);
+// 	printf("pipe_cmd: %s\n", ast->parent->cmd);
+// 	printf("type: %d\n", ast->type);
+// 	printf("Current address:%p\n", ast);
+// 	printf("next_sibling: %p\n", ast->next);
+// 	printf("prev_sibling: %p\n", ast->prev);
+// 	printf("child: %p\n", ast->child);
+// 	printf("parent: %p\n", ast->parent);
+// 	printf("big boss: %p\n", ast->parent->parent);
+// }
 
 // void 	print_ast_all(t_ast **ast)
 // {

@@ -6,7 +6,7 @@
 #    By: codespace <codespace@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 06:55:38 by codespace         #+#    #+#              #
-#    Updated: 2024/01/10 14:14:12 by codespace        ###   ########.fr        #
+#    Updated: 2024/01/29 05:30:41 by codespace        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,14 +25,13 @@ ENV_DIR = env
 LEXER_DIR = lexer
 PARSE_DIR = parsing
 # SRCS_FILES = $(addprefix $(BUILTINS_DIR)/, cd.c echo.c env.c exit.c export.c pwd.c unset.c) \
-#              $(addprefix $(EXEC_DIR)/, bin.c builtin.c exec.c) \
 #              $(addprefix $(MAIN_DIR)/, minishell.c redir.c signal.c) \
 #              $(addprefix $(PARSING_DIR)/, line.c tokens.c expansions.c) \
 #              $(addprefix $(TOOLS_DIR)/, fd.c free.c token.c type.c expansions.c parsing.c)
 SRCS_FILES = $(addprefix $(MAIN_DIR)/, main.c initialize.c signals.c prompt.c) \
 			 $(addprefix $(UTILS_DIR)/, misc.c ft_snprintf.c ft_malloc.c) \
 			 $(addprefix $(ENV_DIR)/, env.c env_utils.c) \
-			 $(addprefix $(EXEC_DIR)/, commands.c cd.c welcome.c export.c) \
+			 $(addprefix $(EXEC_DIR)/, commands.c cd.c welcome.c export.c execute.c execution_utils.c) \
 			 $(addprefix $(LEXER_DIR)/, lexer.c lexer_utils.c lexer_linked_list_utils.c lexer_linked_list_utils2.c lexer_check_separator.c ft_checksymb.c) \
 			 $(addprefix $(PARSE_DIR)/, parse_linked_list.c parse.c parsing_piping.c dollar_sign.c) \
 

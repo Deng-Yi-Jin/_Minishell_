@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:06:06 by sinlee            #+#    #+#             */
-/*   Updated: 2024/01/20 04:00:25 by codespace        ###   ########.fr       */
+/*   Updated: 2024/01/26 09:47:30 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "tokens.h"
 # include "libft.h"
 # include "parse.h"
+# include "execute.h"
 # include <dirent.h>
 # include <errno.h>
 # include <readline/history.h>
@@ -64,6 +65,8 @@ void		init(char **envp);
 void		init_signals(void);
 
 bool		match_cmd(char *inpt, char *args[N_ARGS], char **envp);
+void		ft_free_path_env(char **path_env);
+char		*get_path(char *cmd, char **envp);
 char		*find_command_path(char *command, char **envp);
 void		parse_input(char *input, char **envp);
 

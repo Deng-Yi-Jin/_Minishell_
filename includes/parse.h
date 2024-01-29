@@ -12,6 +12,7 @@
 
 #ifndef PARSE_H
 # define PARSE_H
+# define N_ARGS 2560
 
 # include "minishell.h"
 
@@ -23,18 +24,13 @@ typedef struct s_ast
 	struct s_ast	*prev;
 	struct s_ast	*next;
 	struct s_ast	*parent;
-
 }	t_ast;
 
-void	parse(t_token **tokens);
+void	parse(t_token **tokens, char **envp);
 t_ast	*create_ast_node(char *cmd, int type);
 t_ast	*create_parent_node(char *cmd);
-t_ast	*ast_first_last(t_ast *ast, bool go_child, bool go_sibling);
-void	free_ast(t_ast **ast);
 void	print_ast(t_ast *ast);
 void 	print_ast_all(t_ast **ast);
-int		num_of_pipes(t_token **tokens);
-t_ast	*ast_first(t_ast *ast, bool go_child, bool go_sibling);
 void	dollar_deal(t_ast *ast, bool create_sibling);
 bool 	traverse(t_ast **ast, void (*f)(void *), int depth, bool print);
 

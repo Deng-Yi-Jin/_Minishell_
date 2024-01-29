@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inpt.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sinlee <sinlee@student.42kl.edu.my>        +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 13:55:51 by codespace         #+#    #+#             */
-/*   Updated: 2023/08/16 18:58:18 by sinlee           ###   ########.fr       */
+/*   Updated: 2024/01/25 08:39:25 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void parse_input(char *input, char **envp) // input -> "ls -l | wc -l"
 {
-    if (input[0] != '\0')
+    if (input != NULL)
     {
         // Tokenize input to get command and arguments
         char *args[N_ARGS]; // Adjust the array size as needed

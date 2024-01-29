@@ -10,6 +10,7 @@
 # define DOMESTIC_EXPANSION 9
 # define WORD 10
 # define DIGIT 11
+# define CMD 12
 
 // enum Flags {
 // 	PIPE,

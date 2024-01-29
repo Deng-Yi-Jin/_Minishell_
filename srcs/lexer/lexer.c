@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 19:00:34 by sinlee            #+#    #+#             */
-/*   Updated: 2024/01/24 09:34:13 by codespace        ###   ########.fr       */
+/*   Updated: 2024/01/29 06:32:48 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,8 +123,8 @@ void	parse_input(char *input, char **envp)
 			ft_pipe(input, &i, tokens);
 	}
 	(*tokens) = add_null_token(*tokens);
-	parse(tokens);
-	//print_stack(*tokens);
+	parse(tokens, envp);
+	// print_stack(*tokens);
 	free_stack(tokens, del, true);
 	free(tokens);
 }
