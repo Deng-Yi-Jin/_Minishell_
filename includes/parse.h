@@ -20,6 +20,7 @@ typedef struct s_ast
 {
 	char			*cmd;
 	int				type;
+	int				fd[2];
 	struct s_ast	*child;
 	struct s_ast	*prev;
 	struct s_ast	*next;

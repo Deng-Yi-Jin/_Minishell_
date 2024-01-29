@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 09:08:05 by codespace         #+#    #+#             */
-/*   Updated: 2024/01/29 11:44:14 by codespace        ###   ########.fr       */
+/*   Updated: 2024/01/29 12:50:11 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,16 @@ void	execute_cmd(t_ast **ast, char **envp)
 void	execute(t_ast **ast, char **envp)
 {
 	(*ast) = (*ast)->child;
-	if ((*ast)->type == PIPE && (*ast)->next == NULL)
+	while ((*ast) != NULL)
 	{
-		(*ast) = (*ast)->child;
-		execute_cmd(ast, envp);
+		if ((*ast)->type == PIPE && (*ast)->next == NULL)
+		{
+			(*ast) = (*ast)->child;
+			execute_cmd(ast, envp);
+		}
+		(*ast) = (*ast)->parent;
+		if ((*ast)->next == NULL)
+			break ;
+		(*ast) = (*ast)->next;
 	}
 }

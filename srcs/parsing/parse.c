@@ -102,6 +102,15 @@ void	parse(t_token **tokens, char **envp)
 	}
 	while ((*ast)->parent != NULL)
 		(*ast) = (*ast)->parent;
+	minishell = (*ast);
+	(*ast) = (*ast)->child;
+	while ((*ast)->type == PIPE && (*ast)->next != NULL)
+	{
+		if (pipe((*ast)->fd) == -1)
+			perror("pipe");
+		(*ast) = (*ast)->next;
+	}
+	(*ast) = minishell;
 	execute(ast, envp);
 	while ((*ast)->parent != NULL)
 		(*ast) = (*ast)->parent;
@@ -111,4 +120,3 @@ void	parse(t_token **tokens, char **envp)
 	// free(minishell);
 	free(ast);
 }
-
