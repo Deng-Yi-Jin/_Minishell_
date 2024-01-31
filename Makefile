@@ -6,7 +6,7 @@
 #    By: codespace <codespace@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 06:55:38 by codespace         #+#    #+#              #
-#    Updated: 2024/01/29 05:30:41 by codespace        ###   ########.fr        #
+#    Updated: 2024/01/30 06:15:36 by codespace        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ UTILS_DIR = utils
 ENV_DIR = env
 LEXER_DIR = lexer
 PARSE_DIR = parsing
+TRAVERSE_DIR = traverse
 # SRCS_FILES = $(addprefix $(BUILTINS_DIR)/, cd.c echo.c env.c exit.c export.c pwd.c unset.c) \
 #              $(addprefix $(MAIN_DIR)/, minishell.c redir.c signal.c) \
 #              $(addprefix $(PARSING_DIR)/, line.c tokens.c expansions.c) \
@@ -34,13 +35,14 @@ SRCS_FILES = $(addprefix $(MAIN_DIR)/, main.c initialize.c signals.c prompt.c) \
 			 $(addprefix $(EXEC_DIR)/, commands.c cd.c welcome.c export.c execute.c execution_utils.c) \
 			 $(addprefix $(LEXER_DIR)/, lexer.c lexer_utils.c lexer_linked_list_utils.c lexer_linked_list_utils2.c lexer_check_separator.c ft_checksymb.c) \
 			 $(addprefix $(PARSE_DIR)/, parse_linked_list.c parse.c parsing_piping.c dollar_sign.c) \
+			 $(addprefix $(TRAVERSE_DIR)/, traversing.c exec_utils.c) \
 
 SRCS = $(addprefix $(SRCS_DIR)/,$(SRCS_FILES))
 
 # Object files
 OBJS_DIR = objs
 # OBJS_DIRS = $(OBJS_DIR) $(OBJS_DIR)/$(BUILTINS_DIR) $(OBJS_DIR)/$(EXEC_DIR) $(OBJS_DIR)/$(MAIN_DIR) $(OBJS_DIR)/$(PARSING_DIR) $(OBJS_DIR)/$(TOOLS_DIR)
-OBJS_DIRS = $(OBJS_DIR) $(OBJS_DIR)/$(MAIN_DIR) $(OBJS_DIR)/$(UTILS_DIR) $(OBJS_DIR)/$(EXEC_DIR) $(OBJS_DIR)/$(ENV_DIR) $(OBJS_DIR)/$(LEXER_DIR) $(OBJS_DIR)/$(PARSE_DIR)
+OBJS_DIRS = $(OBJS_DIR) $(OBJS_DIR)/$(MAIN_DIR) $(OBJS_DIR)/$(UTILS_DIR) $(OBJS_DIR)/$(EXEC_DIR) $(OBJS_DIR)/$(ENV_DIR) $(OBJS_DIR)/$(LEXER_DIR) $(OBJS_DIR)/$(PARSE_DIR) $(OBJS_DIR)/$(TRAVERSE_DIR)
 OBJS_FILES = $(patsubst %.c,%.o,$(SRCS_FILES))
 OBJS = $(addprefix $(OBJS_DIR)/,$(OBJS_FILES))
 

@@ -22,6 +22,7 @@ void	parse(t_token **tokens, char **envp)
 	t_ast	**ast;
 	t_ast	*ast_tmp;
 	t_ast	*minishell;
+	t_exec	*exec;
 	char	*tmp;
 	bool	is_child;
 	bool	create_sibling;
@@ -103,20 +104,13 @@ void	parse(t_token **tokens, char **envp)
 	while ((*ast)->parent != NULL)
 		(*ast) = (*ast)->parent;
 	minishell = (*ast);
-	(*ast) = (*ast)->child;
-	while ((*ast)->type == PIPE && (*ast)->next != NULL)
-	{
-		if (pipe((*ast)->fd) == -1)
-			perror("pipe");
-		(*ast) = (*ast)->next;
-	}
+	exec = executing(ast, exec);
+	if (exec && exec->next == NULL)
+		execute_single_cmd(exec, envp);
+	else
+		execute(exec, envp);
+	free_exec(exec);
 	(*ast) = minishell;
-	execute(ast, envp);
-	while ((*ast)->parent != NULL)
-		(*ast) = (*ast)->parent;
 	traverse(ast, free, 0, false); 
-	//print_ast_all(ast);
-	//free_ast(ast);
-	// free(minishell);
 	free(ast);
 }

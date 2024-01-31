@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 12:33:37 by root              #+#    #+#             */
-/*   Updated: 2024/01/29 06:23:55 by codespace        ###   ########.fr       */
+/*   Updated: 2024/01/30 13:20:22 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,11 @@ t_ast	*create_parent_node(char *cmd)
 
 bool traverse(t_ast **ast, void (*f)(void *), int depth, bool print) 
 {
+	t_ast *temp;
+
     if (*ast == NULL)
         return false;
-	t_ast *temp = (*ast)->next;
-	
+	temp = (*ast)->next;	
 	// Print the command of the current node with indentation
 	// if (print == false && (*ast)->cmd != NULL)
 	// {
