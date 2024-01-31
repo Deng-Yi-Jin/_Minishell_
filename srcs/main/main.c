@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:01:17 by codespace         #+#    #+#             */
-/*   Updated: 2024/01/31 00:04:51 by codespace        ###   ########.fr       */
+/*   Updated: 2024/01/31 08:52:43 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,13 @@ int	main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		input = readline(prompt_msg(prompt));
-		if (!input)
+		if (!input || strcmp(input, "exit") == 0)
 			exit_success();
-		add_history(input);
 		if (input[0] != '\0')
+		{
+			add_history(input);
 			parse_input(input, envp);
+		}
 		free(input);
 	}
 	return (0);

@@ -105,8 +105,10 @@ void	parse(t_token **tokens, char **envp)
 		(*ast) = (*ast)->parent;
 	minishell = (*ast);
 	exec = executing(ast, exec);
-	if (exec && exec->next == NULL)
+	if (exec->next == NULL)
 		execute_single_cmd(exec, envp);
+	// else
+	// 	execution(exec, envp);
 	else
 		execute(exec, envp);
 	free_exec(exec);
