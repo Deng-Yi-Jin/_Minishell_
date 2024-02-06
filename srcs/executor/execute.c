@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 09:08:05 by codespace         #+#    #+#             */
-/*   Updated: 2024/01/31 13:19:14 by codespace        ###   ########.fr       */
+/*   Updated: 2024/02/06 04:02:57 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,7 +195,9 @@ void	execute(t_exec *exec, char **envp)
 	char	*command_path;
 	pid_t	child_pid;
 	int		fd[2];
+	int		saved_stdin;
 
+	saved_stdin = dup(STDIN_FILENO);
 	while (exec != NULL)
 	{
 		command_path = find_command_path(exec->cmd[0], envp);
@@ -227,11 +229,11 @@ void	execute(t_exec *exec, char **envp)
 		  			close(fd[1]); // Close the write end of the pipe in the parent
 			 		dup2(fd[0], STDIN_FILENO); // Replace stdin with the read end of the pipe
 		  		}
-				free(command_path);
+				if (command_path != NULL)
+					free(command_path);
 		   		exec = exec->next;
 		  		command_path = find_command_path(exec->cmd[0], envp);
 	   		}
-			command_path = find_command_path(exec->cmd[0], envp);
 			if (command_path == NULL)
 			{
 				if (match_cmd(exec->cmd[0], exec->cmd, envp) == false)
@@ -239,12 +241,22 @@ void	execute(t_exec *exec, char **envp)
 			}
 			else
 			{
-			
-	   			if (execve(command_path, exec->cmd, envp))
-					perror("execve");
+				exec->pid = fork();
+				if (exec->pid == 0)
+				{
+	   				if (execve(command_path, exec->cmd, envp))
+						perror("execve");
+				}
+				else
+				{
+					waitpid(exec->pid, NULL, 0);
+				}
 			}
-			free(command_path);
+			if (command_path != NULL)
+				free(command_path);
 			exec = exec->next;
    	 	}
+		dup2(saved_stdin, STDIN_FILENO);
+		close(saved_stdin);
 	}
 }
