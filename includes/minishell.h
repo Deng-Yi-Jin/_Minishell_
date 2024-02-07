@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: djin <djin@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:06:06 by sinlee            #+#    #+#             */
-/*   Updated: 2024/01/30 05:00:26 by codespace        ###   ########.fr       */
+/*   Updated: 2024/02/06 13:35:20 by djin             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,15 @@
 // Structure to hold environment variables
 typedef struct env_var_s
 {
-    char	*key;
-    char	*value;
+	char	*key;
+	char	*value;
 }	env_var_t;
 
 typedef struct s_main
 {
 	int	nuclear_status; // exit status
-	env_var_t	**env_vars;
 	char		**envp;
+	env_var_t	**env_vars;
 }	t_main;
 
 // extern env_var_t **g_env_vars;
@@ -68,7 +68,7 @@ bool		match_cmd(char *inpt, char *args[N_ARGS], char **envp);
 void		ft_free_path_env(char **path_env);
 char		*get_path(char *cmd, char **envp);
 char		*find_command_path(char *command, char **envp);
-void		parse_input(char *input, char **envp);
+void		parse_input(char *input, char **envp, int count_words);
 
 void		add_env_vars(char *key, char *value);
 void		modify_env_vars(char *key, char *value);
@@ -104,17 +104,19 @@ t_token		*lst_go_back(t_token *tokens);
 t_token		*add_null_token(t_token *tokens);
 
 // Lexer utils
+void		lexing(char *input, t_token **tokens, int *i, int *count_words);
 bool		ft_bracket(char input);
 void		space_skip(char *str, int *i);
 bool		ft_symbol(char input);
-int 		ft_return_op(char input);
+int			ft_return_op(char input);
 void		ft_redir(char *input, int *i, t_token **tokens);
 void		ft_pipe(char *input, int *i, t_token **tokens);
 void		quoting(char *str, int *i, int *count_words, char c);
+void		quotation(char *input, int *i, int *count_words, char c);
 void		dollar(char *input, int *i, int *count_words);
 
 void		print_token(t_token *tokens, bool to_first, char *str);
 
-void 		test_traverse(void);
+void		test_traverse(void);
 
 #endif

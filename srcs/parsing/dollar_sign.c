@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:10:17 by codespace         #+#    #+#             */
-/*   Updated: 2024/01/24 09:22:11 by codespace        ###   ########.fr       */
+/*   Updated: 2024/02/06 15:37:05 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,19 @@ void	dollar_deal(t_ast *ast, bool create_sibling)
 			}
 		}
 		while (strtrim[i] == ' ')
-		{
 			i++;
-		}
 		if (create_sibling == false)
 		{
 			(ast)->child = create_ast_node(ft_substr(strtrim, j, count_words), 0);
 			(ast)->child->parent = (ast);
 			(ast) = (ast)->child;
 			create_sibling = true;
+			if (strtrim[j] == '\"' || strtrim[j] == '\'' || strtrim[j] == '`')
+				(ast)->type = QUOTE;
+			else if (strtrim[j] == '$')
+				(ast)->type = DOLLAR;
+			else
+				(ast)->type = WORD;
 		}
 		else if (create_sibling == true)
 		{
@@ -81,7 +85,16 @@ void	dollar_deal(t_ast *ast, bool create_sibling)
 			(ast)->next->parent = (ast)->parent;
 			(ast)->next->prev = (ast);
 			(ast) = (ast)->next;
+			if (strtrim[j] == '\"' || strtrim[j] == '\'' || strtrim[j] == '`')
+				(ast)->type = QUOTE;
+			else if (strtrim[j] == '$' && strtrim[j + 1] == '(')
+				(ast)->type = CMD_EXPANSION;
+			else if (strtrim[j] == '$')
+				(ast)->type = DOLLAR;
+			else
+				(ast)->type = WORD;
 		}
+		// printf("ast->type = %d\n", (ast)->type);
 	}
 	create_sibling = false;
 	// printf("ast->cmd[0] = %c\n", ast->cmd[0]);

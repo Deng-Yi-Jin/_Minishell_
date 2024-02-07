@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 12:33:37 by root              #+#    #+#             */
-/*   Updated: 2024/01/30 13:20:22 by codespace        ###   ########.fr       */
+/*   Updated: 2024/02/06 15:09:07 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,27 +46,22 @@ t_ast	*create_parent_node(char *cmd)
 	return (new_node);
 }
 
-bool traverse(t_ast **ast, void (*f)(void *), int depth, bool print) 
+bool	traverse(t_ast **ast, void (*f)(void *), int depth, bool print)
 {
-	t_ast *temp;
+	t_ast	*temp;
 
-    if (*ast == NULL)
-        return false;
-	temp = (*ast)->next;	
-	// Print the command of the current node with indentation
+	if (*ast == NULL)
+		return (false);
+	temp = (*ast)->next;
 	// if (print == false && (*ast)->cmd != NULL)
 	// {
 	// 	printf("%s\n", (*ast)->cmd);
 	// }
-    // Traverse the child with increased depth
-    traverse(&((*ast)->child), f, depth + 1, print);
-
-    // Print the command of the current node with indentation
+	traverse(&((*ast)->child), f, depth + 1, print);
 	f((*ast)->cmd);
 	f((*ast));
-    // Traverse the next sibling with the same depth
-    traverse(&temp, f, depth, print);
-    return (true);
+	traverse(&temp, f, depth, print);
+	return (true);
 }
 
 // create test for traverse

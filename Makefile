@@ -6,7 +6,7 @@
 #    By: codespace <codespace@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 06:55:38 by codespace         #+#    #+#              #
-#    Updated: 2024/01/30 06:15:36 by codespace        ###   ########.fr        #
+#    Updated: 2024/02/07 10:09:41 by codespace        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,9 +32,9 @@ TRAVERSE_DIR = traverse
 SRCS_FILES = $(addprefix $(MAIN_DIR)/, main.c initialize.c signals.c prompt.c) \
 			 $(addprefix $(UTILS_DIR)/, misc.c ft_snprintf.c ft_malloc.c) \
 			 $(addprefix $(ENV_DIR)/, env.c env_utils.c) \
-			 $(addprefix $(EXEC_DIR)/, commands.c cd.c welcome.c export.c execute.c execution_utils.c) \
-			 $(addprefix $(LEXER_DIR)/, lexer.c lexer_utils.c lexer_linked_list_utils.c lexer_linked_list_utils2.c lexer_check_separator.c ft_checksymb.c) \
-			 $(addprefix $(PARSE_DIR)/, parse_linked_list.c parse.c parsing_piping.c dollar_sign.c) \
+			 $(addprefix $(EXEC_DIR)/, commands.c cd.c welcome.c export.c execute.c execution_utils.c execution_utils2.c) \
+			 $(addprefix $(LEXER_DIR)/, lexer.c lexer_linked_list.c lexer_linked_list_utils.c lexing_utils.c lexer_check_separator.c) \
+			 $(addprefix $(PARSE_DIR)/, parse_linked_list.c parse.c dollar_sign.c ast_contruct.c parse_utils.c) \
 			 $(addprefix $(TRAVERSE_DIR)/, traversing.c exec_utils.c) \
 
 SRCS = $(addprefix $(SRCS_DIR)/,$(SRCS_FILES))
@@ -106,4 +106,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
-

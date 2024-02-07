@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/13 15:28:59 by root              #+#    #+#             */
-/*   Updated: 2023/10/01 16:15:490 by root             ###   ########.fr       */
+/*   Created: 2024/02/06 15:33:03 by djin              #+#    #+#             */
+/*   Updated: 2024/02/06 08:14:23 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,17 @@ void	parse(t_token **tokens, char **envp);
 t_ast	*create_ast_node(char *cmd, int type);
 t_ast	*create_parent_node(char *cmd);
 void	print_ast(t_ast *ast);
-void 	print_ast_all(t_ast **ast);
+void	print_ast_all(t_ast **ast);
 void	dollar_deal(t_ast *ast, bool create_sibling);
-bool 	traverse(t_ast **ast, void (*f)(void *), int depth, bool print);
+bool	traverse(t_ast **ast, void (*f)(void *), int depth, bool print);
 
+//ast contruct
+void	start_parse(t_ast **ast, t_token **tokens);
+void	construct_child_after_pipe(t_ast **ast, char *tmp, bool *is_child);
+void	construct_child_before_pipe(t_ast **ast, char *tmp, bool *is_child);
+void	eldest_child(t_ast **ast, t_token **tokens, bool *create_sibling);
+void	sibling(t_ast **ast, t_token **tokens, bool *create_sibling);
+void	construct_sibling(t_ast **ast, t_token **tokens, bool *create_sibling);
+void	form_ast(t_ast **ast, t_token **tokens);
 
 #endif
