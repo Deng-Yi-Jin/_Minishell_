@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djin <djin@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:06:06 by sinlee            #+#    #+#             */
-/*   Updated: 2024/02/06 13:35:20 by djin             ###   ########.fr       */
+/*   Updated: 2024/03/05 15:17:50 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,9 @@ void		print_stack(t_token *tokens);
 void		free_split(char *str);
 t_token		*lst_go_back(t_token *tokens);
 t_token		*add_null_token(t_token *tokens);
+
+// expand dollar
+void	expand_dollar(t_token **tokens);
 
 // Lexer utils
 void		lexing(char *input, t_token **tokens, int *i, int *count_words);

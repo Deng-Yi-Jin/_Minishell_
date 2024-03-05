@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sinlee <sinlee@student.42kl.edu.my>        +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:06:34 by djin              #+#    #+#             */
-/*   Updated: 2024/03/05 12:11:37 by sinlee           ###   ########.fr       */
+/*   Updated: 2024/03/05 15:38:23 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	parse(t_token **tokens, char **envp)
 	while ((*ast)->parent != NULL)
 		(*ast) = (*ast)->parent;
 	minishell = (*ast);
-	exec = executing(ast, exec);
-	execute(exec, envp);
-	free_exec(exec);
+	// exec = executing(ast, exec);
+	// execute(exec, envp);
+	// free_exec(exec);
 	(*ast) = minishell;
 	traverse(ast, free, 0, false);
 	free(ast);

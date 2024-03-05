@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_sign.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:10:17 by codespace         #+#    #+#             */
-/*   Updated: 2024/02/06 15:37:05 by codespace        ###   ########.fr       */
+/*   Updated: 2024/03/05 15:20:00 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	dollar_deal(t_ast *ast, bool create_sibling)
 	int		count_words;
 	int		j;
 
+	if ((ast)->cmd[0] != '$')
+		return;
 	create_sibling = false;
 	i = 0;
 	strtrim = "";

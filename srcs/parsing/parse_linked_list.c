@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_linked_list.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 12:33:37 by root              #+#    #+#             */
-/*   Updated: 2024/02/06 15:09:07 by codespace        ###   ########.fr       */
+/*   Updated: 2024/03/05 15:35:08 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ bool	traverse(t_ast **ast, void (*f)(void *), int depth, bool print)
 	if (*ast == NULL)
 		return (false);
 	temp = (*ast)->next;
-	// if (print == false && (*ast)->cmd != NULL)
-	// {
-	// 	printf("%s\n", (*ast)->cmd);
-	// }
+	if (print == false && (*ast)->cmd != NULL)
+	{
+		printf("%s\n", (*ast)->cmd);
+	}
 	traverse(&((*ast)->child), f, depth + 1, print);
 	f((*ast)->cmd);
 	f((*ast));

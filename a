@@ -1,0 +1,18 @@
+total 224
+drwxr-xr-x  8 geibo geibo   4096 Mar  5 15:44 .
+drwxr-xr-x  3 geibo geibo   4096 Mar  5 15:03 ..
+drwxr-xr-x  8 geibo geibo   4096 Mar  5 15:04 .git
+drwxr-xr-x  3 geibo geibo   4096 Mar  5 15:03 .github
+-rw-r--r--  1 geibo geibo     74 Mar  5 15:03 .gitignore
+-rw-r--r--  1 geibo geibo   4153 Mar  5 15:18 Makefile
+-rw-r--r--  1 geibo geibo    118 Mar  5 15:03 README.md
+-rw-r--r--  1 geibo geibo    896 Mar  5 15:43 TODO.md
+-rw-r--r--  1 geibo geibo      0 Mar  5 15:44 a
+drwxr-xr-x  2 geibo geibo   4096 Mar  5 15:03 includes
+drwxr-xr-x  4 geibo geibo   4096 Mar  5 15:03 lib
+-rwxr-xr-x  1 geibo geibo 162736 Mar  5 15:38 minishell
+drwxr-xr-x 10 geibo geibo   4096 Mar  5 15:22 objs
+drwxr-xr-x 10 geibo geibo   4096 Mar  5 15:05 srcs
+-rw-r--r--  1 geibo geibo    326 Mar  5 15:03 test.c
+-rw-r--r--  1 geibo geibo     42 Mar  5 15:03 test1.py
+-rw-r--r--  1 geibo geibo   3714 Mar  5 15:03 testing.c

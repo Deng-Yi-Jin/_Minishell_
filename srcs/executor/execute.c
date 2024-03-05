@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sinlee <sinlee@student.42kl.edu.my>        +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 09:08:05 by codespace         #+#    #+#             */
-/*   Updated: 2024/03/05 12:09:56 by sinlee           ###   ########.fr       */
+/*   Updated: 2024/03/05 15:29:47 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,12 +128,13 @@ void	execute(t_exec *exec, char **envp)
 	saved_stdin = dup(STDIN_FILENO);
 	while (exec != NULL)
 	{
+		if (ft_strcmp(exec->cmd[0], "") == 0)
+			break;
 		command_path = find_command_path(exec->cmd[0], envp);
 		if (command_path == NULL)
 		{
 			if (match_cmd(exec->cmd[0], exec->cmd, envp) == false)
-		   		 ft_printf("Command not found: %s\n", exec->cmd[0]);
-	   	 	exec = exec->next;
+		   		 printf("Command not found: %s\n", exec->cmd[0]);
 		}
 		else
 		{
@@ -180,8 +181,8 @@ void	execute(t_exec *exec, char **envp)
 			}
 			if (command_path != NULL)
 				free(command_path);
-			exec = exec->next;
    	 	}
+		exec = exec->next;
 		dup2(saved_stdin, STDIN_FILENO);
 		close(saved_stdin);
 	}

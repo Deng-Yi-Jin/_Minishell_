@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 19:00:34 by sinlee            #+#    #+#             */
-/*   Updated: 2024/02/06 08:02:55 by codespace        ###   ########.fr       */
+/*   Updated: 2024/03/05 15:19:18 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ void	parse_input(char *input, char **envp, int count_words)
 		lexing(input, tokens, &i, &count_words);
 	}
 	(*tokens) = add_null_token(*tokens);
+	(*tokens) = lst_go_back(*tokens);
+	expand_dollar(tokens);
 	parse(tokens, envp);
 	free_stack(tokens, del, true);
 	free(tokens);
