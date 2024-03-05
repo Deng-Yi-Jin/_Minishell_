@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sinlee <sinlee@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 09:08:05 by codespace         #+#    #+#             */
-/*   Updated: 2024/02/07 10:49:41 by codespace        ###   ########.fr       */
+/*   Updated: 2024/03/05 12:09:56 by sinlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ void	execute(t_exec *exec, char **envp)
 		if (command_path == NULL)
 		{
 			if (match_cmd(exec->cmd[0], exec->cmd, envp) == false)
-		   		 printf("Command not found: %s\n", exec->cmd[0]);
+		   		 ft_printf("Command not found: %s\n", exec->cmd[0]);
 	   	 	exec = exec->next;
 		}
 		else
