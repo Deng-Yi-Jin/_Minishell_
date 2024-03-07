@@ -6,7 +6,7 @@
 #    By: geibo <geibo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 06:55:38 by codespace         #+#    #+#              #
-#    Updated: 2024/03/05 15:18:47 by geibo            ###   ########.fr        #
+#    Updated: 2024/03/06 14:29:33 by geibo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ SRCS_FILES = $(addprefix $(MAIN_DIR)/, main.c initialize.c signals.c prompt.c) \
 			 $(addprefix $(EXEC_DIR)/, commands.c cd.c welcome.c export.c execute.c execution_utils.c execution_utils2.c) \
 			 $(addprefix $(LEXER_DIR)/, lexer.c lexer_linked_list.c lexer_linked_list_utils.c lexing_utils.c lexer_check_separator.c) \
 			 $(addprefix $(PARSE_DIR)/, parse_linked_list.c parse.c dollar_sign.c ast_contruct.c parse_utils.c) \
-			 $(addprefix $(TRAVERSE_DIR)/, traversing.c exec_utils.c) \
+			 $(addprefix $(TRAVERSE_DIR)/, traverse.c traversing.c exec_utils.c) \
 
 SRCS = $(addprefix $(SRCS_DIR)/,$(SRCS_FILES))
 

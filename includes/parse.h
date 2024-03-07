@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:33:03 by djin              #+#    #+#             */
-/*   Updated: 2024/02/06 08:14:23 by codespace        ###   ########.fr       */
+/*   Updated: 2024/03/06 16:27:40 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,15 @@ typedef struct s_ast
 	struct s_ast	*next;
 	struct s_ast	*parent;
 }	t_ast;
+
+typedef struct	count
+{
+	int		i;
+	int		j;
+	int		count_words;
+	int		strlen;
+}	t_count;
+
 
 void	parse(t_token **tokens, char **envp);
 t_ast	*create_ast_node(char *cmd, int type);

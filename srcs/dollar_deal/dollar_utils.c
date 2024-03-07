@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dollar_sign.c                                      :+:      :+:    :+:   */
+/*   dollar_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/10 14:10:17 by codespace         #+#    #+#             */
-/*   Updated: 2024/03/07 18:31:08 by geibo            ###   ########.fr       */
+/*   Created: 2024/03/05 19:34:55 by geibo             #+#    #+#             */
+/*   Updated: 2024/03/07 18:33:09 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,17 +112,4 @@ void	build_dollar(char *strtrim, t_ast *ast, bool create_sibling)
 		(ast)->type = DOLLAR;
 		dollar_deal(ast, create_sibling);
 	}
-}
-
-void	dollar_deal(t_ast *ast, bool create_sibling)
-{
-	char	*strtrim;
-	char	*tmp;
- 
-	// count = (t_count){0,0,0,0};
-	create_sibling = false;
-	strtrim = init_dollar(ast);
-	if (strtrim == NULL)
-		return;
-	build_dollar(strtrim, ast, create_sibling);
 }

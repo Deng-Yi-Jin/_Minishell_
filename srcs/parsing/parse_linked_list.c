@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 12:33:37 by root              #+#    #+#             */
-/*   Updated: 2024/03/05 15:35:08 by geibo            ###   ########.fr       */
+/*   Updated: 2024/03/06 13:56:53 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,24 +44,6 @@ t_ast	*create_parent_node(char *cmd)
 	new_node->next = NULL;
 	new_node->parent = NULL;
 	return (new_node);
-}
-
-bool	traverse(t_ast **ast, void (*f)(void *), int depth, bool print)
-{
-	t_ast	*temp;
-
-	if (*ast == NULL)
-		return (false);
-	temp = (*ast)->next;
-	if (print == false && (*ast)->cmd != NULL)
-	{
-		printf("%s\n", (*ast)->cmd);
-	}
-	traverse(&((*ast)->child), f, depth + 1, print);
-	f((*ast)->cmd);
-	f((*ast));
-	traverse(&temp, f, depth, print);
-	return (true);
 }
 
 // create test for traverse

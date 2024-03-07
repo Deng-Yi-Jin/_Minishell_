@@ -12,7 +12,7 @@
 3. Traverse, identify $(echo...)
 4. If exist, run the lowest one, then redirect to replace the current $()
 FOR EXAMPLE:
-wc -l | $(echo $(ls)
+wc -l | $(echo $(ls))
 run ls first, then redirect ls output to a variable (current_node -> cmd)
 wc -l | $(echo Makefile  README.md  TODO.md  includes  lib  minishell  objs  srcs  test.c  test1.py  testing.c)
 run echo..., then redirect its output to variable

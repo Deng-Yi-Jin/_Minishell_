@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:54:15 by codespace         #+#    #+#             */
-/*   Updated: 2024/02/07 10:12:33 by codespace        ###   ########.fr       */
+/*   Updated: 2024/03/06 14:35:25 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_exec
 } t_exec;
 
 t_exec	*create_exec_node(char **cmd);
+bool	add_cmd_to_db_lst(t_ast **ast, t_exec *exec, int depth);
 t_exec	*join_exec_nodes(t_exec *exec, char **cmd);
 t_exec	*executing(t_ast **ast, t_exec *exec);
 void	exec_pipe(t_exec *exec, char **envp, char *command_path);
