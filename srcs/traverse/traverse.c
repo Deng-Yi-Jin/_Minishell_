@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   traverse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:06:59 by geibo             #+#    #+#             */
-/*   Updated: 2024/03/06 15:26:02 by geibo            ###   ########.fr       */
+/*   Updated: 2024/03/11 03:57:10 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,22 @@ bool	add_cmd_to_db_lst(t_ast **ast, t_exec *exec, int depth)
 	}
 	add_cmd_to_db_lst(&((*ast)->child), exec, depth + 1);
 	add_cmd_to_db_lst(&temp, exec, depth);
+	return (true);
+}
+
+bool	execute_dollar(t_ast **ast, int depth, bool expand)
+{
+	t_ast	*temp;
+
+	if (*ast == NULL)
+		return (false);
+	temp = (*ast)->next;
+	execute_dollar(&((*ast)->child), depth + 1, expand);
+	if ((*ast)->type == DOLLAR)
+	{
+		(*ast)->type = CMD;
+		(*ast) = dollar_execute(*ast);
+	}
+	execute_dollar(&temp, depth, expand);
 	return (true);
 }

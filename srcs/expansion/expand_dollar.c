@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_dollar.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:06:00 by geibo             #+#    #+#             */
-/*   Updated: 2024/03/05 15:34:40 by geibo            ###   ########.fr       */
+/*   Updated: 2024/03/11 01:09:58 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ void    expand_dollar(t_token **tokens)
                 env_value = "";
             free(tmp);
             free(current_node->cmd);
-            current_node->cmd = ft_strdup(env_value);    
+            current_node->cmd = ft_strdup(env_value);
+			current_node->type = CMD;
         }
         current_node = current_node->next;
     }
