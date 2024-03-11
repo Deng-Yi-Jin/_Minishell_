@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:33:03 by djin              #+#    #+#             */
-/*   Updated: 2024/03/11 04:36:35 by codespace        ###   ########.fr       */
+/*   Updated: 2024/03/11 16:41:43 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ bool	execute_dollar(t_ast **ast, int depth, bool expand);
 void	dollar_deal(t_ast *ast, bool create_sibling);
 char	*init_dollar(t_ast *ast);
 void	build_dollar(char *strtrim, t_ast *ast, bool create_sibling);
-t_ast	*dollar_execute(t_ast *ast);
+t_ast	*dollar_execute(t_ast *ast, t_token *command);
 
 //ast contruct
 void	start_parse(t_ast **ast, t_token **tokens);

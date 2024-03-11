@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   traverse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:06:59 by geibo             #+#    #+#             */
-/*   Updated: 2024/03/11 03:57:10 by codespace        ###   ########.fr       */
+/*   Updated: 2024/03/11 16:42:07 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ bool	execute_dollar(t_ast **ast, int depth, bool expand)
 	if ((*ast)->type == DOLLAR)
 	{
 		(*ast)->type = CMD;
-		(*ast) = dollar_execute(*ast);
+		(*ast) = dollar_execute(*ast, NULL);
 	}
 	execute_dollar(&temp, depth, expand);
 	return (true);
