@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:34:55 by geibo             #+#    #+#             */
-/*   Updated: 2024/03/07 18:33:09 by geibo            ###   ########.fr       */
+/*   Updated: 2024/03/07 18:39:41 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ void	build_dollar(char *strtrim, t_ast *ast, bool create_sibling)
 	}
 	free(strtrim);
 	create_sibling = false;
-	// printf("ast->cmd[0] = %c\n", ast->cmd[0]);
 	if (ast->cmd[0] == '$')
 	{
 		(ast)->type = DOLLAR;

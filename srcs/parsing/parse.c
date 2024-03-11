@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:06:34 by djin              #+#    #+#             */
-/*   Updated: 2024/03/06 16:17:41 by geibo            ###   ########.fr       */
+/*   Updated: 2024/03/07 19:39:43 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	custom_print(void *cmd)
 {
 	ft_printf("%s", (char *)cmd);
 }
+
+
 
 void	parse(t_token **tokens, char **envp)
 {
@@ -31,6 +33,7 @@ void	parse(t_token **tokens, char **envp)
 	start_parse(ast, tokens);
 	while ((*ast)->parent != NULL)
 		(*ast) = (*ast)->parent;
+	
 	minishell = (*ast);
 	exec = executing(ast, exec);
 	execute(exec, envp);

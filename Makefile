@@ -6,7 +6,7 @@
 #    By: geibo <geibo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 06:55:38 by codespace         #+#    #+#              #
-#    Updated: 2024/03/06 14:29:33 by geibo            ###   ########.fr        #
+#    Updated: 2024/03/08 22:16:03 by geibo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRCS_DIR = srcs
 MAIN_DIR = main
 # PARSING_DIR = parsing
 EXEC_DIR = executor
+DOLLAR = dollar_deal
 UTILS_DIR = utils
 ENV_DIR = env
 LEXER_DIR = lexer
@@ -31,12 +32,13 @@ TRAVERSE_DIR = traverse
 #              $(addprefix $(PARSING_DIR)/, line.c tokens.c expansions.c) \
 #              $(addprefix $(TOOLS_DIR)/, fd.c free.c token.c type.c expansions.c parsing.c)
 SRCS_FILES = $(addprefix $(MAIN_DIR)/, main.c initialize.c signals.c prompt.c) \
+			 $(addprefix $(DOLLAR)/, dollar_sign.c dollar_utils.c dollar_execute.c) \
 			 $(addprefix $(UTILS_DIR)/, misc.c ft_snprintf.c ft_malloc.c) \
 			 $(addprefix $(ENV_DIR)/, env.c env_utils.c) \
 			 $(addprefix $(EXPAND)/, expand_dollar.c) \
 			 $(addprefix $(EXEC_DIR)/, commands.c cd.c welcome.c export.c execute.c execution_utils.c execution_utils2.c) \
 			 $(addprefix $(LEXER_DIR)/, lexer.c lexer_linked_list.c lexer_linked_list_utils.c lexing_utils.c lexer_check_separator.c) \
-			 $(addprefix $(PARSE_DIR)/, parse_linked_list.c parse.c dollar_sign.c ast_contruct.c parse_utils.c) \
+			 $(addprefix $(PARSE_DIR)/, parse_linked_list.c parse.c ast_contruct.c parse_utils.c) \
 			 $(addprefix $(TRAVERSE_DIR)/, traverse.c traversing.c exec_utils.c) \
 
 SRCS = $(addprefix $(SRCS_DIR)/,$(SRCS_FILES))
@@ -44,7 +46,7 @@ SRCS = $(addprefix $(SRCS_DIR)/,$(SRCS_FILES))
 # Object files
 OBJS_DIR = objs
 # OBJS_DIRS = $(OBJS_DIR) $(OBJS_DIR)/$(BUILTINS_DIR) $(OBJS_DIR)/$(EXEC_DIR) $(OBJS_DIR)/$(MAIN_DIR) $(OBJS_DIR)/$(PARSING_DIR) $(OBJS_DIR)/$(TOOLS_DIR)
-OBJS_DIRS = $(OBJS_DIR) $(OBJS_DIR)/$(MAIN_DIR) $(OBJS_DIR)/$(UTILS_DIR) $(OBJS_DIR)/$(EXEC_DIR) $(OBJS_DIR)/$(ENV_DIR) $(OBJS_DIR)/$(LEXER_DIR) $(OBJS_DIR)/$(PARSE_DIR) $(OBJS_DIR)/$(TRAVERSE_DIR) $(OBJS_DIR)/$(EXPAND)
+OBJS_DIRS = $(OBJS_DIR) $(OBJS_DIR)/$(MAIN_DIR) $(OBJS_DIR)/$(UTILS_DIR) $(OBJS_DIR)/$(EXEC_DIR) $(OBJS_DIR)/$(ENV_DIR) $(OBJS_DIR)/$(LEXER_DIR) $(OBJS_DIR)/$(PARSE_DIR) $(OBJS_DIR)/$(TRAVERSE_DIR) $(OBJS_DIR)/$(EXPAND) $(OBJS_DIR)/$(DOLLAR)
 OBJS_FILES = $(patsubst %.c,%.o,$(SRCS_FILES))
 OBJS = $(addprefix $(OBJS_DIR)/,$(OBJS_FILES))
 

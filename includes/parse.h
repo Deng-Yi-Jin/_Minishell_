@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:33:03 by djin              #+#    #+#             */
-/*   Updated: 2024/03/06 16:27:40 by geibo            ###   ########.fr       */
+/*   Updated: 2024/03/08 22:17:53 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,12 @@ t_ast	*create_ast_node(char *cmd, int type);
 t_ast	*create_parent_node(char *cmd);
 void	print_ast(t_ast *ast);
 void	print_ast_all(t_ast **ast);
-void	dollar_deal(t_ast *ast, bool create_sibling);
 bool	traverse(t_ast **ast, void (*f)(void *), int depth, bool print);
+
+//dollar deal
+void	dollar_deal(t_ast *ast, bool create_sibling);
+char	*init_dollar(t_ast *ast);
+void	build_dollar(char *strtrim, t_ast *ast, bool create_sibling);
 
 //ast contruct
 void	start_parse(t_ast **ast, t_token **tokens);
