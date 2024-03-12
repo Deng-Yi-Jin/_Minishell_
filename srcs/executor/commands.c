@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 13:58:35 by codespace         #+#    #+#             */
-/*   Updated: 2024/03/12 02:21:32 by codespace        ###   ########.fr       */
+/*   Updated: 2024/03/12 17:27:52 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,11 @@ bool	is_builtin(char *command)
 	return (false);
 }
 
-int	is_command(t_token *tokens, char **envp)
+int	is_command(char *cmd, char **envp)
 {
 	char	*command_path;
 
-	command_path = find_command_path(tokens->cmd, envp);
+	command_path = find_command_path(cmd, envp);
 	if (command_path != NULL)
 	{
 		free(command_path);
@@ -82,7 +82,7 @@ int	is_command(t_token *tokens, char **envp)
 	}
 	else if (command_path == NULL)
 	{
-		if (is_builtin(tokens->cmd))
+		if (is_builtin(cmd))
 			return (CMD);
 	}
 	return (WORD);

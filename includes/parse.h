@@ -3,16 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:33:03 by djin              #+#    #+#             */
-/*   Updated: 2024/03/12 03:29:43 by codespace        ###   ########.fr       */
+/*   Updated: 2024/03/12 17:36:40 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 # define PARSE_H
 # define N_ARGS 2560
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE 1024
+#endif
 
 # include "minishell.h"
 
@@ -42,14 +45,14 @@ t_ast	*create_parent_node(char *cmd);
 void	print_ast(t_ast *ast);
 void	print_ast_all(t_ast **ast);
 bool	traverse(t_ast **ast, void (*f)(void *), int depth, bool print);
-bool	execute_dollar(t_ast **ast, int depth, bool expand);
-bool	execute_dollar(t_ast **ast, int depth, bool expand);
+char	executing_cmd(char **cmd, char **envp);
+char	*execute_dollar_expansion(t_ast *ast, char **envp);
 
 //dollar deal
 void	dollar_deal(t_ast *ast, bool create_sibling, char **envp);
 char	*init_dollar(t_ast *ast);
 void	build_dollar(char *strtrim, t_ast *ast, bool create_sibling, char **envp);
-char	*execute_dollar_expansion(t_ast *ast);
+char	*execute_dollar_expansion(t_ast *ast, char **envp);
 
 //ast contruct
 void	start_parse(t_ast **ast, t_token **tokens, char **envp);

@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:06:59 by geibo             #+#    #+#             */
-/*   Updated: 2024/03/12 08:33:40 by geibo            ###   ########.fr       */
+/*   Updated: 2024/03/12 18:37:52 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,19 +53,19 @@ bool	add_cmd_to_db_lst(t_ast **ast, t_exec *exec, int depth)
 	return (true);
 }
 
-bool	execute_dollar(t_ast **ast, int depth, bool expand)
+bool	execute_dollar(t_ast **ast, int depth, bool expand, char **envp)
 {
 	t_ast	*temp;
 
 	if (*ast == NULL)
 		return (false);
 	temp = (*ast)->next;
-	execute_dollar(&((*ast)->child), depth + 1, expand);
+	execute_dollar(&((*ast)->child), depth + 1, expand, envp);
 	if ((*ast)->type == DOLLAR)
 	{
 		(*ast)->type = CMD;
-		(*ast) = dollar_execute(*ast, NULL);
+		(*ast)->cmd = execute_dollar_expansion(*ast, envp);
 	}
-	execute_dollar(&temp, depth, expand);
+	execute_dollar(&temp, depth, expand, envp);
 	return (true);
 }
