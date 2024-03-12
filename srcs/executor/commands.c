@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 13:58:35 by codespace         #+#    #+#             */
-/*   Updated: 2024/01/26 09:38:24 by codespace        ###   ########.fr       */
+/*   Updated: 2024/03/12 02:21:32 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,32 @@ bool	match_cmd(char *inpt, char *args[N_ARGS], char **envp)
 	//     ft_unset(envp);
 	else
 		return (false);
+	return (true);
+}
+
+bool	is_builtin(char *command)
+{
+	if (!ft_strcmp(command, "exit") || !ft_strcmp(command, "cd")
+	|| !ft_strcmp(command, "fancy") || !ft_strcmp(command, "quotes")
+	|| !ft_strcmp(command, "export") || !ft_strcmp(command, "unset"))
+		return (true);
+	return (false);
+}
+
+int	is_command(t_token *tokens, char **envp)
+{
+	char	*command_path;
+
+	command_path = find_command_path(tokens->cmd, envp);
+	if (command_path != NULL)
+	{
+		free(command_path);
+		return (CMD);
+	}
+	else if (command_path == NULL)
+	{
+		if (is_builtin(tokens->cmd))
+			return (CMD);
+	}
+	return (WORD);
 }

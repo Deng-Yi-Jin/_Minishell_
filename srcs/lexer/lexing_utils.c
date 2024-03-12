@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexing_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djin <djin@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 21:05:51 by root              #+#    #+#             */
-/*   Updated: 2024/02/06 13:35:00 by djin             ###   ########.fr       */
+/*   Updated: 2024/03/12 01:06:58 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	lexing(char *input, t_token **tokens, int *i, int *count_words)
 		while (ft_symbol(input[*i]) == false && input[*i])
 			quotation(input, i, count_words, input[*i]);
 		(*tokens) = \
-		add_tokens((*tokens), ft_substr(input, j, *count_words), WORD);
+		add_tokens((*tokens), ft_substr(input, j, *count_words), CMD);
 	}
 	if (input[*i] == '>' || input[*i] == '<')
 		ft_redir(input, i, tokens);

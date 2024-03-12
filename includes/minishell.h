@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:06:06 by sinlee            #+#    #+#             */
-/*   Updated: 2024/03/05 15:17:50 by geibo            ###   ########.fr       */
+/*   Updated: 2024/03/12 02:23:00 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ bool		match_cmd(char *inpt, char *args[N_ARGS], char **envp);
 void		ft_free_path_env(char **path_env);
 char		*get_path(char *cmd, char **envp);
 char		*find_command_path(char *command, char **envp);
+int			is_command(t_token *tokens, char **envp);
 void		parse_input(char *input, char **envp, int count_words);
 
 void		add_env_vars(char *key, char *value);

@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:06:34 by djin              #+#    #+#             */
-/*   Updated: 2024/03/11 05:14:04 by codespace        ###   ########.fr       */
+/*   Updated: 2024/03/12 02:27:08 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,9 @@ void	parse(t_token **tokens, char **envp)
 	*ast = NULL;
 	(*ast) = create_parent_node(NULL);
 	minishell = (*ast);
-	start_parse(ast, tokens);
+	start_parse(ast, tokens, envp);
 	while ((*ast)->parent != NULL)
 		(*ast) = (*ast)->parent;
-	
 	minishell = (*ast);
 	exec = executing(ast, exec);
 	execute(exec, envp);

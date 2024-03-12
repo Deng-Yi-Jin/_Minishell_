@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:34:55 by geibo             #+#    #+#             */
-/*   Updated: 2024/03/07 18:39:41 by geibo            ###   ########.fr       */
+/*   Updated: 2024/03/12 03:28:24 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ t_ast	*add_sibling_dollar(t_ast *ast, char *strtrim, int *j, int *count_words)
 	return (ast);
 }
 
-void	build_dollar(char *strtrim, t_ast *ast, bool create_sibling)
+void	build_dollar(char *strtrim, t_ast *ast, bool create_sibling, char **envp)
 {
 	t_count	count;
 
@@ -111,4 +111,6 @@ void	build_dollar(char *strtrim, t_ast *ast, bool create_sibling)
 		(ast)->type = DOLLAR;
 		dollar_deal(ast, create_sibling);
 	}
+	else
+		(ast)->type = is_command((ast)->cmd, envp);
 }

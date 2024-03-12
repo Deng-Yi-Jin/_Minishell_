@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:33:03 by djin              #+#    #+#             */
-/*   Updated: 2024/03/11 16:41:43 by geibo            ###   ########.fr       */
+/*   Updated: 2024/03/12 03:29:43 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,18 +46,18 @@ bool	execute_dollar(t_ast **ast, int depth, bool expand);
 bool	execute_dollar(t_ast **ast, int depth, bool expand);
 
 //dollar deal
-void	dollar_deal(t_ast *ast, bool create_sibling);
+void	dollar_deal(t_ast *ast, bool create_sibling, char **envp);
 char	*init_dollar(t_ast *ast);
-void	build_dollar(char *strtrim, t_ast *ast, bool create_sibling);
-t_ast	*dollar_execute(t_ast *ast, t_token *command);
+void	build_dollar(char *strtrim, t_ast *ast, bool create_sibling, char **envp);
+char	*execute_dollar_expansion(t_ast *ast);
 
 //ast contruct
-void	start_parse(t_ast **ast, t_token **tokens);
+void	start_parse(t_ast **ast, t_token **tokens, char **envp);
 void	construct_child_after_pipe(t_ast **ast, char *tmp, bool *is_child);
 void	construct_child_before_pipe(t_ast **ast, char *tmp, bool *is_child);
-void	eldest_child(t_ast **ast, t_token **tokens, bool *create_sibling);
-void	sibling(t_ast **ast, t_token **tokens, bool *create_sibling);
-void	construct_sibling(t_ast **ast, t_token **tokens, bool *create_sibling);
-void	form_ast(t_ast **ast, t_token **tokens);
+void	eldest_child(t_ast **ast, t_token **tokens, bool *create_sibling, char **envp);
+void	sibling(t_ast **ast, t_token **tokens, bool *create_sibling, char **envp);
+void	construct_sibling(t_ast **ast, t_token **tokens, bool *create_sibling, char **envp);
+void	form_ast(t_ast **ast, t_token **tokens, char **envp);
 
 #endif
