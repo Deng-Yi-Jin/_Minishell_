@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:33:03 by djin              #+#    #+#             */
-/*   Updated: 2024/03/12 17:36:40 by geibo            ###   ########.fr       */
+/*   Updated: 2024/03/15 08:43:35 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,13 @@ typedef struct s_ast
 	struct s_ast	*parent;
 }	t_ast;
 
+typedef	struct s_execute
+{
+	int		fd[2];
+	pid_t	pid;
+} 	t_execute;
+
+
 typedef struct	count
 {
 	int		i;
@@ -45,8 +52,9 @@ t_ast	*create_parent_node(char *cmd);
 void	print_ast(t_ast *ast);
 void	print_ast_all(t_ast **ast);
 bool	traverse(t_ast **ast, void (*f)(void *), int depth, bool print);
-char	executing_cmd(char **cmd, char **envp);
+char	*executing_cmd(char **cmd, char **envp);
 char	*execute_dollar_expansion(t_ast *ast, char **envp);
+bool	execute_dollar(t_ast **ast, int depth, char **envp);
 
 //dollar deal
 void	dollar_deal(t_ast *ast, bool create_sibling, char **envp);

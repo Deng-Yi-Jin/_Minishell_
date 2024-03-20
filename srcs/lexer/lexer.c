@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 19:00:34 by sinlee            #+#    #+#             */
-/*   Updated: 2024/03/05 15:19:18 by geibo            ###   ########.fr       */
+/*   Updated: 2024/03/18 13:26:40 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,21 @@
 void	del(void *content)
 {
 	free(content);
+}
+
+bool	error_return (t_token **tokens)
+{
+	t_token	*current_node;
+
+	current_node = lst_go_back(*tokens);
+	if (current_node->type == DOLLAR)
+	{
+		printf("syntax error near unexpected token `$'\n");
+		free_stack(tokens, del, true);
+		free(tokens);
+		return (true);
+	}
+	return (false);
 }
 
 void	dollar(char *input, int *i, int *count_words)
@@ -84,6 +99,8 @@ void	parse_input(char *input, char **envp, int count_words)
 	}
 	(*tokens) = add_null_token(*tokens);
 	(*tokens) = lst_go_back(*tokens);
+	if (error_return(tokens))
+		return ;
 	expand_dollar(tokens);
 	parse(tokens, envp);
 	free_stack(tokens, del, true);

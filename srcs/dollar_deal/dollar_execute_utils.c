@@ -6,65 +6,97 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 04:03:10 by codespace         #+#    #+#             */
-/*   Updated: 2024/03/12 18:06:06 by geibo            ###   ########.fr       */
+/*   Updated: 2024/03/20 13:28:11 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	executing_cmd(char **cmd, char **envp)
+char	*matching_cmd(char **cmd, char **envp)
 {
-	int		pipe_fd[2];
-	char	*command_path;
 	char	*result;
-	char	*line;
-	pid_t	pid;
+	t_count	count;
 
-	result = "";
-	if (pipe(pipe_fd) == -1)
-		perror("pipe");
-	if (pid = fork() == -1)
-		perror("fork");
-	if (pid == 0)
+	count = (t_count){1, 1, 1, 1};
+	if (ft_strcmp(cmd[0], "echo"))
 	{
-		close(pipe_fd[0]);
-		dup2(pipe_fd[1], STDOUT_FILENO);
-		close(pipe_fd[1]);
-		command_path = find_command_path(cmd[0], envp);
-		if (command_path == NULL)
+		while(cmd[count.i])
 		{
-			if (match_cmd(cmd[0], cmd, envp) == false)
-				printf("Command not found: %s\n", cmd[0]);
+			result = ft_strjoin(result, cmd[count.i]);
+			result = ft_strjoin(result, " ");
+			count.i++;
 		}
-		else
-		{
-			if (execve(command_path, cmd, envp))
-				perror("execve");
-		}
+	}
+	return (result);
+}
+
+char	*executing_cmd(char **cmd, char **envp)
+{
+	t_execute	execute;
+	char		*command_path;
+	t_count		count;
+	char		*result;
+	size_t		bytesRead;
+
+	count = (t_count){0, 0, 0, 0};
+	if (ft_strcmp(cmd[0], "echo"))
+	{
+		result = matching_cmd(cmd, envp);
+		return (result);
+	}
+	command_path = find_command_path(cmd[0], envp);
+	if (pipe(execute.fd) == -1)
+	{
+		perror("pipe");
+		return (NULL);
+	}
+	if ((execute.pid = fork()) == -1)
+	{
+		perror("fork");
+		return (NULL);
+	}
+	if (execute.pid == 0)
+	{
+		close(execute.fd[0]);
+		dup2(execute.fd[1], 1);
+		execve(command_path, cmd, envp);
+		exit(0);
 	}
 	else
 	{
-		close(pipe_fd[1]);
-		line = get_next_line(pipe_fd[0]);
-		while (line != NULL)
+		close(execute.fd[1]);
+		result = ft_calloc(BUFFER_SIZE, sizeof(char));
+		bytesRead = read(execute.fd[0], result, BUFFER_SIZE - 1);
+		result[bytesRead] = '\0';
+		while (count.i < bytesRead)
 		{
-			result = ft_strjoin(result, line);
-			free(line);
-			line = get_next_line(pipe_fd[0]);
+			if (result[count.i] == '\n')
+				result[count.i] = '\t';
+			count.i++;
 		}
+		close(execute.fd[0]);
+		waitpid(execute.pid, NULL, 0);
 	}
+	free(command_path);
 	return (result);
 }
 
 char	*execute_dollar_expansion(t_ast *ast, char **envp)
 {
 	char	**cmd;
+	char	*result;
 	t_ast	*current_node;
 	t_count	count;
 
 	count = (t_count){0, 0, 0, 0};
 	current_node = ast->child;
-	cmd = ft_calloc(2, sizeof(char *));
+	while (current_node)
+	{
+		count.strlen++;
+		current_node = current_node->next;
+	}
+	current_node = ast->child;
+	cmd = ft_calloc(count.strlen + 1, sizeof(char *));
 	while (current_node)
 	{
 		if (current_node->type == DOLLAR)
@@ -75,6 +107,18 @@ char	*execute_dollar_expansion(t_ast *ast, char **envp)
 			cmd[count.i++] = ft_strdup(current_node->cmd);
 		current_node = current_node->next;
 	}
-	free(current_node->parent->cmd);
-	current_node->parent->cmd = executing_cmd(cmd, envp);
+	if (ast && ast->cmd)
+	{
+		result = executing_cmd(cmd, envp);
+		if (result != NULL)
+		{
+			free(ast->cmd);
+			ast->cmd = ft_strdup(result);
+			free(result);
+		}
+	}
+	while (cmd[count.j])
+		free(cmd[count.j++]);
+	free(cmd);
+	return (ast->cmd);
 }

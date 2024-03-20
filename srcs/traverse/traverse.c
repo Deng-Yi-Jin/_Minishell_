@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:06:59 by geibo             #+#    #+#             */
-/*   Updated: 2024/03/12 18:37:52 by geibo            ###   ########.fr       */
+/*   Updated: 2024/03/15 10:38:50 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ bool	traverse(t_ast **ast, void (*f)(void *), int depth, bool print)
 	if (*ast == NULL)
 		return (false);
 	temp = (*ast)->next;
+	// if (print == false && (*ast)->cmd != NULL)
+	// 	printf("%s\n", (*ast)->cmd);
 	traverse(&((*ast)->child), f, depth + 1, print);
 	f((*ast)->cmd);
 	f((*ast));
@@ -53,19 +55,19 @@ bool	add_cmd_to_db_lst(t_ast **ast, t_exec *exec, int depth)
 	return (true);
 }
 
-bool	execute_dollar(t_ast **ast, int depth, bool expand, char **envp)
+bool	execute_dollar(t_ast **ast, int depth, char **envp)
 {
 	t_ast	*temp;
 
 	if (*ast == NULL)
 		return (false);
 	temp = (*ast)->next;
-	execute_dollar(&((*ast)->child), depth + 1, expand, envp);
+	execute_dollar(&((*ast)->child), depth + 1, envp);
 	if ((*ast)->type == DOLLAR)
 	{
 		(*ast)->type = CMD;
 		(*ast)->cmd = execute_dollar_expansion(*ast, envp);
 	}
-	execute_dollar(&temp, depth, expand, envp);
+	execute_dollar(&temp, depth, envp);
 	return (true);
 }

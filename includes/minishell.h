@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:06:06 by sinlee            #+#    #+#             */
-/*   Updated: 2024/03/12 17:37:12 by geibo            ###   ########.fr       */
+/*   Updated: 2024/03/18 13:11:34 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,11 +98,14 @@ void		token_lstadd_back(t_token **lst, t_token *new);
 t_token		*add_tokens(t_token *tokens, char *cmd, int type);
 t_token		*create_token(char *cmd, int type);
 void		free_stack(t_token **tokens, void (*del)(void *), bool loop);
-void		del(void *content);
+// void		del(void *content);
 void		print_stack(t_token *tokens);
 void		free_split(char *str);
 t_token		*lst_go_back(t_token *tokens);
 t_token		*add_null_token(t_token *tokens);
+
+//GetNextLine
+char	*get_next_line(int fd);
 
 // expand dollar
 void	expand_dollar(t_token **tokens);
