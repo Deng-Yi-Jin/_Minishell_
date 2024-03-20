@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 04:03:10 by codespace         #+#    #+#             */
-/*   Updated: 2024/03/20 13:28:11 by geibo            ###   ########.fr       */
+/*   Updated: 2024/03/20 13:32:36 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ char	*matching_cmd(char **cmd, char **envp)
 		while(cmd[count.i])
 		{
 			result = ft_strjoin(result, cmd[count.i]);
-			result = ft_strjoin(result, " ");
 			count.i++;
 		}
 	}
