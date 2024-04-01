@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sinlee <sinlee@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 13:58:27 by djin              #+#    #+#             */
-/*   Updated: 2024/02/06 15:37:40 by codespace        ###   ########.fr       */
+/*   Updated: 2024/04/01 17:57:09 by sinlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 #define SPACE 13
 #define QUOTE 14
 #define CMD_EXPANSION 15
+#define FLAGS 16
 
 // enum Flags {
 // 	PIPE,

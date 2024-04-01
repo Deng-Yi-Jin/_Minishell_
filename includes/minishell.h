@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sinlee <sinlee@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:06:06 by sinlee            #+#    #+#             */
-/*   Updated: 2024/03/18 13:11:34 by geibo            ###   ########.fr       */
+/*   Updated: 2024/04/01 17:55:23 by sinlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void		free_darr(env_var_t **arr);
 void		free_jutsu(bool darr, char *key, char *value);
 
 bool		execute_cd(char *args[N_ARGS], char **envp);
+bool		echo(char **args, char **flags);
 bool		execute_export(char **args);
 bool		welcome_msg(void);
 

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: geibo <geibo@student.42.fr>                +#+  +:+       +#+         #
+#    By: sinlee <sinlee@student.42kl.edu.my>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 06:55:38 by codespace         #+#    #+#              #
-#    Updated: 2024/03/13 09:39:02 by geibo            ###   ########.fr        #
+#    Updated: 2024/04/01 17:57:59 by sinlee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ INCLUDES = -Iincludes -Ilib/ft_printf/includes -Ilib/libft/includes
 SRCS_DIR = srcs
 MAIN_DIR = main
 # PARSING_DIR = parsing
-GNL = GetNextLine
+GNL = gnl
 EXEC_DIR = executor
 DOLLAR = dollar_deal
 UTILS_DIR = utils
@@ -38,7 +38,7 @@ SRCS_FILES = $(addprefix $(MAIN_DIR)/, main.c initialize.c signals.c prompt.c) \
 			 $(addprefix $(ENV_DIR)/, env.c env_utils.c) \
 			 $(addprefix $(EXPAND)/, expand_dollar.c) \
 			 $(addprefix $(GNL)/, get_next_line.c) \
-			 $(addprefix $(EXEC_DIR)/, commands.c cd.c welcome.c export.c execute.c execution_utils.c execution_utils2.c) \
+			 $(addprefix $(EXEC_DIR)/, commands.c cd.c welcome.c export.c execute.c execution_utils.c execution_utils2.c) echo.c \
 			 $(addprefix $(LEXER_DIR)/, lexer.c lexer_linked_list.c lexer_linked_list_utils.c lexing_utils.c lexer_check_separator.c) \
 			 $(addprefix $(PARSE_DIR)/, parse_linked_list.c parse.c ast_contruct.c parse_utils.c) \
 			 $(addprefix $(TRAVERSE_DIR)/, traverse.c traversing.c exec_utils.c) \
