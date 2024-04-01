@@ -6,7 +6,7 @@
 /*   By: sinlee <sinlee@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 16:41:03 by sinlee            #+#    #+#             */
-/*   Updated: 2024/03/05 12:06:30 by sinlee           ###   ########.fr       */
+/*   Updated: 2024/04/01 18:19:34 by sinlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	modify_env_vars(char *key, char *value)
 	}
 	else
 		perror_color("Dei. Your environment variables does not exist. Nearest IQ Checkup is 5km away tho.");
-			// might add in find_env_vars instead
+	// might add in find_env_vars instead
 }
 
 env_var_t	*find_env_vars(char *key)
@@ -76,7 +76,7 @@ env_var_t	*find_env_vars(char *key)
 
 void	free_env_vars(void)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (g_main->env_vars[++i]->key != NULL)
@@ -86,4 +86,19 @@ void	free_env_vars(void)
 		if (g_main->env_vars[i]->value != NULL)
 			free(g_main->env_vars[i]->value);
 	}
+}
+
+void	delete_env_vars(char *key)
+{
+	env_var_t *tmp;
+
+	tmp = find_env_vars(key);
+	if (tmp != NULL)
+	{
+		free(tmp->value);
+		free(tmp->key);
+	}
+	else
+		perror_color("Dei. Your environment variables does not exist. Nearest IQ Checkup is 5km away tho.");
+	return ;
 }

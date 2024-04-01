@@ -6,7 +6,7 @@
 /*   By: sinlee <sinlee@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:06:06 by sinlee            #+#    #+#             */
-/*   Updated: 2024/04/01 17:55:23 by sinlee           ###   ########.fr       */
+/*   Updated: 2024/04/01 18:19:47 by sinlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void		parse_input(char *input, char **envp, int count_words);
 
 void		add_env_vars(char *key, char *value);
 void		modify_env_vars(char *key, char *value);
+void		delete_env_vars(char *key);
 env_var_t	*find_env_vars(char *key);
 int			find_env(char *key, char **envp);
 char		*ft_getenv(char *key);
