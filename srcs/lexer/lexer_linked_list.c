@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_linked_list.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 13:49:19 by djin              #+#    #+#             */
-/*   Updated: 2024/02/06 05:52:38 by codespace        ###   ########.fr       */
+/*   Updated: 2024/04/30 08:44:18 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_token	*add_null_token(t_token *tokens)
 {
 	t_token	*new;
 
-	new = create_token(NULL, NULL);
+	new = create_token(NULL, 0);
 	if (!new)
 		return (NULL);
 	if (!(tokens))

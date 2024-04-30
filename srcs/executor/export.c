@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sinlee <sinlee@student.42kl.edu.my>        +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 11:32:57 by sinlee            #+#    #+#             */
-/*   Updated: 2024/03/05 12:03:50 by sinlee           ###   ########.fr       */
+/*   Updated: 2024/04/30 08:44:44 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	print_env_vars(void)
 
 	i = -1;
 	while (g_main->env_vars[++i]->key != NULL)
-		ft_printf("declare -x %s=\"%s\"\n", g_main->env_vars[i]->key,
+		printf("declare -x %s=\"%s\"\n", g_main->env_vars[i]->key,
 			g_main->env_vars[i]->value);
 }
 
@@ -66,7 +66,7 @@ bool	execute_export(char **args)
 
 				if (!is_valid_identifier(args[i]))
 				{
-					ft_printf("%sexport: `%s': not a valid identifier\n%s", RED,
+					printf("%sexport: `%s': not a valid identifier\n%s", RED,
 						args[i], RESET_COLOR);
 					return (true);
 				}

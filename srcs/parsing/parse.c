@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:06:34 by djin              #+#    #+#             */
-/*   Updated: 2024/03/15 10:24:50 by geibo            ###   ########.fr       */
+/*   Updated: 2024/04/30 08:44:03 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	custom_print(void *cmd)
 {
-	ft_printf("%s", (char *)cmd);
+	printf("%s", (char *)cmd);
 }
 
 
@@ -35,7 +35,7 @@ void	parse(t_token **tokens, char **envp)
 		(*ast) = (*ast)->parent;
 	if (!execute_dollar(ast, 0, envp))
 	{
-		ft_printf("Error: dollar expansion failed\n");
+		printf("Error: dollar expansion failed\n");
 		return ;
 	}
 	(*ast) = minishell;

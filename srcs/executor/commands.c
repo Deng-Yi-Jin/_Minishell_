@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sinlee <sinlee@student.42kl.edu.my>        +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 13:58:35 by codespace         #+#    #+#             */
-/*   Updated: 2024/04/01 10:02:28 by sinlee           ###   ########.fr       */
+/*   Updated: 2024/04/30 08:31:58 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ bool	match_cmd(char *inpt, char *args[N_ARGS], char **envp)
 		flip_bool_env_vars("QUOTES");
 	else if (ft_strcmp(inpt, "export") == 0)
 		execute_export(args);
-	else if(ft_strcmp(inpt, "echo") == 0)
-		execute_echo(args); // Flags here
+	// else if(ft_strcmp(inpt, "echo") == 0)
+	// 	execute_echo(args, ); // Flags here
 	// else if (ft_strcmp(inpt, "unset"))
 	//     ft_unset(envp);
 	else

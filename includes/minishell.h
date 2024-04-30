@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sinlee <sinlee@student.42kl.edu.my>        +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:06:06 by sinlee            #+#    #+#             */
-/*   Updated: 2024/04/01 18:19:47 by sinlee           ###   ########.fr       */
+/*   Updated: 2024/04/30 08:31:18 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ char		*ft_getenv(char *key);
 void		free_env_vars(void);
 bool		flip_bool_env_vars(char *key);
 // bool    print_env_vars();
+
+bool 		execute_echo(char **args, char **flags);
 
 env_var_t	**dup_darr(char **arr);
 void		free_darr(env_var_t **arr);
