@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 09:08:05 by codespace         #+#    #+#             */
-/*   Updated: 2024/03/18 13:05:25 by geibo            ###   ########.fr       */
+/*   Updated: 2024/04/30 12:33:32 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,34 @@
 
 void	execute_last_cmd(t_exec *exec, char **envp, char *command_path)
 {
-	if (command_path == NULL)
+	if (create_fork() == 0)
 	{
-		if (match_cmd(exec->cmd[0], exec->cmd, envp) == false)
-			printf("Command not found: %s\n", exec->cmd[0]);
+		command_path = find_command_path(exec->cmd[0], envp);
+		if (command_path == NULL)
+		{
+			if (!match_cmd(exec->cmd[0], exec->cmd, envp))
+			{
+				printf("minishell: %s: command not found\n", exec->cmd[0]);
+				exit(127);
+			}
+		}
+		else
+		{
+			if (exec->prev != NULL)
+			{
+				dup2(exec->prev->fd[0], STDIN_FILENO);
+				close(exec->prev->fd[0]);
+				close(exec->prev->fd[1]);
+			}
+			execve(command_path, exec->cmd, envp);
+			perror("execve");
+			exit(126);
+		}
 	}
 	else
 	{
-		exec->pid = fork();
-		if (exec->pid == 0)
-		{
-	   		if (execve(command_path, exec->cmd, envp))
-				perror("execve");
-		}
-		else
-			waitpid(exec->pid, NULL, 0);
+		if (exec->prev != NULL)
+			close(exec->prev->fd[0]);
 	}
 }
 
@@ -49,52 +62,63 @@ int	total_command(t_exec *exec, int count)
 
 void	execution(t_exec *exec, char **envp, char *command_path)
 {
-	if (pipe(exec->fd) == -1)
-		perror("pipe");
-	exec->pid = fork();
-	if (exec->pid == -1)
-		perror("fork");
-	if (exec->pid == 0) // This is the child process
+	if (create_fork() == 0)
 	{
-		close(exec->fd[0]); // Close the read end of the pipe in the child
-		dup2(exec->fd[1], STDOUT_FILENO); // Replace stdout with the write end of the pipe
-	   	execve(command_path, exec->cmd, envp);
-	  	exit(0);
-	}	
-	else // This is the parent process
+		command_path = find_command_path(exec->cmd[0], envp);
+		if (command_path == NULL)
+		{
+			if (!match_cmd(exec->cmd[0], exec->cmd, envp))
+			{
+				printf("minishell: %s: command not found\n", exec->cmd[0]);
+				exit(127);
+			}
+		}
+		else
+		{
+			if (exec->prev != NULL)
+			{
+				dup2(exec->prev->fd[0], STDIN_FILENO);
+				close(exec->prev->fd[0]);
+				close(exec->prev->fd[1]);
+			}
+			if (exec->next != NULL)
+			{
+				dup2(exec->fd[1], STDOUT_FILENO);
+				close(exec->fd[0]);
+				close(exec->fd[1]);
+			}
+			execve(command_path, exec->cmd, envp);
+			perror("execve");
+			exit(126);
+		}
+	}
+	else
 	{
-		waitpid(exec->pid, NULL, 0);
-		close(exec->fd[1]); // Close the write end of the pipe in the parent
-		dup2(exec->fd[0], STDIN_FILENO); // Replace stdin with the read end of the pipe
+		if (exec->prev != NULL)
+			close(exec->prev->fd[0]);
+		if (exec->next != NULL)
+			close(exec->fd[1]);
 	}
 }
 
 void	start_command_exec(char *command_path, char **envp, t_exec *exec, int saved_stdin)
 {
-	while (exec != NULL)
+	t_exec	*current_node;
+
+	current_node = exec;
+	while (current_node)
 	{
-		command_path = find_command_path(exec->cmd[0], envp);
-		if (command_path == NULL)
+		if (!last_cmd(current_node))
 		{
-			if (match_cmd(exec->cmd[0], exec->cmd, envp) == false)
-		   		 printf("Command not found: %s\n", exec->cmd[0]);
+			if (pipe(current_node->fd) == -1)
+				exit(-1);
+			execution(current_node, envp, command_path);
 		}
 		else
-		{
-			while (exec->next)
-			{
-				execution(exec, envp, command_path);
-				free(command_path);
-				exec = exec->next;
-				command_path = find_command_path(exec->cmd[0], envp);
-			}
-			execute_last_cmd(exec, envp, command_path);
-			free(command_path);
-   	 	}
-		dup2(saved_stdin, STDIN_FILENO);
-		close(saved_stdin);
-		exec = exec->next;
+			execute_last_cmd(current_node, envp, command_path);
+		current_node = current_node->next;
 	}
+	while (wait(NULL) > 0);
 }
 
 void	execute(t_exec *exec, char **envp)
