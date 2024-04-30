@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 09:08:05 by codespace         #+#    #+#             */
-/*   Updated: 2024/04/30 12:33:32 by geibo            ###   ########.fr       */
+/*   Updated: 2024/04/30 15:30:00 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ void	execute_last_cmd(t_exec *exec, char **envp, char *command_path)
 		}
 		else
 		{
-			if (exec->prev != NULL)
+			if (exec->prev != NULL && exec->prev->fd[0] != 0)
 			{
+				close(exec->prev->fd[1]);
 				dup2(exec->prev->fd[0], STDIN_FILENO);
 				close(exec->prev->fd[0]);
-				close(exec->prev->fd[1]);
 			}
 			execve(command_path, exec->cmd, envp);
 			perror("execve");
@@ -40,8 +40,11 @@ void	execute_last_cmd(t_exec *exec, char **envp, char *command_path)
 	}
 	else
 	{
-		if (exec->prev != NULL)
+		if (exec->prev != NULL && exec->prev->fd[0] != 0)
+		{
 			close(exec->prev->fd[0]);
+			close(exec->prev->fd[1]);
+		}
 	}
 }
 
@@ -75,18 +78,7 @@ void	execution(t_exec *exec, char **envp, char *command_path)
 		}
 		else
 		{
-			if (exec->prev != NULL)
-			{
-				dup2(exec->prev->fd[0], STDIN_FILENO);
-				close(exec->prev->fd[0]);
-				close(exec->prev->fd[1]);
-			}
-			if (exec->next != NULL)
-			{
-				dup2(exec->fd[1], STDOUT_FILENO);
-				close(exec->fd[0]);
-				close(exec->fd[1]);
-			}
+			manage_pipe_child(exec);
 			execve(command_path, exec->cmd, envp);
 			perror("execve");
 			exit(126);
@@ -94,10 +86,7 @@ void	execution(t_exec *exec, char **envp, char *command_path)
 	}
 	else
 	{
-		if (exec->prev != NULL)
-			close(exec->prev->fd[0]);
-		if (exec->next != NULL)
-			close(exec->fd[1]);
+		manage_pipe_parent(exec);
 	}
 }
 

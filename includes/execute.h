@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:54:15 by codespace         #+#    #+#             */
-/*   Updated: 2024/04/30 09:19:20 by geibo            ###   ########.fr       */
+/*   Updated: 2024/04/30 15:25:10 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,7 @@ void	print_exec(t_exec *exec);
 void	execute(t_exec *exec, char **envp);
 pid_t	create_fork(void);
 bool	last_cmd(t_exec *exec);
+void	manage_pipe_child(t_exec *exec);
+void	manage_pipe_parent(t_exec *exec);
 
 #endif
