@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:33:03 by djin              #+#    #+#             */
-/*   Updated: 2024/03/15 08:43:35 by geibo            ###   ########.fr       */
+/*   Updated: 2024/05/03 10:41:17 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ typedef	struct s_execute
 
 typedef struct	count
 {
-	int		i;
-	int		j;
-	int		count_words;
-	int		strlen;
+	size_t		i;
+	int			j;
+	int			count_words;
+	int			strlen;
 }	t_count;
 
 

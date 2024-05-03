@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:06:06 by sinlee            #+#    #+#             */
-/*   Updated: 2024/04/30 08:31:18 by geibo            ###   ########.fr       */
+/*   Updated: 2024/05/03 10:22:00 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ typedef struct s_main
 // extern env_var_t **g_env_vars;
 extern t_main *g_main;
 
+char		*dquote(char *input);
+
 void		perror_color(char *str);
 void		error_exit(char *str, bool is_perror);
 void		exit_success(void);
@@ -101,7 +103,7 @@ t_token		*lst_first_last(t_token *tokens, bool is_last);
 void		token_lstadd_back(t_token **lst, t_token *new);
 t_token		*add_tokens(t_token *tokens, char *cmd, int type);
 t_token		*create_token(char *cmd, int type);
-void		free_stack(t_token **tokens, void (*del)(void *), bool loop);
+void		free_stack(t_token **tokens, void (*del)(void *), bool loop, char *input);
 // void		del(void *content);
 void		print_stack(t_token *tokens);
 void		free_split(char *str);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sinlee <sinlee@student.42kl.edu.my>        +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:21:02 by codespace         #+#    #+#             */
-/*   Updated: 2023/08/20 12:34:52 by sinlee           ###   ########.fr       */
+/*   Updated: 2024/05/03 10:38:51 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,8 @@
 
 static void init_env(char **envp)
 {
-	int		i;
 	char	*ms_path;
 
-	i = -1;
 	ms_path = ft_malloc(PATH_MAX);
 	ft_snprintf(ms_path, PATH_MAX, "SHELL=%s/minishell", getenv("PWD"));
 	envp[find_env("SHELL", envp)] = ms_path;

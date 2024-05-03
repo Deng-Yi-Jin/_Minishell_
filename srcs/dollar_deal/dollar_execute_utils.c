@@ -6,13 +6,13 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 04:03:10 by codespace         #+#    #+#             */
-/*   Updated: 2024/03/20 16:11:10 by geibo            ###   ########.fr       */
+/*   Updated: 2024/05/03 10:40:46 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*matching_cmd(char **cmd, char **envp)
+char	*matching_cmd(char **cmd)
 {
 	char	*result;
 	t_count	count;
@@ -38,11 +38,6 @@ char	*executing_cmd(char **cmd, char **envp)
 	size_t		bytesRead;
 
 	count = (t_count){0, 0, 0, 0};
-	// if (ft_strcmp(cmd[0], "echo"))
-	// {
-	// 	result = matching_cmd(cmd, envp);
-	// 	return (result);
-	// }
 	command_path = find_command_path(cmd[0], envp);
 	if (command_path == NULL)
 	{

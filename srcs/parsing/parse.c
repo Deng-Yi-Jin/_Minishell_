@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:06:34 by djin              #+#    #+#             */
-/*   Updated: 2024/04/30 08:44:03 by geibo            ###   ########.fr       */
+/*   Updated: 2024/05/02 12:19:43 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void	custom_print(void *cmd)
 {
 	printf("%s", (char *)cmd);
 }
-
-
 
 void	parse(t_token **tokens, char **envp)
 {

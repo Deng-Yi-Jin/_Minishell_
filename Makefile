@@ -6,13 +6,13 @@
 #    By: geibo <geibo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 06:55:38 by codespace         #+#    #+#              #
-#    Updated: 2024/04/30 12:34:09 by geibo            ###   ########.fr        #
+#    Updated: 2024/05/03 10:42:22 by geibo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Compiler
 CC = gcc
-CFLAGS = -ggdb -fsanitize=address
+CFLAGS = -ggdb -Wall -Werror -Wextra -fsanitize=address -w
 INCLUDES = -Iincludes -Ilib/ft_printf/includes -Ilib/libft/includes
 
 # Source files
@@ -28,11 +28,13 @@ LEXER_DIR = lexer
 PARSE_DIR = parsing
 EXPAND = expansion
 TRAVERSE_DIR = traverse
+DQUOTE = dquote
 # SRCS_FILES = $(addprefix $(BUILTINS_DIR)/, cd.c echo.c env.c exit.c export.c pwd.c unset.c) \
 #              $(addprefix $(MAIN_DIR)/, minishell.c redir.c signal.c) \
 #              $(addprefix $(PARSING_DIR)/, line.c tokens.c expansions.c) \
 #              $(addprefix $(TOOLS_DIR)/, fd.c free.c token.c type.c expansions.c parsing.c)
 SRCS_FILES = $(addprefix $(MAIN_DIR)/, main.c initialize.c signals.c prompt.c) \
+			 $(addprefix $(DQUOTE)/, dquote.c) \
 			 $(addprefix $(DOLLAR)/, dollar_sign.c dollar_utils.c dollar_execute_utils.c) \
 			 $(addprefix $(UTILS_DIR)/, misc.c ft_snprintf.c ft_malloc.c) \
 			 $(addprefix $(ENV_DIR)/, env.c env_utils.c) \
@@ -48,7 +50,7 @@ SRCS = $(addprefix $(SRCS_DIR)/,$(SRCS_FILES))
 # Object files
 OBJS_DIR = objs
 # OBJS_DIRS = $(OBJS_DIR) $(OBJS_DIR)/$(BUILTINS_DIR) $(OBJS_DIR)/$(EXEC_DIR) $(OBJS_DIR)/$(MAIN_DIR) $(OBJS_DIR)/$(PARSING_DIR) $(OBJS_DIR)/$(TOOLS_DIR)
-OBJS_DIRS = $(OBJS_DIR) $(OBJS_DIR)/$(MAIN_DIR) $(OBJS_DIR)/$(UTILS_DIR) $(OBJS_DIR)/$(EXEC_DIR) $(OBJS_DIR)/$(ENV_DIR) $(OBJS_DIR)/$(LEXER_DIR) $(OBJS_DIR)/$(PARSE_DIR) $(OBJS_DIR)/$(TRAVERSE_DIR) $(OBJS_DIR)/$(EXPAND) $(OBJS_DIR)/$(DOLLAR) $(OBJS_DIR)/$(GNL)
+OBJS_DIRS = $(OBJS_DIR) $(OBJS_DIR)/$(MAIN_DIR) $(OBJS_DIR)/$(UTILS_DIR) $(OBJS_DIR)/$(EXEC_DIR) $(OBJS_DIR)/$(ENV_DIR) $(OBJS_DIR)/$(LEXER_DIR) $(OBJS_DIR)/$(PARSE_DIR) $(OBJS_DIR)/$(TRAVERSE_DIR) $(OBJS_DIR)/$(EXPAND) $(OBJS_DIR)/$(DOLLAR) $(OBJS_DIR)/$(GNL) $(OBJS_DIR)/$(DQUOTE)
 OBJS_FILES = $(patsubst %.c,%.o,$(SRCS_FILES))
 OBJS = $(addprefix $(OBJS_DIR)/,$(OBJS_FILES))
 

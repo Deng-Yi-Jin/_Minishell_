@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 19:00:34 by sinlee            #+#    #+#             */
-/*   Updated: 2024/03/18 13:26:40 by geibo            ###   ########.fr       */
+/*   Updated: 2024/05/03 13:38:10 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	del(void *content)
 	free(content);
 }
 
-bool	error_return (t_token **tokens)
+bool	error_return (t_token **tokens, char *input)
 {
 	t_token	*current_node;
 
@@ -25,7 +25,7 @@ bool	error_return (t_token **tokens)
 	if (current_node->type == DOLLAR)
 	{
 		printf("syntax error near unexpected token `$'\n");
-		free_stack(tokens, del, true);
+		free_stack(tokens, del, true, input);
 		free(tokens);
 		return (true);
 	}
@@ -47,8 +47,11 @@ void	dollar(char *input, int *i, int *count_words)
 		quoting(input, i, count_words, '\"');
 	else if (input[*i] == '\'')
 		quoting(input, i, count_words, '\'');
-	else if (input[*i] == '[')
-		quoting(input, i, count_words, ']');
+	else if (input[*i] == '?')
+	{
+		(*i)++;
+		(*count_words)++;
+	}
 	else
 	{
 		while (ft_symbol(input[*i]) == false && input[*i])
@@ -82,28 +85,34 @@ void	parse_input(char *input, char **envp, int count_words)
 {
 	t_token	**tokens;
 	t_ast	*ast;
-	char	*tmp;
 	int		i;
-	int		j;
+	char	*tempstring;
+	char	*working;
 
 	i = 0;
-	j = 0;
+	tempstring = dquote(input);
+	if (tempstring)
+		working = tempstring;
+	else
+		working = input;
 	tokens = (t_token **)malloc(sizeof(t_token *));
 	(*tokens) = NULL;
-	while (input[i])
+	while (working[i])
 	{
 		count_words = 0;
-		while (input[i] == ' ' || input[i] == '\t')
+		while (working[i] == ' ' || working[i] == '\t')
 			i++;
-		lexing(input, tokens, &i, &count_words);
+		lexing(working, tokens, &i, &count_words);
 	}
 	(*tokens) = add_null_token(*tokens);
 	(*tokens) = lst_go_back(*tokens);
-	if (error_return(tokens))
+	if (error_return(tokens, working))
 		return ;
+	if (tempstring)
+		free(tempstring);
 	expand_dollar(tokens);
 	parse(tokens, envp);
-	free_stack(tokens, del, true);
+	free_stack(tokens, del, true, NULL);
 	free(tokens);
 }
 

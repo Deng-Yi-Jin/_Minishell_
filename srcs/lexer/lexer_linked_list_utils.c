@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_linked_list_utils.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 10:18:48 by djin              #+#    #+#             */
-/*   Updated: 2024/02/06 05:54:22 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/03 12:58:34 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	free_stack(t_token **tokens, void (*del)(void *), bool loop)
+void	free_stack(t_token **tokens, void (*del)(void *), bool loop, char *input)
 {
 	t_token	*tmp;
 

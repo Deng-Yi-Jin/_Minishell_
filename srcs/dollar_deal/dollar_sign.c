@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_sign.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:10:17 by codespace         #+#    #+#             */
-/*   Updated: 2024/03/12 03:28:58 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/03 10:38:59 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	dollar_deal(t_ast *ast, bool create_sibling, char **envp)
 {
 	char	*strtrim;
-	char	*tmp;
 
 	create_sibling = false;
 	strtrim = init_dollar(ast);
