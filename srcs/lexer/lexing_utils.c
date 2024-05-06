@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexing_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 21:05:51 by root              #+#    #+#             */
-/*   Updated: 2024/03/12 01:06:58 by codespace        ###   ########.fr       */
+/*   Updated: 2024/05/06 11:36:24 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,11 @@ void	quotation(char *input, int *i, int *count_words, char c)
 		quoting(input, i, count_words, '`');
 	else
 	{
-		(*i)++;
-		(*count_words)++;
+		while (ft_symbol(input[*i]) == false && input[*i])
+		{
+			(*i)++;
+			(*count_words)++;
+		}
 	}
 }
 
@@ -41,7 +44,7 @@ void	lexing(char *input, t_token **tokens, int *i, int *count_words)
 	if (ft_symbol(input[*i]) == false && input[*i])
 	{
 		j = *i;
-		while (ft_symbol(input[*i]) == false && input[*i])
+		if (ft_symbol(input[*i]) == false && input[*i])
 			quotation(input, i, count_words, input[*i]);
 		(*tokens) = \
 		add_tokens((*tokens), ft_substr(input, j, *count_words), CMD);
