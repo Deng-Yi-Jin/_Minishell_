@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 19:00:34 by sinlee            #+#    #+#             */
-/*   Updated: 2024/05/06 11:41:00 by geibo            ###   ########.fr       */
+/*   Updated: 2024/05/07 17:06:19 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,22 @@ bool	error_return (t_token **tokens, char *input)
 	if (current_node->type == DOLLAR)
 	{
 		printf("syntax error near unexpected token `$'\n");
+		free_stack(tokens, del, true, input);
+		free(tokens);
+		return (true);
+	}
+	while (current_node->next && current_node->next->type != 0)
+		current_node = current_node->next;
+	if (current_node->type == PIPE || current_node->type == 0)
+	{
+		printf("syntax error near unexpected token `|'\n");
+		free_stack(tokens, del, true, input);
+		free(tokens);
+		return (true);
+	}
+	else if (current_node->type == OR)
+	{
+		printf("syntax error near unexpected token `||'\n");
 		free_stack(tokens, del, true, input);
 		free(tokens);
 		return (true);
@@ -90,10 +106,11 @@ void	parse_input(char *input, char **envp, int count_words)
 	char	*working;
 
 	i = 0;
-	// tempstring = dquote(input);
-	// if (tempstring)
-	// 	working = tempstring;
-	// else
+	tempstring = NULL;
+	tempstring = dquote(input);
+	if (tempstring)
+		working = tempstring;
+	else
 		working = input;
 	tokens = (t_token **)malloc(sizeof(t_token *));
 	(*tokens) = NULL;
@@ -107,9 +124,13 @@ void	parse_input(char *input, char **envp, int count_words)
 	(*tokens) = add_null_token(*tokens);
 	(*tokens) = lst_go_back(*tokens);
 	if (error_return(tokens, working))
+	{
+		if (tempstring)
+			free(tempstring);
 		return ;
-	// if (tempstring)
-	// 	free(tempstring);
+	}
+	if (tempstring)
+		free(tempstring);
 	expand_dollar(tokens);
 	parse(tokens, envp);
 	free_stack(tokens, del, true, NULL);

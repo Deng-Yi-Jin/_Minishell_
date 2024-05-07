@@ -6,13 +6,13 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 12:30:20 by geibo             #+#    #+#             */
-/*   Updated: 2024/05/03 13:34:45 by geibo            ###   ########.fr       */
+/*   Updated: 2024/05/07 14:54:34 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*new_line(char *input)
+char	*new_line(char *input, char c)
 {
 	char	*rl;
 	char	*output;
@@ -29,7 +29,7 @@ char	*new_line(char *input)
 		}
 		output = ft_strjoin(output, "\n");
 		output = ft_strjoin(output, rl);
-		if (ft_strlen(rl) > 0 && rl[ft_strlen(rl) - 1] == '\"' )
+		if (ft_strlen(rl) > 0 && rl[ft_strlen(rl) - 1] == c)
 			break ;
 		free(rl);
 	}
@@ -37,29 +37,113 @@ char	*new_line(char *input)
 	return (output);
 }
 
-char	*dquote(char *input)
+bool	close_squote(char *input)
 {
 	int		i;
-	char	*output;
+	int		quote;
 
+	quote = 0;
 	i = 0;
-	output = NULL;
+	while (input[i])
+	{
+		if (input[i] == '\'')
+			quote++;
+		else if (quote % 2 == 0 && input[i])
+			quote = 0;
+		i++;
+	}
+	if (quote % 2 == 0 || quote == 0)
+		return (true);
+	return (false);
+}
+
+bool	close_dquote(char *input)
+{
+	int		i;
+	int		quote;
+
+	quote = 0;
+	i = 0;
 	while (input[i])
 	{
 		if (input[i] == '\"')
+			quote++;
+		else if (quote % 2 == 0 && input[i])
+			quote = 0;
+		i++;
+	}
+	if (quote % 2 == 0 || quote == 0)
+		return (true);
+	return (false);
+}
+
+char	*dquote(char *input)
+{
+	int		word;
+	char	*temp;
+	char	*output;
+	char	**split;
+
+	word = 0;
+	split = ft_split(input, " ");
+	output = NULL;
+	while (split[word])
+	{
+		if (close_dquote(split[word]) == false)
 		{
-			i++;
-			while (input[i] && input[i] != '\"')
-				i++;
-			if (!input[i] && input[i] != '\"')
-				output = new_line(input);
+			temp = output;
+			if (output == NULL)
+				output = ft_strdup(split[word]);
+			else
+				output = ft_strjoin(output, split[word]);
+			free(temp);
+			if (split[word + 1] != NULL)
+			{
+				temp = output;
+				output = ft_strjoin(output, " ");
+				free(temp);
+			}
+			temp = output;
+			output = new_line(output, '\"');
+			free(temp);
+		}
+		else if (close_squote(split[word]) == false)
+		{
+			temp = output;
+			if (output == NULL)
+				output = ft_strdup(split[word]);
+			else
+				output = ft_strjoin(output, split[word]);
+			free(temp);
+			if (split[word + 1] != NULL)
+			{
+				temp = output;
+				output = ft_strjoin(output, " ");
+				free(temp);
+			}
+			temp = output;
+			output = new_line(output, '\'');
+			free(temp);
 		}
 		else
-			i++;
+		{
+			temp = output;
+			if (output == NULL)
+				output = ft_strdup(split[word]);
+			else
+				output = ft_strjoin(output, split[word]);
+			free(temp);
+			if (split[word + 1] != NULL)
+			{
+				temp = output;
+				output = ft_strjoin(output, " ");
+				free(temp);
+			}
+		}
+		word++;
 	}
+	free_split(split);
 	if (output)
-	{
 		return (output);
-	}
 	return (NULL);
 }

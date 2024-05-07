@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:06:06 by sinlee            #+#    #+#             */
-/*   Updated: 2024/05/03 10:22:00 by geibo            ###   ########.fr       */
+/*   Updated: 2024/05/07 14:40:19 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ t_token		*create_token(char *cmd, int type);
 void		free_stack(t_token **tokens, void (*del)(void *), bool loop, char *input);
 // void		del(void *content);
 void		print_stack(t_token *tokens);
-void		free_split(char *str);
+void		free_split(char **str);
 t_token		*lst_go_back(t_token *tokens);
 t_token		*add_null_token(t_token *tokens);
 
