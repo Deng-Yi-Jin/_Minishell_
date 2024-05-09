@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 21:05:51 by root              #+#    #+#             */
-/*   Updated: 2024/05/06 11:36:24 by geibo            ###   ########.fr       */
+/*   Updated: 2024/05/08 14:36:27 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,24 @@ void	quotation(char *input, int *i, int *count_words, char c)
 			(*count_words)++;
 		}
 	}
+}
+
+void	start_lex(char *input, t_token **tokens)
+{
+	int	i;
+	int	count_words;
+
+	i = 0;
+	count_words = 0;
+	while (input[i])
+	{
+		count_words = 0;
+		while (input[i] == ' ' || input[i] == '\t')
+			i++;
+		lexing(input, tokens, &i, &count_words);
+	}
+	(*tokens) = add_null_token(*tokens);
+	(*tokens) = lst_go_back(*tokens);
 }
 
 void	lexing(char *input, t_token **tokens, int *i, int *count_words)

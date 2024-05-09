@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:01:17 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/03 13:30:59 by geibo            ###   ########.fr       */
+/*   Updated: 2024/05/08 14:49:16 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	main(int argc, char **argv, char **envp)
 	if (argc != 1 || argv[1])
 		error_exit("Error: too many arguments\n", false);
 	init(envp);
-	//test_traverse();
 	while (1)
 	{
 		input = readline(prompt_msg(prompt));

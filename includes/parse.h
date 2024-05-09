@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:33:03 by djin              #+#    #+#             */
-/*   Updated: 2024/05/03 10:41:17 by geibo            ###   ########.fr       */
+/*   Updated: 2024/05/08 11:06:56 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,8 @@ void	eldest_child(t_ast **ast, t_token **tokens, bool *create_sibling, char **en
 void	sibling(t_ast **ast, t_token **tokens, bool *create_sibling, char **envp);
 void	construct_sibling(t_ast **ast, t_token **tokens, bool *create_sibling, char **envp);
 void	form_ast(t_ast **ast, t_token **tokens, char **envp);
+
+//rm quote
+char	*rm_quote(char *str);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 19:00:34 by sinlee            #+#    #+#             */
-/*   Updated: 2024/05/07 17:06:19 by geibo            ###   ########.fr       */
+/*   Updated: 2024/05/09 14:27:03 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,29 +100,20 @@ void	quoting(char *str, int *i, int *count_words, char c)
 void	parse_input(char *input, char **envp, int count_words)
 {
 	t_token	**tokens;
-	t_ast	*ast;
-	int		i;
 	char	*tempstring;
 	char	*working;
+	char	*temp;
 
-	i = 0;
-	tempstring = NULL;
-	tempstring = dquote(input);
-	if (tempstring)
-		working = tempstring;
-	else
-		working = input;
+	temp = expand_dollar(input);
+	if (temp == NULL)
+		return ;
+	tempstring = dquote(temp);
+	if (tempstring == NULL)
+		return ;
+	working = tempstring;
 	tokens = (t_token **)malloc(sizeof(t_token *));
 	(*tokens) = NULL;
-	while (working[i])
-	{
-		count_words = 0;
-		while (working[i] == ' ' || working[i] == '\t')
-			i++;
-		lexing(working, tokens, &i, &count_words);
-	}
-	(*tokens) = add_null_token(*tokens);
-	(*tokens) = lst_go_back(*tokens);
+	start_lex(working, tokens);
 	if (error_return(tokens, working))
 	{
 		if (tempstring)
@@ -131,9 +122,9 @@ void	parse_input(char *input, char **envp, int count_words)
 	}
 	if (tempstring)
 		free(tempstring);
-	expand_dollar(tokens);
 	parse(tokens, envp);
 	free_stack(tokens, del, true, NULL);
+	free(temp);
 	free(tokens);
 }
 

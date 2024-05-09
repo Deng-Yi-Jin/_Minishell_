@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:06:06 by sinlee            #+#    #+#             */
-/*   Updated: 2024/05/07 14:40:19 by geibo            ###   ########.fr       */
+/*   Updated: 2024/05/08 15:31:52 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,12 +114,12 @@ t_token		*add_null_token(t_token *tokens);
 char	*get_next_line(int fd);
 
 // expand dollar
-void	expand_dollar(t_token **tokens);
+char		*expand_dollar(char *input);
 
 // Lexer utils
 void		lexing(char *input, t_token **tokens, int *i, int *count_words);
 bool		ft_bracket(char input);
-void		space_skip(char *str, int *i);
+void		start_lex(char *input, t_token **tokens);
 bool		ft_symbol(char input);
 int			ft_return_op(char input);
 void		ft_redir(char *input, int *i, t_token **tokens);
