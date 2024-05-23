@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 09:08:05 by codespace         #+#    #+#             */
-/*   Updated: 2024/04/30 15:30:00 by geibo            ###   ########.fr       */
+/*   Updated: 2024/05/23 15:43:51 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	execute(t_exec *exec, char **envp)
 {
 	char	*command_path;
 	int		saved_stdin;
-
+	
 	saved_stdin = dup(STDIN_FILENO);
 	start_command_exec(command_path, envp, exec, saved_stdin);
 }

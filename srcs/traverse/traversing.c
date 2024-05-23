@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 05:03:36 by codespace         #+#    #+#             */
-/*   Updated: 2024/03/06 15:12:05 by geibo            ###   ########.fr       */
+/*   Updated: 2024/05/21 14:07:48 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ t_exec	*executing(t_ast **ast, t_exec *exec)
 			head = exec;
 		while (*ast)
 		{
-			// if ((*ast)->type == DOLLAR)
-
 			exec->cmd[word] = ft_strdup((*ast)->cmd);
 			if ((*ast)->next == NULL)
 				break;
@@ -58,10 +56,6 @@ t_exec	*executing(t_ast **ast, t_exec *exec)
 		if ((*ast)->next == NULL)
 			break;
 		(*ast) = (*ast)->next;
-		// print_exec(exec);
 	}
-	// print_exec(exec);
-	// exec = head;
-	// free_exec(exec);
 	return (head);
 }

@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 19:00:34 by sinlee            #+#    #+#             */
-/*   Updated: 2024/05/09 14:27:03 by geibo            ###   ########.fr       */
+/*   Updated: 2024/05/21 10:10:52 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,10 @@ void	parse_input(char *input, char **envp, int count_words)
 		return ;
 	tempstring = dquote(temp);
 	if (tempstring == NULL)
+	{
+		free(temp);
 		return ;
+	}
 	working = tempstring;
 	tokens = (t_token **)malloc(sizeof(t_token *));
 	(*tokens) = NULL;
@@ -118,6 +121,7 @@ void	parse_input(char *input, char **envp, int count_words)
 	{
 		if (tempstring)
 			free(tempstring);
+		free(temp);
 		return ;
 	}
 	if (tempstring)

@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:06:06 by sinlee            #+#    #+#             */
-/*   Updated: 2024/05/08 15:31:52 by geibo            ###   ########.fr       */
+/*   Updated: 2024/05/23 00:37:22 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "tokens.h"
 # include "libft.h"
 # include "parse.h"
+# include "redir.h"
 # include "execute.h"
 # include <dirent.h>
 # include <errno.h>
@@ -30,6 +31,10 @@
 # include <term.h>
 # include <termios.h>
 # include <stdbool.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
 
 // int         g_num_env_vars;
 // extern char **  environ;
