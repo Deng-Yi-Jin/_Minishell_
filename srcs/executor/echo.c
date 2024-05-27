@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 09:56:56 by sinlee            #+#    #+#             */
-/*   Updated: 2024/04/30 08:30:19 by geibo            ###   ########.fr       */
+/*   Updated: 2024/05/27 16:38:38 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ bool execute_echo(char **args, char **flags)
     int i = 0;
     bool trailing = false;
     
-    while (flags[i] != NULL)
+    while (flags != NULL && flags[i] != NULL)
     {
         if (ft_strcmp(flags[i], "-n") == 0)
             trailing = true;

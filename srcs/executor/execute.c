@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 09:08:05 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/23 15:43:51 by geibo            ###   ########.fr       */
+/*   Updated: 2024/05/27 16:36:58 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,47 @@
 
 void	execute_last_cmd(t_exec *exec, char **envp, char *command_path)
 {
-	if (create_fork() == 0)
+	if (match_cmd(exec->cmd[0], exec->cmd, envp) && exec->prev == NULL)
 	{
-		command_path = find_command_path(exec->cmd[0], envp);
-		if (command_path == NULL)
+		if (!match_cmd(exec->cmd[0], exec->cmd, envp))
 		{
-			if (!match_cmd(exec->cmd[0], exec->cmd, envp))
+			printf("minishell: %s: command not found\n", exec->cmd[0]);
+			exit(127);
+		}
+	}
+	else
+	{
+		if (create_fork() == 0)
+		{
+			command_path = find_command_path(exec->cmd[0], envp);
+			if (command_path == NULL)
 			{
-				printf("minishell: %s: command not found\n", exec->cmd[0]);
-				exit(127);
+				if (!match_cmd(exec->cmd[0], exec->cmd, envp))
+				{
+					printf("minishell: %s: command not found\n", exec->cmd[0]);
+					exit(127);
+				}
+			}
+			else
+			{
+				if (exec->prev != NULL && exec->prev->fd[0] != 0)
+				{
+					close(exec->prev->fd[1]);
+					dup2(exec->prev->fd[0], STDIN_FILENO);
+					close(exec->prev->fd[0]);
+				}
+				execve(command_path, exec->cmd, envp);
+				perror("execve");
+				exit(126);
 			}
 		}
 		else
 		{
 			if (exec->prev != NULL && exec->prev->fd[0] != 0)
 			{
-				close(exec->prev->fd[1]);
-				dup2(exec->prev->fd[0], STDIN_FILENO);
 				close(exec->prev->fd[0]);
+				close(exec->prev->fd[1]);
 			}
-			execve(command_path, exec->cmd, envp);
-			perror("execve");
-			exit(126);
-		}
-	}
-	else
-	{
-		if (exec->prev != NULL && exec->prev->fd[0] != 0)
-		{
-			close(exec->prev->fd[0]);
-			close(exec->prev->fd[1]);
 		}
 	}
 }
