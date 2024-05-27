@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 09:08:05 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/27 16:36:58 by geibo            ###   ########.fr       */
+/*   Updated: 2024/05/27 16:46:44 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ void	execute_last_cmd(t_exec *exec, char **envp, char *command_path)
 	{
 		if (create_fork() == 0)
 		{
-			command_path = find_command_path(exec->cmd[0], envp);
-			if (command_path == NULL)
+			if (match_cmd(exec->cmd[0], exec->cmd, envp))
 			{
 				if (!match_cmd(exec->cmd[0], exec->cmd, envp))
 				{
@@ -37,6 +36,7 @@ void	execute_last_cmd(t_exec *exec, char **envp, char *command_path)
 			}
 			else
 			{
+				command_path = find_command_path(exec->cmd[0], envp);
 				if (exec->prev != NULL && exec->prev->fd[0] != 0)
 				{
 					close(exec->prev->fd[1]);
@@ -78,8 +78,7 @@ void	execution(t_exec *exec, char **envp, char *command_path)
 {
 	if (create_fork() == 0)
 	{
-		command_path = find_command_path(exec->cmd[0], envp);
-		if (command_path == NULL)
+		if (match_cmd(exec->cmd[0], exec->cmd, envp))
 		{
 			if (!match_cmd(exec->cmd[0], exec->cmd, envp))
 			{
@@ -89,6 +88,7 @@ void	execution(t_exec *exec, char **envp, char *command_path)
 		}
 		else
 		{
+			command_path = find_command_path(exec->cmd[0], envp);
 			manage_pipe_child(exec);
 			execve(command_path, exec->cmd, envp);
 			perror("execve");
@@ -96,9 +96,7 @@ void	execution(t_exec *exec, char **envp, char *command_path)
 		}
 	}
 	else
-	{
 		manage_pipe_parent(exec);
-	}
 }
 
 void	start_command_exec(char *command_path, char **envp, t_exec *exec, int saved_stdin)
