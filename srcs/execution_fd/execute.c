@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 09:08:05 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/29 13:17:13 by geibo            ###   ########.fr       */
+/*   Updated: 2024/05/29 14:04:43 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ void	execute_last_cmd(t_exec *exec, char **envp, char *command_path)
 	int	outfile;
 
 	i = 0;
-	redirect_in(exec);
-	save_fd(savedfd);
-	i = return_after_redir(exec, i);
-	manage_lastcmdredir(exec, &infile, &outfile);
+	// redirect_in(exec);
+	// save_fd(savedfd);
+	// i = return_after_redir(exec, i);
+	// manage_lastcmdredir(exec, &infile, &outfile);
 	if (match_cmd(exec->cmd[i], exec->cmd, envp) && exec->prev == NULL)
 	{
 		if (!match_cmd(exec->cmd[i], exec->cmd, envp))
@@ -68,7 +68,7 @@ void	execute_last_cmd(t_exec *exec, char **envp, char *command_path)
 			}
 		}
 	}
-	restore_fd(savedfd);
+	// restore_fd(savedfd);
 }
 
 int	total_command(t_exec *exec, int count)
@@ -92,8 +92,8 @@ void	execution(t_exec *exec, char **envp, char *command_path)
 	int	savedfd[2];
 
 	i = 0;
-	save_fd(savedfd);
-	i = return_after_redir(exec, i);
+	// save_fd(savedfd);
+	// i = return_after_redir(exec, i);
 	if (create_fork() == 0)
 	{
 		redirect_in(exec);
@@ -118,7 +118,7 @@ void	execution(t_exec *exec, char **envp, char *command_path)
 		manage_pipe_parent(exec);
 	if (exec->infile != 0)
 		close(exec->infile);
-	restore_fd(savedfd);
+	// restore_fd(savedfd);
 }
 
 void	start_command_exec(char *command_path, char **envp, t_exec *exec, int saved_stdin)
