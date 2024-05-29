@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 09:08:05 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/27 16:46:44 by geibo            ###   ########.fr       */
+/*   Updated: 2024/05/29 09:01:00 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,16 @@
 
 void	execute_last_cmd(t_exec *exec, char **envp, char *command_path)
 {
-	if (match_cmd(exec->cmd[0], exec->cmd, envp) && exec->prev == NULL)
+	int	i;
+
+	i = 0;
+	redirect_in(exec);
+	i = return_after_redir(exec, i);
+	if (match_cmd(exec->cmd[i], exec->cmd, envp) && exec->prev == NULL)
 	{
-		if (!match_cmd(exec->cmd[0], exec->cmd, envp))
+		if (!match_cmd(exec->cmd[i], exec->cmd, envp))
 		{
-			printf("minishell: %s: command not found\n", exec->cmd[0]);
+			printf("minishell: %s: command not found\n", exec->cmd[i]);
 			exit(127);
 		}
 	}
@@ -26,17 +31,17 @@ void	execute_last_cmd(t_exec *exec, char **envp, char *command_path)
 	{
 		if (create_fork() == 0)
 		{
-			if (match_cmd(exec->cmd[0], exec->cmd, envp))
+			if (match_cmd(exec->cmd[i], exec->cmd, envp))
 			{
-				if (!match_cmd(exec->cmd[0], exec->cmd, envp))
+				if (!match_cmd(exec->cmd[i], exec->cmd, envp))
 				{
-					printf("minishell: %s: command not found\n", exec->cmd[0]);
+					printf("minishell: %s: command not found\n", exec->cmd[i]);
 					exit(127);
 				}
 			}
 			else
 			{
-				command_path = find_command_path(exec->cmd[0], envp);
+				command_path = find_command_path(exec->cmd[i], envp);
 				if (exec->prev != NULL && exec->prev->fd[0] != 0)
 				{
 					close(exec->prev->fd[1]);
@@ -76,19 +81,24 @@ int	total_command(t_exec *exec, int count)
 
 void	execution(t_exec *exec, char **envp, char *command_path)
 {
+	int	i;
+
+	i = 0;
+	i = return_after_redir(exec, i);
 	if (create_fork() == 0)
 	{
-		if (match_cmd(exec->cmd[0], exec->cmd, envp))
+		redirect_in(exec);
+		if (match_cmd(exec->cmd[i], exec->cmd, envp))
 		{
-			if (!match_cmd(exec->cmd[0], exec->cmd, envp))
+			if (!match_cmd(exec->cmd[i], exec->cmd, envp))
 			{
-				printf("minishell: %s: command not found\n", exec->cmd[0]);
+				printf("minishell: %s: command not found\n", exec->cmd[i]);
 				exit(127);
 			}
 		}
 		else
 		{
-			command_path = find_command_path(exec->cmd[0], envp);
+			command_path = find_command_path(exec->cmd[i], envp);
 			manage_pipe_child(exec);
 			execve(command_path, exec->cmd, envp);
 			perror("execve");
@@ -123,7 +133,7 @@ void	execute(t_exec *exec, char **envp)
 {
 	char	*command_path;
 	int		saved_stdin;
-	
+
 	saved_stdin = dup(STDIN_FILENO);
 	start_command_exec(command_path, envp, exec, saved_stdin);
 }
