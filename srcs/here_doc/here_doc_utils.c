@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   here_doc_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/28 09:58:28 by sinlee            #+#    #+#             */
-/*   Updated: 2024/06/13 19:46:56 by geibo            ###   ########.fr       */
+/*   Created: 2024/06/13 19:33:34 by geibo             #+#    #+#             */
+/*   Updated: 2024/06/13 19:39:00 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// implementation of ft_strlen function
+#include "minishell.h"
 
-#include "libft.h"
-
-size_t	ft_strlen(const char *str)
+int	ft_sstrlen(char **str)
 {
-	size_t	len;
+	int	i;
+	int	len;
 
+	i = 0;
 	len = 0;
-	while (str && *str++)
+	while (str[i])
+	{
 		len++;
+		i++;
+	}
 	return (len);
 }
+
+// void	opening_file(t_exec *temp, int *i, int *count)

@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:54:15 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/13 18:52:08 by geibo            ###   ########.fr       */
+/*   Updated: 2024/06/13 19:34:19 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,6 @@ void	handle_lastcmd_parent(t_exec *exec);
 void	run_cmd(char **envp, t_exec *exec, char *command_path, int *i);
 pid_t	create_fork(void);
 t_exec	*renamed_here_doc(t_exec *exec);
+int		ft_sstrlen(char **str);
 
 #endif

@@ -6,25 +6,30 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:50:07 by geibo             #+#    #+#             */
-/*   Updated: 2024/06/13 19:09:39 by geibo            ###   ########.fr       */
+/*   Updated: 2024/06/13 20:02:31 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_sstrlen(char **str)
+void	read_content(int fd, char *limiter)
 {
-	int	i;
-	int	len;
+	char	*input;
 
-	i = 0;
-	len = 0;
-	while (str[i])
+	input = readline("> ");
+	while (1)
 	{
-		len++;
-		i++;
+		// printf("input: %s\n", input);
+		// printf("limiter: %s\n", limiter);
+		//ft_strcnmp ctrl + d when it's empty
+		if (ft_strncmp(input, limiter, ft_strlen(limiter) - 1) == 0)
+			break ;
+		write(fd, input, ft_strlen(input));
+		write(fd, "\n", 1);
+		free(input);
+		input = readline("> ");
 	}
-	return (len);
+	free(input);
 }
 
 t_exec	*copy_nodes(t_exec *exec)
@@ -56,17 +61,19 @@ t_exec	*copy_nodes(t_exec *exec)
 	return (another);
 }
 
-void	create_here_doc_file(char *str)
+void	create_here_doc_file(char *str, char *limiter)
 {
 	int	fd;
 
 	fd = open(str, O_CREAT | O_RDWR | O_TRUNC, 0644);
+	read_content(fd, limiter);
 	close(fd);
 }
 
 void	open_here_doc_file(t_exec *temp, int *i)
 {
 	char	*str;
+	char	*limiter;
 	int		count;
 
 	count = 0;
@@ -74,16 +81,19 @@ void	open_here_doc_file(t_exec *temp, int *i)
 	{
 		if (ft_strcmp(temp->cmd[*i], "<<") == 0)
 		{
-			str = ft_itoa(count);
-			count++;
+			temp->cmd[*i] = ft_strdup(temp->cmd[*i]);
+			str = ft_itoa(count++);
 			(*i)++;
+			limiter = ft_strdup(temp->cmd[*i]);
 			free(temp->cmd[*i]);
 			temp->cmd[*i] = ft_strjoin(ft_strdup("test_"), str);	
 			free(str);
 			str = ft_strjoin(ft_strdup(temp->cmd[*i]), ".txt");
 			free(temp->cmd[*i]);
 			temp->cmd[*i] = str;
-			create_here_doc_file(temp->cmd[*i]);
+			create_here_doc_file(temp->cmd[*i], limiter);
+			free(limiter);
+			free(str);
 		}
 		else
 		{
@@ -92,8 +102,6 @@ void	open_here_doc_file(t_exec *temp, int *i)
 		}
 	}
 }
-
-// void	here_doc_file()
 
 t_exec	*renamed_here_doc(t_exec *exec)
 {
@@ -111,12 +119,6 @@ t_exec	*renamed_here_doc(t_exec *exec)
 		temp = temp->next;
 	}
 	free_exec(exec);
-	exec = another;
-	while (exec)
-	{
-		print_exec(exec);
-		exec = exec->next;
-	}
 	exec = another;
 	return (exec);
 }

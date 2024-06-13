@@ -6,7 +6,7 @@
 #    By: geibo <geibo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 06:55:38 by codespace         #+#    #+#              #
-#    Updated: 2024/06/13 17:37:08 by geibo            ###   ########.fr        #
+#    Updated: 2024/06/13 19:39:12 by geibo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ SRCS_FILES = $(addprefix $(MAIN_DIR)/, main.c initialize.c signals.c prompt.c) \
 			 $(addprefix $(TRAVERSE_DIR)/, traverse.c traversing.c exec_utils.c) \
 			 $(addprefix $(REDIR_DIR)/, redirection.c redir_bool.c) \
 			 $(addprefix $(EXECUTION_DIR)/, execute.c execute_utils.c execute_utils1.c fd_execution.c execute_utils2.c) \
-			 $(addprefix $(HERE_DOC)/, here_doc.c)
+			 $(addprefix $(HERE_DOC)/, here_doc.c here_doc_utils.c)
 
 SRCS = $(addprefix $(SRCS_DIR)/,$(SRCS_FILES))
 
