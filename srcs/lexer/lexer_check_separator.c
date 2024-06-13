@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_check_separator.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 08:27:44 by codespace         #+#    #+#             */
-/*   Updated: 2024/02/06 05:57:08 by codespace        ###   ########.fr       */
+/*   Updated: 2024/06/13 15:00:10 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,7 @@ void	ft_redir(char *input, int *i, t_token **tokens)
 
 void	ft_pipe(char *input, int *i, t_token **tokens)
 {
-	if (input[*i] == '|' && input[(*i) + 1] == '|')
-	{
-		(*tokens) = add_tokens((*tokens), ft_substr(input, *i, 2), OR);
-		*i += 2;
-	}
-	else
+	if (input[*i] == '|')
 	{
 		(*tokens) = add_tokens((*tokens), ft_substr(input, *i, 1), PIPE);
 		(*i)++;

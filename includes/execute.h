@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:54:15 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/29 13:18:16 by geibo            ###   ########.fr       */
+/*   Updated: 2024/06/13 18:52:08 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 typedef struct s_exec
 {
 	char	**cmd;
+	
 	struct s_exec *next;
 	struct s_exec *prev;
 	pid_t	pid;
@@ -35,11 +36,17 @@ void	execution(t_exec *exec, char **envp, char *command_path);
 void	free_exec(t_exec *exec);
 void	print_exec(t_exec *exec);
 void	execute(t_exec *exec, char **envp);
-pid_t	create_fork(void);
 bool	last_cmd(t_exec *exec);
-void	manage_pipe_child(t_exec *exec);
+void	manage_pipe_child(t_exec *exec, int infile_fd, int outfile_fd);
 void	manage_pipe_parent(t_exec *exec);
 char	**is_flags(char **str);
-void	manage_lastcmdredir(t_exec *exec, int *infile_fd, int *outfile_fd);
+void	manage_lastcmdredir(t_exec *exec, int infile_fd, int outfile_fd);
+void	restore_fd(int origstdin, int origstdout);
+void	init_origio(int origio[]);
+void	handle_lastcmd_child(t_exec *exec, int infilefd);
+void	handle_lastcmd_parent(t_exec *exec);
+void	run_cmd(char **envp, t_exec *exec, char *command_path, int *i);
+pid_t	create_fork(void);
+t_exec	*renamed_here_doc(t_exec *exec);
 
 #endif

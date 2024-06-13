@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 19:00:34 by sinlee            #+#    #+#             */
-/*   Updated: 2024/05/21 10:10:52 by geibo            ###   ########.fr       */
+/*   Updated: 2024/06/13 17:42:07 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,33 @@ bool	error_return (t_token **tokens, char *input)
 {
 	t_token	*current_node;
 
-	current_node = lst_go_back(*tokens);
+	current_node = lst_first_last(*tokens, false);
+	if (current_node->type == PIPE)
+	{
+		printf("syntax error near unexpected token `|'\n");
+		free_stack(tokens, del, true, input);
+		free(tokens);
+		return (true);
+	}
+	while (current_node)
+	{
+		if (current_node->type == PIPE && current_node->next->type == PIPE)
+		{
+			printf("syntax error near unexpected token `||'\n");
+			free_stack(tokens, del, true, input);
+			free(tokens);
+			return (true);
+		}
+		if (current_node->type == HERE_DOC && current_node->next->type == HERE_DOC)
+		{
+			printf("syntax error near unexpected token \n");
+			free_stack(tokens, del, true, input);
+			free(tokens);
+			return (true);
+		}
+		current_node = current_node->next;
+	}
+	current_node = lst_first_last(*tokens, false);
 	if (current_node->type == DOLLAR)
 	{
 		printf("syntax error near unexpected token `$'\n");
@@ -126,6 +152,7 @@ void	parse_input(char *input, char **envp, int count_words)
 	}
 	if (tempstring)
 		free(tempstring);
+	// print_stack(*tokens);
 	parse(tokens, envp);
 	free_stack(tokens, del, true, NULL);
 	free(temp);
