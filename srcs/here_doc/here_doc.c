@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:50:07 by geibo             #+#    #+#             */
-/*   Updated: 2024/06/13 20:02:31 by geibo            ###   ########.fr       */
+/*   Updated: 2024/07/19 00:22:24 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,7 @@ void	read_content(int fd, char *limiter)
 	input = readline("> ");
 	while (1)
 	{
-		// printf("input: %s\n", input);
-		// printf("limiter: %s\n", limiter);
-		//ft_strcnmp ctrl + d when it's empty
-		if (ft_strncmp(input, limiter, ft_strlen(limiter) - 1) == 0)
+		if (!input || ft_strncmp(input, limiter, ft_strlen(limiter) - 1) == 0)
 			break ;
 		write(fd, input, ft_strlen(input));
 		write(fd, "\n", 1);
@@ -43,6 +40,7 @@ t_exec	*copy_nodes(t_exec *exec)
 	another = NULL;
 	temp = exec;
 	head = 0;
+
 	while (temp)
 	{
 		i = 0;
@@ -74,6 +72,8 @@ void	open_here_doc_file(t_exec *temp, int *i)
 {
 	char	*str;
 	char	*limiter;
+	char	*tmp1;
+	char	*tmp2;
 	int		count;
 
 	count = 0;
@@ -81,25 +81,29 @@ void	open_here_doc_file(t_exec *temp, int *i)
 	{
 		if (ft_strcmp(temp->cmd[*i], "<<") == 0)
 		{
-			temp->cmd[*i] = ft_strdup(temp->cmd[*i]);
+			// temp->cmd[*i] = ft_strdup(temp->cmd[*i]);
 			str = ft_itoa(count++);
 			(*i)++;
 			limiter = ft_strdup(temp->cmd[*i]);
 			free(temp->cmd[*i]);
-			temp->cmd[*i] = ft_strjoin(ft_strdup("test_"), str);	
+			temp->cmd[*i] = ft_strjoin(ft_strdup("test_"), str);
 			free(str);
-			str = ft_strjoin(ft_strdup(temp->cmd[*i]), ".txt");
-			free(temp->cmd[*i]);
+			str = ft_strjoin(temp->cmd[*i], ".txt");
 			temp->cmd[*i] = str;
 			create_here_doc_file(temp->cmd[*i], limiter);
 			free(limiter);
-			free(str);
+			// free(str);
 		}
 		else
 		{
-			temp->cmd[*i] = ft_strdup(temp->cmd[*i]);
+
+			// tmp1 = ft_strdup(temp->cmd[*i]);
+			// free(temp->cmd[*i]);
+			// temp->cmd[*i] = ft_strdup(tmp1);
+			// free(tmp1);
 			(*i)++;
 		}
+		
 	}
 }
 
@@ -118,7 +122,12 @@ t_exec	*renamed_here_doc(t_exec *exec)
 			open_here_doc_file(temp, &i);
 		temp = temp->next;
 	}
+	// free(exec->cmd[0]);
+	// free(exec->cmd[1]);
 	free_exec(exec);
 	exec = another;
+	// free(exec->cmd[0]);
+	// free(exec->cmd[1]);
+	// free(another);
 	return (exec);
 }
