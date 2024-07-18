@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 05:36:16 by codespace         #+#    #+#             */
-/*   Updated: 2024/07/18 21:00:21 by geibo            ###   ########.fr       */
+/*   Updated: 2024/07/19 00:22:53 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,13 @@ void	free_exec(t_exec *exec)
 	while (exec)
 	{
 		tmp = exec->next;
-		// i = 0;
-		// while (exec->cmd[i])
-		// {
-		// 	printf("cmd[1]: %s\n", exec->cmd[1]);
-		// 	free(exec->cmd[i]);
-		// 	i++;
-		// }
+		i = 0;
+		while (exec->cmd[i])
+		{
+			// printf("cmd[1]: %s\n", exec->cmd[1]);
+			free(exec->cmd[i]);
+			i++;
+		}
 		free(exec->cmd);
 		free(exec);
 		exec = tmp;

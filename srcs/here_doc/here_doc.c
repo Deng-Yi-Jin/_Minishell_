@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:50:07 by geibo             #+#    #+#             */
-/*   Updated: 2024/07/18 21:19:35 by geibo            ###   ########.fr       */
+/*   Updated: 2024/07/19 00:22:24 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,12 +122,12 @@ t_exec	*renamed_here_doc(t_exec *exec)
 			open_here_doc_file(temp, &i);
 		temp = temp->next;
 	}
-	free(exec->cmd[0]);
-	free(exec->cmd[1]);
+	// free(exec->cmd[0]);
+	// free(exec->cmd[1]);
 	free_exec(exec);
 	exec = another;
-	free(exec->cmd[0]);
-	free(exec->cmd[1]);
+	// free(exec->cmd[0]);
+	// free(exec->cmd[1]);
 	// free(another);
 	return (exec);
 }
