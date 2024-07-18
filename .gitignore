@@ -3,6 +3,7 @@ examples/
 a.out
 *.o
 minishell
+objs/
 minishell.dSYM
 valgrind-out.txt
 ```
