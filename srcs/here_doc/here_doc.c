@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:50:07 by geibo             #+#    #+#             */
-/*   Updated: 2024/07/19 00:22:24 by geibo            ###   ########.fr       */
+/*   Updated: 2024/07/19 00:48:07 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,12 @@ void	read_content(int fd, char *limiter)
 	input = readline("> ");
 	while (1)
 	{
-		if (!input || ft_strncmp(input, limiter, ft_strlen(limiter) - 1) == 0)
+		if (ft_strncmp(input, limiter, ft_strlen(limiter)) == 0)
+		{
+			printf("ft_strlen(limiter): %zu\n", ft_strlen(limiter));
+			printf("break\n");
 			break ;
+		}
 		write(fd, input, ft_strlen(input));
 		write(fd, "\n", 1);
 		free(input);
@@ -51,6 +55,7 @@ t_exec	*copy_nodes(t_exec *exec)
 		while (temp->cmd[i])
 		{
 			another->cmd[i] = ft_strdup(temp->cmd[i]);
+			printf("another->cmd[%d]: %s\n", i, another->cmd[i]);
 			i++;
 		}
 		temp = temp->next;
