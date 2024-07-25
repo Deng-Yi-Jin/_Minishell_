@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:50:07 by geibo             #+#    #+#             */
-/*   Updated: 2024/07/19 00:48:07 by geibo            ###   ########.fr       */
+/*   Updated: 2024/07/19 13:56:11 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,7 @@ void	read_content(int fd, char *limiter)
 	while (1)
 	{
 		if (ft_strncmp(input, limiter, ft_strlen(limiter)) == 0)
-		{
-			printf("ft_strlen(limiter): %zu\n", ft_strlen(limiter));
-			printf("break\n");
 			break ;
-		}
 		write(fd, input, ft_strlen(input));
 		write(fd, "\n", 1);
 		free(input);
@@ -44,7 +40,6 @@ t_exec	*copy_nodes(t_exec *exec)
 	another = NULL;
 	temp = exec;
 	head = 0;
-
 	while (temp)
 	{
 		i = 0;
@@ -55,7 +50,6 @@ t_exec	*copy_nodes(t_exec *exec)
 		while (temp->cmd[i])
 		{
 			another->cmd[i] = ft_strdup(temp->cmd[i]);
-			printf("another->cmd[%d]: %s\n", i, another->cmd[i]);
 			i++;
 		}
 		temp = temp->next;
@@ -86,7 +80,6 @@ void	open_here_doc_file(t_exec *temp, int *i)
 	{
 		if (ft_strcmp(temp->cmd[*i], "<<") == 0)
 		{
-			// temp->cmd[*i] = ft_strdup(temp->cmd[*i]);
 			str = ft_itoa(count++);
 			(*i)++;
 			limiter = ft_strdup(temp->cmd[*i]);
@@ -97,18 +90,18 @@ void	open_here_doc_file(t_exec *temp, int *i)
 			temp->cmd[*i] = str;
 			create_here_doc_file(temp->cmd[*i], limiter);
 			free(limiter);
-			// free(str);
+			(*i)++;
+			printf("Hello\n");
 		}
 		else
 		{
-
-			// tmp1 = ft_strdup(temp->cmd[*i]);
-			// free(temp->cmd[*i]);
-			// temp->cmd[*i] = ft_strdup(tmp1);
-			// free(tmp1);
+			printf("1:Hello\n");
+			tmp1 = ft_strdup(temp->cmd[*i]);
+			free(temp->cmd[*i]);
+			temp->cmd[*i] = ft_strdup(tmp1);
+			free(tmp1);
 			(*i)++;
 		}
-		
 	}
 }
 
