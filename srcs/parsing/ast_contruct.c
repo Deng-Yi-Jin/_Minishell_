@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 14:22:26 by djin              #+#    #+#             */
-/*   Updated: 2024/05/08 13:03:29 by geibo            ###   ########.fr       */
+/*   Updated: 2024/08/01 17:16:08 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ void	eldest_child(t_ast **ast, t_token **tokens, bool *create_sibling, char **en
 		dollar_deal((*ast), create_sibling, envp);
 	}
 	else
+	{
 		(*ast)->type = is_command((*tokens)->cmd, envp);
+	}
 	if ((*tokens)->next != NULL && (*tokens)->next->type != PIPE)
 		*create_sibling = true;
 }

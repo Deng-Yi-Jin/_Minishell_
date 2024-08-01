@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:50:07 by geibo             #+#    #+#             */
-/*   Updated: 2024/07/19 13:56:11 by geibo            ###   ########.fr       */
+/*   Updated: 2024/08/01 16:10:57 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,11 @@ void	open_here_doc_file(t_exec *temp, int *i)
 			create_here_doc_file(temp->cmd[*i], limiter);
 			free(limiter);
 			(*i)++;
-			printf("Hello\n");
+			// printf("Hello\n");
 		}
 		else
 		{
-			printf("1:Hello\n");
+			// printf("1:Hello\n");
 			tmp1 = ft_strdup(temp->cmd[*i]);
 			free(temp->cmd[*i]);
 			temp->cmd[*i] = ft_strdup(tmp1);

@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 13:58:35 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/27 16:38:18 by geibo            ###   ########.fr       */
+/*   Updated: 2024/08/01 17:40:11 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ bool	is_builtin(char *command)
 {
 	if (!ft_strcmp(command, "exit") || !ft_strcmp(command, "cd")
 	|| !ft_strcmp(command, "fancy") || !ft_strcmp(command, "quotes")
-	|| !ft_strcmp(command, "export") || !ft_strcmp(command, "unset"))
+	|| !ft_strcmp(command, "export") || !ft_strcmp(command, "unset")
+	|| !ft_strcmp(command, "echo"))
 		return (true);
 	return (false);
 }
@@ -76,16 +77,13 @@ int	is_command(char *cmd, char **envp)
 {
 	char	*command_path;
 
+	if (is_builtin(cmd))
+		return (CMD);
 	command_path = find_command_path(cmd, envp);
 	if (command_path != NULL)
 	{
 		free(command_path);
 		return (CMD);
-	}
-	else if (command_path == NULL)
-	{
-		if (is_builtin(cmd))
-			return (CMD);
 	}
 	return (WORD);
 }
