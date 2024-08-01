@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 05:36:16 by codespace         #+#    #+#             */
-/*   Updated: 2024/07/19 00:22:53 by geibo            ###   ########.fr       */
+/*   Updated: 2024/08/01 17:46:31 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,21 @@ void	free_exec(t_exec *exec)
 
 void	print_exec(t_exec *exec)
 {
-	printf("cmd:%s\n", exec->cmd[0]);
-	printf("cmd:%s\n", exec->cmd[1]);
-	printf("current:%p\n", exec);
-	printf("next:%p\n", exec->next);
-	printf("prev:%p\n", exec->prev);
+	t_exec	*tmp;
+	int		i;
+
+	tmp = exec;
+	while (tmp != NULL)
+	{
+		i = 0;
+		while (tmp->cmd[i])
+		{
+			printf("cmd[%d]: %s\n", i, tmp->cmd[i]);
+			printf("current:%p\n", tmp);
+			printf("next:%p\n", tmp->next);
+			printf("prev:%p\n", tmp->prev);
+			i++;
+		}
+		tmp = tmp->next;
+	}
 }
