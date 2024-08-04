@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:50:07 by geibo             #+#    #+#             */
-/*   Updated: 2024/08/01 16:10:57 by geibo            ###   ########.fr       */
+/*   Updated: 2024/08/04 20:11:16 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_exec	*copy_nodes(t_exec *exec)
 	{
 		i = 0;
 		len = ft_sstrlen(temp->cmd);
-		another = join_exec_nodes(another, ft_calloc(len + 1, sizeof(char *)));
+		another = join_exec_nodes(another, ft_calloc(len + 1, sizeof(char *)), ft_calloc(len + 1, sizeof(int)));
 		if (!head)
 			head = another;
 		while (temp->cmd[i])
@@ -105,7 +105,7 @@ void	open_here_doc_file(t_exec *temp, int *i)
 	}
 }
 
-t_exec	*renamed_here_doc(t_exec *exec)
+t_exec	*renamed_here_doc(t_exec *exec, char **envp)
 {
 	t_exec	*another;
 	t_exec	*temp;
@@ -120,12 +120,8 @@ t_exec	*renamed_here_doc(t_exec *exec)
 			open_here_doc_file(temp, &i);
 		temp = temp->next;
 	}
-	// free(exec->cmd[0]);
-	// free(exec->cmd[1]);
 	free_exec(exec);
 	exec = another;
-	// free(exec->cmd[0]);
-	// free(exec->cmd[1]);
-	// free(another);
+	set_exec_type(exec, envp);
 	return (exec);
 }

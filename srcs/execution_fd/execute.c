@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 09:08:05 by codespace         #+#    #+#             */
-/*   Updated: 2024/08/04 16:48:07 by geibo            ###   ########.fr       */
+/*   Updated: 2024/08/04 20:24:22 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,11 @@ void	start_command_exec(char *command_path, char **envp, t_exec *exec, int saved
 			execution(current_node, envp, command_path);
 		}
 		else
+		{
+			if (current_node->type[0] == HERE_DOC)
+				return ;
 			execute_last_cmd(current_node, envp, command_path);
+		}
 		current_node = current_node->next;
 	}
 	while (wait(NULL) > 0);

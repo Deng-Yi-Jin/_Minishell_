@@ -6,13 +6,13 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 05:36:16 by codespace         #+#    #+#             */
-/*   Updated: 2024/08/01 17:46:31 by geibo            ###   ########.fr       */
+/*   Updated: 2024/08/04 20:10:18 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_exec	*create_exec_node(char **cmd)
+t_exec	*create_exec_node(char **cmd, int *type)
 {
 	t_exec	*new_node;
 
@@ -20,6 +20,7 @@ t_exec	*create_exec_node(char **cmd)
 	if (!new_node)
 		return (NULL);
 	new_node->cmd = cmd;
+	new_node->type = type;
 	new_node->next = NULL;
 	new_node->prev = NULL;
 	new_node->infile = 0;
@@ -29,11 +30,11 @@ t_exec	*create_exec_node(char **cmd)
 	return (new_node);
 }
 
-t_exec *join_exec_nodes(t_exec *exec, char **cmd)
+t_exec *join_exec_nodes(t_exec *exec, char **cmd, int *type)
 {
 	t_exec *new_node;
 
-	new_node = create_exec_node(cmd);
+	new_node = create_exec_node(cmd, type);
 	if (!new_node)
 		return (NULL);
 	if (!exec)
@@ -54,10 +55,10 @@ void	free_exec(t_exec *exec)
 		i = 0;
 		while (exec->cmd[i])
 		{
-			// printf("cmd[1]: %s\n", exec->cmd[1]);
 			free(exec->cmd[i]);
 			i++;
 		}
+		free(exec->type);
 		free(exec->cmd);
 		free(exec);
 		exec = tmp;
