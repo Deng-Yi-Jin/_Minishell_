@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 19:00:34 by sinlee            #+#    #+#             */
-/*   Updated: 2024/08/01 17:38:43 by geibo            ###   ########.fr       */
+/*   Updated: 2024/08/04 15:32:47 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ void	quoting(char *str, int *i, int *count_words, char c)
 }
 
 
-void	parse_input(char *input, char **envp, int count_words)
+void	parse_input(char *input, char **envp)
 {
 	t_token	**tokens;
 	char	*tempstring;

@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:01:17 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/08 14:49:16 by geibo            ###   ########.fr       */
+/*   Updated: 2024/08/04 15:32:58 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main(int argc, char **argv, char **envp)
 		if (input[0] != '\0')
 		{
 			add_history(input);
-			parse_input(input, envp, 0);
+			parse_input(input, envp);
 		}
 		free(input);
 	}

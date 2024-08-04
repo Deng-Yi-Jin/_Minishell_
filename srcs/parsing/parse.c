@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:06:34 by djin              #+#    #+#             */
-/*   Updated: 2024/08/01 17:43:10 by geibo            ###   ########.fr       */
+/*   Updated: 2024/08/04 16:54:46 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	parse(t_token **tokens, char **envp)
 	minishell = (*ast);
 	exec = executing(ast, exec);
 	exec = renamed_here_doc(exec);
-	print_exec(exec);
-	// execute(exec, envp);
+	if (ft_strcmp(exec->cmd[0], "<<") > 0)
+		execute(exec, envp);
 	free_exec(exec);
 	(*ast) = minishell;
 	traverse(ast, free, 0, false);
