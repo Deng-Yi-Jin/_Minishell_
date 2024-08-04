@@ -48,17 +48,17 @@ typedef struct env_var_s
 {
 	char	*key;
 	char	*value;
-}	env_var_t;
+}	t_env_var;
 
 typedef struct s_main
 {
-	int	nuclear_status; // exit status
+	int			nuclear_status; // exit status
 	char		**envp;
-	env_var_t	**env_vars;
+	t_env_var	**env_vars;
 }	t_main;
 
-// extern env_var_t **g_env_vars;
-extern t_main *g_main;
+// extern t_env_var **g_env_vars;
+extern t_main	*g_main;
 
 char		*dquote(char *input);
 
@@ -81,17 +81,17 @@ void		parse_input(char *input, char **envp, int count_words);
 void		add_env_vars(char *key, char *value);
 void		modify_env_vars(char *key, char *value);
 void		delete_env_vars(char *key);
-env_var_t	*find_env_vars(char *key);
+t_env_var	*find_env_vars(char *key);
 int			find_env(char *key, char **envp);
 char		*ft_getenv(char *key);
 void		free_env_vars(void);
 bool		flip_bool_env_vars(char *key);
 // bool    print_env_vars();
 
-bool 		execute_echo(char **args, char **flags);
+bool		execute_echo(char **args, char **flags);
 
-env_var_t	**dup_darr(char **arr);
-void		free_darr(env_var_t **arr);
+t_env_var	**dup_darr(char **arr);
+void		free_darr(t_env_var **arr);
 void		free_jutsu(bool darr, char *key, char *value);
 
 bool		execute_cd(char *args[N_ARGS], char **envp);
@@ -108,7 +108,8 @@ t_token		*lst_first_last(t_token *tokens, bool is_last);
 void		token_lstadd_back(t_token **lst, t_token *new);
 t_token		*add_tokens(t_token *tokens, char *cmd, int type);
 t_token		*create_token(char *cmd, int type);
-void		free_stack(t_token **tokens, void (*del)(void *), bool loop, char *input);
+void		free_stack(t_token **tokens,
+				void (*del)(void *), bool loop, char *input);
 // void		del(void *content);
 void		print_stack(t_token *tokens);
 void		free_split(char **str);
@@ -116,7 +117,7 @@ t_token		*lst_go_back(t_token *tokens);
 t_token		*add_null_token(t_token *tokens);
 
 //GetNextLine
-char	*get_next_line(int fd);
+char		*get_next_line(int fd);
 
 // expand dollar
 char		*expand_dollar(char *input);

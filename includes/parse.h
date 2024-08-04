@@ -13,9 +13,9 @@
 #ifndef PARSE_H
 # define PARSE_H
 # define N_ARGS 2560
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 1024
-#endif
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1024
+# endif
 
 # include "minishell.h"
 
@@ -30,21 +30,19 @@ typedef struct s_ast
 	struct s_ast	*parent;
 }	t_ast;
 
-typedef	struct s_execute
+typedef struct s_execute
 {
 	int		fd[2];
 	pid_t	pid;
-} 	t_execute;
+}	t_execute;
 
-
-typedef struct	count
+typedef struct count
 {
 	size_t		i;
 	int			j;
 	int			count_words;
 	int			strlen;
 }	t_count;
-
 
 void	parse(t_token **tokens, char **envp);
 t_ast	*create_ast_node(char *cmd, int type);
@@ -59,16 +57,20 @@ bool	execute_dollar(t_ast **ast, int depth, char **envp);
 //dollar deal
 void	dollar_deal(t_ast *ast, bool create_sibling, char **envp);
 char	*init_dollar(t_ast *ast);
-void	build_dollar(char *strtrim, t_ast *ast, bool create_sibling, char **envp);
+void	build_dollar(char *strtrim, t_ast *ast,
+			bool create_sibling, char **envp);
 char	*execute_dollar_expansion(t_ast *ast, char **envp);
 
 //ast contruct
 void	start_parse(t_ast **ast, t_token **tokens, char **envp);
 void	construct_child_after_pipe(t_ast **ast, char *tmp, bool *is_child);
 void	construct_child_before_pipe(t_ast **ast, char *tmp, bool *is_child);
-void	eldest_child(t_ast **ast, t_token **tokens, bool *create_sibling, char **envp);
-void	sibling(t_ast **ast, t_token **tokens, bool *create_sibling, char **envp);
-void	construct_sibling(t_ast **ast, t_token **tokens, bool *create_sibling, char **envp);
+void	eldest_child(t_ast **ast, t_token **tokens,
+			bool *create_sibling, char **envp);
+void	sibling(t_ast **ast, t_token **tokens,
+			bool *create_sibling, char **envp);
+void	construct_sibling(t_ast **ast, t_token **tokens,
+			bool *create_sibling, char **envp);
 void	form_ast(t_ast **ast, t_token **tokens, char **envp);
 
 //rm quote

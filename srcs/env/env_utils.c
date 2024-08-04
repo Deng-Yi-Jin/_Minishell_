@@ -42,21 +42,21 @@ int	find_env(char *key, char **envp)
 		return (i);
 }
 
-env_var_t	**dup_darr(char **arr)
+t_env_var	**dup_darr(char **arr)
 {
-	env_var_t	**out;
+	t_env_var	**out;
 	int			i;
 
 	i = 0;
 	while (arr[i] != NULL)
 		i++;
-	out = ft_malloc((i + 1) * sizeof(env_var_t *));
-	out[i] = ft_malloc(sizeof(env_var_t));
+	out = ft_malloc((i + 1) * sizeof(t_env_var *));
+	out[i] = ft_malloc(sizeof(t_env_var));
 	out[i]->key = NULL;
 	out[i]->value = NULL;
 	while (--i >= 0)
 	{
-		out[i] = ft_malloc(sizeof(env_var_t));
+		out[i] = ft_malloc(sizeof(t_env_var));
 		out[i]->key = ft_substr(arr[i], 0, ft_strchr(arr[i], '=') - arr[i]);
 		out[i]->value = ft_substr(arr[i], ft_strchr(arr[i], '=') - arr[i] + 1,
 				ft_strlen(arr[i]));
@@ -64,7 +64,7 @@ env_var_t	**dup_darr(char **arr)
 	return (out);
 }
 
-void	free_darr(env_var_t **arr)
+void	free_darr(t_env_var **arr)
 {
 	int i;
 

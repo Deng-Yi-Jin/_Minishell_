@@ -15,7 +15,7 @@
 void	add_env_vars(char *key, char *value)
 {
 	int			i;
-	env_var_t	**new_env_vars;
+	t_env_var	**new_env_vars;
 	int			num_env_vars;
 
 	if (key == NULL)
@@ -23,19 +23,19 @@ void	add_env_vars(char *key, char *value)
 	num_env_vars = 0;
 	while (g_main->env_vars[num_env_vars]->key != NULL)
 		num_env_vars++;
-	new_env_vars = (env_var_t **)ft_malloc((num_env_vars + 2)
-			* sizeof(env_var_t *));
+	new_env_vars = (t_env_var **)ft_malloc((num_env_vars + 2)
+			* sizeof(t_env_var *));
 	i = -1;
 	while (++i < num_env_vars)
 	{
-		new_env_vars[i] = malloc(sizeof(env_var_t));
+		new_env_vars[i] = malloc(sizeof(t_env_var));
 		new_env_vars[i]->key = g_main->env_vars[i]->key;
 		new_env_vars[i]->value = g_main->env_vars[i]->value;
 	}
-	new_env_vars[num_env_vars] = malloc(sizeof(env_var_t));
+	new_env_vars[num_env_vars] = malloc(sizeof(t_env_var));
 	new_env_vars[num_env_vars]->key = key;
 	new_env_vars[num_env_vars]->value = value;
-	new_env_vars[num_env_vars + 1] = malloc(sizeof(env_var_t));
+	new_env_vars[num_env_vars + 1] = malloc(sizeof(t_env_var));
 	new_env_vars[num_env_vars + 1]->key = NULL;
 	new_env_vars[num_env_vars + 1]->value = NULL;
 	free_darr(g_main->env_vars);
@@ -44,7 +44,7 @@ void	add_env_vars(char *key, char *value)
 
 void	modify_env_vars(char *key, char *value)
 {
-	env_var_t	*tmp;
+	t_env_var	*tmp;
 
 	tmp = find_env_vars(key);
 	if (tmp != NULL)
@@ -57,7 +57,7 @@ void	modify_env_vars(char *key, char *value)
 	// might add in find_env_vars instead
 }
 
-env_var_t	*find_env_vars(char *key)
+t_env_var	*find_env_vars(char *key)
 {
 	int	i;
 
@@ -90,7 +90,7 @@ void	free_env_vars(void)
 
 void	delete_env_vars(char *key)
 {
-	env_var_t *tmp;
+	t_env_var *tmp;
 
 	tmp = find_env_vars(key);
 	if (tmp != NULL)

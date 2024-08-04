@@ -17,15 +17,15 @@
 
 typedef struct s_exec
 {
-	char	**cmd;
-	
-	struct s_exec *next;
-	struct s_exec *prev;
-	pid_t	pid;
-	int		fd[2];
-	int		infile;
-	int		outfile;
-} t_exec;
+	char			**cmd;
+
+	struct	s_exec	*next;
+	struct	s_exec	*prev;
+	pid_t			pid;
+	int				fd[2];
+	int				infile;
+	int				outfile;
+}	t_exec;
 
 t_exec	*create_exec_node(char **cmd);
 bool	add_cmd_to_db_lst(t_ast **ast, t_exec *exec, int depth);
