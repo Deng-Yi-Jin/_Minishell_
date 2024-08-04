@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minishell.h"
+#include "minishell.h"
 
-bool welcome_msg(void)
+bool	welcome_msg(void)
 {
 	printf("%s███╗   ███╗██╗███╗   ██╗██╗███████╗██╗  ██╗███████╗██╗     ██╗     \n", MAGENTA_BOLD);
 	printf("████╗ ████║██║████╗  ██║██║██╔════╝██║  ██║██╔════╝██║     ██║     \n");
@@ -21,5 +21,5 @@ bool welcome_msg(void)
 	printf("██║ ╚═╝ ██║██║██║ ╚████║██║███████║██║  ██║███████╗███████╗███████╗\n");
 	printf("╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝╚══════╝╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝\n");
 	printf("%s         Made with love by : \033[0;35msinlee\033[m and \033[0;35mdjin\033[m\n", WHITE);
-    return (true);
+	return (true);
 }

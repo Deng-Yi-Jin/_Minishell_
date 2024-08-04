@@ -29,7 +29,7 @@ void	form_ast(t_ast **ast, t_token **tokens, char **envp)
 {
 	char	*tmp;
 	bool	is_c;
-	bool	create_s;	
+	bool	create_s;
 
 	is_c = true;
 	create_s = false;

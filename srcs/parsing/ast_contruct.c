@@ -44,9 +44,7 @@ void	eldest_child(t_ast **ast, t_token **tokens, bool *create_sibling, char **en
 		dollar_deal((*ast), create_sibling, envp);
 	}
 	else
-	{
 		(*ast)->type = is_command((*tokens)->cmd, envp);
-	}
 	if ((*tokens)->next != NULL && (*tokens)->next->type != PIPE)
 		*create_sibling = true;
 }

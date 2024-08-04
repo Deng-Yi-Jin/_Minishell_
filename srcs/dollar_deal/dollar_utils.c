@@ -17,7 +17,7 @@ char	*init_dollar(t_ast *ast)
 	t_count	count;
 	char	*strtrim;
 
-	count = (t_count){0,0,0,0};
+	count = (t_count){0, 0, 0, 0};
 	if ((ast)->cmd[0] != '$' || (ast)->type != DOLLAR)
 		return (NULL);
 	if ((ast)->cmd[count.i] == '$')
@@ -42,7 +42,8 @@ void	trim_new_str(char *strtrim, int *i, int *j, int *count_words)
 		dollar(strtrim, i, count_words);
 	else
 	{
-		while (strtrim[*i] != '$' && ft_symbol(strtrim[*i]) == false && strtrim[*i])
+		while (strtrim[*i] != '$' && ft_symbol(strtrim[*i]) == false
+			&& strtrim[*i])
 		{
 			if (strtrim[*i] == '\"')
 				quoting(strtrim, i, count_words, '\"');
@@ -88,11 +89,12 @@ t_ast	*add_sibling_dollar(t_ast *ast, char *strtrim, int *j, int *count_words)
 	return (ast);
 }
 
-void	build_dollar(char *strtrim, t_ast *ast, bool create_sibling, char **envp)
+void	build_dollar(char *strtrim, t_ast *ast,
+		bool create_sibling, char **envp)
 {
 	t_count	count;
 
-	count = (t_count) {0,0,0,0};
+	count = (t_count){0, 0, 0, 0};
 	while (strtrim[count.i] != '\0')
 	{
 		trim_new_str(strtrim, &count.i, &count.j, &count.count_words);
@@ -102,7 +104,8 @@ void	build_dollar(char *strtrim, t_ast *ast, bool create_sibling, char **envp)
 			create_sibling = true;
 		}
 		else if (create_sibling == true)
-			ast = add_sibling_dollar(ast, strtrim, &count.j, &count.count_words);
+			ast = add_sibling_dollar(ast, strtrim, &count.j,
+					&count.count_words);
 	}
 	free(strtrim);
 	create_sibling = false;

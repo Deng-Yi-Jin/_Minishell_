@@ -96,7 +96,8 @@ char	*dquote(char *input)
 	{
 		if (is_bracket(split[word][ft_strlen(split[word]) - 1]))
 		{
-			printf("minishell: syntax error near unexpected token `%c'\n", split[word][ft_strlen(split[word]) - 1]);
+			printf("minishell: syntax error near unexpected token `%c'\n",
+				split[word][ft_strlen(split[word]) - 1]);
 			free_split(split);
 			return (NULL);
 		}

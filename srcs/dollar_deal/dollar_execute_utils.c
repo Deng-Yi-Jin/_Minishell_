@@ -20,7 +20,7 @@ char	*matching_cmd(char **cmd)
 	count = (t_count){1, 1, 1, 1};
 	if (ft_strcmp(cmd[0], "echo"))
 	{
-		while(cmd[count.i])
+		while (cmd[count.i])
 		{
 			result = ft_strjoin(result, cmd[count.i]);
 			count.i++;
@@ -29,15 +29,52 @@ char	*matching_cmd(char **cmd)
 	return (result);
 }
 
+
+char	*handle_fork(t_execute *execute, char *command_path, char **cmd, char **envp)
+{
+	t_count		count;
+	char		*result;
+	size_t		bytes_read;
+
+	count = (t_count){0, 0, 0, 0};
+	execute->pid = fork();
+	if (execute->pid == -1)
+	{
+		perror("fork");
+		return (NULL);
+	}
+	if (execute->pid == 0)
+	{
+		close(execute->fd[0]);
+		dup2(execute->fd[1], 1);
+		execve(command_path, cmd, envp);
+		exit(0);
+	}
+	else
+	{
+		close(execute->fd[1]);
+		result = ft_calloc(BUFFER_SIZE, sizeof(char));
+		bytes_read = read(execute->fd[0], result, BUFFER_SIZE - 1);
+		result[bytes_read] = '\0';
+		while (count.i < bytes_read)
+		{
+			if (result[count.i] == '\n')
+				result[count.i] = '\t';
+			count.i++;
+		}
+		close(execute->fd[0]);
+		waitpid(execute->pid, NULL, 0);
+	}
+	free(command_path);
+	return (result);
+}
+
 char	*executing_cmd(char **cmd, char **envp)
 {
 	t_execute	execute;
-	char		*command_path;
-	t_count		count;
 	char		*result;
-	size_t		bytesRead;
+	char		*command_path;
 
-	count = (t_count){0, 0, 0, 0};
 	command_path = find_command_path(cmd[0], envp);
 	if (command_path == NULL)
 	{
@@ -49,34 +86,9 @@ char	*executing_cmd(char **cmd, char **envp)
 		perror("pipe");
 		return (NULL);
 	}
-	if ((execute.pid = fork()) == -1)
-	{
-		perror("fork");
-		return (NULL);
-	}
-	if (execute.pid == 0)
-	{
-		close(execute.fd[0]);
-		dup2(execute.fd[1], 1);
-		execve(command_path, cmd, envp);
-		exit(0);
-	}
-	else
-	{
-		close(execute.fd[1]);
-		result = ft_calloc(BUFFER_SIZE, sizeof(char));
-		bytesRead = read(execute.fd[0], result, BUFFER_SIZE - 1);
-		result[bytesRead] = '\0';
-		while (count.i < bytesRead)
-		{
-			if (result[count.i] == '\n')
-				result[count.i] = '\t';
-			count.i++;
-		}
-		close(execute.fd[0]);
-		waitpid(execute.pid, NULL, 0);
-	}
-	free(command_path);
+	result = handle_fork(&execute, command_path, cmd, envp);
+	// if (result == NULL)
+	// 	return (NULL);
 	return (result);
 }
 

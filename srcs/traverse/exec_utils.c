@@ -29,9 +29,9 @@ t_exec	*create_exec_node(char **cmd)
 	return (new_node);
 }
 
-t_exec *join_exec_nodes(t_exec *exec, char **cmd)
+t_exec	*join_exec_nodes(t_exec *exec, char **cmd)
 {
-	t_exec *new_node;
+	t_exec	*new_node;
 
 	new_node = create_exec_node(cmd);
 	if (!new_node)
@@ -43,9 +43,10 @@ t_exec *join_exec_nodes(t_exec *exec, char **cmd)
 	return (new_node);
 }
 
+// printf("cmd[1]: %s\n", exec->cmd[1]);
 void	free_exec(t_exec *exec)
 {
-	t_exec *tmp;
+	t_exec	*tmp;
 	int		i;
 
 	while (exec)
@@ -53,11 +54,7 @@ void	free_exec(t_exec *exec)
 		tmp = exec->next;
 		i = 0;
 		while (exec->cmd[i])
-		{
-			// printf("cmd[1]: %s\n", exec->cmd[1]);
-			free(exec->cmd[i]);
-			i++;
-		}
+			free(exec->cmd[i++]);
 		free(exec->cmd);
 		free(exec);
 		exec = tmp;

@@ -12,9 +12,9 @@
 
 #include "minishell.h"
 
-bool execute_pwd()
+bool	execute_pwd()
 {
-	char *path;
+	char	*path;
 
 	path = getcwd(NULL, 0);
 	if (path == NULL)

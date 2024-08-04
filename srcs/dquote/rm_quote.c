@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-int		quote_or_dquote(char *str)
+int	quote_or_dquote(char *str)
 {
 	int		i;
 	bool	quote;
@@ -26,12 +26,12 @@ int		quote_or_dquote(char *str)
 		if (str[i] == '\'' && !dquote)
 		{
 			quote = true;
-			break;
+			break ;
 		}
 		else if (str[i] == '\"' && !quote)
 		{
 			dquote = true;
-			break;
+			break ;
 		}
 		i++;
 	}

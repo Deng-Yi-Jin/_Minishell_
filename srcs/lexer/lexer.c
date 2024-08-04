@@ -122,7 +122,6 @@ void	quoting(char *str, int *i, int *count_words, char c)
 	(*count_words)++;
 }
 
-
 void	parse_input(char *input, char **envp, int count_words)
 {
 	t_token	**tokens;
@@ -152,12 +151,12 @@ void	parse_input(char *input, char **envp, int count_words)
 	}
 	if (tempstring)
 		free(tempstring);
-	// print_stack(*tokens);
 	parse(tokens, envp);
 	free_stack(tokens, del, true, NULL);
 	free(temp);
 	free(tokens);
 }
+	// print_stack(*tokens);
 
 // int	main(int argc, char **argv, char **envp)
 // {

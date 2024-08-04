@@ -19,6 +19,6 @@ void	dollar_deal(t_ast *ast, bool create_sibling, char **envp)
 	create_sibling = false;
 	strtrim = init_dollar(ast);
 	if (strtrim == NULL)
-		return;
+		return ;
 	build_dollar(strtrim, ast, create_sibling, envp);
 }

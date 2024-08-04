@@ -54,8 +54,8 @@ void	modify_env_vars(char *key, char *value)
 	}
 	else
 		perror_color("Dei. Your environment variables does not exist. Nearest IQ Checkup is 5km away tho.");
-	// might add in find_env_vars instead
 }
+	// might add in find_env_vars instead
 
 t_env_var	*find_env_vars(char *key)
 {
@@ -90,7 +90,7 @@ void	free_env_vars(void)
 
 void	delete_env_vars(char *key)
 {
-	t_env_var *tmp;
+	t_env_var	*tmp;
 
 	tmp = find_env_vars(key);
 	if (tmp != NULL)

@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 // main file for minishell project, which is a recreation of the bash shell
-
 #include "minishell.h"
 
 t_main *g_main;

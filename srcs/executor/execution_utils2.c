@@ -25,13 +25,13 @@ void	exec_pipe(t_exec *exec, char **envp, char *command_path)
 		{
 			close(exec->fd[0]); // Close the read end of the pipe in the child
 			dup2(exec->fd[1], STDOUT_FILENO); // Replace stdout with the write end of the pipe
-		   	execve(command_path, exec->cmd, envp);
-		   	exit(0);
+			execve(command_path, exec->cmd, envp);
+			exit(0);
 		}
 		else // This is the parent process
 		{
 			waitpid(exec->pid, NULL, 0);
-		  	close(exec->fd[1]); // Close the write end of the pipe in the parent
+		 	close(exec->fd[1]); // Close the write end of the pipe in the parent
 			dup2(exec->fd[0], STDIN_FILENO); // Replace stdin with the read end of the pipe
 		}
 		if (command_path != NULL)
@@ -42,14 +42,14 @@ void	exec_pipe(t_exec *exec, char **envp, char *command_path)
 	if (command_path == NULL)
 	{
 		if (match_cmd(exec->cmd[0], exec->cmd, envp) == false)
-		   	printf("Command not found: %s\n", exec->cmd[0]);
+			printf("Command not found: %s\n", exec->cmd[0]);
 	}
 	else
 	{
 		exec->pid = fork();
 		if (exec->pid == 0)
 		{
-	   		if (execve(command_path, exec->cmd, envp))
+			if (execve(command_path, exec->cmd, envp))
 				perror("execve");
 		}
 		else

@@ -26,5 +26,4 @@ int	ft_sstrlen(char **str)
 	}
 	return (len);
 }
-
 // void	opening_file(t_exec *temp, int *i, int *count)

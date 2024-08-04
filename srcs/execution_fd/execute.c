@@ -22,6 +22,7 @@ void	execution(t_exec *exec, char **envp, char *command_path)
 
 	i = 0;
 	redirect_in(exec, &infilefd, &outfilefd);
+}
 	// origstdin = dup(STDIN_FILENO);
 	// origstdout = dup(STDOUT_FILENO);
 	// i = return_after_redir(exec, i);
@@ -35,7 +36,6 @@ void	execution(t_exec *exec, char **envp, char *command_path)
 	// if (exec->infile != 0)
 	// 	close(exec->infile);
 	// restore_fd(origstdin, origstdout);
-}
 
 void	execute_last_cmd(t_exec *exec, char **envp, char *command_path)
 {

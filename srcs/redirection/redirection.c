@@ -28,7 +28,7 @@ void	redirect_in(t_exec *exec, int *infilefd, int *outfilefd)
 			i++;
 		}
 		else
-			break;
+			break ;
 	}
 	*infilefd = exec->infile;
 }
@@ -40,7 +40,7 @@ int	return_after_redir(t_exec *exec, int i)
 		if (is_redir_in(exec->cmd[i]))
 			i += 2;
 		else
-			break;
+			break ;
 	}
 	return (i);
 }

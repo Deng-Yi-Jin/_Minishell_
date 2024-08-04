@@ -91,11 +91,9 @@ void	open_here_doc_file(t_exec *temp, int *i)
 			create_here_doc_file(temp->cmd[*i], limiter);
 			free(limiter);
 			(*i)++;
-			// printf("Hello\n");
 		}
 		else
 		{
-			// printf("1:Hello\n");
 			tmp1 = ft_strdup(temp->cmd[*i]);
 			free(temp->cmd[*i]);
 			temp->cmd[*i] = ft_strdup(tmp1);
@@ -120,12 +118,13 @@ t_exec	*renamed_here_doc(t_exec *exec)
 			open_here_doc_file(temp, &i);
 		temp = temp->next;
 	}
-	// free(exec->cmd[0]);
-	// free(exec->cmd[1]);
 	free_exec(exec);
 	exec = another;
+	return (exec);
+}
+// free(exec->cmd[0]);
+	// free(exec->cmd[1]);
+
 	// free(exec->cmd[0]);
 	// free(exec->cmd[1]);
 	// free(another);
-	return (exec);
-}

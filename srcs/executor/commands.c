@@ -17,7 +17,7 @@ char	*find_command_path(char *command, char **envp)
 	char	*path_env;
 	char	*path;
 	char	*token;
-    char    full_path[PATH_MAX];
+	char	full_path[PATH_MAX];
 
 	if ((command[0] == '.' && command[1] == '/' && !access(command+2, X_OK)))
 		return (ft_strdup(command+2));
@@ -55,13 +55,14 @@ bool	match_cmd(char *inpt, char *args[N_ARGS], char **envp)
 	else if (ft_strcmp(inpt, "export") == 0)
 		execute_export(args);
 	else if(ft_strcmp(inpt, "echo") == 0)
-		execute_echo(args, is_flags(args)); // Flags here
-	// else if (ft_strcmp(inpt, "unset"))
-	//     ft_unset(envp);
+		execute_echo(args, is_flags(args));
 	else
 		return (false);
 	return (true);
 }
+// Flags here
+	// else if (ft_strcmp(inpt, "unset"))
+	//     ft_unset(envp);
 
 bool	is_builtin(char *command)
 {

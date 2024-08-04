@@ -12,6 +12,8 @@
 
 #include "minishell.h"
 
+// if (print == false && (*ast)->cmd != NULL)
+	// 	printf("%s\n", (*ast)->cmd);
 bool	traverse(t_ast **ast, void (*f)(void *), int depth, bool print)
 {
 	t_ast	*temp;
@@ -19,8 +21,6 @@ bool	traverse(t_ast **ast, void (*f)(void *), int depth, bool print)
 	if (*ast == NULL)
 		return (false);
 	temp = (*ast)->next;
-	// if (print == false && (*ast)->cmd != NULL)
-	// 	printf("%s\n", (*ast)->cmd);
 	traverse(&((*ast)->child), f, depth + 1, print);
 	f((*ast)->cmd);
 	f((*ast));
@@ -46,7 +46,7 @@ bool	add_cmd_to_db_lst(t_ast **ast, t_exec *exec, int depth)
 		{
 			exec->cmd[count.i++] = current_temp->cmd;
 			if (current_temp->next == NULL)
-				break;
+				break ;
 			current_temp = current_temp->next;
 		}
 	}
