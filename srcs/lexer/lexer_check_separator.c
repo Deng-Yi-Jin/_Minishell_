@@ -30,7 +30,8 @@ void	ft_redir(char *input, int *i, t_token **tokens)
 {
 	if (input[*i] == '>' && input[(*i) + 1] == '>')
 	{
-		(*tokens) = add_tokens((*tokens), ft_substr(input, *i, 2), REDIR_OUT_APPEND);
+		(*tokens) = add_tokens((*tokens), ft_substr(input, *i, 2),
+				REDIR_OUT_APPEND);
 		*i += 2;
 	}
 	else if (input[*i] == '<' && input[(*i) + 1] == '<')
@@ -40,7 +41,8 @@ void	ft_redir(char *input, int *i, t_token **tokens)
 	}
 	else
 	{
-		(*tokens) = add_tokens((*tokens), ft_substr(input, *i, 1), ft_return_op(input[*i]));
+		(*tokens) = add_tokens((*tokens), ft_substr(input, *i, 1),
+				ft_return_op(input[*i]));
 		(*i)++;
 	}
 }
@@ -54,7 +56,7 @@ void	ft_pipe(char *input, int *i, t_token **tokens)
 	}
 }
 
-int ft_return_op(char input)
+int	ft_return_op(char input)
 {
 	if (input == '>')
 		return (REDIR_OUT);

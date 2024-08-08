@@ -77,4 +77,3 @@ void	manage_pipe_parent(t_exec *exec)
 		exec->prev->fd[1] = exec->fd[1];
 	}
 }
-

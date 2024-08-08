@@ -18,18 +18,26 @@
 		// Find the full path of the command
 void	parse_input(char *input, char **envp)
 {
+	char	*args[N_ARGS];
+	int		argc;
+	char	*token;
+	char	*command_path;
+	pid_t	child_pid;
+	int		status;
+
 	if (input != NULL)
 	{
-		char *args[N_ARGS];
-		int argc = 0;
-		char *token = strtok(input, " ");
+		// char *args[N_ARGS];
+		// int argc = 0;
+		argc = 0;
+		token = strtok(input, " ");
 		while (token != NULL)
 		{
 			args[argc++] = token;
 			token = strtok(NULL, " ");
 		}
 		args[argc] = NULL;
-		char *command_path = find_command_path(args[0], envp);
+		command_path = find_command_path(args[0], envp);
 		if (command_path == NULL)
 		{
 			if (match_cmd(args[0], args, envp) == false)
@@ -37,23 +45,21 @@ void	parse_input(char *input, char **envp)
 		}
 		else
 		{
-			pid_t child_pid = fork();
+			child_pid = fork();
 			if (child_pid == -1)
 				perror("fork");
 			else if (child_pid == 0)
 			{
-				// Child process: Execute the command using execve
 				execve(command_path, args, envp);
-				perror("execve"); // execve only returns if an error occurs
+				perror("execve");
 				exit(EXIT_FAILURE);
 			}
 			else
-			{
-				// Parent process: Wait for the child to complete
-				int status;
 				waitpid(child_pid, &status, 0);
-			}
 			free(command_path);
 		}
 	}
 }
+// 49 // Child process: Execute the command using execve
+// 50 / execve only returns if an error occurs
+// 55 // Parent process: Wait for the child to complete

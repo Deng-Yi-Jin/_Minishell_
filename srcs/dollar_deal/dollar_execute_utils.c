@@ -29,8 +29,8 @@ char	*matching_cmd(char **cmd)
 	return (result);
 }
 
-
-char	*handle_fork(t_execute *execute, char *command_path, char **cmd, char **envp)
+char	*handle_fork(t_execute *execute, char *command_path,
+		char **cmd, char **envp)
 {
 	t_count		count;
 	char		*result;
@@ -87,10 +87,10 @@ char	*executing_cmd(char **cmd, char **envp)
 		return (NULL);
 	}
 	result = handle_fork(&execute, command_path, cmd, envp);
-	// if (result == NULL)
-	// 	return (NULL);
 	return (result);
 }
+	// if (result == NULL)
+	// 	return (NULL);
 
 char	*execute_dollar_expansion(t_ast *ast, char **envp)
 {

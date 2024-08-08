@@ -23,7 +23,8 @@ void	add_env_vars(char *key, char *value)
 	if (key == NULL)
 		perror_color("Environment Variables Name CANNOT be NULL!");
 	var = (char *)ft_malloc(ft_strlen(key) + ft_strlen(value) + 2);
-	ft_snprintf(var, ft_strlen(key) + ft_strlen(value) + 2, "%s=%s", key, value);
+	ft_snprintf(var, ft_strlen(key) + ft_strlen(value) + 2, "%s=%s",
+		key, value);
 	num_env_vars = 0;
 	while (g_main->envp[num_env_vars] != NULL)
 		num_env_vars++;
@@ -39,22 +40,23 @@ void	add_env_vars(char *key, char *value)
 
 char	**find_env_vars(char *key)
 {
-	int i;
-	char *tmp;
+	int		i;
+	char	*tmp;
 
 	i = 0;
 	tmp = (char *)ft_malloc(ft_strlen(key) + 2);
 	snprintf(tmp, ft_strlen(key) + 2, "%s=", key);
-	while (ft_strncmp((g_main->envp)[i], tmp, ft_strlen(tmp)) && ((g_main->envp)[i] != NULL))
+	while (ft_strncmp((g_main->envp)[i], tmp, ft_strlen(tmp))
+		&& ((g_main->envp)[i] != NULL))
 		i++;
 	free(tmp);
 	if ((g_main->envp)[i] == NULL)
 	{
-		perror_color("Dei. Your environment variables does not exist. Nearest IQ Checkup is 5km away tho.");
+		perror_color("Your environment variables does not exist.");
 		return (NULL);
 	}
 	else
-		return &(g_main->envp[i]);
+		return (&(g_main->envp[i]));
 }
 
 void	modify_env_vars(char *key, char *value)
@@ -80,7 +82,7 @@ char	*ft_getenv(char *key)
 
 	var = find_env_vars(key);
 	if (var != NULL)
-		return (*var+ ft_strlen(key) + 1);
+		return (*var + ft_strlen(key) + 1);
 	else
 		return (NULL);
 }

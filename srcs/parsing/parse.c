@@ -41,9 +41,9 @@ void	parse(t_token **tokens, char **envp)
 	exec = executing(ast, exec);
 	exec = renamed_here_doc(exec);
 	print_exec(exec);
-	// execute(exec, envp);
 	free_exec(exec);
 	(*ast) = minishell;
 	traverse(ast, free, 0, false);
 	free(ast);
 }
+// 44 execute(exec, envp);

@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-bool	execute_pwd()
+bool	execute_pwd(void)
 {
 	char	*path;
 

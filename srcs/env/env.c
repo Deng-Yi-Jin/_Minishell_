@@ -53,7 +53,7 @@ void	modify_env_vars(char *key, char *value)
 		tmp->value = value;
 	}
 	else
-		perror_color("Dei. Your environment variables does not exist. Nearest IQ Checkup is 5km away tho.");
+		perror_color("Your environment variables does not exist.");
 }
 	// might add in find_env_vars instead
 
@@ -99,6 +99,6 @@ void	delete_env_vars(char *key)
 		free(tmp->key);
 	}
 	else
-		perror_color("Dei. Your environment variables does not exist. Nearest IQ Checkup is 5km away tho.");
+		perror_color("Your environment variables does not exist.");
 	return ;
 }

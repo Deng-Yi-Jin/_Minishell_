@@ -77,14 +77,15 @@ int	total_command(t_exec *exec, int count)
 	while (temp != NULL)
 	{
 		if (ft_strcmp(temp->cmd[0], "") == 0)
-			break;
+			break ;
 		count++;
 		temp = temp->next;
 	}
 	return (count);
 }
 
-void	start_command_exec(char *command_path, char **envp, t_exec *exec, int saved_stdin)
+void	start_command_exec(char *command_path, char **envp,
+		t_exec *exec, int saved_stdin)
 {
 	t_exec	*current_node;
 
@@ -101,7 +102,8 @@ void	start_command_exec(char *command_path, char **envp, t_exec *exec, int saved
 			execute_last_cmd(current_node, envp, command_path);
 		current_node = current_node->next;
 	}
-	while (wait(NULL) > 0);
+	while (wait(NULL) > 0)
+		;
 }
 
 void	execute(t_exec *exec, char **envp)
