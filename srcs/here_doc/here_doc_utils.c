@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 19:33:34 by geibo             #+#    #+#             */
-/*   Updated: 2024/06/13 19:39:00 by geibo            ###   ########.fr       */
+/*   Updated: 2024/08/04 20:18:37 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,51 @@ int	ft_sstrlen(char **str)
 	}
 	return (len);
 }
-// void	opening_file(t_exec *temp, int *i, int *count)
+
+bool	is_flag(char *str)
+{
+	if (str[0] == '-' && str[1] != '\0')
+		return (true);
+	return (false);
+}
+
+int		set_type(char *cmd, char **envp)
+{
+	char	*path;
+
+	path = find_command_path(cmd, envp);
+	if (ft_strcmp(cmd, "<<") == 0)
+		return (HERE_DOC);
+	else if (ft_strcmp(cmd, ">>") == 0)
+		return (REDIR_OUT_APPEND);
+	else if (ft_strcmp(cmd, ">") == 0)
+		return (REDIR_OUT);
+	else if (ft_strcmp(cmd, "<") == 0)
+		return (REDIR_IN);
+	else if (path)
+	{
+		free(path);
+		return (CMD);
+	}
+	else if (is_flag(cmd))
+		return (FLAGS);
+	return (WORD);
+}
+
+void	set_exec_type(t_exec *exec, char **envp)
+{
+	t_exec	*temp;
+	int		i;
+
+	temp = exec;
+	while (temp)
+	{
+		i = 0;
+		while (temp->cmd[i])
+		{
+			temp->type[i] = set_type(temp->cmd[i], envp);
+			i++;
+		}
+		temp = temp->next;
+	}
+}

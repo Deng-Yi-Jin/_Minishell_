@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 05:03:36 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/21 14:07:48 by geibo            ###   ########.fr       */
+/*   Updated: 2024/08/04 19:10:10 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_exec	*executing(t_ast **ast, t_exec *exec)
 			(*ast) = (*ast)->next;
 		}
 		(*ast) = go_to_history;
-		exec = join_exec_nodes(exec, ft_calloc(n_cmd + 1, sizeof(char *)));
+		exec = join_exec_nodes(exec, ft_calloc(n_cmd + 1, sizeof(char *)), NULL);
 		if (!head)
 			head = exec;
 		while (*ast)

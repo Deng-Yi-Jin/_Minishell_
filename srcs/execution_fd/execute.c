@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 09:08:05 by codespace         #+#    #+#             */
-/*   Updated: 2024/08/01 16:35:48 by geibo            ###   ########.fr       */
+/*   Updated: 2024/08/04 20:24:22 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,20 @@ void	execution(t_exec *exec, char **envp, char *command_path)
 
 	i = 0;
 	redirect_in(exec, &infilefd, &outfilefd);
+	origstdin = dup(STDIN_FILENO);
+	origstdout = dup(STDOUT_FILENO);
+	i = return_after_redir(exec, i);
+	if (create_fork() == 0)
+	{
+		manage_pipe_child(exec, infilefd, outfilefd);
+		run_cmd(envp, exec, command_path, &i);
+	}
+	else
+		manage_pipe_parent(exec);
+	if (exec->infile != 0)
+		close(exec->infile);
+	restore_fd(origstdin, origstdout);
 }
-	// origstdin = dup(STDIN_FILENO);
-	// origstdout = dup(STDOUT_FILENO);
-	// i = return_after_redir(exec, i);
-	// if (create_fork() == 0)
-	// {
-	// 	manage_pipe_child(exec, infilefd, outfilefd);
-	// 	run_cmd(envp, exec, command_path, &i);
-	// }
-	// else
-	// 	manage_pipe_parent(exec);
-	// if (exec->infile != 0)
-	// 	close(exec->infile);
-	// restore_fd(origstdin, origstdout);
 
 void	execute_last_cmd(t_exec *exec, char **envp, char *command_path)
 {
@@ -99,7 +99,11 @@ void	start_command_exec(char *command_path, char **envp,
 			execution(current_node, envp, command_path);
 		}
 		else
+		{
+			if (current_node->type[0] == HERE_DOC)
+				return ;
 			execute_last_cmd(current_node, envp, command_path);
+		}
 		current_node = current_node->next;
 	}
 	while (wait(NULL) > 0)

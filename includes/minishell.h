@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:06:06 by sinlee            #+#    #+#             */
-/*   Updated: 2024/05/23 00:37:22 by geibo            ###   ########.fr       */
+/*   Updated: 2024/08/04 15:33:31 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void		ft_free_path_env(char **path_env);
 char		*get_path(char *cmd, char **envp);
 char		*find_command_path(char *command, char **envp);
 int			is_command(char *cmd, char **envp);
-void		parse_input(char *input, char **envp, int count_words);
+void		parse_input(char *input, char **envp);
 
 void		add_env_vars(char *key, char *value);
 void		modify_env_vars(char *key, char *value);

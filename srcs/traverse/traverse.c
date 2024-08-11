@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:06:59 by geibo             #+#    #+#             */
-/*   Updated: 2024/08/01 17:47:46 by geibo            ###   ########.fr       */
+/*   Updated: 2024/08/04 20:11:04 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ bool	add_cmd_to_db_lst(t_ast **ast, t_exec *exec, int depth)
 	temp = (*ast)->next;
 	if ((*ast)->child == NULL)
 	{
-		exec = join_exec_nodes(exec, ft_calloc(2, sizeof(char *)));
+		exec = join_exec_nodes(exec, ft_calloc(2, sizeof(char *)), NULL);
 		current_temp = *ast;
 		while (current_temp != NULL)
 		{
