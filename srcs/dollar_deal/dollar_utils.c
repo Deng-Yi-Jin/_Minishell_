@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:34:55 by geibo             #+#    #+#             */
-/*   Updated: 2024/03/12 17:26:36 by geibo            ###   ########.fr       */
+/*   Updated: 2024/08/14 11:33:27 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,8 @@ void	trim_new_str(char *strtrim, int *i, int *j, int *count_words)
 		while (strtrim[*i] != '$' && ft_symbol(strtrim[*i]) == false
 			&& strtrim[*i])
 		{
-			if (strtrim[*i] == '\"')
-				quoting(strtrim, i, count_words, '\"');
-			else if (strtrim[*i] == '\'')
-				quoting(strtrim, i, count_words, '\'');
+			if (strtrim[*i] == '\"' || strtrim[*i] == '\'')
+				quoting(strtrim, i, count_words, strtrim[*i]);
 			else
 			{
 				(*i)++;
@@ -117,3 +115,40 @@ void	build_dollar(char *strtrim, t_ast *ast,
 	else
 		(ast)->type = is_command((ast)->cmd, envp);
 }
+
+/* KYLIE TINKERED WITH 11:32AM 8/14/2024
+
+shorten trim_new_str():
+*/
+/*
+void	trim_new_str(char *strtrim, int *i, int *j, int *count_words)
+{
+	*count_words = 0;
+	if (ft_bracket(strtrim[*i]) == true)
+		(*i)++;
+	while (strtrim[*i] == ' ' || strtrim[*i] == '\t')
+		(*i)++;
+	*j = *i;
+	if (strtrim[*i] == '$')
+		dollar(strtrim, i, count_words);
+	else
+	{
+		while (strtrim[*i] != '$' && ft_symbol(strtrim[*i]) == false
+			&& strtrim[*i])
+		{
+			if (strtrim[*i] == '\"' || strtrim[*i] == '\'')
+				quoting(strtrim, i, count_words, strtrim[*i]);
+			// if (strtrim[*i] == '\"')
+			// 	quoting(strtrim, i, count_words, '\"');
+			// else if (strtrim[*i] == '\'')
+			// 	quoting(strtrim, i, count_words, '\'');
+			else
+			{
+				(*i)++;
+				(*count_words)++;
+			}
+		}
+	}
+	while (strtrim[*i] == ' ')
+		(*i)++;
+}*/

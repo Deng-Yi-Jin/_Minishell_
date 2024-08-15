@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: geibo <geibo@student.42.fr>                +#+  +:+       +#+         #
+#    By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 06:55:38 by codespace         #+#    #+#              #
-#    Updated: 2024/07/18 20:27:00 by geibo            ###   ########.fr        #
+#    Updated: 2024/08/14 19:42:04 by kytan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,10 +37,10 @@ HERE_DOC = here_doc
 #              $(addprefix $(PARSING_DIR)/, line.c tokens.c expansions.c) \
 #              $(addprefix $(TOOLS_DIR)/, fd.c free.c token.c type.c expansions.c parsing.c)
 SRCS_FILES = $(addprefix $(MAIN_DIR)/, main.c initialize.c signals.c prompt.c) \
-			 $(addprefix $(DQUOTE)/, dquote.c dquote_utils.c rm_quote.c) \
-			 $(addprefix $(DOLLAR)/, dollar_sign.c dollar_utils.c dollar_execute_utils.c) \
+			 $(addprefix $(DQUOTE)/, dquote.c dquote_utils.c rm_quote.c dquote_utils1.c) \
+			 $(addprefix $(DOLLAR)/, dollar_sign.c dollar_utils.c dollar_execute_utils.c fork_utils.c) \
 			 $(addprefix $(UTILS_DIR)/, misc.c ft_snprintf.c ft_malloc.c) \
-			 $(addprefix $(ENV_DIR)/, env.c env_utils.c) \
+			 $(addprefix $(ENV_DIR)/, env.c env_utils.c env_utils1.c) \
 			 $(addprefix $(EXPAND)/, expand_dollar.c) \
 			 $(addprefix $(GNL)/, get_next_line.c) \
 			 $(addprefix $(EXEC_DIR)/, echo_checker.c commands.c cd.c welcome.c export.c execution_utils.c execution_utils2.c echo.c) \
@@ -48,7 +48,7 @@ SRCS_FILES = $(addprefix $(MAIN_DIR)/, main.c initialize.c signals.c prompt.c) \
 			 $(addprefix $(PARSE_DIR)/, parse_linked_list.c parse.c ast_contruct.c parse_utils.c) \
 			 $(addprefix $(TRAVERSE_DIR)/, traverse.c traversing.c exec_utils.c) \
 			 $(addprefix $(REDIR_DIR)/, redirection.c redir_bool.c) \
-			 $(addprefix $(EXECUTION_DIR)/, execute.c execute_utils.c execute_utils1.c fd_execution.c execute_utils2.c) \
+			 $(addprefix $(EXECUTION_DIR)/, execute.c execute_utils.c execute_utils1.c fd_execution.c execute_utils2.c execute_utils3.c) \
 			 $(addprefix $(HERE_DOC)/, here_doc.c here_doc_utils.c)
 
 SRCS = $(addprefix $(SRCS_DIR)/,$(SRCS_FILES))

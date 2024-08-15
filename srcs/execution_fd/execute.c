@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 09:08:05 by codespace         #+#    #+#             */
-/*   Updated: 2024/08/04 20:24:22 by geibo            ###   ########.fr       */
+/*   Updated: 2024/08/14 19:04:04 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,7 @@ void	execute_last_cmd(t_exec *exec, char **envp, char *command_path)
 	init_origio(origio);
 	manage_lastcmdredir(exec, infile, outfile);
 	if (match_cmd(exec->cmd[i], exec->cmd, envp) && exec->prev == NULL)
-	{
-		if (!match_cmd(exec->cmd[i], exec->cmd, envp))
-		{
-			printf("minishell: %s: command not found\n", exec->cmd[i]);
-			exit(127);
-		}
-	}
+		check_match_cmd(exec, envp, &i);
 	else
 	{
 		if (create_fork() == 0)
@@ -67,21 +61,6 @@ void	execute_last_cmd(t_exec *exec, char **envp, char *command_path)
 		handle_lastcmd_parent(exec);
 	}
 	restore_fd(origio[0], origio[1]);
-}
-
-int	total_command(t_exec *exec, int count)
-{
-	t_exec	*temp;
-
-	temp = exec;
-	while (temp != NULL)
-	{
-		if (ft_strcmp(temp->cmd[0], "") == 0)
-			break ;
-		count++;
-		temp = temp->next;
-	}
-	return (count);
 }
 
 void	start_command_exec(char *command_path, char **envp,
@@ -118,3 +97,41 @@ void	execute(t_exec *exec, char **envp)
 	saved_stdin = dup(STDIN_FILENO);
 	start_command_exec(command_path, envp, exec, saved_stdin);
 }
+
+/* KYLIE TINKERED WITH 6:53PM 8/14/2024
+
+split execute_last_cmd(): added check_match_cmd()
+created : total_command(), check_match_cmd()*/
+/*
+void	execute_last_cmd(t_exec *exec, char **envp, char *command_path)
+{
+	int	i;
+	int	origio[2];
+	int	infile;
+	int	outfile;
+
+	i = 0;
+	redirect_in(exec, &infile, &outfile);
+	init_origio(origio);
+	manage_lastcmdredir(exec, infile, outfile);
+	if (match_cmd(exec->cmd[i], exec->cmd, envp) && exec->prev == NULL)
+	{
+		if (!match_cmd(exec->cmd[i], exec->cmd, envp))
+		{
+			printf("minishell: %s: command not found\n", exec->cmd[i]);
+			exit(127);
+		}
+	}
+	else
+	{
+		if (create_fork() == 0)
+		{
+			handle_lastcmd_child(exec, infile);
+			run_cmd(envp, exec, command_path, &i);
+			exit(126);
+		}
+		handle_lastcmd_parent(exec);
+	}
+	restore_fd(origio[0], origio[1]);
+}
+*/
