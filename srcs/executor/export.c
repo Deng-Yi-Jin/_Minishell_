@@ -58,12 +58,10 @@ bool	execute_export(char **args)
 		while (args[++i] != NULL)
 		{
 			ptr = ft_strchr(args[i], '=');
-
 			if (ptr)
 			{
 				*ptr = '\0';
 				ptr++;
-
 				if (!is_valid_identifier(args[i]))
 				{
 					printf("%sexport: `%s': not a valid identifier\n%s", RED,

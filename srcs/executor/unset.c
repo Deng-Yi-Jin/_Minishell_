@@ -12,13 +12,14 @@
 
 #include "minishell.h"
 
-bool execute_unset(char **args){
-	int i;
+bool	execute_unset(char **args)
+{
+	int	i;
 
 	i = -1;
 	if (args[1] == NULL)
 		return ;
-	else 
+	else
 	{
 		while (args[++i] != NULL)
 			delete_env_vars(args[i]);

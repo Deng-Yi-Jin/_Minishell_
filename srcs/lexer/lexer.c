@@ -17,7 +17,7 @@ void	del(void *content)
 	free(content);
 }
 
-bool	error_return (t_token **tokens, char *input)
+bool	error_return(t_token **tokens, char *input)
 {
 	t_token	*current_node;
 
@@ -38,7 +38,8 @@ bool	error_return (t_token **tokens, char *input)
 			free(tokens);
 			return (true);
 		}
-		if (current_node->type == HERE_DOC && current_node->next->type == HERE_DOC)
+		if (current_node->type == HERE_DOC
+			&& current_node->next->type == HERE_DOC)
 		{
 			printf("syntax error near unexpected token \n");
 			free_stack(tokens, del, true, input);
@@ -152,12 +153,12 @@ void	parse_input(char *input, char **envp)
 	}
 	if (tempstring)
 		free(tempstring);
-	// print_stack(*tokens);
 	parse(tokens, envp);
 	free_stack(tokens, del, true, NULL);
 	free(temp);
 	free(tokens);
 }
+	// print_stack(*tokens);
 
 // int	main(int argc, char **argv, char **envp)
 // {

@@ -12,6 +12,12 @@
 
 #include "minishell.h"
 
+// This is the child process
+// Close the read end of the pipe in the child
+// Replace stdout with the write end of the pipe
+// This is the parent process
+// Close the write end of the pipe in the parent
+// Replace stdin with the read end of the pipe
 void	exec_pipe(t_exec *exec, char **envp, char *command_path)
 {
 	while (exec->next != NULL)
@@ -21,18 +27,18 @@ void	exec_pipe(t_exec *exec, char **envp, char *command_path)
 		exec->pid = fork();
 		if (exec->pid == -1)
 			perror("fork");
-		if (exec->pid == 0) // This is the child process
+		if (exec->pid == 0)
 		{
-			close(exec->fd[0]); // Close the read end of the pipe in the child
-			dup2(exec->fd[1], STDOUT_FILENO); // Replace stdout with the write end of the pipe
-		   	execve(command_path, exec->cmd, envp);
-		   	exit(0);
+			close(exec->fd[0]);
+			dup2(exec->fd[1], STDOUT_FILENO);
+			execve(command_path, exec->cmd, envp);
+			exit(0);
 		}
-		else // This is the parent process
+		else
 		{
 			waitpid(exec->pid, NULL, 0);
-		  	close(exec->fd[1]); // Close the write end of the pipe in the parent
-			dup2(exec->fd[0], STDIN_FILENO); // Replace stdin with the read end of the pipe
+			close(exec->fd[1]);
+			dup2(exec->fd[0], STDIN_FILENO);
 		}
 		if (command_path != NULL)
 			free(command_path);
@@ -42,14 +48,14 @@ void	exec_pipe(t_exec *exec, char **envp, char *command_path)
 	if (command_path == NULL)
 	{
 		if (match_cmd(exec->cmd[0], exec->cmd, envp) == false)
-		   	printf("Command not found: %s\n", exec->cmd[0]);
+			printf("Command not found: %s\n", exec->cmd[0]);
 	}
 	else
 	{
 		exec->pid = fork();
 		if (exec->pid == 0)
 		{
-	   		if (execve(command_path, exec->cmd, envp))
+			if (execve(command_path, exec->cmd, envp))
 				perror("execve");
 		}
 		else

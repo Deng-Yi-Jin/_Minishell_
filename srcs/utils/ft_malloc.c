@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minishell.h"
+#include "minishell.h"
 
-void *ft_malloc(size_t size)
+void	*ft_malloc(size_t size)
 {
-    void *ptr;
+	void	*ptr;
 
-    ptr = malloc(size);
-    if (ptr == NULL)
-        error_exit("Memory allocation failed!", false);
-    return (ptr);
+	ptr = malloc(size);
+	if (ptr == NULL)
+		error_exit("Memory allocation failed!", false);
+	return (ptr);
 }

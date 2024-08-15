@@ -17,10 +17,10 @@ char	*find_command_path(char *command, char **envp)
 	char	*path_env;
 	char	*path;
 	char	*token;
-    char    full_path[PATH_MAX];
+	char	full_path[PATH_MAX];
 
-	if ((command[0] == '.' && command[1] == '/' && !access(command+2, X_OK)))
-		return (ft_strdup(command+2));
+	if ((command[0] == '.' && command[1] == '/' && !access(command + 2, X_OK)))
+		return (ft_strdup(command + 2));
 	if (!access(command, X_OK))
 		return (ft_strdup(command));
 	path_env = getenv("PATH");
@@ -54,21 +54,22 @@ bool	match_cmd(char *inpt, char *args[N_ARGS], char **envp)
 		flip_bool_env_vars("QUOTES");
 	else if (ft_strcmp(inpt, "export") == 0)
 		execute_export(args);
-	else if(ft_strcmp(inpt, "echo") == 0)
-		execute_echo(args, is_flags(args)); // Flags here
-	// else if (ft_strcmp(inpt, "unset"))
-	//     ft_unset(envp);
+	else if (ft_strcmp(inpt, "echo") == 0)
+		execute_echo(args, is_flags(args));
 	else
 		return (false);
 	return (true);
 }
+// Flags here
+	// else if (ft_strcmp(inpt, "unset"))
+	//     ft_unset(envp);
 
 bool	is_builtin(char *command)
 {
 	if (!ft_strcmp(command, "exit") || !ft_strcmp(command, "cd")
-	|| !ft_strcmp(command, "fancy") || !ft_strcmp(command, "quotes")
-	|| !ft_strcmp(command, "export") || !ft_strcmp(command, "unset")
-	|| !ft_strcmp(command, "echo"))
+		|| !ft_strcmp(command, "fancy") || !ft_strcmp(command, "quotes")
+		|| !ft_strcmp(command, "export") || !ft_strcmp(command, "unset")
+		|| !ft_strcmp(command, "echo"))
 		return (true);
 	return (false);
 }

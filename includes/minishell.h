@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:06:06 by sinlee            #+#    #+#             */
-/*   Updated: 2024/08/04 15:33:31 by geibo            ###   ########.fr       */
+/*   Updated: 2024/08/14 19:12:52 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,10 @@ typedef struct s_main
 // extern t_env_var **g_env_vars;
 extern t_main	*g_main;
 
+char	*new_line(char *input, char c);
+bool	is_bracket(char c);
+char	*error_bracket(char	**split, int word);
+
 char		*dquote(char *input);
 
 void		perror_color(char *str);
@@ -77,6 +81,9 @@ char		*get_path(char *cmd, char **envp);
 char		*find_command_path(char *command, char **envp);
 int			is_command(char *cmd, char **envp);
 void		parse_input(char *input, char **envp);
+
+void		init_new_env_var(t_env_var **new_env_vars, int num_env_vars, char *key,
+			char *value);
 
 void		add_env_vars(char *key, char *value);
 void		modify_env_vars(char *key, char *value);

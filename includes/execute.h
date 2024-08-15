@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:54:15 by codespace         #+#    #+#             */
-/*   Updated: 2024/08/04 20:02:00 by geibo            ###   ########.fr       */
+/*   Updated: 2024/08/15 13:49:48 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ void	exec_pipe(t_exec *exec, char **envp, char *command_path);
 void	execution(t_exec *exec, char **envp, char *command_path);
 void	free_exec(t_exec *exec);
 void	print_exec(t_exec *exec);
+
+int		total_command(t_exec *exec, int count);
+void	check_match_cmd(t_exec *exec, char **envp, int *i);
+
 void	execute(t_exec *exec, char **envp);
 bool	last_cmd(t_exec *exec);
 void	manage_pipe_child(t_exec *exec, int infile_fd, int outfile_fd);
@@ -52,5 +56,6 @@ t_exec	*renamed_here_doc(t_exec *exec, char **envp);
 int		ft_sstrlen(char **str);
 
 void	set_exec_type(t_exec *exec, char **envp);
+bool	check_command(char *inpt, char *args[N_ARGS], char **envp);
 
 #endif

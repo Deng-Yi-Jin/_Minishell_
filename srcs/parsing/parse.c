@@ -46,3 +46,4 @@ void	parse(t_token **tokens, char **envp)
 	traverse(ast, free, 0, false);
 	free(ast);
 }
+// 44 execute(exec, envp);

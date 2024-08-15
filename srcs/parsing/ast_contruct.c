@@ -31,7 +31,8 @@ void	construct_child_before_pipe(t_ast **ast, char *tmp, bool *is_child)
 	*is_child = false;
 }
 
-void	eldest_child(t_ast **ast, t_token **tokens, bool *create_sibling, char **envp)
+void	eldest_child(t_ast **ast, t_token **tokens,
+		bool *create_sibling, char **envp)
 {
 	if ((*tokens)->cmd == NULL)
 		return ;
@@ -44,14 +45,13 @@ void	eldest_child(t_ast **ast, t_token **tokens, bool *create_sibling, char **en
 		dollar_deal((*ast), create_sibling, envp);
 	}
 	else
-	{
 		(*ast)->type = is_command((*tokens)->cmd, envp);
-	}
 	if ((*tokens)->next != NULL && (*tokens)->next->type != PIPE)
 		*create_sibling = true;
 }
 
-void	sibling(t_ast **ast, t_token **tokens, bool *create_sibling, char **envp)
+void	sibling(t_ast **ast, t_token **tokens,
+		bool *create_sibling, char **envp)
 {
 	if ((*tokens)->cmd == NULL)
 		return ;
@@ -68,7 +68,8 @@ void	sibling(t_ast **ast, t_token **tokens, bool *create_sibling, char **envp)
 		(*ast)->type = is_command((*tokens)->cmd, envp);
 }
 
-void	construct_sibling(t_ast **ast, t_token **tokens, bool *create_sibling, char **envp)
+void	construct_sibling(t_ast **ast, t_token **tokens,
+		bool *create_sibling, char **envp)
 {
 	if (*create_sibling == false)
 		eldest_child(ast, tokens, create_sibling, envp);

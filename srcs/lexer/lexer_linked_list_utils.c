@@ -12,7 +12,8 @@
 
 #include "minishell.h"
 
-void	free_stack(t_token **tokens, void (*del)(void *), bool loop, char *input)
+void	free_stack(t_token **tokens, void (*del)(void *),
+			bool loop, char *input)
 {
 	t_token	*tmp;
 
@@ -21,7 +22,7 @@ void	free_stack(t_token **tokens, void (*del)(void *), bool loop, char *input)
 	(*tokens) = lst_first_last((*tokens), false);
 	if (!loop)
 	{
-		tmp = (*tokens) -> next;
+		tmp = (*tokens)->next;
 		free((*tokens)->cmd);
 		free(*tokens);
 		(*tokens) = tmp;
@@ -30,7 +31,7 @@ void	free_stack(t_token **tokens, void (*del)(void *), bool loop, char *input)
 	{
 		while (*tokens)
 		{
-			tmp = (*tokens) -> next;
+			tmp = (*tokens)->next;
 			free((*tokens)->cmd);
 			free(*tokens);
 			(*tokens) = tmp;

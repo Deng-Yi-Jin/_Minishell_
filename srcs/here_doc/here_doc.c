@@ -91,11 +91,9 @@ void	open_here_doc_file(t_exec *temp, int *i)
 			create_here_doc_file(temp->cmd[*i], limiter);
 			free(limiter);
 			(*i)++;
-			// printf("Hello\n");
 		}
 		else
 		{
-			// printf("1:Hello\n");
 			tmp1 = ft_strdup(temp->cmd[*i]);
 			free(temp->cmd[*i]);
 			temp->cmd[*i] = ft_strdup(tmp1);

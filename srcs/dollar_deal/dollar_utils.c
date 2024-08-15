@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:34:55 by geibo             #+#    #+#             */
-/*   Updated: 2024/03/12 17:26:36 by geibo            ###   ########.fr       */
+/*   Updated: 2024/08/14 11:33:27 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*init_dollar(t_ast *ast)
 	t_count	count;
 	char	*strtrim;
 
-	count = (t_count){0,0,0,0};
+	count = (t_count){0, 0, 0, 0};
 	if ((ast)->cmd[0] != '$' || (ast)->type != DOLLAR)
 		return (NULL);
 	if ((ast)->cmd[count.i] == '$')
@@ -42,12 +42,11 @@ void	trim_new_str(char *strtrim, int *i, int *j, int *count_words)
 		dollar(strtrim, i, count_words);
 	else
 	{
-		while (strtrim[*i] != '$' && ft_symbol(strtrim[*i]) == false && strtrim[*i])
+		while (strtrim[*i] != '$' && ft_symbol(strtrim[*i]) == false
+			&& strtrim[*i])
 		{
-			if (strtrim[*i] == '\"')
-				quoting(strtrim, i, count_words, '\"');
-			else if (strtrim[*i] == '\'')
-				quoting(strtrim, i, count_words, '\'');
+			if (strtrim[*i] == '\"' || strtrim[*i] == '\'')
+				quoting(strtrim, i, count_words, strtrim[*i]);
 			else
 			{
 				(*i)++;
@@ -88,11 +87,12 @@ t_ast	*add_sibling_dollar(t_ast *ast, char *strtrim, int *j, int *count_words)
 	return (ast);
 }
 
-void	build_dollar(char *strtrim, t_ast *ast, bool create_sibling, char **envp)
+void	build_dollar(char *strtrim, t_ast *ast,
+		bool create_sibling, char **envp)
 {
 	t_count	count;
 
-	count = (t_count) {0,0,0,0};
+	count = (t_count){0, 0, 0, 0};
 	while (strtrim[count.i] != '\0')
 	{
 		trim_new_str(strtrim, &count.i, &count.j, &count.count_words);
@@ -102,7 +102,8 @@ void	build_dollar(char *strtrim, t_ast *ast, bool create_sibling, char **envp)
 			create_sibling = true;
 		}
 		else if (create_sibling == true)
-			ast = add_sibling_dollar(ast, strtrim, &count.j, &count.count_words);
+			ast = add_sibling_dollar(ast, strtrim, &count.j,
+					&count.count_words);
 	}
 	free(strtrim);
 	create_sibling = false;
@@ -114,3 +115,40 @@ void	build_dollar(char *strtrim, t_ast *ast, bool create_sibling, char **envp)
 	else
 		(ast)->type = is_command((ast)->cmd, envp);
 }
+
+/* KYLIE TINKERED WITH 11:32AM 8/14/2024
+
+shorten trim_new_str():
+*/
+/*
+void	trim_new_str(char *strtrim, int *i, int *j, int *count_words)
+{
+	*count_words = 0;
+	if (ft_bracket(strtrim[*i]) == true)
+		(*i)++;
+	while (strtrim[*i] == ' ' || strtrim[*i] == '\t')
+		(*i)++;
+	*j = *i;
+	if (strtrim[*i] == '$')
+		dollar(strtrim, i, count_words);
+	else
+	{
+		while (strtrim[*i] != '$' && ft_symbol(strtrim[*i]) == false
+			&& strtrim[*i])
+		{
+			if (strtrim[*i] == '\"' || strtrim[*i] == '\'')
+				quoting(strtrim, i, count_words, strtrim[*i]);
+			// if (strtrim[*i] == '\"')
+			// 	quoting(strtrim, i, count_words, '\"');
+			// else if (strtrim[*i] == '\'')
+			// 	quoting(strtrim, i, count_words, '\'');
+			else
+			{
+				(*i)++;
+				(*count_words)++;
+			}
+		}
+	}
+	while (strtrim[*i] == ' ')
+		(*i)++;
+}*/

@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:38:25 by geibo             #+#    #+#             */
-/*   Updated: 2024/05/30 14:50:55 by geibo            ###   ########.fr       */
+/*   Updated: 2024/08/15 14:08:55 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	run_cmd(char **envp, t_exec *exec, char *command_path, int *i)
 {
-	if (!match_cmd(exec->cmd[*i], exec->cmd, envp))
+	if (!check_command(exec->cmd[*i], exec->cmd, envp))
 	{
 		command_path = find_command_path(exec->cmd[*i], envp);
 		if (!command_path)
@@ -77,4 +77,3 @@ void	manage_pipe_parent(t_exec *exec)
 		exec->prev->fd[1] = exec->fd[1];
 	}
 }
-

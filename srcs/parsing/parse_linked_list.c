@@ -13,18 +13,18 @@
 #include "minishell.h"
 #include <stdio.h>
 
+	// free(cmd);
 t_ast	*create_ast_node(char *cmd, int type)
 {
 	t_ast	*new_node;
 	char	*tmp;
 
-	// free(cmd);
 	new_node = malloc(sizeof(t_ast));
 	if (!new_node)
 		return (NULL);
 	new_node->cmd = cmd;
 	new_node->type = type;
-	new_node->child = NULL;	
+	new_node->child = NULL;
 	new_node->prev = NULL;
 	new_node->next = NULL;
 	new_node->parent = NULL;
@@ -39,7 +39,7 @@ t_ast	*create_parent_node(char *cmd)
 	if (!new_node)
 		return (NULL);
 	new_node->cmd = cmd;
-	new_node->child = NULL;	
+	new_node->child = NULL;
 	new_node->prev = NULL;
 	new_node->next = NULL;
 	new_node->parent = NULL;
@@ -47,12 +47,12 @@ t_ast	*create_parent_node(char *cmd)
 }
 
 // create test for traverse
-void custom_print1(void *cmd)
+void	custom_print1(void *cmd)
 {
 	printf("%s\n", (char *)cmd);
 }
 
-// void test_traverse(void) 
+// void test_traverse(void)
 // {
 //     // Your test function with the updated traverse function
 //     t_ast *node1 = malloc(sizeof(t_ast));
@@ -174,7 +174,7 @@ void custom_print1(void *cmd)
 // 	// printf("CHILD BABY\n");
 // 	// printf("%s\n", (*ast)->next_child->cmd);
 // 	print_ast_all(&(*ast)->next_child);
-// 	// if ((*ast)->next_grandchild != NULL)	
+// 	// if ((*ast)->next_grandchild != NULL)
 // 	// 	print_ast_all(&((*ast)->next_)grandchild));
 // 	// if ((*ast)->next_grandchild == NULL)
 // 	// {

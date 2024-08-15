@@ -37,7 +37,7 @@ t_exec	*executing(t_ast **ast, t_exec *exec)
 		{
 			n_cmd++;
 			if ((*ast)->next == NULL)
-				break;
+				break ;
 			(*ast) = (*ast)->next;
 		}
 		(*ast) = go_to_history;
@@ -48,13 +48,13 @@ t_exec	*executing(t_ast **ast, t_exec *exec)
 		{
 			exec->cmd[word] = ft_strdup((*ast)->cmd);
 			if ((*ast)->next == NULL)
-				break;
+				break ;
 			(*ast) = (*ast)->next;
 			word++;
 		}
 		(*ast) = go_to_pipe;
 		if ((*ast)->next == NULL)
-			break;
+			break ;
 		(*ast) = (*ast)->next;
 	}
 	return (head);

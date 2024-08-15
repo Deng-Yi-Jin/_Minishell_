@@ -26,7 +26,7 @@
 // 	tools->reset = false;
 // }
 
-static void init_env(char **envp)
+static void	init_env(char **envp)
 {
 	char	*ms_path;
 
@@ -37,12 +37,12 @@ static void init_env(char **envp)
 	add_env_vars(ft_strdup("NUM_QUOTES"), ft_strdup("0"));
 	add_env_vars(ft_strdup("QUOTES"), ft_strdup("0"));
 	add_env_vars(ft_strdup("PWD_MALLOC"), ft_strdup("0"));
-	// add_env_vars(ft_strdup("TEST"), ft_strdup("123"));
 }
+	// add_env_vars(ft_strdup("TEST"), ft_strdup("123"));
 
+// g_num_env_vars = 0;
 void	init(char **envp)
 {
-	// g_num_env_vars = 0;
 	g_main = malloc(sizeof(t_main));
 	init_env(envp);
 	init_signals();

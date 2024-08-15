@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:33:03 by djin              #+#    #+#             */
-/*   Updated: 2024/05/08 11:06:56 by geibo            ###   ########.fr       */
+/*   Updated: 2024/08/14 19:38:44 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,13 @@ bool	traverse(t_ast **ast, void (*f)(void *), int depth, bool print);
 char	*executing_cmd(char **cmd, char **envp);
 char	*execute_dollar_expansion(t_ast *ast, char **envp);
 bool	execute_dollar(t_ast **ast, int depth, char **envp);
+/* KYLIE: new file dollar_deal/dollar_execute_utils1. */
+int		ast_len(t_ast *ast);
+char	*add_cmd(t_ast *current_node, char **envp);
+
+char	*execute_parent_process(t_execute *execute);
+char	*handle_fork(t_execute *execute, char *command_path,
+		char **cmd, char **envp);
 
 //dollar deal
 void	dollar_deal(t_ast *ast, bool create_sibling, char **envp);
@@ -74,6 +81,8 @@ void	construct_sibling(t_ast **ast, t_token **tokens,
 void	form_ast(t_ast **ast, t_token **tokens, char **envp);
 
 //rm quote
+char	*unquote_str(char *str, char c);
+
 char	*rm_quote(char *str);
 
 #endif

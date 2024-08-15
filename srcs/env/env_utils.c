@@ -35,7 +35,7 @@ int	find_env(char *key, char **envp)
 	free(tmp);
 	if (envp[i] == NULL)
 	{
-		perror_color("Dei. Your environment variables does not exist. Nearest IQ Checkup is 5km away tho.");
+		perror_color("Your environment variables does not exist.");
 		return (-1);
 	}
 	else
@@ -66,7 +66,7 @@ t_env_var	**dup_darr(char **arr)
 
 void	free_darr(t_env_var **arr)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (arr[++i]->key != NULL)

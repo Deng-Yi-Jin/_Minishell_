@@ -12,9 +12,9 @@
 
 #include "minishell.h"
 
-void perror_color(char *str)
+void	perror_color(char *str)
 {
-	char msg[1024];
+	char	msg[1024];
 
 	ft_snprintf(msg, sizeof(msg), "%s%s%s", RED, str, CYAN);
 	perror(msg);
@@ -23,7 +23,7 @@ void perror_color(char *str)
 
 void	error_exit(char *str, bool is_perror)
 {
-	char *msg;
+	char	*msg;
 
 	msg = malloc(1024);
 	ft_snprintf(msg, 1024, "%s%s%s", RED, str, RESET_COLOR);
@@ -35,19 +35,19 @@ void	error_exit(char *str, bool is_perror)
 	exit(errno);
 }
 
-void exit_success()
+void	exit_success(void)
 {
 	printf("%sBELLA CIAO%s\n", BLUE_BOLD, RESET_COLOR);
 	free_env_vars();
 	exit(EXIT_SUCCESS);
 }
 
-void free_jutsu(bool darr, char *key, char *value)
+void	free_jutsu(bool darr, char *key, char *value)
 {
 	if (darr == true)
 		free_darr(g_main->envp);
 	if (key != NULL)
-    	free(key);
+		free(key);
 	if (value != NULL)
 		free(value);
 }

@@ -28,7 +28,6 @@ char	*get_path(char *cmd, char **envp)
 	{
 		path_library = ft_strjoin(path_env[i], "/");
 		path_cmd = ft_strjoin(path_library, cmd);
-		// printf("path_library: %s\n", path_library);
 		free(path_library);
 		if (!access(path_cmd, F_OK))
 		{
@@ -41,6 +40,7 @@ char	*get_path(char *cmd, char **envp)
 	ft_free_path_env(path_env);
 	return (NULL);
 }
+		// printf("path_library: %s\n", path_library);
 
 void	ft_free_path_env(char **path_env)
 {
@@ -48,9 +48,6 @@ void	ft_free_path_env(char **path_env)
 
 	i = 0;
 	while (path_env[i])
-	{
-		free(path_env[i]);
-		i++;
-	}
+		free(path_env[i++]);
 	free(path_env);
 }

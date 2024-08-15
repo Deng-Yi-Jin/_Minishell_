@@ -53,11 +53,7 @@ char	*expand_dollar(char *input)
 			}
 		}
 		else
-		{
-			output[j] = input[i];
-			j++;
-			i++;
-		}
+			output[j++] = input[i++];
 	}
 	output[j] = '\0';
 	return (output);
