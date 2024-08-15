@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:54:15 by codespace         #+#    #+#             */
-/*   Updated: 2024/08/14 19:14:15 by kytan            ###   ########.fr       */
+/*   Updated: 2024/08/15 13:49:48 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,6 @@ t_exec	*renamed_here_doc(t_exec *exec, char **envp);
 int		ft_sstrlen(char **str);
 
 void	set_exec_type(t_exec *exec, char **envp);
+bool	check_command(char *inpt, char *args[N_ARGS], char **envp);
 
 #endif

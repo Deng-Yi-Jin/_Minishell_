@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 09:56:56 by sinlee            #+#    #+#             */
-/*   Updated: 2024/05/27 16:38:38 by geibo            ###   ########.fr       */
+/*   Updated: 2024/08/15 14:07:42 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ bool	execute_echo(char **args, char **flags)
 	bool	trailing;
 
 	i = 0;
-	trailing = false;
+	trailing = true;
 	while (flags != NULL && flags[i] != NULL)
 	{
 		if (ft_strcmp(flags[i], "-n") == 0)
-			trailing = true;
+			trailing = false;
 		else if (ft_strcmp(flags[i], "--help") == 0)
 		{
 			printf("Usage: echo [SHORT-OPTION]... [STRING]...\n\
@@ -45,7 +45,7 @@ bool	execute_echo(char **args, char **flags)
 		}
 		i++;
 	}
-	i = 0;
+	i = 1;
 	while (args[i] != NULL)
 		printf("%s ", args[i++]);
 	if (trailing == true)

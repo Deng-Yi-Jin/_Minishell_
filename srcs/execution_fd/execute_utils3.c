@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_utils3.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 19:01:41 by kytan             #+#    #+#             */
-/*   Updated: 2024/08/14 19:04:00 by kytan            ###   ########.fr       */
+/*   Updated: 2024/08/15 13:49:17 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,21 @@ void	check_match_cmd(t_exec *exec, char **envp, int *i)
 		printf("minishell: %s: command not found\n", exec->cmd[*i]);
 		exit(127);
 	}
+}
+
+bool	check_command(char *inpt, char *args[N_ARGS], char **envp)
+{
+	if (!ft_strcmp(inpt, "exit"))
+		return (true);
+	else if (!ft_strcmp(inpt, "cd"))
+		return (true);
+	else if (!ft_strcmp(inpt, "fancy"))
+		return (true);
+	else if (!ft_strcmp(inpt, "quotes"))
+		return (true);
+	else if (ft_strcmp(inpt, "export") == 0)
+		return (true);
+	else if (ft_strcmp(inpt, "echo") == 0)
+		return (true);
+	return (false);
 }

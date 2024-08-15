@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 09:08:05 by codespace         #+#    #+#             */
-/*   Updated: 2024/08/14 19:04:04 by kytan            ###   ########.fr       */
+/*   Updated: 2024/08/15 13:49:36 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	execute_last_cmd(t_exec *exec, char **envp, char *command_path)
 	redirect_in(exec, &infile, &outfile);
 	init_origio(origio);
 	manage_lastcmdredir(exec, infile, outfile);
-	if (match_cmd(exec->cmd[i], exec->cmd, envp) && exec->prev == NULL)
+	if (check_command(exec->cmd[i], exec->cmd, envp) && exec->prev == NULL)
 		check_match_cmd(exec, envp, &i);
 	else
 	{
