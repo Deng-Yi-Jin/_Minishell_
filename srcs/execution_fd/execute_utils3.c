@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 19:01:41 by kytan             #+#    #+#             */
-/*   Updated: 2024/08/15 13:49:17 by geibo            ###   ########.fr       */
+/*   Updated: 2024/08/26 13:22:59 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,7 @@ int	total_command(t_exec *exec, int count)
 
 void	check_match_cmd(t_exec *exec, char **envp, int *i)
 {
-	if (!match_cmd(exec->cmd[*i], exec->cmd, envp))
-	{
-		printf("minishell: %s: command not found\n", exec->cmd[*i]);
-		exit(127);
-	}
+	exit (match_cmd(exec->cmd[*i], exec->cmd, envp));
 }
 
 bool	check_command(char *inpt, char *args[N_ARGS], char **envp)

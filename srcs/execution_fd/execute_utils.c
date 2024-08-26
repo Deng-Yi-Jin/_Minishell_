@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:38:25 by geibo             #+#    #+#             */
-/*   Updated: 2024/08/23 17:34:36 by geibo            ###   ########.fr       */
+/*   Updated: 2024/08/26 13:15:55 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 void	run_cmd(char **envp, t_exec *exec, char *command_path, int *i)
 {
 	if (check_command(exec->cmd[*i], exec->cmd, envp) && exec->prev == NULL)
+	{
 		check_match_cmd(exec, envp, i);
+	}
 	else if (!check_command(exec->cmd[*i], exec->cmd, envp))
 	{
 		command_path = find_command_path(exec->cmd[*i], envp);

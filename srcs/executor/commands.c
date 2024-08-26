@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 13:58:35 by codespace         #+#    #+#             */
-/*   Updated: 2024/08/15 15:26:25 by geibo            ###   ########.fr       */
+/*   Updated: 2024/08/26 13:21:54 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*find_command_path(char *command, char **envp)
 	return (NULL);
 }
 
-bool	match_cmd(char *inpt, char *args[N_ARGS], char **envp)
+int	match_cmd(char *inpt, char *args[N_ARGS], char **envp)
 {
 	if (!ft_strcmp(inpt, "exit"))
 		exit_success();
@@ -55,8 +55,8 @@ bool	match_cmd(char *inpt, char *args[N_ARGS], char **envp)
 	else if(ft_strcmp(inpt, "echo") == 0)
 		execute_echo(args, is_flags(args)); // Flags here
 	else
-		return (false);
-	return (true);
+		return (1);
+	return (0);
 }
 
 bool	is_builtin(char *command)
