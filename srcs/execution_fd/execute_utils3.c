@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 19:01:41 by kytan             #+#    #+#             */
-/*   Updated: 2024/08/26 13:22:59 by geibo            ###   ########.fr       */
+/*   Updated: 2024/08/26 13:32:42 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	total_command(t_exec *exec, int count)
 
 void	check_match_cmd(t_exec *exec, char **envp, int *i)
 {
-	exit (match_cmd(exec->cmd[*i], exec->cmd, envp));
+	exit(exeute_builtin(exec->cmd[*i], exec->cmd, envp));
 }
 
 bool	check_command(char *inpt, char *args[N_ARGS], char **envp)
