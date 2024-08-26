@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:06:06 by sinlee            #+#    #+#             */
-/*   Updated: 2024/08/14 19:12:52 by kytan            ###   ########.fr       */
+/*   Updated: 2024/08/26 13:21:21 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char		*prompt_msg(char prompt[LOGIN_NAME_MAX + PATH_MAX + 20]);
 void		init(char **envp);
 void		init_signals(void);
 
-bool		match_cmd(char *inpt, char *args[N_ARGS], char **envp);
+int			match_cmd(char *inpt, char *args[N_ARGS], char **envp);
 void		ft_free_path_env(char **path_env);
 char		*get_path(char *cmd, char **envp);
 char		*find_command_path(char *command, char **envp);

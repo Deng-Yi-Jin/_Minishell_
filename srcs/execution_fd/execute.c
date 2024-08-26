@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 09:08:05 by codespace         #+#    #+#             */
-/*   Updated: 2024/08/15 13:49:36 by geibo            ###   ########.fr       */
+/*   Updated: 2024/08/23 17:32:51 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	execution(t_exec *exec, char **envp, char *command_path)
 		manage_pipe_parent(exec);
 	if (exec->infile != 0)
 		close(exec->infile);
+	if (exec->outfile != 0)
+		close(exec->outfile);
 	restore_fd(origstdin, origstdout);
 }
 
