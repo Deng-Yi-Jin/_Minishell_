@@ -6,7 +6,7 @@
 #    By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 06:55:38 by codespace         #+#    #+#              #
-#    Updated: 2024/08/14 19:42:04 by kytan            ###   ########.fr        #
+#    Updated: 2024/08/28 08:15:03 by kytan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ REDIR_DIR = redirection
 DQUOTE = dquote
 EXECUTION_DIR = execution_fd
 HERE_DOC = here_doc
+PROMPT = prompt
 # SRCS_FILES = $(addprefix $(BUILTINS_DIR)/, cd.c echo.c env.c exit.c export.c pwd.c unset.c) \
 #              $(addprefix $(MAIN_DIR)/, minishell.c redir.c signal.c) \
 #              $(addprefix $(PARSING_DIR)/, line.c tokens.c expansions.c) \
@@ -39,7 +40,7 @@ HERE_DOC = here_doc
 SRCS_FILES = $(addprefix $(MAIN_DIR)/, main.c initialize.c signals.c prompt.c) \
 			 $(addprefix $(DQUOTE)/, dquote.c dquote_utils.c rm_quote.c dquote_utils1.c) \
 			 $(addprefix $(DOLLAR)/, dollar_sign.c dollar_utils.c dollar_execute_utils.c fork_utils.c) \
-			 $(addprefix $(UTILS_DIR)/, misc.c ft_snprintf.c ft_malloc.c) \
+			 $(addprefix $(UTILS_DIR)/, misc.c ft_snprintf.c ft_malloc.c ft_isunclosed_q.c ft_strfjoin.c) \
 			 $(addprefix $(ENV_DIR)/, env.c env_utils.c env_utils1.c) \
 			 $(addprefix $(EXPAND)/, expand_dollar.c) \
 			 $(addprefix $(GNL)/, get_next_line.c) \
@@ -49,7 +50,8 @@ SRCS_FILES = $(addprefix $(MAIN_DIR)/, main.c initialize.c signals.c prompt.c) \
 			 $(addprefix $(TRAVERSE_DIR)/, traverse.c traversing.c exec_utils.c) \
 			 $(addprefix $(REDIR_DIR)/, redirection.c redir_bool.c) \
 			 $(addprefix $(EXECUTION_DIR)/, execute.c execute_utils.c execute_utils1.c fd_execution.c execute_utils2.c execute_utils3.c) \
-			 $(addprefix $(HERE_DOC)/, here_doc.c here_doc_utils.c)
+			 $(addprefix $(HERE_DOC)/, here_doc.c here_doc_utils.c) \
+			 $(addprefix $(PROMPT)/, prompt_unfinished_q.c)
 
 SRCS = $(addprefix $(SRCS_DIR)/,$(SRCS_FILES))
 
@@ -59,7 +61,7 @@ OBJS_DIR = objs
 OBJS_DIRS = $(OBJS_DIR) $(OBJS_DIR)/$(MAIN_DIR) $(OBJS_DIR)/$(UTILS_DIR) $(OBJS_DIR)/$(EXEC_DIR) \
 			 $(OBJS_DIR)/$(ENV_DIR) $(OBJS_DIR)/$(LEXER_DIR) $(OBJS_DIR)/$(PARSE_DIR) $(OBJS_DIR)/$(TRAVERSE_DIR) \
 			 $(OBJS_DIR)/$(EXPAND) $(OBJS_DIR)/$(DOLLAR) $(OBJS_DIR)/$(GNL) $(OBJS_DIR)/$(DQUOTE) $(OBJS_DIR)/$(REDIR_DIR) \
-			 $(OBJS_DIR)/$(EXECUTION_DIR) $(OBJS_DIR)/$(HERE_DOC)
+			 $(OBJS_DIR)/$(EXECUTION_DIR) $(OBJS_DIR)/$(HERE_DOC) $(OBJS_DIR)/$(PROMPT)
 OBJS_FILES = $(patsubst %.c,%.o,$(SRCS_FILES))
 OBJS = $(addprefix $(OBJS_DIR)/,$(OBJS_FILES))
 

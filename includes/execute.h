@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:54:15 by codespace         #+#    #+#             */
-/*   Updated: 2024/08/15 13:49:48 by geibo            ###   ########.fr       */
+/*   Updated: 2024/08/28 08:18:12 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "minishell.h"
 
+# include <stddef.h>
 typedef struct s_exec
 {
 	char			**cmd;
@@ -57,5 +58,20 @@ int		ft_sstrlen(char **str);
 
 void	set_exec_type(t_exec *exec, char **envp);
 bool	check_command(char *inpt, char *args[N_ARGS], char **envp);
+
+/* ENV_EXPANSION() */
+
+char	*env_expansion(char **split, char q);
+int		no_expansion_needed(char *s);
+
+char	*dollar_q_expansion(char *s);
+
+size_t	expanded_len(char *s, char q);
+void	cp_to_output(char *dst, char *src, char q);
+char	*extract_env(char *s);
+
+char	ft_quote(char *s);
+char	*ft_strldup(char *src, ptrdiff_t size);
+
 
 #endif

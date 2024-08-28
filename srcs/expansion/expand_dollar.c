@@ -3,14 +3,161 @@
 /*                                                        :::      ::::::::   */
 /*   expand_dollar.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:06:00 by geibo             #+#    #+#             */
-/*   Updated: 2024/05/09 14:31:00 by geibo            ###   ########.fr       */
+/*   Updated: 2024/08/28 07:52:00 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	no_expansion_needed(char *s)
+{
+	return (!ft_strchr(s, '$') && !ft_strchr(s, '\"') && !ft_strchr(s, '\''));
+}
+
+char	ft_quote(char *s)
+{
+	while (*s)
+	{
+		if (*s == '\"' || *s == '\'')
+			return (*s);
+		s++;
+	}
+	return (0);
+}
+
+char	*ft_strldup(char *src, ptrdiff_t size)
+{
+	char	*dup;
+	int		i;
+
+	i = 0;
+	if (size <= 0 || !src)
+		return (0);
+	dup = malloc(size * sizeof(char));
+	if (!dup)
+		return (0);
+	while (*src && i + 1 < size)
+		dup[i++] = *src++;
+	if (i < size)
+		dup[i] = '\0';
+	return (dup);
+}
+
+char	*extract_env(char *s)
+{
+	char	*env_s;
+	char	*extract;
+
+	if (!s || !s[0])
+		return (0);
+	if (*s == '$')
+		s++;
+	env_s = s;
+	while (*s && ft_isalnum(*s))
+		s++;
+	extract = ft_strldup(env_s, (s - env_s) + 1);
+	return (extract);
+}
+
+size_t	expanded_len(char *s, char q)
+{
+	size_t		env_len;
+	char		*env;
+	t_env_var	*env_token;
+
+	env_len = 0;
+	while (*s)
+	{
+		if (*s == '$' && q != '\"')
+		{
+			env = extract_env(++s);
+			env_token = find_env_vars(env);
+			if (!env_token)
+				return (0);
+			env_len += ft_strlen(env_token->value);
+			s += ft_strlen(env);
+			q = ft_quote(s);
+			free(env);
+		}
+		else if (*s != q)
+			env_len++;
+		s++;
+	}
+	return (env_len);
+}
+
+void	cp_to_output(char *dst, char *src, char q)
+{
+	size_t		env_len;
+	size_t		copied;
+	char		*env;
+	t_env_var	*env_token;
+
+	env_len = 0;
+	while (*src)
+	{
+		if (*src == '$' && q != '\'')
+		{
+			env = extract_env(++src);
+			env_token = find_env_vars(env);
+			env_len = ft_strlen(env_token->value);
+			copied = ft_strlcpy(dst, env_token->value, env_len + 1);
+			src += ft_strlen(env);
+			q = ft_quote(src);
+			dst += copied;
+			free(env);
+		}
+		if (*src != q)
+			*dst++ = *src;
+		src++;
+	}
+	*dst = '\0';
+}
+
+char	*dollar_q_expansion(char *s)
+{
+	size_t	total_size;
+	char	*output;
+
+	total_size = expanded_len(s, ft_quote(s)) + 1;
+	//printf("total_size = %zu\n", total_size);
+	output = ft_calloc(total_size, sizeof(char));
+	//error checking for ft_calloc
+	cp_to_output(output, s, ft_quote(s));
+	return (output);
+}
+
+char	*env_expansion(char **split, char q)
+{
+	char	*output;
+	char	*expanded;
+	size_t	i;
+
+	i = -1;
+	while (split[++i])
+	{
+		if (no_expansion_needed(split[i]))
+			continue ;
+		else
+		{
+			expanded = dollar_q_expansion(split[i]);
+			free(split[i]);
+			split[i] = expanded;
+		}
+	}
+	i = -1;
+	output = ft_calloc(1, sizeof(char));
+	while (split[++i])
+	{
+		output = ft_strfjoin(output, split[i]);
+		if (split[i + 1] != NULL)
+			output = ft_strfjoin(output, " ");
+	}
+	return (output);
+}
 
 char	*expand_dollar(char *input)
 {

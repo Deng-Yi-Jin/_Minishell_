@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:06:06 by sinlee            #+#    #+#             */
-/*   Updated: 2024/08/26 13:32:18 by geibo            ###   ########.fr       */
+/*   Updated: 2024/08/28 09:02:29 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <stddef.h>
 
 // int         g_num_env_vars;
 // extern char **  environ;
@@ -110,6 +111,10 @@ int			ft_snprintf(char *str, size_t size, const char *format, ...);
 char		*ft_strtok(char *str, const char *delim);
 void		*ft_malloc(size_t size);
 
+/* NEW UTILS ADDED FOR EXPANSION */
+
+char	*ft_strfjoin(char *s1, char *s2);
+
 // Token linked listfunctions
 t_token		*lst_first_last(t_token *tokens, bool is_last);
 void		token_lstadd_back(t_token **lst, t_token *new);
@@ -144,5 +149,6 @@ void		dollar(char *input, int *i, int *count_words);
 void		print_token(t_token *tokens, bool to_first, char *str);
 
 void		test_traverse(void);
+
 
 #endif

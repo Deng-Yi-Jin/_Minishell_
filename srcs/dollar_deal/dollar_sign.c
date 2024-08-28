@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_sign.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:10:17 by codespace         #+#    #+#             */
-/*   Updated: 2024/08/23 16:16:41 by geibo            ###   ########.fr       */
+/*   Updated: 2024/08/28 09:02:46 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char	ft_isunclosed_q(char *s)
+{
+	char	q;
+
+	q = 0;
+	while (*s)
+	{
+		if (*s == q)
+			q = 0;
+		else if (*s == '\"' || *s == '\'')
+			q = *s;
+		s++;
+	}
+	return (q);
+}
 
 void	dollar_deal(t_ast *ast, bool create_sibling, char **envp)
 {
@@ -20,5 +36,7 @@ void	dollar_deal(t_ast *ast, bool create_sibling, char **envp)
 	strtrim = init_dollar(ast);
 	if (strtrim == NULL)
 		return ;
+	strtrim = env_expansion(ft_split(strtrim, ' '), test(strtrim));
+	printf("output = [%s]", strtrim);
 	build_dollar(strtrim, ast, create_sibling, envp);
 }
