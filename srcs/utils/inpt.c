@@ -40,7 +40,7 @@ void	parse_input(char *input, char **envp)
 		command_path = find_command_path(args[0], envp);
 		if (command_path == NULL)
 		{
-			if (exeute_builtin(args[0], args, envp) == false)
+			if (execute_builtin(args[0], args, envp) == false)
 				printf("Command not found: %s\n", args[0]);
 		}
 		else

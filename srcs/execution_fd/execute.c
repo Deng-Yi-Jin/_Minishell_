@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 09:08:05 by codespace         #+#    #+#             */
-/*   Updated: 2024/08/26 13:32:18 by geibo            ###   ########.fr       */
+/*   Updated: 2024/08/26 18:28:07 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	execute_last_cmd(t_exec *exec, char **envp, char *command_path)
 	init_origio(origio);
 	manage_lastcmdredir(exec, infile, outfile);
 	if (check_command(exec->cmd[i], exec->cmd, envp) && exec->prev == NULL)
-		check_match_cmd(exec, envp, &i);
+		execute_builtin(exec->cmd[i], exec->cmd, envp);
 	else
 	{
 		if (create_fork() == 0)
@@ -116,9 +116,9 @@ void	execute_last_cmd(t_exec *exec, char **envp, char *command_path)
 	redirect_in(exec, &infile, &outfile);
 	init_origio(origio);
 	manage_lastcmdredir(exec, infile, outfile);
-	if (exeute_builtin(exec->cmd[i], exec->cmd, envp) && exec->prev == NULL)
+	if (match_cmd(exec->cmd[i], exec->cmd, envp) && exec->prev == NULL)
 	{
-		if (!exeute_builtin(exec->cmd[i], exec->cmd, envp))
+		if (!match_cmd(exec->cmd[i], exec->cmd, envp))
 		{
 			printf("minishell: %s: command not found\n", exec->cmd[i]);
 			exit(127);

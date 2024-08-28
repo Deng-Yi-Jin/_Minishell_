@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 09:59:30 by codespace         #+#    #+#             */
-/*   Updated: 2024/08/26 13:32:18 by geibo            ###   ########.fr       */
+/*   Updated: 2024/08/26 18:24:31 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	exec_pipe(t_exec *exec, char **envp, char *command_path)
 	}
 	if (command_path == NULL)
 	{
-		if (exeute_builtin(exec->cmd[0], exec->cmd, envp) == false)
+		if (execute_builtin(exec->cmd[0], exec->cmd, envp) == false)
 			printf("Command not found: %s\n", exec->cmd[0]);
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 04:03:10 by codespace         #+#    #+#             */
-/*   Updated: 2024/08/26 13:32:18 by geibo            ###   ########.fr       */
+/*   Updated: 2024/08/26 18:24:31 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	*executing_cmd(char **cmd, char **envp)
 	command_path = find_command_path(cmd[0], envp);
 	if (command_path == NULL)
 	{
-		if (exeute_builtin(cmd[0], cmd, envp))
+		if (execute_builtin(cmd[0], cmd, envp))
 			return (NULL);
 	}
 	if (pipe(execute.fd) == -1)
