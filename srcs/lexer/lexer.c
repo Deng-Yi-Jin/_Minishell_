@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 19:00:34 by sinlee            #+#    #+#             */
-/*   Updated: 2024/08/28 09:01:52 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/04 13:53:35 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,8 @@ void	parse_input(char *input, char **envp)
 	}
 	if (tempstring)
 		free(tempstring);
-	parse(tokens, envp);
+	// print_stack(*tokens);
+	parse(tokens, envp);	
 	free_stack(tokens, del, true, NULL);
 	free(temp);
 	free(tokens);

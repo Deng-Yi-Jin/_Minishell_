@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:06:34 by djin              #+#    #+#             */
-/*   Updated: 2024/08/04 20:19:11 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/04 14:32:17 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,6 @@ void	parse(t_token **tokens, char **envp)
 	start_parse(ast, tokens, envp);
 	while ((*ast)->parent != NULL)
 		(*ast) = (*ast)->parent;
-	if (!execute_dollar(ast, 0, envp))
-	{
-		printf("Error: dollar expansion failed\n");
-		return ;
-	}
 	(*ast) = minishell;
 	minishell = (*ast);
 	exec = executing(ast, exec);

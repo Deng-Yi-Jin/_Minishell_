@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dquote.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 12:30:20 by geibo             #+#    #+#             */
-/*   Updated: 2024/08/15 02:24:46 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/04 14:28:01 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,14 +121,14 @@ char	*dquote(char *input)
 	output = NULL;
 	while (split[word])
 	{
-		if (is_bracket(split[word][ft_strlen(split[word]) - 1]))
-			// return (error_bracket(split, word));
-		{
-			printf("minishell: syntax error near unexpected token `%c'\n",
-				split[word][ft_strlen(split[word]) - 1]);
-			free_split(split);
-			return (NULL);
-		}
+		// if (is_bracket(split[word][ft_strlen(split[word]) - 1]))
+		// 	// return (error_bracket(split, word));
+		// {
+		// 	printf("minishell: syntax error near unexpected token `%c'\n",
+		// 		split[word][ft_strlen(split[word]) - 1]);
+		// 	free_split(split);
+		// 	return (NULL);
+		// }
 		if (close_dquote(split[word]) == false)
 			// handle_quote(split, word, output, '\"');
 		{

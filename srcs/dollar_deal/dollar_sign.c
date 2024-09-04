@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_sign.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:10:17 by codespace         #+#    #+#             */
-/*   Updated: 2024/08/28 09:32:17 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/04 15:24:51 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,14 @@ void	dollar_deal(t_ast *ast, bool create_sibling, char **envp)
 	char	*strtrim;
 
 	create_sibling = false;
-	strtrim = init_dollar(ast);
+	strtrim = init_dollar(ast); //redo this function
 	if (strtrim == NULL)
 		return ;
-	strtrim = env_expansion(ft_split(strtrim, ' '), ft_isunclosed_q(strtrim));
-	printf("output = [%s]", strtrim);
-	build_dollar(strtrim, ast, create_sibling, envp);
+	// if (strtrim[0] != '(')
+	// {
+	// 	strtrim = env_expansion(ft_split(strtrim, ' '), ft_isunclosed_q(strtrim));
+	// 	printf("output = [%s]", strtrim);
+	// }
+	// else
+		// build_dollar(strtrim, ast, create_sibling, envp);
 }
