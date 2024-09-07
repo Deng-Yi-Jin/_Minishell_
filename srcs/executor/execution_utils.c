@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 16:08:58 by kytan             #+#    #+#             */
-/*   Updated: 2024/09/04 16:08:59 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/07 18:41:10 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ char	*get_path(char *cmd, char **envp)
 	ft_free_path_env(path_env);
 	return (NULL);
 }
-		// printf("path_library: %s\n", path_library);
 
 void	ft_free_path_env(char **path_env)
 {

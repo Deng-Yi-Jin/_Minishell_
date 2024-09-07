@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 16:09:07 by kytan             #+#    #+#             */
-/*   Updated: 2024/09/06 15:31:40 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/07 18:27:43 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int		set_type(char *cmd, char **envp)
 	char	*path;
 
 	path = find_command_path(cmd, envp);
-  printf("find_command_path() returns at set_type() [%s]\n", path);
 	if (ft_strcmp(cmd, "<<") == 0)
 		return (HERE_DOC);
 	else if (ft_strcmp(cmd, ">>") == 0)
