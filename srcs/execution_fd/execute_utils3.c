@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_utils3.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 19:01:41 by kytan             #+#    #+#             */
-/*   Updated: 2024/08/26 18:24:31 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/07 05:57:56 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,12 @@ bool	check_command(char *inpt, char *args[N_ARGS], char **envp)
 	else if (ft_strcmp(inpt, "export") == 0)
 		return (true);
 	else if (ft_strcmp(inpt, "echo") == 0)
+		return (true);
+	else if (ft_strcmp(inpt, "pwd") == 0)
+		return (true);
+  else if (ft_strcmp(inpt, "env") == 0)
+		return (true);
+  else if (ft_strcmp(inpt, "unset") == 0)
 		return (true);
 	return (false);
 }

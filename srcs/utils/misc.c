@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   misc.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sinlee <sinlee@student.42kl.edu.my>        +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:18:19 by codespace         #+#    #+#             */
-/*   Updated: 2023/08/19 23:01:05 by sinlee           ###   ########.fr       */
+/*   Updated: 2024/09/07 15:42:58 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,18 @@ void	error_exit(char *str, bool is_perror)
 		printf("%s", msg);
 	free(msg);
 	exit(errno);
+}
+
+void  print_my_env_vars(void)
+{
+  int i = 0;
+  printf("\nIM PRINTING TO CHECK THE LIST BEFORE EXIT WHY IS THERE NO HI=HELLO?\n\n");
+  while (g_main->env_vars[i]->key != NULL)
+  {
+    printf("g_main->env_vars[i]->key = [%s]\n", g_main->env_vars[i]->key);
+    printf("g_main->env_vars[i]->value = [%s]\n", g_main->env_vars[i]->value);
+    i++;
+  }
 }
 
 void	exit_success(void)

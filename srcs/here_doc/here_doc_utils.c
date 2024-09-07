@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/13 19:33:34 by geibo             #+#    #+#             */
-/*   Updated: 2024/08/04 20:18:37 by geibo            ###   ########.fr       */
+/*   Created: 2024/09/04 16:09:07 by kytan             #+#    #+#             */
+/*   Updated: 2024/09/06 15:31:40 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int		set_type(char *cmd, char **envp)
 	char	*path;
 
 	path = find_command_path(cmd, envp);
+  printf("find_command_path() returns at set_type() [%s]\n", path);
 	if (ft_strcmp(cmd, "<<") == 0)
 		return (HERE_DOC);
 	else if (ft_strcmp(cmd, ">>") == 0)

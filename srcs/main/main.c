@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:01:17 by codespace         #+#    #+#             */
-/*   Updated: 2024/08/04 15:32:58 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/07 15:52:05 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ int	main(int argc, char **argv, char **envp)
 	{
 		input = readline(prompt_msg(prompt));
 		if (!input || strcmp(input, "exit") == 0)
-			exit_success();
+    {
+      print_my_env_vars();
+      exit_success();
+    }
 		if (input[0] != '\0')
 		{
 			add_history(input);

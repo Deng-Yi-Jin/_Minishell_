@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast_contruct.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 14:22:26 by djin              #+#    #+#             */
-/*   Updated: 2024/08/01 17:16:08 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/06 15:59:01 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	eldest_child(t_ast **ast, t_token **tokens,
 		dollar_deal((*ast), create_sibling, envp);
 	}
 	else
-		(*ast)->type = is_command((*tokens)->cmd, envp);
+    (*ast)->type = is_command((*tokens)->cmd, envp);
 	if ((*tokens)->next != NULL && (*tokens)->next->type != PIPE)
 		*create_sibling = true;
 }

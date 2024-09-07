@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/01 18:05:55 by sinlee            #+#    #+#             */
-/*   Updated: 2024/09/04 16:09:57 by kytan            ###   ########.fr       */
+/*   Created: 2024/09/06 12:53:53 by kytan             #+#    #+#             */
+/*   Updated: 2024/09/06 17:44:56 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	execute_pwd(void)
+bool  execute_env(char **args)
 {
-	char	*path;
+  int i;
 
-	printf("Executing pwd...\n");
-	path = getcwd(NULL, 0);
-	if (path == NULL)
-	{
-		perror_color("pwd");
-		return (false);
-	}
-	printf("%s\n", path);
-	free(path);
-	return (true);
+  printf("Executing env...\n");
+  if (!args || args[1])
+    return (false);
+  i = 0;
+  while (g_main->env_vars[i]->key != NULL)
+  {
+    printf("%s=%s\n", g_main->env_vars[i]->key, g_main->env_vars[i]->value);
+    i++;
+  }
 }

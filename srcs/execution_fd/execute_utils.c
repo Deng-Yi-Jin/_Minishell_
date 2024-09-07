@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:38:25 by geibo             #+#    #+#             */
-/*   Updated: 2024/08/26 13:15:55 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/06 15:47:20 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	run_cmd(char **envp, t_exec *exec, char *command_path, int *i)
 	else if (!check_command(exec->cmd[*i], exec->cmd, envp))
 	{
 		command_path = find_command_path(exec->cmd[*i], envp);
+    printf("find_command_path() returns at run_cmd() [%s]\n", command_path);
 		if (!command_path)
 		{
 			printf("minishell: %s: command not found\n", exec->cmd[*i]);

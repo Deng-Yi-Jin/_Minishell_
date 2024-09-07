@@ -6,7 +6,7 @@
 #    By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 06:55:38 by codespace         #+#    #+#              #
-#    Updated: 2024/08/28 08:15:03 by kytan            ###   ########.fr        #
+#    Updated: 2024/09/07 06:02:14 by kytan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ SRCS_FILES = $(addprefix $(MAIN_DIR)/, main.c initialize.c signals.c prompt.c) \
 			 $(addprefix $(ENV_DIR)/, env.c env_utils.c env_utils1.c) \
 			 $(addprefix $(EXPAND)/, expand_dollar.c) \
 			 $(addprefix $(GNL)/, get_next_line.c) \
-			 $(addprefix $(EXEC_DIR)/, echo_checker.c commands.c cd.c welcome.c export.c execution_utils.c execution_utils2.c echo.c) \
+			 $(addprefix $(EXEC_DIR)/, echo_checker.c commands.c cd.c welcome.c export.c execution_utils.c execution_utils2.c echo.c pwd.c env.c unset.c) \
 			 $(addprefix $(LEXER_DIR)/, lexer.c lexer_linked_list.c lexer_linked_list_utils.c lexing_utils.c lexer_check_separator.c) \
 			 $(addprefix $(PARSE_DIR)/, parse_linked_list.c parse.c ast_contruct.c parse_utils.c) \
 			 $(addprefix $(TRAVERSE_DIR)/, traverse.c traversing.c exec_utils.c) \

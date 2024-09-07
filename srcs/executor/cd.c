@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*																			*/
-/*														:::	  ::::::::   */
-/*   cd.c											   :+:	  :+:	:+:   */
-/*													+:+ +:+		 +:+	 */
-/*   By: sinlee <sinlee@student.42kl.edu.my>		+#+  +:+	   +#+		*/
-/*												+#+#+#+#+#+   +#+		   */
-/*   Created: 2023/08/15 03:51:29 by codespace		 #+#	#+#			 */
-/*   Updated: 2023/08/20 12:34:14 by sinlee		   ###   ########.fr	   */
-/*																			*/
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cd.c                                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/04 16:27:48 by kytan             #+#    #+#             */
+/*   Updated: 2024/09/04 16:27:49 by kytan            ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
@@ -18,6 +18,7 @@ bool	execute_cd(char *args[N_ARGS], char **envp)
 	char	*ms_path;
 	char	*tmp;
 
+	printf("Executing cd...\n");
 	if (args[1] == NULL || !ft_strcmp(args[1], "~"))
 		path = ft_strdup(getenv("HOME"));
 	else
@@ -26,7 +27,9 @@ bool	execute_cd(char *args[N_ARGS], char **envp)
 		perror_color("cd");
 	modify_env_vars("PWD", getcwd(NULL, 0));
 	ms_path = ft_malloc(PATH_MAX);
+	printf("ms_path [%p]\n", ms_path);
 	ft_snprintf(ms_path, PATH_MAX, "PWD=%s", getcwd(NULL, 0));
+	printf("ms_path [%p]\n", ms_path);
 	if ((ft_strcmp(find_env_vars("PWD_MALLOC")->value, "1") == 0))
 	{
 		tmp = envp[find_env("PWD", envp)];

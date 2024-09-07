@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:06:06 by sinlee            #+#    #+#             */
-/*   Updated: 2024/08/28 12:26:33 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/07 14:13:25 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,6 @@ void		dollar(char *input, int *i, int *count_words);
 void		print_token(t_token *tokens, bool to_first, char *str);
 
 void		test_traverse(void);
-
+void    print_my_env_vars(void);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 11:32:57 by sinlee            #+#    #+#             */
-/*   Updated: 2024/04/30 08:44:44 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/07 14:10:41 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,11 @@ bool	execute_export(char **args)
 	char	*ptr;
 
 	i = 0;
+  printf("Executing export...\n");
 	if (args[1] == NULL)
-		print_env_vars();
+  {
+    print_env_vars();
+  }
 	else
 	{
 		while (args[++i] != NULL)

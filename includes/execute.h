@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:54:15 by codespace         #+#    #+#             */
-/*   Updated: 2024/08/28 08:18:12 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/07 06:01:45 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,9 @@ char	*extract_env(char *s);
 
 char	ft_quote(char *s);
 char	*ft_strldup(char *src, ptrdiff_t size);
+bool	execute_pwd(void);
 
+bool  execute_env(char **args);
+bool	execute_unset(char **args);
 
 #endif

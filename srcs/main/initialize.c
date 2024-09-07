@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:21:02 by codespace         #+#    #+#             */
-/*   Updated: 2024/05/03 10:38:51 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/07 12:12:37 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 // 	tools->heredoc = false;
 // 	tools->reset = false;
 // }
+extern t_main	*g_main;
 
 static void	init_env(char **envp)
 {
@@ -38,9 +39,7 @@ static void	init_env(char **envp)
 	add_env_vars(ft_strdup("QUOTES"), ft_strdup("0"));
 	add_env_vars(ft_strdup("PWD_MALLOC"), ft_strdup("0"));
 }
-	// add_env_vars(ft_strdup("TEST"), ft_strdup("123"));
 
-// g_num_env_vars = 0;
 void	init(char **envp)
 {
 	g_main = malloc(sizeof(t_main));
