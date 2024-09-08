@@ -6,11 +6,10 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:01:17 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/07 15:52:05 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/07 18:39:52 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// main file for minishell project, which is a recreation of the bash shell
 #include "minishell.h"
 
 t_main	*g_main;
@@ -27,10 +26,7 @@ int	main(int argc, char **argv, char **envp)
 	{
 		input = readline(prompt_msg(prompt));
 		if (!input || strcmp(input, "exit") == 0)
-    {
-      print_my_env_vars();
-      exit_success();
-    }
+			exit_success();
 		if (input[0] != '\0')
 		{
 			add_history(input);

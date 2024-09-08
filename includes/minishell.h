@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:06:06 by sinlee            #+#    #+#             */
-/*   Updated: 2024/09/07 14:13:25 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/07 18:32:47 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void		free_env_vars(void);
 bool		flip_bool_env_vars(char *key);
 // bool    print_env_vars();
 
-bool		execute_echo(char **args, char **flags);
+bool	execute_echo(char **args);
 
 t_env_var	**dup_darr(char **arr);
 void		free_darr(t_env_var **arr);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sinlee <sinlee@student.42kl.edu.my>        +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 17:18:41 by sinlee            #+#    #+#             */
-/*   Updated: 2024/03/05 12:08:00 by sinlee           ###   ########.fr       */
+/*   Updated: 2024/09/07 18:38:45 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ bool	flip_bool_env_vars(char *key)
 	return (true);
 }
 
-// find env var in original envp
 int	find_env(char *key, char **envp)
 {
 	int		i;
