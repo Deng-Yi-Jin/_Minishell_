@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 12:33:37 by root              #+#    #+#             */
-/*   Updated: 2024/09/09 18:55:24 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/11 11:56:57 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@ t_ast	*create_ast_node(char *cmd, int type)
 	if (!new_node)
 		return (NULL);
 	new_node->cmd = cmd;
-	printf("cmd : %s\n", cmd);
 	new_node->type = type;
-	printf("cmd : %d\n", type);
 	new_node->child = NULL;
 	new_node->prev = NULL;
 	new_node->next = NULL;

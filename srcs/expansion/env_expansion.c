@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 08:37:26 by kytan             #+#    #+#             */
-/*   Updated: 2024/09/11 09:28:29 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/11 11:56:41 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,10 @@ int	exp_flag(char *s, char *split_q)
 		st_s = split_q;
 		i = 0;
 	}
-	printf("flagging... [%s]\n", s);
-	printf("for [%c] : flag = %i", *s, i);
 	if (*s == '\'')
 	{
 		i ^= 1;
-		printf(" -> %i", i);
 	}
-	printf("\n");
 	return (i);
 }
 

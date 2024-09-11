@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 14:22:26 by djin              #+#    #+#             */
-/*   Updated: 2024/09/11 10:03:24 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/11 11:56:21 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	construct_child_after_pipe(t_ast **ast, char *tmp, bool *is_child)
 {
-	printf("\n#4 CALL TO CREATE NEW NODE\n");
 	(*ast)->next = create_ast_node(ft_strdup(tmp), PIPE);
 	free(tmp);
 	(*ast)->next->parent = (*ast)->parent;
@@ -25,7 +24,6 @@ void	construct_child_after_pipe(t_ast **ast, char *tmp, bool *is_child)
 
 void	construct_child_before_pipe(t_ast **ast, char *tmp, bool *is_child)
 {
-	printf("\n#3 CALL TO CREATE NEW NODE\n");
 	(*ast)->child = create_ast_node(ft_strdup(tmp), PIPE);
 	free(tmp);
 	(*ast)->child->parent = (*ast);

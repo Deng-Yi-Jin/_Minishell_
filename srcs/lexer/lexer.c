@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 19:00:34 by sinlee            #+#    #+#             */
-/*   Updated: 2024/09/09 18:17:47 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/11 11:56:07 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,7 @@ void	parse_input(char *input, char **envp)
 	}
 	if (tempstring)
 		free(tempstring);
-	print_stack(*tokens);
+	// print_stack(*tokens);
 	parse(tokens, envp);
 	free_stack(tokens, del, true, NULL);
 	// free(temp);

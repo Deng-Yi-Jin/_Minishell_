@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expansion_utils.c                                  :+:      :+:    :+:   */
+/*   expansion_utils1.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 08:42:02 by kytan             #+#    #+#             */
-/*   Updated: 2024/09/11 08:45:11 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/11 12:00:35 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ size_t	calc_envlen(char *s, int *i)
 	env_key = ft_substr(s, (unsigned int)j,(size_t)(*i - j));
 	env_token = find_env_vars(env_key);
 	if (!env_token)
-		return (0);
-	envlen = ft_strlen(env_token->value);
+		envlen = 0;
+	else
+		envlen = ft_strlen(env_token->value);
 	free(env_key);
 	return (envlen);
 }
