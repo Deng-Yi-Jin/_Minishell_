@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 12:30:20 by geibo             #+#    #+#             */
-/*   Updated: 2024/09/04 14:28:01 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/10 17:55:11 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,16 +121,7 @@ char	*dquote(char *input)
 	output = NULL;
 	while (split[word])
 	{
-		// if (is_bracket(split[word][ft_strlen(split[word]) - 1]))
-		// 	// return (error_bracket(split, word));
-		// {
-		// 	printf("minishell: syntax error near unexpected token `%c'\n",
-		// 		split[word][ft_strlen(split[word]) - 1]);
-		// 	free_split(split);
-		// 	return (NULL);
-		// }
 		if (close_dquote(split[word]) == false)
-			// handle_quote(split, word, output, '\"');
 		{
 			temp = output;
 			if (output == NULL)
@@ -149,7 +140,6 @@ char	*dquote(char *input)
 			free(temp);
 		}
 		else if (close_squote(split[word]) == false)
-			// handle_quote(split, word, output, '\'');
 		{
 			temp = output;
 			if (output == NULL)
@@ -168,7 +158,6 @@ char	*dquote(char *input)
 			free(temp);
 		}
 		else
-			// handle_quote(split, word, output, '\0');
 		{
 			temp = output;
 			if (output == NULL)
