@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:06:34 by djin              #+#    #+#             */
-/*   Updated: 2024/09/04 14:32:17 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/09 00:40:04 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,3 @@ void	parse(t_token **tokens, char **envp)
 	traverse(ast, free, 0, false);
 	free(ast);
 }
-// 44 execute(exec, envp);

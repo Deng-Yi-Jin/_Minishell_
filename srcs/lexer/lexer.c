@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 19:00:34 by sinlee            #+#    #+#             */
-/*   Updated: 2024/09/07 18:40:01 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/09 18:17:47 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,18 +126,18 @@ void	quoting(char *str, int *i, int *count_words, char c)
 void	parse_input(char *input, char **envp)
 {
 	t_token	**tokens;
-	char	*tempstring;
-	char	*working;
-	char	*temp;
+	char		*tempstring;
+	char		*working;
+	char		*temp;
 
-	temp = expand_dollar(input);
-	if (temp == NULL)
-		return ;
+	// temp = expand_dollar(input);
+	// if (temp == NULL)
+	// 	return ;
 	// tempstring = dquote(input);
   tempstring = ft_strdup(input);
 	if (tempstring == NULL)
 	{
-		free(temp);
+		// free(temp);
 		return ;
 	}
 	working = tempstring;
@@ -148,14 +148,14 @@ void	parse_input(char *input, char **envp)
 	{
 		if (tempstring)
 			free(tempstring);
-		free(temp);
+		// free(temp);
 		return ;
 	}
 	if (tempstring)
 		free(tempstring);
-	// print_stack(*tokens);
+	print_stack(*tokens);
 	parse(tokens, envp);
 	free_stack(tokens, del, true, NULL);
-	free(temp);
+	// free(temp);
 	free(tokens);
 }

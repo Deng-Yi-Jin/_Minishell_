@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:54:15 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/07 18:32:41 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/11 09:37:01 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 typedef struct s_exec
 {
 	char			**cmd;
-
 	struct	s_exec	*next;
 	struct	s_exec	*prev;
 	pid_t			pid;
@@ -59,16 +58,26 @@ int		ft_sstrlen(char **str);
 void	set_exec_type(t_exec *exec, char **envp);
 bool	check_command(char *inpt, char *args[N_ARGS], char **envp);
 
-/* ENV_EXPANSION() */
 
-char	*env_expansion(char **split, char q);
+
+char	*expansion(char **split);
 int		no_expansion_needed(char *s);
+char	*full_expansion(char **split, int sep);
+char	*dollar_q_expansion(char **split_q, char *s);
 
-char	*dollar_q_expansion(char *s);
+char	*expanded(char *split_q);
 
-size_t	expanded_len(char *s, char q);
-void	cp_to_output(char *dst, char *src, char q);
-char	*extract_env(char *s);
+int		exp_flag(char *s, char *split_q);
+char	**ft_splitq(char const *s, char c);
+
+char	*cp_to_expanded(char *split_q, char *output, size_t size);
+char	*exp_dollar_env(char *env_v, char *output, int *j, size_t size);
+
+size_t	calc_envsize(char *split_q);
+size_t	calc_envlen(char *s, int *i);
+char	*extract_key(char *env_s);
+char	*extract_value(char *env_key);
+
 
 char	ft_quote(char *s);
 char	*ft_strldup(char *src, ptrdiff_t size);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_linked_list.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 12:33:37 by root              #+#    #+#             */
-/*   Updated: 2024/03/06 13:56:53 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/09 18:55:24 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,14 @@ t_ast	*create_ast_node(char *cmd, int type)
 	t_ast	*new_node;
 	char	*tmp;
 
+	printf("NEW NODE\n");
 	new_node = malloc(sizeof(t_ast));
 	if (!new_node)
 		return (NULL);
 	new_node->cmd = cmd;
+	printf("cmd : %s\n", cmd);
 	new_node->type = type;
+	printf("cmd : %d\n", type);
 	new_node->child = NULL;
 	new_node->prev = NULL;
 	new_node->next = NULL;

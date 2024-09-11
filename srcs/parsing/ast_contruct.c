@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 14:22:26 by djin              #+#    #+#             */
-/*   Updated: 2024/09/06 15:59:01 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/11 10:03:24 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	construct_child_after_pipe(t_ast **ast, char *tmp, bool *is_child)
 {
+	printf("\n#4 CALL TO CREATE NEW NODE\n");
 	(*ast)->next = create_ast_node(ft_strdup(tmp), PIPE);
 	free(tmp);
 	(*ast)->next->parent = (*ast)->parent;
@@ -24,6 +25,7 @@ void	construct_child_after_pipe(t_ast **ast, char *tmp, bool *is_child)
 
 void	construct_child_before_pipe(t_ast **ast, char *tmp, bool *is_child)
 {
+	printf("\n#3 CALL TO CREATE NEW NODE\n");
 	(*ast)->child = create_ast_node(ft_strdup(tmp), PIPE);
 	free(tmp);
 	(*ast)->child->parent = (*ast);
@@ -34,9 +36,18 @@ void	construct_child_before_pipe(t_ast **ast, char *tmp, bool *is_child)
 void	eldest_child(t_ast **ast, t_token **tokens,
 		bool *create_sibling, char **envp)
 {
+	char	*exp_cmd;
+	char	*unq_cmd;
+
 	if ((*tokens)->cmd == NULL)
 		return ;
-	(*ast)->child = create_ast_node(rm_quote((*tokens)->cmd), 0);
+	unq_cmd = rm_quote((*tokens)->cmd);
+	exp_cmd = dollar_q_expansion(ft_split(unq_cmd, '\''), unq_cmd);
+	free(unq_cmd);
+	(*ast)->child = create_ast_node(exp_cmd, 0);
+	// printf("\n#1 CALL TO CREATE NEW NODE\n");
+	// printf("B4 RM Q : %s\n", (*tokens)->cmd);
+	// (*ast)->child = create_ast_node(rm_quote((*tokens)->cmd), 0);
 	(*ast)->child->parent = (*ast);
 	(*ast) = (*ast)->child;
 	if ((*tokens)->type == DOLLAR)
@@ -53,9 +64,15 @@ void	eldest_child(t_ast **ast, t_token **tokens,
 void	sibling(t_ast **ast, t_token **tokens,
 		bool *create_sibling, char **envp)
 {
+	char	*exp_cmd;
+	char	*unq_cmd;
+
 	if ((*tokens)->cmd == NULL)
 		return ;
-	(*ast)->next = create_ast_node(rm_quote((*tokens)->cmd), 0);
+	unq_cmd = rm_quote((*tokens)->cmd);
+	exp_cmd = dollar_q_expansion(ft_split(unq_cmd, '\''), unq_cmd);
+	free(unq_cmd);
+	(*ast)->next = create_ast_node(exp_cmd, 0);
 	(*ast)->next->parent = (*ast)->parent;
 	(*ast)->next->prev = (*ast);
 	(*ast) = (*ast)->next;

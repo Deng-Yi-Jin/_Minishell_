@@ -6,7 +6,7 @@
 #    By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 06:55:38 by codespace         #+#    #+#              #
-#    Updated: 2024/09/07 06:02:14 by kytan            ###   ########.fr        #
+#    Updated: 2024/09/11 09:31:35 by kytan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ SRCS_FILES = $(addprefix $(MAIN_DIR)/, main.c initialize.c signals.c prompt.c) \
 			 $(addprefix $(DOLLAR)/, dollar_sign.c dollar_utils.c dollar_execute_utils.c fork_utils.c) \
 			 $(addprefix $(UTILS_DIR)/, misc.c ft_snprintf.c ft_malloc.c ft_isunclosed_q.c ft_strfjoin.c) \
 			 $(addprefix $(ENV_DIR)/, env.c env_utils.c env_utils1.c) \
-			 $(addprefix $(EXPAND)/, expand_dollar.c) \
+			 $(addprefix $(EXPAND)/, expansion.c env_expansion.c expansion_utils1.c expansion_utils2.c) \
 			 $(addprefix $(GNL)/, get_next_line.c) \
 			 $(addprefix $(EXEC_DIR)/, echo_checker.c commands.c cd.c welcome.c export.c execution_utils.c execution_utils2.c echo.c pwd.c env.c unset.c) \
 			 $(addprefix $(LEXER_DIR)/, lexer.c lexer_linked_list.c lexer_linked_list_utils.c lexing_utils.c lexer_check_separator.c) \
