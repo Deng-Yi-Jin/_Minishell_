@@ -6,6 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:06:00 by geibo             #+#    #+#             */
+/*   Updated: 2024/09/11 08:30:39 by kytan            ###   ########.fr       */
 /*   Updated: 2024/09/11 11:19:58 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -130,26 +131,21 @@ char	*dollar_q_expansion(char *s)
 	return (output);
 }
 
-char	*env_expansion(char **split, char q)
+
+/**
+ * This function joins together all of the strings
+ * in `split` with no delimiters in between each
+ * string and frees up the array of strings
+ *
+ * @param split array of strings
+ * @returns concatatonation of all the strings in `split`
+ */
+char	*full_expansion(char *split)
 {
 	char	*output;
-	char	*expanded;
-	size_t	i;
+	int		i;
 
-	i = -1;
-	while (split[++i])
-	{
-		if (no_expansion_needed(split[i]))
-			continue ;
-		else
-		{
-			expanded = dollar_q_expansion(split[i]);
-			free(split[i]);
-			split[i] = expanded;
-		}
-	}
-	i = -1;
-	output = ft_calloc(1, sizeof(char));
+	i = 0;
 	while (split[++i])
 	{
 		output = ft_strfjoin(output, split[i]);
@@ -158,6 +154,72 @@ char	*env_expansion(char **split, char q)
 	}
 	return (output);
 }
+
+
+char	*dollar_q_expansion(char **split_q, char *s)
+{
+	char		*output;
+	int			i;
+	int			flag;
+
+	i = -1;
+	flag = 0;
+	while (split_q[++i])
+	{
+		flag = exp_flag(s, split_q[i]);
+		if (flag == 0 && ft_strchr(split_q[i], '$'))
+			split_q[i] = expanded(split_q[i]);
+		s = ft_strchr(++s, '\'');
+	}
+	output = full_expansion(split_q, 0);
+	return (output);
+}
+
+char	*env_expansion(char **split)
+{
+	char	*output;
+	char	*expanded;
+	size_t	i;
+
+	i = -1;
+
+	while (split[++i])
+	{
+		if (no_expansion_needed(split[i]))
+			continue ;
+		else
+		{
+			expanded = dollar_q_expansion(ft_splitq(split[i], '\''), split[i]);
+			free(split[i]);
+			split[i] = expanded;
+		}
+	}
+	output = full_expansion(split, 1);
+	return (output);
+}
+
+// char	*env_expansion(char **split)
+// {
+// 	char	*output;
+// 	char	*expanded;
+// 	size_t	i;
+
+// 	i = -1;
+// 	while (split[++i])
+// 	{
+// 		if (no_expansion_needed(split[i]))
+// 			continue ;
+// 		else
+// 		{
+// 			expanded = dollar_q_expansion(split[i]);
+// 			free(split[i]);
+// 			split[i] = expanded;
+// 		}
+// 	}
+// 	i = -1;
+// 	output = full_expansion(split);
+// 	return (output);
+// }
 
 char	*expand_dollar(char *input)
 {

@@ -61,6 +61,8 @@ t_env_var	*find_env_vars(char *key)
 	int	i;
 
 	i = 0;
+	if (!key)
+		;
 	while (g_main->env_vars[i]->key != NULL)
 	{
 		if (!ft_strcmp(g_main->env_vars[i]->key, key))

@@ -126,9 +126,9 @@ void	quoting(char *str, int *i, int *count_words, char c)
 void	parse_input(char *input, char **envp)
 {
 	t_token	**tokens;
-	char	*tempstring;
-	char	*working;
-	char	*temp;
+	char		*tempstring;
+	char		*working;
+	char		*temp;
 
 	// temp = expand_dollar(input);
 	// if (temp == NULL)
@@ -138,11 +138,9 @@ void	parse_input(char *input, char **envp)
 	// temp = expand_dollar(tempstring);
 	if (temp == NULL)
 		return ;
-	// tempstring = dquote(input);
-//   tempstring = ft_strdup(input);
 	if (tempstring == NULL)
 	{
-		free(temp);
+		// free(temp);
 		return ;
 	}
 	working = tempstring;
@@ -153,7 +151,7 @@ void	parse_input(char *input, char **envp)
 	{
 		if (tempstring)
 			free(tempstring);
-		free(temp);
+		// free(temp);
 		return ;
 	}
 	if (tempstring)

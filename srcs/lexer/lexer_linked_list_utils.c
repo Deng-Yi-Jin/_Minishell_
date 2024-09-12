@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_linked_list_utils.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 10:18:48 by djin              #+#    #+#             */
-/*   Updated: 2024/05/03 12:58:34 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/09 18:13:43 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "tokens.h"
 
 void	free_stack(t_token **tokens, void (*del)(void *),
 			bool loop, char *input)
@@ -41,15 +42,14 @@ void	free_stack(t_token **tokens, void (*del)(void *),
 
 void	print_stack(t_token *tokens)
 {
+	int i = 0;
 	tokens = lst_first_last(tokens, false);
 	while (tokens)
 	{
-		if (tokens != NULL)
-		{
-			printf("stack_a: %s\n", tokens->cmd);
-			printf("stack_a address: %p\n", tokens);
-			printf("stack_a type: %d\n", tokens->type);
-			tokens = tokens->next;
-		}
+		printf("#%i TOKEN : [%s]\n", i, tokens->cmd);
+		printf("address : %p\n", tokens);
+		printf("type : %d\n\n", tokens->type);
+		tokens = tokens->next;
+		i++;
 	}
 }

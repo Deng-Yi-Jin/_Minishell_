@@ -3,12 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   tokens.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sinlee <sinlee@student.42kl.edu.my>        +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 13:58:27 by djin              #+#    #+#             */
-/*   Updated: 2024/04/01 17:57:09 by sinlee           ###   ########.fr       */
+/*   Updated: 2024/09/09 18:12:38 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef TOKENS_H
+#	define TOKENS_H
 
 #define PIPE 1
 #define OR 2
@@ -41,3 +44,5 @@ typedef struct s_token
 	struct s_token	*next;
 	struct s_token	*prev;
 }	t_token;
+
+#endif
