@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 19:00:34 by sinlee            #+#    #+#             */
-/*   Updated: 2024/09/07 18:40:01 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/11 11:20:16 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,13 +111,13 @@ void	quoting(char *str, int *i, int *count_words, char c)
 	(*count_words)++;
 	while (str[*i] != c && str[*i] != '\0')
 	{
-		if (str[*i] == '$')
-			dollar(str, i, count_words);
-		else
-		{
+		// if (str[*i] == '$')
+		// 	dollar(str, i, count_words);
+		// else
+		// {
 			(*i)++;
 			(*count_words)++;
-		}
+		// }
 	}
 	(*i)++;
 	(*count_words)++;
@@ -130,11 +130,16 @@ void	parse_input(char *input, char **envp)
 	char	*working;
 	char	*temp;
 
-	temp = expand_dollar(input);
+	// temp = expand_dollar(input);
+	// if (temp == NULL)
+	// 	return ;
+	tempstring = dquote(input);
+	tempstring = trim_quotation(tempstring);
+	// temp = expand_dollar(tempstring);
 	if (temp == NULL)
 		return ;
 	// tempstring = dquote(input);
-  tempstring = ft_strdup(input);
+//   tempstring = ft_strdup(input);
 	if (tempstring == NULL)
 	{
 		free(temp);
@@ -154,8 +159,8 @@ void	parse_input(char *input, char **envp)
 	if (tempstring)
 		free(tempstring);
 	// print_stack(*tokens);
-	parse(tokens, envp);
+	parse(tokens, envp);	
 	free_stack(tokens, del, true, NULL);
-	free(temp);
+	// free(temp);
 	free(tokens);
 }

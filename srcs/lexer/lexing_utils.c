@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 21:05:51 by root              #+#    #+#             */
-/*   Updated: 2024/08/28 17:31:07 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/10 18:04:55 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 void	quotation(char *input, int *i, int *count_words, char c)
 {
-	if (input[*i] == '\'')
-		quoting(input, i, count_words, '\'');
-	else if (input[*i] == '\"')
-		quoting(input, i, count_words, '\"');
-	else if (input[*i] == '`')
-		quoting(input, i, count_words, '`');
-	else
-	{
+	// if (input[*i] == '\'')
+	// 	quoting(input, i, count_words, '\'');
+	// // else 
+		
+	// // else if (input[*i] == '`')
+	// // 	quoting(input, i, count_words, '`');
+	// else
+	// {
 		while (ft_symbol(input[*i]) == false && input[*i])
 		{
 			(*i)++;
 			(*count_words)++;
 		}
-	}
+	// }
 } //redo this function or fix it
 
 void	start_lex(char *input, t_token **tokens)

@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:10:17 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/04 15:24:51 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/09 11:40:18 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void	dollar_deal(t_ast *ast, bool create_sibling, char **envp)
 	char	*strtrim;
 
 	create_sibling = false;
-	strtrim = init_dollar(ast); //redo this function
-	if (strtrim == NULL)
-		return ;
+	// strtrim = init_dollar(ast); //redo this function
+	// if (strtrim == NULL)
+	// 	return ;
 	// if (strtrim[0] != '(')
 	// {
 	// 	strtrim = env_expansion(ft_split(strtrim, ' '), ft_isunclosed_q(strtrim));
