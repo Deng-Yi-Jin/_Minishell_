@@ -33,9 +33,9 @@ void	dollar_deal(t_ast *ast, bool create_sibling, char **envp)
 	char	*strtrim;
 
 	create_sibling = false;
-	strtrim = init_dollar(ast); //redo this function
-	if (strtrim == NULL)
-		return ;
+	// strtrim = init_dollar(ast); //redo this function
+	// if (strtrim == NULL)
+	// 	return ;
 	// if (strtrim[0] != '(')
 	// {
 	// 	strtrim = env_expansion(ft_split(strtrim, ' '), ft_isunclosed_q(strtrim));

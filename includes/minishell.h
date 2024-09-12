@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:06:06 by sinlee            #+#    #+#             */
-/*   Updated: 2024/09/07 18:32:47 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/11 11:14:01 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ void		ft_pipe(char *input, int *i, t_token **tokens);
 void		quoting(char *str, int *i, int *count_words, char c);
 void		quotation(char *input, int *i, int *count_words, char c);
 void		dollar(char *input, int *i, int *count_words);
+char		*trim_quotation(char *str);
 
 void		print_token(t_token *tokens, bool to_first, char *str);
 

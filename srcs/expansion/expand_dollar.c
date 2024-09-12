@@ -3,10 +3,11 @@
 /*                                                        :::      ::::::::   */
 /*   expand_dollar.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:06:00 by geibo             #+#    #+#             */
 /*   Updated: 2024/09/11 08:30:39 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/11 11:19:58 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -264,6 +265,7 @@ char	*expand_dollar(char *input)
 			output[j++] = input[i++];
 	}
 	output[j] = '\0';
+	// free(input);
 	return (output);
 }
 
