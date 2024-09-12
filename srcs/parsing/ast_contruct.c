@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 14:22:26 by djin              #+#    #+#             */
-/*   Updated: 2024/09/12 17:00:28 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/12 17:35:54 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,7 @@ void	eldest_child(t_ast **ast, t_token **tokens,
 	if ((*tokens)->cmd == NULL)
 		return ;
 	unq_cmd = rm_quote((*tokens)->cmd);
-	// printf("unq_cmd = %s\n", unq_cmd);
 	exp_cmd = dollar_q_expansion(ft_split(unq_cmd, '\''), unq_cmd);
-	// printf("exp_cmd = %s\n", exp_cmd);
 	free(unq_cmd);
 	(*ast)->child = create_ast_node(exp_cmd, 0);
 	(*ast)->child->parent = (*ast);
@@ -64,13 +62,10 @@ void	sibling(t_ast **ast, t_token **tokens,
 	char	*exp_cmd;
 	char	*unq_cmd;
 
-	printf("SBLING()\n");
 	if ((*tokens)->cmd == NULL)
 		return ;
 	unq_cmd = rm_quote((*tokens)->cmd);
-	// printf("unq_cmd = %s\n", unq_cmd);
 	exp_cmd = dollar_q_expansion(ft_split(unq_cmd, '\''), unq_cmd);
-	// printf("exp_cmd = %s\n", exp_cmd);
 	free(unq_cmd);
 	(*ast)->next = create_ast_node(exp_cmd, 0);
 	(*ast)->next->parent = (*ast)->parent;
