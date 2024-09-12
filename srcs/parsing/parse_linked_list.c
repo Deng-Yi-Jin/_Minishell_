@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 12:33:37 by root              #+#    #+#             */
-/*   Updated: 2024/09/11 11:56:57 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/12 16:53:49 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_ast	*create_ast_node(char *cmd, int type)
 	t_ast	*new_node;
 	char	*tmp;
 
-	printf("NEW NODE\n");
+	// printf("NEW NODE\n");
 	new_node = malloc(sizeof(t_ast));
 	if (!new_node)
 		return (NULL);

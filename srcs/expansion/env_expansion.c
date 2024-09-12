@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 08:37:26 by kytan             #+#    #+#             */
-/*   Updated: 2024/09/11 11:56:41 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/12 16:50:38 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ char	*expanded(char *split_q)
 	printf("SIZE = %zu\n", size);
 	output = ft_calloc(size + 1, sizeof(char));
 	output = cp_to_expanded(split_q, output, size + 1);
+	free(split_q);
 	return (output);
 }
 

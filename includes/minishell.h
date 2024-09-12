@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:06:06 by sinlee            #+#    #+#             */
-/*   Updated: 2024/09/11 11:14:01 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/12 16:09:11 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@
 # define N_ARGS 2560
 # define MAX_ENV_VARS 10240
 
-// Structure to hold environment variables
 typedef struct env_var_s
 {
 	char	*key;
@@ -58,7 +57,6 @@ typedef struct s_main
 	t_env_var	**env_vars;
 }	t_main;
 
-// extern t_env_var **g_env_vars;
 extern t_main	*g_main;
 
 char	*new_line(char *input, char c);

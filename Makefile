@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: geibo <geibo@student.42.fr>                +#+  +:+       +#+         #
+#    By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 06:55:38 by codespace         #+#    #+#              #
-#    Updated: 2024/09/11 11:15:27 by geibo            ###   ########.fr        #
+#    Updated: 2024/09/12 16:21:20 by kytan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,7 @@ PRINTF = $(PRINTF_DIR)/libftprintf.a
 LIBS = -L$(LIBFT_DIR) -L$(PRINTF_DIR) -lft -lftprintf -lreadline
 
 # Binary
-NAME = hell
+NAME = minishell
 
 # Colors and text formatting
 RESET = \033[0m
