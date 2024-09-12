@@ -3,14 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sinlee <sinlee@student42.fr>               +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 17:39:35 by sinlee            #+#    #+#             */
-/*   Updated: 2023/04/28 13:15:17 by sinlee           ###   ########.fr       */
+/*   Updated: 2024/09/12 15:46:45 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// implementation of strlcpy function
 
 #include "libft.h"
 

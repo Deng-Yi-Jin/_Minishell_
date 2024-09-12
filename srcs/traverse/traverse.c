@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   traverse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:06:59 by geibo             #+#    #+#             */
-/*   Updated: 2024/09/04 14:28:40 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/12 16:59:25 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// if (print == false && (*ast)->cmd != NULL)
-	// 	printf("%s\n", (*ast)->cmd);
 bool	traverse(t_ast **ast, void (*f)(void *), int depth, bool print)
 {
 	t_ast	*temp;
 
 	if (*ast == NULL)
 		return (false);
+	if (print == false && (*ast)->cmd != NULL)
+		// printf("%s\n", (*ast)->cmd);
 	temp = (*ast)->next;
 	traverse(&((*ast)->child), f, depth + 1, print);
 	f((*ast)->cmd);

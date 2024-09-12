@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   expand_dollar.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:06:00 by geibo             #+#    #+#             */
-/*   Updated: 2024/09/11 08:30:39 by kytan            ###   ########.fr       */
-/*   Updated: 2024/09/11 11:19:58 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/12 16:44:11 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "minishell.h"
 
@@ -116,19 +116,6 @@ void	cp_to_output(char *dst, char *src, char q)
 		src++;
 	}
 	*dst = '\0';
-}
-
-char	*dollar_q_expansion(char *s)
-{
-	size_t	total_size;
-	char	*output;
-
-	total_size = expanded_len(s, ft_quote(s)) + 1;
-	//printf("total_size = %zu\n", total_size);
-	output = ft_calloc(total_size, sizeof(char));
-	//error checking for ft_calloc
-	cp_to_output(output, s, ft_quote(s));
-	return (output);
 }
 
 

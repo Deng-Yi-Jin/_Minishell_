@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   ft_strldup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/01 18:05:55 by sinlee            #+#    #+#             */
-/*   Updated: 2024/09/12 16:58:04 by kytan            ###   ########.fr       */
+/*   Created: 2024/09/12 15:46:24 by kytan             #+#    #+#             */
+/*   Updated: 2024/09/12 15:46:36 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-bool	execute_pwd(void)
+char	*ft_strldup(char *src, ptrdiff_t size)
 {
-	char	*path;
+	char	*dup;
+	int		i;
 
-	// printf("Executing pwd...\n");
-	path = getcwd(NULL, 0);
-	if (path == NULL)
-	{
-		perror_color("pwd");
-		return (false);
-	}
-	printf("%s\n", path);
-	free(path);
-	return (true);
+	i = 0;
+	if (size <= 0 || !src)
+		return (0);
+	dup = malloc(size * sizeof(char));
+	if (!dup)
+		return (0);
+	while (*src && i + 1 < size)
+		dup[i++] = *src++;
+	if (i < size)
+		dup[i] = '\0';
+	return (dup);
 }
