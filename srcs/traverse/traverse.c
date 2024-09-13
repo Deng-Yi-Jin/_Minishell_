@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   traverse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:06:59 by geibo             #+#    #+#             */
-/*   Updated: 2024/09/12 16:59:25 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/13 13:44:49 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ bool	traverse(t_ast **ast, void (*f)(void *), int depth, bool print)
 
 	if (*ast == NULL)
 		return (false);
-	if (print == false && (*ast)->cmd != NULL)
+	// if (print == false && (*ast)->cmd != NULL)
 		// printf("%s\n", (*ast)->cmd);
 	temp = (*ast)->next;
 	traverse(&((*ast)->child), f, depth + 1, print);

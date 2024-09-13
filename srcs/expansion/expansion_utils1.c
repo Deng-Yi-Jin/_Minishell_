@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion_utils1.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 08:42:02 by kytan             #+#    #+#             */
-/*   Updated: 2024/09/11 12:00:35 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/12 22:29:07 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char	*extract_key(char *env_s)
 	while (*env_s && ft_isalnum(*env_s))
 		env_s++;
 	extract = ft_strldup(start, (env_s - start) + 1);
-	printf("extract = %s\n", extract);
+	// printf("extract = %s\n", extract);
 	return (extract);
 }
 
@@ -80,6 +80,6 @@ char	*extract_value(char *env_key)
 	if (!env_token)
 		return ("");
 	env_value = env_token->value;
-	printf("env_val = %s\n", env_value);
+	// printf("env_val = %s\n", env_value);
 	return (env_value);
 }

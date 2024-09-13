@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 19:00:34 by sinlee            #+#    #+#             */
-/*   Updated: 2024/09/11 11:20:16 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/12 22:24:45 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ bool	error_return(t_token **tokens, char *input)
 	if (current_node->type == PIPE)
 	{
 		printf("syntax error near unexpected token `|'\n");
+		// printf("hello");
 		free_stack(tokens, del, true, input);
 		free(tokens);
 		return (true);
@@ -126,23 +127,11 @@ void	quoting(char *str, int *i, int *count_words, char c)
 void	parse_input(char *input, char **envp)
 {
 	t_token	**tokens;
-	char		*tempstring;
-	char		*working;
-	char		*temp;
+	char	*tempstring;
+	char	*working;
 
-	// temp = expand_dollar(input);
-	// if (temp == NULL)
-	// 	return ;
 	tempstring = dquote(input);
 	tempstring = trim_quotation(tempstring);
-	// temp = expand_dollar(tempstring);
-	if (temp == NULL)
-		return ;
-	if (tempstring == NULL)
-	{
-		// free(temp);
-		return ;
-	}
 	working = tempstring;
 	tokens = (t_token **)malloc(sizeof(t_token *));
 	(*tokens) = NULL;
@@ -151,13 +140,12 @@ void	parse_input(char *input, char **envp)
 	{
 		if (tempstring)
 			free(tempstring);
-		// free(temp);
 		return ;
 	}
 	if (tempstring)
 		free(tempstring);
 	// print_stack(*tokens);
-	parse(tokens, envp);	
+	parse(tokens, envp);
 	free_stack(tokens, del, true, NULL);
 	// free(temp);
 	free(tokens);

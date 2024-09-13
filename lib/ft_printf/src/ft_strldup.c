@@ -1,39 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   ft_strldup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/01 09:56:56 by sinlee            #+#    #+#             */
-/*   Updated: 2024/09/13 13:46:13 by geibo            ###   ########.fr       */
+/*   Created: 2024/09/11 09:42:48 by kytan             #+#    #+#             */
+/*   Updated: 2024/09/12 22:24:15 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "ft_printf.h"
+#include <stddef.h>
 
-bool	execute_echo(char **args)
+char	*ft_strldup(char *src, ptrdiff_t size)
 {
+	char	*dup;
 	int		i;
-	bool	n_flag;
 
-	i = 1;
-	n_flag = false;
-	if (args && args[1])
-	{
-		if (ft_strncmp(args[1], "-n", 2) == 0)
-		{
-			n_flag = true;
-			i++;
-		}
-		if (args[i])
-		{
-			while (args[i + 1] != NULL)
-				printf("%s ", args[i++]);
-			printf("%s", args[i++]);
-		}
-	}
-	if (n_flag == false)
-		printf("\n");
-	return (true);
+	i = 0;
+	if (size <= 0 || !src)
+		return (0);
+	dup = malloc(size * sizeof(char));
+	if (!dup)
+		return (0);
+	while (*src && i + 1 < size)
+		dup[i++] = *src++;
+	if (i < size)
+		dup[i] = '\0';
+	return (dup);
 }

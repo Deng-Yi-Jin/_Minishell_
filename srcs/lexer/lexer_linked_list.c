@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 13:49:19 by djin              #+#    #+#             */
-/*   Updated: 2024/04/30 08:44:18 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/12 16:59:02 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_token	*add_null_token(t_token *tokens)
 {
 	t_token	*new;
 
-	new = create_token(NULL, 0);
+	new = create_token(NULL, -1);
 	if (!new)
 		return (NULL);
 	if (!(tokens))
