@@ -7,4 +7,8 @@ objs/
 minishell.dSYM
 valgrind-out.txt
 *.txt
+out
+a
+b
+c
 ```

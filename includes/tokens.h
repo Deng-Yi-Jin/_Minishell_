@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 13:58:27 by djin              #+#    #+#             */
-/*   Updated: 2024/09/09 18:12:38 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/15 15:47:29 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 #define QUOTE 14
 #define CMD_EXPANSION 15
 #define FLAGS 16
+#define REDIR 17
 
 // enum Flags {
 // 	PIPE,
