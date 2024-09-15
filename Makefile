@@ -6,7 +6,7 @@
 #    By: geibo <geibo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 06:55:38 by codespace         #+#    #+#              #
-#    Updated: 2024/09/15 18:23:33 by geibo            ###   ########.fr        #
+#    Updated: 2024/09/15 18:42:22 by geibo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,7 +91,6 @@ YELLOW = \033[93m
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT) $(PRINTF)
-	@clear
 	@echo "$(BOLD)$(LIGHT_BLUE)Linking objects...$(RESET)"
 	@$(CC) $(CFLAGS) $(INCLUDES) $(OBJS) $(LIBS) -o $(NAME)
 	@clear
