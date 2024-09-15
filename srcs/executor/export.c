@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 11:32:57 by sinlee            #+#    #+#             */
-/*   Updated: 2024/09/07 18:27:30 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/16 03:17:45 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	export_env(char *key, char *value)
 		add_env_vars(ft_strdup(key), ft_strdup(value));
 }
 
-bool	execute_export(char **args)
+int	execute_export(char **args)
 {
 	int		i;
 	char	*ptr;
@@ -66,7 +66,7 @@ bool	execute_export(char **args)
 				{
 					printf("%sexport: `%s': not a valid identifier\n%s", RED,
 						args[i], RESET_COLOR);
-					return (true);
+					return (EXIT_FAILURE);
 				}
 				export_env(args[i], ptr);
 			}
@@ -74,5 +74,5 @@ bool	execute_export(char **args)
 				export_env(args[i], "");
 		}
 	}
-	return (true);
+	return (EXIT_SUCCESS);
 }

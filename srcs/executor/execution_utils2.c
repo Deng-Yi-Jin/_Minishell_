@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 09:59:30 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/06 15:45:48 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/16 01:51:20 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,7 @@ void	exec_pipe(t_exec *exec, char **envp, char *command_path)
 	}
 	if (command_path == NULL)
 	{
-		if (execute_builtin(exec->cmd[0], exec->cmd, envp) == false)
-			printf("Command not found: %s\n", exec->cmd[0]);
+		printf("Command not found: %s\n", exec->cmd[0]);
 	}
 	else
 	{

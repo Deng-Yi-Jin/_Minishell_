@@ -33,7 +33,8 @@ SRCS	=	ft_atoi.c \
 			ft_striteri.c \
 			ft_tolower.c \
 			ft_toupper.c \
-			ft_strldup.c
+			ft_strldup.c \
+			ft_strcmp.c
 
 SRCS_B = 	ft_lstadd_back.c \
 			ft_lstadd_front.c \

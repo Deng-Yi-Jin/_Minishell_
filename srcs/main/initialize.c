@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:21:02 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/07 18:39:30 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/16 00:05:16 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ static void	init_env(char **envp)
 
 void	init(char **envp)
 {
-	g_main = malloc(sizeof(t_main));
+	g_main = ft_malloc(sizeof(t_main));
+	g_main->nuclear_status = 1;
 	init_env(envp);
 	init_signals();
 	welcome_msg();

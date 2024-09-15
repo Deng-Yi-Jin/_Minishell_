@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:06:00 by geibo             #+#    #+#             */
-/*   Updated: 2024/09/12 16:44:11 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/15 16:43:41 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,35 +153,10 @@ char	*dollar_q_expansion(char **split_q, char *s)
 	flag = 0;
 	while (split_q[++i])
 	{
-		flag = exp_flag(s, split_q[i]);
-		if (flag == 0 && ft_strchr(split_q[i], '$'))
+		if (ft_strchr(split_q[i], '$'))
 			split_q[i] = expanded(split_q[i]);
-		s = ft_strchr(++s, '\'');
 	}
-	output = full_expansion(split_q, 0);
-	return (output);
-}
-
-char	*env_expansion(char **split)
-{
-	char	*output;
-	char	*expanded;
-	size_t	i;
-
-	i = -1;
-
-	while (split[++i])
-	{
-		if (no_expansion_needed(split[i]))
-			continue ;
-		else
-		{
-			expanded = dollar_q_expansion(ft_splitq(split[i], '\''), split[i]);
-			free(split[i]);
-			split[i] = expanded;
-		}
-	}
-	output = full_expansion(split, 1);
+	output = full_expansion(split_q);
 	return (output);
 }
 
@@ -192,19 +167,19 @@ char	*env_expansion(char **split)
 // 	size_t	i;
 
 // 	i = -1;
+
 // 	while (split[++i])
 // 	{
 // 		if (no_expansion_needed(split[i]))
 // 			continue ;
 // 		else
 // 		{
-// 			expanded = dollar_q_expansion(split[i]);
+// 			expanded = dollar_q_expansion(ft_splitq(split[i], '\''), split[i]);
 // 			free(split[i]);
 // 			split[i] = expanded;
 // 		}
 // 	}
-// 	i = -1;
-// 	output = full_expansion(split);
+// 	output = full_expansion(split, 1);
 // 	return (output);
 // }
 

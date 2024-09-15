@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion_utils1.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 08:42:02 by kytan             #+#    #+#             */
-/*   Updated: 2024/09/12 22:29:07 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/15 19:11:08 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,20 @@ size_t	calc_envlen(char *s, int *i)
 	size_t		envlen;
 
 	if (s[*i] == '$')
+	{
 		(*i)++;
+		envlen = 1;
+	}
 	j = *i;
 	while (ft_isalnum(s[*i]))
 		(*i)++;
 	env_key = ft_substr(s, (unsigned int)j,(size_t)(*i - j));
 	env_token = find_env_vars(env_key);
-	if (!env_token)
-		envlen = 0;
-	else
-		envlen = ft_strlen(env_token->value);
+	// if (!env_token)
+	// 	envlen = 1;
+	// else
+	if (env_token)
+		envlen += ft_strlen(env_token->value);
 	free(env_key);
 	return (envlen);
 }

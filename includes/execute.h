@@ -65,8 +65,8 @@ t_exec	*redirection(t_exec *exec);
 
 char	*expansion(char **split);
 int		no_expansion_needed(char *s);
-char	*full_expansion(char **split, int sep);
-char	*dollar_q_expansion(char **split_q, char *s);
+char	*full_expansion(char **split, char *sep);
+char	*dollar_q_expansion(char **split_q);
 
 char	*expanded(char *split_q);
 
@@ -84,10 +84,12 @@ char	*extract_value(char *env_key);
 
 char	ft_quote(char *s);
 char	*ft_strldup(char *src, ptrdiff_t size);
-bool	execute_pwd(void);
+int	execute_pwd(void);
 
-bool  	execute_env(char **args);
+
+int		execute_env(char **args);
 int		execute_unset(char **args);
+
 int		get_outfilefd(char **redir_list);
 int		get_infilefd(char **redir_list);
 bool	get_redirfd(t_exec *exec, int *infilefd, int *outfilefd, char **envp);

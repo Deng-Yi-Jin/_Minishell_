@@ -3,37 +3,68 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 09:56:56 by sinlee            #+#    #+#             */
-/*   Updated: 2024/09/13 13:46:13 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/16 03:38:28 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	execute_echo(char **args)
+void	echo_exit_status(int *i, char *string)
+{
+	ft_putnbr_fd(g_main->nuclear_status, 1);
+	*i += 2;
+}
+
+void	echo_char(char c)
+{
+	if (!c)
+		return ;
+	ft_putchar_fd(c, 1);
+}
+
+void	echo_args(char **args)
+{
+	int	i;
+	int	j;
+	char	*string;
+
+	i = -1;
+	while (args[++i])
+	{
+		string = args[i];
+		j = 0;
+		while (string[j])
+		{
+			if (ft_strncmp(string + j, "$?", 2) == 0)
+				echo_exit_status(&j, string);
+			else
+				echo_char(string[j++]);
+		}
+	}
+}
+
+int	execute_echo(char **args)
 {
 	int		i;
 	bool	n_flag;
+	char	*single_arg_str;
 
 	i = 1;
 	n_flag = false;
-	if (args && args[1])
+	if (args && args[i])
 	{
-		if (ft_strncmp(args[1], "-n", 2) == 0)
+		if (ft_strncmp(args[i], "-n", 2) == 0)
 		{
 			n_flag = true;
 			i++;
 		}
 		if (args[i])
-		{
-			while (args[i + 1] != NULL)
-				printf("%s ", args[i++]);
-			printf("%s", args[i++]);
-		}
+			echo_args(args + i);
 	}
 	if (n_flag == false)
 		printf("\n");
-	return (true);
+	return (EXIT_SUCCESS);
 }

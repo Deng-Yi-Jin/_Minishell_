@@ -47,19 +47,19 @@ int	execute_builtin(char *inpt, char *args[N_ARGS], char **envp)
 	if (!ft_strcmp(inpt, "exit"))
 		exit_success();
 	else if (!ft_strcmp(inpt, "cd"))
-		execute_cd(args, envp);
+		return (execute_cd(args, envp));
 	else if (!ft_strcmp(inpt, "fancy"))
-		welcome_msg();
+		return (welcome_msg());
 	else if (ft_strcmp(inpt, "export") == 0)
-		execute_export(args);
+		return (execute_export(args));
 	else if (ft_strcmp(inpt, "unset") == 0)
-		execute_unset(args);
+		return (execute_unset(args));
 	else if(ft_strcmp(inpt, "echo") == 0)
-		execute_echo(args);
+		return (execute_echo(args));
 	else if (ft_strcmp(inpt, "pwd") == 0)
-		execute_pwd();
+		return (execute_pwd());
 	else if (ft_strcmp(inpt, "env") == 0)
-		execute_env(args);
+		return (execute_env(args));
 	else
 		return (1);
 	return (0);
