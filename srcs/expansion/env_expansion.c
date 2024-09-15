@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_expansion.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 08:37:26 by kytan             #+#    #+#             */
-/*   Updated: 2024/09/13 13:43:03 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/15 19:16:42 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,17 @@ char	*exp_dollar_env(char *env_v, char *output, int *j, size_t size)
 		written = snprintf(output, size - *j, "%s", env_val);
 		*j += written;
 	}
+	else
+	{
+		written = snprintf(output, size - *j, "$");
+		*j += written;
+	}
 	return (env_v);
 }
 
 char	*cp_to_expanded(char *split_q, char *output, size_t size)
 {
-	int					j;
+	int		j;
 
 	j = 0;
 	while (*split_q)
@@ -75,7 +80,6 @@ char	*expanded(char *split_q)
 	size_t	size;
 
 	size = calc_envsize(split_q);
-	// printf("SIZE = %zu\n", size);
 	output = ft_calloc(size + 1, sizeof(char));
 	output = cp_to_expanded(split_q, output, size + 1);
 	free(split_q);

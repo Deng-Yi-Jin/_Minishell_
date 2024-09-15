@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 09:52:13 by sinlee            #+#    #+#             */
-/*   Updated: 2024/09/12 15:47:37 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/15 17:57:41 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 char	*ft_strldup(char *src, ptrdiff_t size);
+int		ft_strncmp(const char *s, const char *c, size_t n);
 
 #endif

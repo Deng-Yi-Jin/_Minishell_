@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 14:22:26 by djin              #+#    #+#             */
-/*   Updated: 2024/09/12 17:35:54 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/15 17:02:07 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	eldest_child(t_ast **ast, t_token **tokens,
 	if ((*tokens)->cmd == NULL)
 		return ;
 	unq_cmd = rm_quote((*tokens)->cmd);
-	exp_cmd = dollar_q_expansion(ft_split(unq_cmd, '\''), unq_cmd);
+	exp_cmd = dollar_q_expansion(ft_split(unq_cmd, '\''));
 	free(unq_cmd);
 	(*ast)->child = create_ast_node(exp_cmd, 0);
 	(*ast)->child->parent = (*ast);
@@ -65,7 +65,7 @@ void	sibling(t_ast **ast, t_token **tokens,
 	if ((*tokens)->cmd == NULL)
 		return ;
 	unq_cmd = rm_quote((*tokens)->cmd);
-	exp_cmd = dollar_q_expansion(ft_split(unq_cmd, '\''), unq_cmd);
+	exp_cmd = dollar_q_expansion(ft_split(unq_cmd, '\''));
 	free(unq_cmd);
 	(*ast)->next = create_ast_node(exp_cmd, 0);
 	(*ast)->next->parent = (*ast)->parent;

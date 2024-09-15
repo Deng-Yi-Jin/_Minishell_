@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:54:15 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/11 09:37:01 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/16 03:36:04 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ bool	check_command(char *inpt, char *args[N_ARGS], char **envp);
 
 char	*expansion(char **split);
 int		no_expansion_needed(char *s);
-char	*full_expansion(char **split, int sep);
-char	*dollar_q_expansion(char **split_q, char *s);
+char	*full_expansion(char **split, char *sep);
+char	*dollar_q_expansion(char **split_q);
 
 char	*expanded(char *split_q);
 
@@ -81,9 +81,9 @@ char	*extract_value(char *env_key);
 
 char	ft_quote(char *s);
 char	*ft_strldup(char *src, ptrdiff_t size);
-bool	execute_pwd(void);
+int	execute_pwd(void);
 
-bool  execute_env(char **args);
-bool	execute_unset(char **args);
+int		execute_env(char **args);
+int		execute_unset(char **args);
 
 #endif

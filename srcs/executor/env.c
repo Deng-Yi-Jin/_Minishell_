@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-bool	execute_env(char **args)
+int	execute_env(char **args)
 {
 	int i;
 

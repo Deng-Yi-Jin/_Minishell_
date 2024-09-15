@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sinlee <sinlee@student42.fr>               +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:33:21 by sinlee            #+#    #+#             */
-/*   Updated: 2023/05/05 14:29:22 by sinlee           ###   ########.fr       */
+/*   Updated: 2024/09/16 01:31:44 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,3 @@ void	ft_putnbr_fd(int n, int fd)
 	write(fd, str, ft_strlen(str));
 	free(str);
 }
-// void	ft_putnbr_fd(int n, int fd)
-// {
-// 	write(fd, ft_itoa(n), ft_strlen(ft_itoa(n)));
-// }

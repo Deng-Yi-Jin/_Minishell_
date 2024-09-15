@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/01 18:05:55 by sinlee            #+#    #+#             */
-/*   Updated: 2024/09/16 03:33:09 by kytan            ###   ########.fr       */
+/*   Created: 2024/02/27 09:00:58 by kytan             #+#    #+#             */
+/*   Updated: 2024/09/15 17:59:22 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	execute_pwd(void)
+int	ft_strcmp(const char *s, const char *c)
 {
-	char	*path;
+	unsigned char	*a;
+	unsigned char	*b;
 
-	path = getcwd(NULL, 0);
-	if (path == NULL)
+	a = (unsigned char *)s;
+	b = (unsigned char *)c;
+	if (!s || !c)
+		return (-1);
+	while (*a == *b && *a)
 	{
-		perror_color("pwd");
-		return (EXIT_FAILURE);
+		++a;
+		++b;
 	}
-	printf("%s\n", path);
-	free(path);
-	return (EXIT_SUCCESS);
+	return (*a - *b);
 }

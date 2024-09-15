@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 08:37:26 by kytan             #+#    #+#             */
-/*   Updated: 2024/09/11 09:27:05 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/15 23:30:32 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	no_expansion_needed(char *s)
 	return (!ft_strchr(s, '$') && !ft_strchr(s, '\"') && !ft_strchr(s, '\''));
 }
 
-char	*full_expansion(char **split, int sep)
+char	*full_expansion(char **split, char *sep)
 {
 	char	*output;
 	int		i;
@@ -28,51 +28,23 @@ char	*full_expansion(char **split, int sep)
 	{
 		output = ft_strfjoin(output, split[i]);
 		if (split[i + 1] != NULL && sep)
-			output = ft_strfjoin(output, " ");
+			output = ft_strfjoin(output, sep);
 	}
-	free_split(split);
 	return (output);
 }
 
-char	*dollar_q_expansion(char **split_q, char *s)
-{
-	char		*output;
-	int			i;
-	int			flag;
-
-	i = -1;
-	flag = 0;
-	while (split_q[++i])
-	{
-		flag = exp_flag(s, split_q[i]);
-		// printf("flag for [%s] = %i\n", split_q[i], flag);
-		if (flag == 0 && ft_strchr(split_q[i], '$'))
-			split_q[i] = expanded(split_q[i]);
-		s = ft_strchr(++s, '\'');
-		// printf("\nfinding next (\')... %s\n", s);
-	}
-	output = full_expansion(split_q, 0);
-	return (output);
-}
-
-char	*expansion(char **split)
+char	*dollar_q_expansion(char **split_q)
 {
 	char	*output;
-	char	*expanded;
-	size_t	i;
+	int		i;
 
 	i = -1;
-	while (split[++i])
+	while (split_q[++i])
 	{
-		if (no_expansion_needed(split[i]))
-			continue ;
-		else
-		{
-			expanded = dollar_q_expansion(ft_splitq(split[i], '\''), split[i]);
-			free(split[i]);
-			split[i] = expanded;
-		}
+		if (ft_strchr(split_q[i], '$'))
+			split_q[i] = expanded(split_q[i]);
 	}
-	output = full_expansion(split, 1);
+	output = full_expansion(split_q, "\'");
+	free_split(split_q);
 	return (output);
 }

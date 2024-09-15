@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:06:06 by sinlee            #+#    #+#             */
-/*   Updated: 2024/09/12 16:09:11 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/16 03:38:56 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,18 +92,16 @@ int			find_env(char *key, char **envp);
 char		*ft_getenv(char *key);
 void		free_env_vars(void);
 bool		flip_bool_env_vars(char *key);
-// bool    print_env_vars();
 
-bool	execute_echo(char **args);
+int			execute_echo(char **args);
 
 t_env_var	**dup_darr(char **arr);
 void		free_darr(t_env_var **arr);
 void		free_jutsu(bool darr, char *key, char *value);
 
-bool		execute_cd(char *args[N_ARGS], char **envp);
-bool		echo(char **args, char **flags);
-bool		execute_export(char **args);
-bool		welcome_msg(void);
+int			execute_cd(char *args[N_ARGS], char **envp);
+int			execute_export(char **args);
+int			welcome_msg(void);
 
 int			ft_snprintf(char *str, size_t size, const char *format, ...);
 char		*ft_strtok(char *str, const char *delim);
