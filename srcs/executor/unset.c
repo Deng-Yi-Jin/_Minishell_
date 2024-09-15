@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 18:06:55 by sinlee            #+#    #+#             */
-/*   Updated: 2024/09/16 03:27:29 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/15 16:51:22 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int	execute_unset(char **args)
 
 	i = -1;
 	if (!args || !args[1])
-		return (EXIT_FAILURE);
+		return (1);
 	while (args[++i] != NULL)
 		delete_env_vars(args[i]);
-	return (EXIT_SUCCESS);
+	return (0);
 }

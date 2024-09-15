@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 05:36:16 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/12 16:56:42 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/15 17:29:42 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,20 @@ void	free_exec(t_exec *exec)
 	{
 		tmp = exec->next;
 		i = 0;
-		while (exec->cmd && exec->cmd[i])
+		while ((exec->cmd && exec->cmd[i] ))
 		{
 			free(exec->cmd[i]);
 			i++;
 		}
+		i = 0;
+		while (exec->cmd_list && exec->cmd_list[i])
+		{
+			free(exec->cmd_list[i]);
+			i++;
+		}
 		free(exec->type);
 		free(exec->cmd);
+		free(exec->cmd_list);
 		free(exec);
 		exec = tmp;
 	}
