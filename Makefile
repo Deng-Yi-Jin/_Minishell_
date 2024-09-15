@@ -6,7 +6,7 @@
 #    By: geibo <geibo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 06:55:38 by codespace         #+#    #+#              #
-#    Updated: 2024/09/15 16:50:07 by geibo            ###   ########.fr        #
+#    Updated: 2024/09/15 18:23:33 by geibo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,10 +91,12 @@ YELLOW = \033[93m
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT) $(PRINTF)
+	@clear
 	@echo "$(BOLD)$(LIGHT_BLUE)Linking objects...$(RESET)"
 	@$(CC) $(CFLAGS) $(INCLUDES) $(OBJS) $(LIBS) -o $(NAME)
+	@clear
 	@echo "$(BOLD)$(LIGHT_BLUE)$(NAME) created successfully!$(RESET)"
-	@echo "$(BOLD)Copyright Reserved. Lee Sin Liang."
+	@echo "$(BOLD)Compile Completed!$(RESET)"
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@mkdir -p $(OBJS_DIRS)
