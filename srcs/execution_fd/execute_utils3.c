@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_utils3.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 19:01:41 by kytan             #+#    #+#             */
-/*   Updated: 2024/09/07 05:57:56 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/15 17:25:56 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	total_command(t_exec *exec, int count)
 
 void	check_match_cmd(t_exec *exec, char **envp, int *i)
 {
-	exit(execute_builtin(exec->cmd[*i], exec->cmd, envp));
+	exit(execute_builtin(exec->cmd_list[*i], exec->cmd_list, envp));
 }
 
 bool	check_command(char *inpt, char *args[N_ARGS], char **envp)
@@ -53,4 +53,21 @@ bool	check_command(char *inpt, char *args[N_ARGS], char **envp)
   else if (ft_strcmp(inpt, "unset") == 0)
 		return (true);
 	return (false);
+}
+
+bool	get_redirfd(t_exec *exec, int *infilefd, int *outfilefd, char **envp)
+{
+	redirect(exec, infilefd, outfilefd);
+	*infilefd = get_infilefd(exec->redir_list);
+	if (*infilefd == -1)
+		return (false);
+	*outfilefd = get_outfilefd(exec->redir_list);
+	if (*outfilefd == -1)
+		return (false);
+	if (exec->redir_list != NULL)
+	{
+		free(exec->redir_list[0]);
+		free(exec->redir_list[1]);
+		free(exec->redir_list);
+	}
 }

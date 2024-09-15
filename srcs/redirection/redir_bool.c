@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 15:38:45 by geibo             #+#    #+#             */
-/*   Updated: 2024/05/24 15:40:21 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/15 15:44:22 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ bool	is_redir(char *cmd)
 {
 	return (ft_strcmp(cmd, ">") == 0
 		|| ft_strcmp(cmd, "<<") == 0
-		|| ft_strcmp(cmd, "<") == 0);
+		|| ft_strcmp(cmd, "<") == 0
+		|| ft_strcmp(cmd, ">>") == 0);
 }
 
 bool	is_redir_in(char *cmd)

@@ -1,0 +1,14 @@
+Makefile
+README.md
+TODO.md
+a
+b
+c
+includes
+integration
+lib
+minishell
+objs
+out
+srcs
+test_0.txt

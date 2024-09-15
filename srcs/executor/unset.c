@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 18:06:55 by sinlee            #+#    #+#             */
-/*   Updated: 2024/09/07 12:01:56 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/15 16:51:22 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	execute_unset(char **args)
+int	execute_unset(char **args)
 {
 	int	i;
 
 	i = -1;
 	if (!args || !args[1])
-		return (false);
+		return (1);
 	while (args[++i] != NULL)
 		delete_env_vars(args[i]);
-	return ;
+	return (0);
 }

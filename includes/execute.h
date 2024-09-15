@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:54:15 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/11 09:37:01 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/15 17:08:04 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ typedef struct s_exec
 	char			**cmd;
 	struct	s_exec	*next;
 	struct	s_exec	*prev;
+	char			**cmd_list;
+	char			**redir_list;
 	pid_t			pid;
 	int				*type;
 	int				fd[2];
@@ -57,8 +59,9 @@ int		ft_sstrlen(char **str);
 
 void	set_exec_type(t_exec *exec, char **envp);
 bool	check_command(char *inpt, char *args[N_ARGS], char **envp);
+// int		ft_strcmp(char *s1, char *s2);
 
-
+t_exec	*redirection(t_exec *exec);
 
 char	*expansion(char **split);
 int		no_expansion_needed(char *s);
@@ -83,7 +86,10 @@ char	ft_quote(char *s);
 char	*ft_strldup(char *src, ptrdiff_t size);
 bool	execute_pwd(void);
 
-bool  execute_env(char **args);
-bool	execute_unset(char **args);
+bool  	execute_env(char **args);
+int		execute_unset(char **args);
+int		get_outfilefd(char **redir_list);
+int		get_infilefd(char **redir_list);
+bool	get_redirfd(t_exec *exec, int *infilefd, int *outfilefd, char **envp);
 
 #endif
