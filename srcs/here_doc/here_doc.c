@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:50:07 by geibo             #+#    #+#             */
-/*   Updated: 2024/08/04 20:11:16 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/16 14:06:38 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,11 @@ t_exec	*copy_nodes(t_exec *exec)
 	{
 		i = 0;
 		len = ft_sstrlen(temp->cmd);
-		another = join_exec_nodes(another, ft_calloc(len + 1, sizeof(char *)), ft_calloc(len + 1, sizeof(int)));
+		another = join_exec_nodes(another, ft_calloc(len + 1, sizeof(char *)),
+				ft_calloc(len + 1, sizeof(int)));
 		if (!head)
 			head = another;
-		while (temp->cmd[i])
-		{
-			another->cmd[i] = ft_strdup(temp->cmd[i]);
-			i++;
-		}
+		copy_n_paste(another->cmd, temp->cmd, &i);
 		temp = temp->next;
 	}
 	another = head;
@@ -72,7 +69,6 @@ void	open_here_doc_file(t_exec *temp, int *i)
 	char	*str;
 	char	*limiter;
 	char	*tmp1;
-	char	*tmp2;
 	int		count;
 
 	count = 0;
@@ -93,13 +89,7 @@ void	open_here_doc_file(t_exec *temp, int *i)
 			(*i)++;
 		}
 		else
-		{
-			tmp1 = ft_strdup(temp->cmd[*i]);
-			free(temp->cmd[*i]);
-			temp->cmd[*i] = ft_strdup(tmp1);
-			free(tmp1);
-			(*i)++;
-		}
+			handle_not_heredoc(tmp1, temp, i);
 	}
 }
 

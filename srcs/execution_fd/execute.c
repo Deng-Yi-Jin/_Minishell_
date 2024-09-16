@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 09:08:05 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/16 11:11:23 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/16 14:13:54 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ void	execute_last_cmd(t_exec *exec, char **envp, char *command_path)
 	restore_fd(origio[0], origio[1]);
 }
 
-void	start_command_exec(char *command_path, char **envp,
-		t_exec *exec, int saved_stdin)
+void	start_command_exec(char *command_path, char **envp, t_exec *exec,
+		int saved_stdin)
 {
 	t_exec	*current_node;
 

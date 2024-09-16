@@ -6,21 +6,18 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 12:33:37 by root              #+#    #+#             */
-/*   Updated: 2024/09/13 13:44:15 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/16 13:45:24 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdio.h>
 
-	// free(cmd);
 t_ast	*create_ast_node(char *cmd, int type)
 {
 	t_ast	*new_node;
 	char	*tmp;
 
-	// printf("NEW NODE\n");
-	// printf("NEW NODE\n");
 	new_node = malloc(sizeof(t_ast));
 	if (!new_node)
 		return (NULL);

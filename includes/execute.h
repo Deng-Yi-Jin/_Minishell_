@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:54:15 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/16 11:35:04 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/16 14:11:58 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ int		ft_sstrlen(char **str);
 
 void	set_exec_type(t_exec *exec, char **envp);
 bool	check_command(char *inpt, char *args[N_ARGS], char **envp);
-// int		ft_strcmp(char *s1, char *s2);
+void	handle_not_heredoc(char *tmp1, t_exec *temp, int *i);
+void	copy_n_paste(char **another, char **temp, int *i);
 
 t_exec	*redirection(t_exec *exec);
 
@@ -95,5 +96,7 @@ bool	get_redirfd(t_exec *exec, int *infilefd, int *outfilefd, char **envp);
 void	child_outfd_setup(int outfile_fd);
 void	child_infd_setup(int infile_fd);
 pid_t	create_fork(void);
+void	dup2_error(void);
+void	close_fd(int *previous_fd, int *infile_fd);
 
 #endif

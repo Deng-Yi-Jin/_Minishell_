@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 16:09:07 by kytan             #+#    #+#             */
-/*   Updated: 2024/09/07 18:27:43 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/16 14:06:38 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ bool	is_flag(char *str)
 	return (false);
 }
 
-int		set_type(char *cmd, char **envp)
+int	set_type(char *cmd, char **envp)
 {
 	char	*path;
 
@@ -73,4 +73,13 @@ void	set_exec_type(t_exec *exec, char **envp)
 		}
 		temp = temp->next;
 	}
+}
+
+void	handle_not_heredoc(char *tmp1, t_exec *temp, int *i)
+{
+	tmp1 = ft_strdup(temp->cmd[*i]);
+	free(temp->cmd[*i]);
+	temp->cmd[*i] = ft_strdup(tmp1);
+	free(tmp1);
+	(*i)++;
 }

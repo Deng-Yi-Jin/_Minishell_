@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/16 11:26:03 by kytan             #+#    #+#             */
-/*   Updated: 2024/09/16 11:28:29 by kytan            ###   ########.fr       */
+/*   Created: 2024/04/26 16:38:25 by geibo             #+#    #+#             */
+/*   Updated: 2024/09/16 14:09:32 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,27 +39,24 @@ bool	last_cmd(t_exec *exec)
 void	manage_pipe_child(t_exec *exec, int infile_fd, int outfile_fd)
 {
 	if (exec->prev != NULL)
-	{
-		close(exec->prev->fd[1]);
-		if (dup2(exec->prev->fd[0], STDIN_FILENO) == -1)
-		{
-			perror("dup2");
-			exit(EXIT_FAILURE);
-		}
-		close(exec->prev->fd[0]);
-	}
+		close_fd(exec->prev->fd, infile_fd);
 	if (infile_fd != 0)
-		child_infd_setup(infile_fd);
+	{
+		if (dup2(infile_fd, STDIN_FILENO) == -1)
+			dup2_error();
+		close(infile_fd);
+	}
 	close(exec->fd[0]);
 	if (outfile_fd != 0)
-		child_outfd_setup(outfile_fd);
+	{
+		if (dup2(outfile_fd, STDOUT_FILENO) == -1)
+			dup2_error();
+		close(outfile_fd);
+	}
 	else
 	{
 		if (dup2(exec->fd[1], STDOUT_FILENO) == -1)
-		{
-			perror("dup2");
-			exit(EXIT_FAILURE);
-		}
+			dup2_error();
 	}
 	close(exec->fd[1]);
 }

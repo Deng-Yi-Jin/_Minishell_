@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 19:00:34 by sinlee            #+#    #+#             */
-/*   Updated: 2024/09/16 13:35:40 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/16 14:18:14 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,13 +112,8 @@ void	quoting(char *str, int *i, int *count_words, char c)
 	(*count_words)++;
 	while (str[*i] != c && str[*i] != '\0')
 	{
-		// if (str[*i] == '$')
-		// 	dollar(str, i, count_words);
-		// else
-		// {
-			(*i)++;
-			(*count_words)++;
-		// }
+		(*i)++;
+		(*count_words)++;
 	}
 	(*i)++;
 	(*count_words)++;

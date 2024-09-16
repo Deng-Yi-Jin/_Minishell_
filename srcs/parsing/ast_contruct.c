@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast_contruct.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 14:22:26 by djin              #+#    #+#             */
-/*   Updated: 2024/09/15 17:02:07 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/16 14:11:18 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	construct_child_before_pipe(t_ast **ast, char *tmp, bool *is_child)
 	*is_child = false;
 }
 
-void	eldest_child(t_ast **ast, t_token **tokens,
-		bool *create_sibling, char **envp)
+void	eldest_child(t_ast **ast, t_token **tokens, bool *create_sibling,
+		char **envp)
 {
 	char	*exp_cmd;
 	char	*unq_cmd;
@@ -51,13 +51,13 @@ void	eldest_child(t_ast **ast, t_token **tokens,
 		dollar_deal((*ast), create_sibling, envp);
 	}
 	else
-    (*ast)->type = is_command((*tokens)->cmd, envp);
+		(*ast)->type = is_command((*tokens)->cmd, envp);
 	if ((*tokens)->next != NULL && (*tokens)->next->type != PIPE)
 		*create_sibling = true;
 }
 
-void	sibling(t_ast **ast, t_token **tokens,
-		bool *create_sibling, char **envp)
+void	sibling(t_ast **ast, t_token **tokens, bool *create_sibling,
+		char **envp)
 {
 	char	*exp_cmd;
 	char	*unq_cmd;
@@ -80,8 +80,8 @@ void	sibling(t_ast **ast, t_token **tokens,
 		(*ast)->type = is_command((*tokens)->cmd, envp);
 }
 
-void	construct_sibling(t_ast **ast, t_token **tokens,
-		bool *create_sibling, char **envp)
+void	construct_sibling(t_ast **ast, t_token **tokens, bool *create_sibling,
+		char **envp)
 {
 	if (*create_sibling == false)
 		eldest_child(ast, tokens, create_sibling, envp);
