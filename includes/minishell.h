@@ -6,13 +6,19 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:06:06 by sinlee            #+#    #+#             */
-/*   Updated: 2024/09/16 16:47:00 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/16 17:01:12 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include "color.h"
+# include "execute.h"
+# include "libft.h"
+# include "parse.h"
+# include "redir.h"
+# include "tokens.h"
 # include <dirent.h>
 # include <errno.h>
 # include <fcntl.h>
@@ -30,12 +36,6 @@
 # include <term.h>
 # include <termios.h>
 # include <unistd.h>
-# include "color.h"
-# include "execute.h"
-# include "libft.h"
-# include "parse.h"
-# include "redir.h"
-# include "tokens.h"
 
 # define PATH_MAX 4096
 # define LOGIN_NAME_MAX 256
@@ -155,5 +155,12 @@ void			print_token(t_token *tokens, bool to_first, char *str);
 void			test_traverse(void);
 void			print_my_env_vars(void);
 void			del(void *content);
+bool			error_return(t_token **tokens, char *input);
+bool			check_consecutive_tokens(t_token *token, t_token **tokens,
+					char *input);
+bool			check_first_token(t_token *token, t_token **tokens,
+					char *input);
+void			print_error_and_free(const char *error_message,
+					t_token **tokens, char *input);
 
 #endif

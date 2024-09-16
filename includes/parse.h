@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:33:03 by djin              #+#    #+#             */
-/*   Updated: 2024/09/16 16:46:25 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/16 17:01:32 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "tokens.h"
 # include <stdbool.h>
 # include <stddef.h>
+# include <stdlib.h>
 
 typedef struct s_ast
 {
