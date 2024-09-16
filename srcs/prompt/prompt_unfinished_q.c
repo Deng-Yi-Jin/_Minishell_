@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt_unfinished_q.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 08:13:07 by kytan             #+#    #+#             */
-/*   Updated: 2024/08/28 08:13:11 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/16 16:19:59 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,5 @@ char	*prompt_unfinished_q(char *input, char q)
 		input = ft_strfjoin(input, buffer);
 	}
 	free(buffer);
-	return (input);;
+	return (input);
 }

@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 21:05:51 by root              #+#    #+#             */
-/*   Updated: 2024/09/10 18:04:55 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/16 16:25:38 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,12 @@
 
 void	quotation(char *input, int *i, int *count_words, char c)
 {
-	// if (input[*i] == '\'')
-	// 	quoting(input, i, count_words, '\'');
-	// // else 
-		
-	// // else if (input[*i] == '`')
-	// // 	quoting(input, i, count_words, '`');
-	// else
-	// {
-		while (ft_symbol(input[*i]) == false && input[*i])
-		{
-			(*i)++;
-			(*count_words)++;
-		}
-	// }
-} //redo this function or fix it
+	while (ft_symbol(input[*i]) == false && input[*i])
+	{
+		(*i)++;
+		(*count_words)++;
+	}
+}
 
 void	start_lex(char *input, t_token **tokens)
 {
@@ -56,16 +47,16 @@ void	lexing(char *input, t_token **tokens, int *i, int *count_words)
 	{
 		j = *i;
 		dollar(input, i, count_words);
-		(*tokens) = \
-		add_tokens((*tokens), ft_substr(input, j, (*count_words) + 1), DOLLAR);
+		(*tokens) = add_tokens((*tokens), ft_substr(input, j, (*count_words)
+					+ 1), DOLLAR);
 	}
 	if (ft_symbol(input[*i]) == false && input[*i])
 	{
 		j = *i;
 		if (ft_symbol(input[*i]) == false && input[*i])
 			quotation(input, i, count_words, input[*i]);
-		(*tokens) = \
-		add_tokens((*tokens), ft_substr(input, j, *count_words), CMD);
+		(*tokens) = add_tokens((*tokens), ft_substr(input, j, *count_words),
+				CMD);
 	}
 	if (input[*i] == '>' || input[*i] == '<')
 		ft_redir(input, i, tokens);

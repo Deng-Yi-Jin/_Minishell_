@@ -6,15 +6,18 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:54:15 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/16 15:35:34 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/16 16:46:00 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXECUTE_H
 # define EXECUTE_H
 
-# include "minishell.h"
+// # include "minishell.h"
+# include "parse.h"
+# define N_ARGS 2560
 # include <stddef.h>
+# include <stdbool.h>
 
 typedef struct s_exec
 {

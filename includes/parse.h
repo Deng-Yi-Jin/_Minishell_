@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:33:03 by djin              #+#    #+#             */
-/*   Updated: 2024/09/16 09:30:33 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/16 16:46:25 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 #  define BUFFER_SIZE 1024
 # endif
 
-# include "minishell.h"
+# include "tokens.h"
+# include <stdbool.h>
+# include <stddef.h>
 
 typedef struct s_ast
 {
