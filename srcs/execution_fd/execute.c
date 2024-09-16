@@ -6,13 +6,13 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 09:08:05 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/16 14:53:02 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/16 15:30:41 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	execution(t_exec *exec, char **envp, char *command_path)
+bool	execution(t_exec *exec, char **envp, char *command_path)
 {
 	int	i;
 	int	infilefd;
@@ -22,7 +22,7 @@ void	execution(t_exec *exec, char **envp, char *command_path)
 
 	i = 0;
 	if (get_redirfd(exec, &infilefd, &outfilefd, envp) == false)
-		return ;
+		return (false);
 	origstdin = dup(STDIN_FILENO);
 	origstdout = dup(STDOUT_FILENO);
 	i = return_after_redir(exec, i);
@@ -38,9 +38,10 @@ void	execution(t_exec *exec, char **envp, char *command_path)
 	if (exec->outfile != 0)
 		close(exec->outfile);
 	restore_fd(origstdin, origstdout);
+	return (true);
 }
 
-void	execute_last_cmd(t_exec *exec, char **envp, char *command_path)
+bool	execute_last_cmd(t_exec *exec, char **envp, char *command_path)
 {
 	int	i;
 	int	origio[2];
@@ -48,7 +49,8 @@ void	execute_last_cmd(t_exec *exec, char **envp, char *command_path)
 	int	outfile;
 
 	i = 0;
-	get_redirfd(exec, &infile, &outfile, envp);
+	if (get_redirfd(exec, &infile, &outfile, envp) == false)
+		return (false);
 	init_origio(origio);
 	manage_lastcmdredir(exec, infile, outfile);
 	if (check_command(exec->cmd_list[i], exec->cmd_list, envp)
@@ -80,10 +82,14 @@ void	start_command_exec(char *command_path, char **envp, t_exec *exec,
 		{
 			if (pipe(current_node->fd) == -1)
 				exit(-1);
-			execution(current_node, envp, command_path);
+			if (execution(current_node, envp, command_path) == false)
+				break ;
 		}
 		else
-			execute_last_cmd(current_node, envp, command_path);
+		{
+			if (execute_last_cmd(current_node, envp, command_path) == false)
+				break ;
+		}
 		current_node = current_node->next;
 	}
 	while (wait(NULL) > 0)

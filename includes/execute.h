@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:54:15 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/16 14:29:19 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/16 15:35:34 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ bool				add_cmd_to_db_lst(t_ast **ast, t_exec *exec, int depth);
 t_exec				*join_exec_nodes(t_exec *exec, char **cmd, int *type);
 t_exec				*executing(t_ast **ast, t_exec *exec);
 void				exec_pipe(t_exec *exec, char **envp, char *command_path);
-void				execution(t_exec *exec, char **envp, char *command_path);
+bool				execution(t_exec *exec, char **envp, char *command_path);
 void				free_exec(t_exec *exec);
 void				print_exec(t_exec *exec);
 
@@ -95,8 +95,7 @@ int					execute_unset(char **args);
 
 int					get_outfilefd(char **redir_list);
 int					get_infilefd(char **redir_list);
-bool				get_redirfd(t_exec *exec, int *infilefd, int *outfilefd,
-						char **envp);
+bool	get_redirfd(t_exec *exec, int *infilefd, int *outfilefd, char **envp);
 
 void				child_outfd_setup(int outfile_fd);
 void				child_infd_setup(int infile_fd);

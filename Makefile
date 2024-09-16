@@ -6,7 +6,7 @@
 #    By: geibo <geibo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 06:55:38 by codespace         #+#    #+#              #
-#    Updated: 2024/09/16 14:42:07 by geibo            ###   ########.fr        #
+#    Updated: 2024/09/16 15:33:54 by geibo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ SRCS_FILES = $(addprefix $(MAIN_DIR)/, main.c initialize.c signals.c prompt.c) \
 			 $(addprefix $(PARSE_DIR)/, parse_linked_list.c parse.c ast_contruct.c parse_utils.c) \
 			 $(addprefix $(TRAVERSE_DIR)/, traverse.c traversing.c exec_utils.c) \
 			 $(addprefix $(REDIR_DIR)/, redirection.c redir_bool.c redirection_utils.c) \
-			 $(addprefix $(EXECUTION_DIR)/, execute.c execute_utils.c execute_utils1.c fd_execution.c execute_utils2.c execute_utils3.c execute_utils4.c) \
+			 $(addprefix $(EXECUTION_DIR)/, execute.c execute_utils.c execute_utils1.c fd_execution.c execute_utils2.c execute_utils3.c execute_utils4.c execute_utils5.c) \
 			 $(addprefix $(HERE_DOC)/, here_doc.c here_doc_utils.c here_doc_utils2.c) \
 			 $(addprefix $(PROMPT)/, prompt_unfinished_q.c)
 
