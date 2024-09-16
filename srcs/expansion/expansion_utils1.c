@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 08:42:02 by kytan             #+#    #+#             */
-/*   Updated: 2024/09/15 19:11:08 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/16 14:03:20 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 size_t	calc_envlen(char *s, int *i)
 {
-	int				j;
-	char			*env_key;
+	int			j;
+	char		*env_key;
 	t_env_var	*env_token;
 	size_t		envlen;
 
@@ -27,11 +27,8 @@ size_t	calc_envlen(char *s, int *i)
 	j = *i;
 	while (ft_isalnum(s[*i]))
 		(*i)++;
-	env_key = ft_substr(s, (unsigned int)j,(size_t)(*i - j));
+	env_key = ft_substr(s, (unsigned int)j, (size_t)(*i - j));
 	env_token = find_env_vars(env_key);
-	// if (!env_token)
-	// 	envlen = 1;
-	// else
 	if (env_token)
 		envlen += ft_strlen(env_token->value);
 	free(env_key);
@@ -40,7 +37,7 @@ size_t	calc_envlen(char *s, int *i)
 
 size_t	calc_envsize(char *split_q)
 {
-	int			i;
+	int		i;
 	size_t	size;
 
 	i = 0;
@@ -71,19 +68,17 @@ char	*extract_key(char *env_s)
 	while (*env_s && ft_isalnum(*env_s))
 		env_s++;
 	extract = ft_strldup(start, (env_s - start) + 1);
-	// printf("extract = %s\n", extract);
 	return (extract);
 }
 
 char	*extract_value(char *env_key)
 {
 	t_env_var	*env_token;
-	char			*env_value;
+	char		*env_value;
 
 	env_token = find_env_vars(env_key);
 	if (!env_token)
 		return ("");
 	env_value = env_token->value;
-	// printf("env_val = %s\n", env_value);
 	return (env_value);
 }

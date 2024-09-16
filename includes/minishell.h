@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:06:06 by sinlee            #+#    #+#             */
-/*   Updated: 2024/09/16 09:28:38 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/16 11:02:13 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,9 @@ void		parse_input(char *input, char **envp);
 
 void		init_new_env_var(t_env_var **new_env_vars, int num_env_vars,
 				char *key, char *value);
+void		init_null_env_var(t_env_var **new_env_vars, int num_env_vars,
+				char *key, char *value);
+size_t	new_vars_ct(char *unset_key);
 
 void		add_env_vars(char *key, char *value);
 void		modify_env_vars(char *key, char *value);

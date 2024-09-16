@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 09:08:05 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/15 18:15:50 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/16 11:11:23 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,10 @@ void	execute_last_cmd(t_exec *exec, char **envp, char *command_path)
 	get_redirfd(exec, &infile, &outfile, envp);
 	init_origio(origio);
 	manage_lastcmdredir(exec, infile, outfile);
-	if (check_command(exec->cmd_list[i], exec->cmd_list, envp) && exec->prev == NULL)
-		g_main->nuclear_status = execute_builtin(exec->cmd_list[i], exec->cmd_list, envp);
+	if (check_command(exec->cmd_list[i], exec->cmd_list, envp)
+		&& exec->prev == NULL)
+		g_main->nuclear_status = execute_builtin(exec->cmd_list[i],
+				exec->cmd_list, envp);
 	else
 	{
 		if (create_fork() == 0)

@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:54:15 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/16 04:34:50 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/16 11:35:04 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,9 @@ int		execute_unset(char **args);
 int		get_outfilefd(char **redir_list);
 int		get_infilefd(char **redir_list);
 bool	get_redirfd(t_exec *exec, int *infilefd, int *outfilefd, char **envp);
+
+void	child_outfd_setup(int outfile_fd);
+void	child_infd_setup(int infile_fd);
+pid_t	create_fork(void);
 
 #endif
