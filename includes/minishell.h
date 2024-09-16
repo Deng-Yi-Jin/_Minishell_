@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:06:06 by sinlee            #+#    #+#             */
-/*   Updated: 2024/09/16 03:38:56 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/16 09:28:38 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ typedef struct s_main
 
 extern t_main	*g_main;
 
-char	*new_line(char *input, char c);
-bool	is_bracket(char c);
-char	*error_bracket(char	**split, int word);
+char		*new_line(char *input, char c);
+bool		is_bracket(char c);
+char		*error_bracket(char	**split, int word);
 
 char		*dquote(char *input);
 
@@ -81,8 +81,8 @@ char		*find_command_path(char *command, char **envp);
 int			is_command(char *cmd, char **envp);
 void		parse_input(char *input, char **envp);
 
-void		init_new_env_var(t_env_var **new_env_vars, int num_env_vars, char *key,
-			char *value);
+void		init_new_env_var(t_env_var **new_env_vars, int num_env_vars,
+				char *key, char *value);
 
 void		add_env_vars(char *key, char *value);
 void		modify_env_vars(char *key, char *value);
@@ -109,7 +109,7 @@ void		*ft_malloc(size_t size);
 
 /* NEW UTILS ADDED FOR EXPANSION */
 
-char	*ft_strfjoin(char *s1, char *s2);
+char		*ft_strfjoin(char *s1, char *s2);
 
 // Token linked listfunctions
 t_token		*lst_first_last(t_token *tokens, bool is_last);
@@ -146,6 +146,6 @@ char		*trim_quotation(char *str);
 void		print_token(t_token *tokens, bool to_first, char *str);
 
 void		test_traverse(void);
-void    print_my_env_vars(void);
+void		print_my_env_vars(void);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:33:03 by djin              #+#    #+#             */
-/*   Updated: 2024/09/10 13:36:34 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/16 09:30:33 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char	*add_cmd(t_ast *current_node, char **envp);
 
 char	*execute_parent_process(t_execute *execute);
 char	*handle_fork(t_execute *execute, char *command_path,
-		char **cmd, char **envp);
+			char **cmd, char **envp);
 void	dollar_deal(t_ast *ast, bool create_sibling, char **envp);
 char	*init_dollar(t_ast *ast);
 void	build_dollar(char *strtrim, t_ast *ast,

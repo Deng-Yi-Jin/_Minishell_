@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:54:15 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/15 17:08:04 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/16 04:34:50 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 # define EXECUTE_H
 
 # include "minishell.h"
-
 # include <stddef.h>
+
 typedef struct s_exec
 {
-	char			**cmd;
-	struct	s_exec	*next;
-	struct	s_exec	*prev;
-	char			**cmd_list;
-	char			**redir_list;
-	pid_t			pid;
-	int				*type;
-	int				fd[2];
-	int				infile;
-	int				outfile;
+	char						**cmd;
+	struct s_exec		*next;
+	struct s_exec		*prev;
+	char						**cmd_list;
+	char						**redir_list;
+	pid_t						pid;
+	int							*type;
+	int							fd[2];
+	int							infile;
+	int							outfile;
 }	t_exec;
 
 t_exec	*create_exec_node(char **cmd, int *type);
@@ -81,11 +81,9 @@ size_t	calc_envlen(char *s, int *i);
 char	*extract_key(char *env_s);
 char	*extract_value(char *env_key);
 
-
 char	ft_quote(char *s);
 char	*ft_strldup(char *src, ptrdiff_t size);
-int	execute_pwd(void);
-
+int		execute_pwd(void);
 
 int		execute_env(char **args);
 int		execute_unset(char **args);
