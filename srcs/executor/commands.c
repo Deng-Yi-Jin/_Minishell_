@@ -1,32 +1,22 @@
 /* ************************************************************************** */
-/*		*/
-/*		:::			::::::::	 */
-/*	 commands.c		 :+:			:+:		:+:	 */
-/*		+:+ +:+		 +:+		 */
-/*	 By: kytan <kytan@student.42kl.edu.my>			+#+	+:+			 +#+		*/
-/*		+#+#+#+#+#+	 +#+			 */
-/*	 Created: 2023/08/14 13:58:35 by codespace		 #+#		#+#		 */
-/*	 Updated: 2024/09/07 18:29:28 by kytan		###	 ########.fr			 */
-/*		*/
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   commands.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/16 15:48:47 by kytan             #+#    #+#             */
+/*   Updated: 2024/09/16 15:58:26 by kytan            ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*find_command_path(char *command, char **envp)
+char	*valid_cmd_path(char *path, char *command)
 {
-	char	*path_env;
-	char	*path;
 	char	*token;
-	char		full_path[PATH_MAX];
+	char	full_path[PATH_MAX];
 
-	if ((command[0] == '.' && command[1] == '/' && !access(command+2, X_OK)))
-		return (ft_strdup(command+2));
-	if (!access(command, X_OK))
-		return (ft_strdup(command));
-	path_env = getenv("PATH");
-	if (path_env == NULL)
-		return (NULL);
-	path = ft_strdup(path_env);
 	token = strtok(path, ":");
 	while (token != NULL)
 	{
@@ -42,6 +32,22 @@ char	*find_command_path(char *command, char **envp)
 	return (NULL);
 }
 
+char	*find_command_path(char *command, char **envp)
+{
+	char	*path_env;
+	char	*path;
+
+	if ((command[0] == '.' && command[1] == '/' && !access(command + 2, X_OK)))
+		return (ft_strdup(command + 2));
+	if (!access(command, X_OK))
+		return (ft_strdup(command));
+	path_env = getenv("PATH");
+	if (path_env == NULL)
+		return (NULL);
+	path = ft_strdup(path_env);
+	return (valid_cmd_path(path, command));
+}
+
 int	execute_builtin(char *inpt, char *args[N_ARGS], char **envp)
 {
 	if (!ft_strcmp(inpt, "exit"))
@@ -54,7 +60,7 @@ int	execute_builtin(char *inpt, char *args[N_ARGS], char **envp)
 		return (execute_export(args));
 	else if (ft_strcmp(inpt, "unset") == 0)
 		return (execute_unset(args));
-	else if(ft_strcmp(inpt, "echo") == 0)
+	else if (ft_strcmp(inpt, "echo") == 0)
 		return (execute_echo(args));
 	else if (ft_strcmp(inpt, "pwd") == 0)
 		return (execute_pwd());
@@ -68,10 +74,10 @@ int	execute_builtin(char *inpt, char *args[N_ARGS], char **envp)
 bool	is_builtin(char *command)
 {
 	if (!ft_strcmp(command, "exit") || !ft_strcmp(command, "cd")
-	|| !ft_strcmp(command, "fancy") || !ft_strcmp(command, "quotes")
-	|| !ft_strcmp(command, "export") || !ft_strcmp(command, "unset")
-	|| !ft_strcmp(command, "echo") || !ft_strcmp(command, "pwd")
-	|| !ft_strcmp(command, "env"))
+		|| !ft_strcmp(command, "fancy") || !ft_strcmp(command, "quotes")
+		|| !ft_strcmp(command, "export") || !ft_strcmp(command, "unset")
+		|| !ft_strcmp(command, "echo") || !ft_strcmp(command, "pwd")
+		|| !ft_strcmp(command, "env"))
 		return (true);
 	return (false);
 }

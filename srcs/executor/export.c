@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 11:32:57 by sinlee            #+#    #+#             */
-/*   Updated: 2024/09/16 03:17:45 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/16 16:25:36 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,34 +45,37 @@ void	export_env(char *key, char *value)
 		add_env_vars(ft_strdup(key), ft_strdup(value));
 }
 
-int	execute_export(char **args)
+int	exec_export(char **args)
 {
 	int		i;
 	char	*ptr;
 
 	i = 0;
+	while (args[++i] != NULL)
+	{
+		ptr = ft_strchr(args[i], '=');
+		if (ptr)
+		{
+			*ptr = '\0';
+			ptr++;
+			if (!is_valid_identifier(args[i]))
+			{
+				printf("%sexport: `%s': not a valid identifier\n%s", RED,
+					args[i], RESET_COLOR);
+				return (EXIT_FAILURE);
+			}
+			export_env(args[i], ptr);
+		}
+		else
+			export_env(args[i], "");
+	}
+}
+
+int	execute_export(char **args)
+{
 	if (args[1] == NULL)
 		print_env_vars();
 	else
-	{
-		while (args[++i] != NULL)
-		{
-			ptr = ft_strchr(args[i], '=');
-			if (ptr)
-			{
-				*ptr = '\0';
-				ptr++;
-				if (!is_valid_identifier(args[i]))
-				{
-					printf("%sexport: `%s': not a valid identifier\n%s", RED,
-						args[i], RESET_COLOR);
-					return (EXIT_FAILURE);
-				}
-				export_env(args[i], ptr);
-			}
-			else
-				export_env(args[i], "");
-		}
-	}
+		return (exec_export(args));
 	return (EXIT_SUCCESS);
 }
