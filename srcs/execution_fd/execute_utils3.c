@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 19:01:41 by kytan             #+#    #+#             */
-/*   Updated: 2024/09/16 14:10:03 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/16 14:53:20 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,5 @@ bool	get_redirfd(t_exec *exec, int *infilefd, int *outfilefd, char **envp)
 		free(exec->redir_list[1]);
 		free(exec->redir_list);
 	}
+	return (true);
 }

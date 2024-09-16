@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 09:08:05 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/16 14:13:54 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/16 14:53:02 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	execution(t_exec *exec, char **envp, char *command_path)
 	int	origstdout;
 
 	i = 0;
-	get_redirfd(exec, &infilefd, &outfilefd, envp);
+	if (get_redirfd(exec, &infilefd, &outfilefd, envp) == false)
+		return ;
 	origstdin = dup(STDIN_FILENO);
 	origstdout = dup(STDOUT_FILENO);
 	i = return_after_redir(exec, i);

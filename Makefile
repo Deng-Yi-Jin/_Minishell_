@@ -6,7 +6,7 @@
 #    By: geibo <geibo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 06:55:38 by codespace         #+#    #+#              #
-#    Updated: 2024/09/16 14:00:41 by geibo            ###   ########.fr        #
+#    Updated: 2024/09/16 14:42:07 by geibo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ PROMPT = prompt
 SRCS_FILES = $(addprefix $(MAIN_DIR)/, main.c initialize.c signals.c prompt.c) \
 			 $(addprefix $(DQUOTE)/, dquote.c dquote_utils.c rm_quote.c dquote_utils1.c) \
 			 $(addprefix $(DOLLAR)/, dollar_sign.c dollar_utils.c dollar_execute_utils.c fork_utils.c) \
-			 $(addprefix $(UTILS_DIR)/, misc.c ft_snprintf.c ft_malloc.c ft_isunclosed_q.c ft_strfjoin.c) \
+			 $(addprefix $(UTILS_DIR)/, misc.c ft_snprintf.c ft_malloc.c ft_strfjoin.c) \
 			 $(addprefix $(ENV_DIR)/, env.c env_utils.c env_utils1.c) \
 			 $(addprefix $(EXPAND)/, expansion.c env_expansion.c expansion_utils1.c expansion_utils2.c) \
 			 $(addprefix $(GNL)/, get_next_line.c) \
@@ -48,7 +48,7 @@ SRCS_FILES = $(addprefix $(MAIN_DIR)/, main.c initialize.c signals.c prompt.c) \
 			 $(addprefix $(LEXER_DIR)/, lexer.c lexer_linked_list.c lexer_linked_list_utils.c lexing_utils.c lexer_check_separator.c trim_quotation.c) \
 			 $(addprefix $(PARSE_DIR)/, parse_linked_list.c parse.c ast_contruct.c parse_utils.c) \
 			 $(addprefix $(TRAVERSE_DIR)/, traverse.c traversing.c exec_utils.c) \
-			 $(addprefix $(REDIR_DIR)/, redirection.c redir_bool.c) \
+			 $(addprefix $(REDIR_DIR)/, redirection.c redir_bool.c redirection_utils.c) \
 			 $(addprefix $(EXECUTION_DIR)/, execute.c execute_utils.c execute_utils1.c fd_execution.c execute_utils2.c execute_utils3.c execute_utils4.c) \
 			 $(addprefix $(HERE_DOC)/, here_doc.c here_doc_utils.c here_doc_utils2.c) \
 			 $(addprefix $(PROMPT)/, prompt_unfinished_q.c)

@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 05:36:16 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/15 17:29:42 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/16 14:24:46 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,10 @@ t_exec	*create_exec_node(char **cmd, int *type)
 {
 	t_exec	*new_node;
 
-	// printf("NEW EXEC NODE\n");
 	new_node = ft_calloc(1, sizeof(t_exec));
 	if (!new_node)
 		return (NULL);
 	new_node->cmd = cmd;
-	// printf("cmd = %p", cmd);
 	new_node->type = type;
 	new_node->next = NULL;
 	new_node->prev = NULL;
@@ -32,7 +30,7 @@ t_exec	*create_exec_node(char **cmd, int *type)
 	return (new_node);
 }
 
-t_exec *join_exec_nodes(t_exec *exec, char **cmd, int *type)
+t_exec	*join_exec_nodes(t_exec *exec, char **cmd, int *type)
 {
 	t_exec	*new_node;
 
@@ -56,7 +54,7 @@ void	free_exec(t_exec *exec)
 	{
 		tmp = exec->next;
 		i = 0;
-		while ((exec->cmd && exec->cmd[i] ))
+		while ((exec->cmd && exec->cmd[i]))
 		{
 			free(exec->cmd[i]);
 			i++;

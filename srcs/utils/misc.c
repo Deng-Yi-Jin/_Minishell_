@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   misc.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:18:19 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/07 18:25:25 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/16 14:40:49 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	error_exit(char *str, bool is_perror)
 	free(msg);
 	exit(errno);
 }
+
 void	exit_success(void)
 {
 	printf("%sBELLA CIAO%s\n", BLUE_BOLD, RESET_COLOR);
