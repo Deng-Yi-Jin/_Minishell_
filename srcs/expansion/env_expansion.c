@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 08:37:26 by kytan             #+#    #+#             */
-/*   Updated: 2024/09/15 19:16:42 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/16 12:00:56 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ char	*exp_dollar_env(char *env_v, char *output, int *j, size_t size)
 	char			*start;
 	char			*env_key;
 	char			*env_val;
-	int				written;
 
 	if (!env_v || !env_v[0])
 		return (0);
@@ -47,15 +46,9 @@ char	*exp_dollar_env(char *env_v, char *output, int *j, size_t size)
 	env_val = extract_value(env_key);
 	free(env_key);
 	if (env_val[0] && env_val)
-	{
-		written = snprintf(output, size - *j, "%s", env_val);
-		*j += written;
-	}
+		*j += snprintf(output, size - *j, "%s", env_val);
 	else
-	{
-		written = snprintf(output, size - *j, "$");
-		*j += written;
-	}
+		*j += snprintf(output, size - *j, "$");
 	return (env_v);
 }
 
@@ -76,7 +69,7 @@ char	*cp_to_expanded(char *split_q, char *output, size_t size)
 
 char	*expanded(char *split_q)
 {
-	char		*output;
+	char	*output;
 	size_t	size;
 
 	size = calc_envsize(split_q);
@@ -85,4 +78,3 @@ char	*expanded(char *split_q)
 	free(split_q);
 	return (output);
 }
-

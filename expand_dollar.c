@@ -6,159 +6,159 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:06:00 by geibo             #+#    #+#             */
-/*   Updated: 2024/09/15 16:43:41 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/16 09:44:46 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "minishell.h"
 
-int	no_expansion_needed(char *s)
-{
-	return (!ft_strchr(s, '$') && !ft_strchr(s, '\"') && !ft_strchr(s, '\''));
-}
+// int	no_expansion_needed(char *s)
+// {
+// 	return (!ft_strchr(s, '$') && !ft_strchr(s, '\"') && !ft_strchr(s, '\''));
+// }
 
-char	ft_quote(char *s)
-{
-	while (*s)
-	{
-		if (*s == '\"' || *s == '\'')
-			return (*s);
-		s++;
-	}
-	return (0);
-}
+// char	ft_quote(char *s)
+// {
+// 	while (*s)
+// 	{
+// 		if (*s == '\"' || *s == '\'')
+// 			return (*s);
+// 		s++;
+// 	}
+// 	return (0);
+// }
 
-char	*ft_strldup(char *src, ptrdiff_t size)
-{
-	char	*dup;
-	int		i;
+// char	*ft_strldup(char *src, ptrdiff_t size)
+// {
+// 	char	*dup;
+// 	int		i;
 
-	i = 0;
-	if (size <= 0 || !src)
-		return (0);
-	dup = malloc(size * sizeof(char));
-	if (!dup)
-		return (0);
-	while (*src && i + 1 < size)
-		dup[i++] = *src++;
-	if (i < size)
-		dup[i] = '\0';
-	return (dup);
-}
+// 	i = 0;
+// 	if (size <= 0 || !src)
+// 		return (0);
+// 	dup = malloc(size * sizeof(char));
+// 	if (!dup)
+// 		return (0);
+// 	while (*src && i + 1 < size)
+// 		dup[i++] = *src++;
+// 	if (i < size)
+// 		dup[i] = '\0';
+// 	return (dup);
+// }
 
-char	*extract_env(char *s)
-{
-	char	*env_s;
-	char	*extract;
+// char	*extract_env(char *s)
+// {
+// 	char	*env_s;
+// 	char	*extract;
 
-	if (!s || !s[0])
-		return (0);
-	if (*s == '$')
-		s++;
-	env_s = s;
-	while (*s && ft_isalnum(*s))
-		s++;
-	extract = ft_strldup(env_s, (s - env_s) + 1);
-	return (extract);
-}
+// 	if (!s || !s[0])
+// 		return (0);
+// 	if (*s == '$')
+// 		s++;
+// 	env_s = s;
+// 	while (*s && ft_isalnum(*s))
+// 		s++;
+// 	extract = ft_strldup(env_s, (s - env_s) + 1);
+// 	return (extract);
+// }
 
-size_t	expanded_len(char *s, char q)
-{
-	size_t		env_len;
-	char		*env;
-	t_env_var	*env_token;
+// size_t	expanded_len(char *s, char q)
+// {
+// 	size_t		env_len;
+// 	char		*env;
+// 	t_env_var	*env_token;
 
-	env_len = 0;
-	while (*s)
-	{
-		if (*s == '$' && q != '\"')
-		{
-			env = extract_env(++s);
-			env_token = find_env_vars(env);
-			if (!env_token)
-				return (0);
-			env_len += ft_strlen(env_token->value);
-			s += ft_strlen(env);
-			q = ft_quote(s);
-			free(env);
-		}
-		else if (*s != q)
-			env_len++;
-		s++;
-	}
-	return (env_len);
-}
+// 	env_len = 0;
+// 	while (*s)
+// 	{
+// 		if (*s == '$' && q != '\"')
+// 		{
+// 			env = extract_env(++s);
+// 			env_token = find_env_vars(env);
+// 			if (!env_token)
+// 				return (0);
+// 			env_len += ft_strlen(env_token->value);
+// 			s += ft_strlen(env);
+// 			q = ft_quote(s);
+// 			free(env);
+// 		}
+// 		else if (*s != q)
+// 			env_len++;
+// 		s++;
+// 	}
+// 	return (env_len);
+// }
 
-void	cp_to_output(char *dst, char *src, char q)
-{
-	size_t		env_len;
-	size_t		copied;
-	char		*env;
-	t_env_var	*env_token;
+// void	cp_to_output(char *dst, char *src, char q)
+// {
+// 	size_t		env_len;
+// 	size_t		copied;
+// 	char		*env;
+// 	t_env_var	*env_token;
 
-	env_len = 0;
-	while (*src)
-	{
-		if (*src == '$' && q != '\'')
-		{
-			env = extract_env(++src);
-			env_token = find_env_vars(env);
-			env_len = ft_strlen(env_token->value);
-			copied = ft_strlcpy(dst, env_token->value, env_len + 1);
-			src += ft_strlen(env);
-			q = ft_quote(src);
-			dst += copied;
-			free(env);
-		}
-		if (*src != q)
-			*dst++ = *src;
-		src++;
-	}
-	*dst = '\0';
-}
-
-
-/**
- * This function joins together all of the strings
- * in `split` with no delimiters in between each
- * string and frees up the array of strings
- *
- * @param split array of strings
- * @returns concatatonation of all the strings in `split`
- */
-char	*full_expansion(char *split)
-{
-	char	*output;
-	int		i;
-
-	i = 0;
-	while (split[++i])
-	{
-		output = ft_strfjoin(output, split[i]);
-		if (split[i + 1] != NULL)
-			output = ft_strfjoin(output, " ");
-	}
-	return (output);
-}
+// 	env_len = 0;
+// 	while (*src)
+// 	{
+// 		if (*src == '$' && q != '\'')
+// 		{
+// 			env = extract_env(++src);
+// 			env_token = find_env_vars(env);
+// 			env_len = ft_strlen(env_token->value);
+// 			copied = ft_strlcpy(dst, env_token->value, env_len + 1);
+// 			src += ft_strlen(env);
+// 			q = ft_quote(src);
+// 			dst += copied;
+// 			free(env);
+// 		}
+// 		if (*src != q)
+// 			*dst++ = *src;
+// 		src++;
+// 	}
+// 	*dst = '\0';
+// }
 
 
-char	*dollar_q_expansion(char **split_q, char *s)
-{
-	char		*output;
-	int			i;
-	int			flag;
+// /**
+//  * This function joins together all of the strings
+//  * in `split` with no delimiters in between each
+//  * string and frees up the array of strings
+//  *
+//  * @param split array of strings
+//  * @returns concatatonation of all the strings in `split`
+//  */
+// char	*full_expansion(char *split)
+// {
+// 	char	*output;
+// 	int		i;
 
-	i = -1;
-	flag = 0;
-	while (split_q[++i])
-	{
-		if (ft_strchr(split_q[i], '$'))
-			split_q[i] = expanded(split_q[i]);
-	}
-	output = full_expansion(split_q);
-	return (output);
-}
+// 	i = 0;
+// 	while (split[++i])
+// 	{
+// 		output = ft_strfjoin(output, split[i]);
+// 		if (split[i + 1] != NULL)
+// 			output = ft_strfjoin(output, " ");
+// 	}
+// 	return (output);
+// }
+
+
+// char	*dollar_q_expansion(char **split_q, char *s)
+// {
+// 	char		*output;
+// 	int			i;
+// 	int			flag;
+
+// 	i = -1;
+// 	flag = 0;
+// 	while (split_q[++i])
+// 	{
+// 		if (ft_strchr(split_q[i], '$'))
+// 			split_q[i] = expanded(split_q[i]);
+// 	}
+// 	output = full_expansion(split_q);
+// 	return (output);
+// }
 
 // char	*env_expansion(char **split)
 // {

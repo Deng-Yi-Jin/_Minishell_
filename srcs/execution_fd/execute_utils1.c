@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_utils1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 10:28:31 by geibo             #+#    #+#             */
-/*   Updated: 2024/09/15 17:41:40 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/16 11:26:40 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,5 @@ void	init_origio(int origio[])
 void	restore_fd(int origstdin, int origstdout)
 {
 	dup2(origstdin, STDIN_FILENO);
-	// close(origstdin);
 	dup2(origstdout, STDOUT_FILENO);
-	// close(origstdout);
 }

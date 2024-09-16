@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/26 16:38:25 by geibo             #+#    #+#             */
-/*   Updated: 2024/09/15 18:09:53 by geibo            ###   ########.fr       */
+/*   Created: 2024/09/16 11:26:03 by kytan             #+#    #+#             */
+/*   Updated: 2024/09/16 11:28:29 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	run_cmd(char **envp, t_exec *exec, char *command_path, int *i)
 {
-	if (check_command(exec->cmd_list[*i], exec->cmd_list, envp) && exec->prev == NULL)
+	if (check_command(exec->cmd_list[*i], exec->cmd_list, envp)
+		&& exec->prev == NULL)
 		check_match_cmd(exec, envp, i);
 	else if (!check_command(exec->cmd_list[*i], exec->cmd_list, envp))
 	{
@@ -30,19 +31,6 @@ void	run_cmd(char **envp, t_exec *exec, char *command_path, int *i)
 	}
 }
 
-pid_t	create_fork(void)
-{
-	pid_t	pid;
-
-	pid = fork();
-	if (pid == -1)
-	{
-		perror("fork");
-		exit(1);
-	}
-	return (pid);
-}
-
 bool	last_cmd(t_exec *exec)
 {
 	return (exec->next == NULL);
@@ -50,48 +38,30 @@ bool	last_cmd(t_exec *exec)
 
 void	manage_pipe_child(t_exec *exec, int infile_fd, int outfile_fd)
 {
-if (exec->prev != NULL)
-{
-    close(exec->prev->fd[1]);
-    if (dup2(exec->prev->fd[0], STDIN_FILENO) == -1)
-    {
-        perror("dup2");
-        exit(EXIT_FAILURE);
-    }
-    close(exec->prev->fd[0]);
-}
-
-if (infile_fd != 0)
-{
-    if (dup2(infile_fd, STDIN_FILENO) == -1)
-    {
-        perror("dup2");
-        exit(EXIT_FAILURE);
-    }
-    close(infile_fd);
-}
-
-close(exec->fd[0]);
-
-if (outfile_fd != 0)
-{
-    if (dup2(outfile_fd, STDOUT_FILENO) == -1)
-    {
-        perror("dup2");
-        exit(EXIT_FAILURE);
-    }
-    close(outfile_fd);
-}
-else
-{
-    if (dup2(exec->fd[1], STDOUT_FILENO) == -1)
-    {
-        perror("dup2");
-        exit(EXIT_FAILURE);
-    }
-}
-
-close(exec->fd[1]);
+	if (exec->prev != NULL)
+	{
+		close(exec->prev->fd[1]);
+		if (dup2(exec->prev->fd[0], STDIN_FILENO) == -1)
+		{
+			perror("dup2");
+			exit(EXIT_FAILURE);
+		}
+		close(exec->prev->fd[0]);
+	}
+	if (infile_fd != 0)
+		child_infd_setup(infile_fd);
+	close(exec->fd[0]);
+	if (outfile_fd != 0)
+		child_outfd_setup(outfile_fd);
+	else
+	{
+		if (dup2(exec->fd[1], STDOUT_FILENO) == -1)
+		{
+			perror("dup2");
+			exit(EXIT_FAILURE);
+		}
+	}
+	close(exec->fd[1]);
 }
 
 void	manage_pipe_parent(t_exec *exec)
