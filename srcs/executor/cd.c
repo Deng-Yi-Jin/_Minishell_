@@ -6,17 +6,33 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 16:27:48 by kytan             #+#    #+#             */
-/*   Updated: 2024/09/16 03:12:25 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/16 15:47:36 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+void	cd_helper(char *ms_path, char **envp)
+{
+	char	*tmp;
+
+	if ((ft_strcmp(find_env_vars("PWD_MALLOC")->value, "1") == 0))
+	{
+		tmp = envp[find_env("PWD", envp)];
+		envp[find_env("PWD", envp)] = ms_path;
+		free(tmp);
+	}
+	else
+	{
+		envp[find_env("PWD", envp)] = ms_path;
+		modify_env_vars("PWD_MALLOC", ft_strdup("1"));
+	}
+}
+
 int	execute_cd(char *args[N_ARGS], char **envp)
 {
 	char	*path;
 	char	*ms_path;
-	char	*tmp;
 	char	*cwd;
 
 	if (args[1] == NULL || !ft_strcmp(args[1], "~"))
@@ -32,17 +48,7 @@ int	execute_cd(char *args[N_ARGS], char **envp)
 		return (EXIT_FAILURE);
 	ft_snprintf(ms_path, PATH_MAX, "PWD=%s", cwd);
 	free(cwd);
-	if ((ft_strcmp(find_env_vars("PWD_MALLOC")->value, "1") == 0))
-	{
-		tmp = envp[find_env("PWD", envp)];
-		envp[find_env("PWD", envp)] = ms_path;
-		free(tmp);
-	}
-	else
-	{
-		envp[find_env("PWD", envp)] = ms_path;
-		modify_env_vars("PWD_MALLOC", ft_strdup("1"));
-	}
+	cd_helper(ms_path, envp);
 	free(path);
 	return (EXIT_SUCCESS);
 }

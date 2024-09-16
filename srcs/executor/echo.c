@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 09:56:56 by sinlee            #+#    #+#             */
-/*   Updated: 2024/09/16 11:43:12 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/16 15:59:52 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	echo_char(char c)
 
 void	echo_args(char **args)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	*string;
 
 	i = -1;
