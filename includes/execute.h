@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:54:15 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/16 15:35:34 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/16 15:59:17 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ bool				last_cmd(t_exec *exec);
 void				manage_pipe_child(t_exec *exec, int infile_fd,
 						int outfile_fd);
 void				manage_pipe_parent(t_exec *exec);
-char				**is_flags(char **str);
 void				manage_lastcmdredir(t_exec *exec, int infile_fd,
 						int outfile_fd);
 void				restore_fd(int origstdin, int origstdout);
