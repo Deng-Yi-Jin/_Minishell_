@@ -13,8 +13,11 @@
 #ifndef EXECUTE_H
 # define EXECUTE_H
 
-# include "minishell.h"
+// # include "minishell.h"
+# include "parse.h"
+# define N_ARGS 2560
 # include <stddef.h>
+# include <stdbool.h>
 
 typedef struct s_exec
 {
