@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:38:25 by geibo             #+#    #+#             */
-/*   Updated: 2024/09/16 14:09:32 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/24 17:54:11 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ void	run_cmd(char **envp, t_exec *exec, char *command_path, int *i)
 			printf("minishell: %s: command not found\n", exec->cmd_list[*i]);
 			exit(127);
 		}
+		printf("#1 Exiting process %ld execve()\n", getpid);
+		printf("command path = [%s]\n", command_path);
+		int i = -1;
+		while (exec->cmd_list[++i])
+			printf("exec->cmd_list[%i] = %sa\n", i, exec->cmd_list[i]);
+
 		execve(command_path, exec->cmd_list, envp);
 		perror("execve");
 		exit(126);

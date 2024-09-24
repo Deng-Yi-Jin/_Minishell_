@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 09:08:05 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/16 15:30:41 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/24 13:46:11 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	start_command_exec(char *command_path, char **envp, t_exec *exec,
 		int saved_stdin)
 {
 	t_exec	*current_node;
+	int			status;
 
 	current_node = exec;
 	while (current_node)
@@ -92,8 +93,15 @@ void	start_command_exec(char *command_path, char **envp, t_exec *exec,
 		}
 		current_node = current_node->next;
 	}
-	while (wait(NULL) > 0)
-		;
+	while (wait(&status) > 0)
+	{
+		if (WEXITSTATUS(status))
+		{
+			g_main->nuclear_status = WEXITSTATUS(status);
+			// printf("Child process exited with status: %d\n", status);
+		}
+		// printf("g_main->nuclear_status = %i\n", g_main->nuclear_status);
+	}
 }
 
 void	execute(t_exec *exec, char **envp)

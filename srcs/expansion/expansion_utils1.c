@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 08:42:02 by kytan             #+#    #+#             */
-/*   Updated: 2024/09/16 14:03:20 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/24 17:29:07 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,20 @@ size_t	calc_envlen(char *s, int *i)
 	char		*env_key;
 	t_env_var	*env_token;
 	size_t		envlen;
+	char			*exit_status;
 
 	if (s[*i] == '$')
 	{
 		(*i)++;
 		envlen = 1;
+		if (s[*i] == '?')
+		{
+			(*i)++;
+			exit_status = ft_itoa(g_main->nuclear_status);
+			j = ft_strlen(exit_status);
+			free(exit_status);
+			return (j);
+		}
 	}
 	j = *i;
 	while (ft_isalnum(s[*i]))
@@ -32,6 +41,7 @@ size_t	calc_envlen(char *s, int *i)
 	if (env_token)
 		envlen += ft_strlen(env_token->value);
 	free(env_key);
+	printf("envlen returns %i\n", envlen);
 	return (envlen);
 }
 
