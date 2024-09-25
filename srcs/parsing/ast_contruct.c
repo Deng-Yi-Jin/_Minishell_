@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast_contruct.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 14:22:26 by djin              #+#    #+#             */
-/*   Updated: 2024/09/16 14:11:18 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/25 20:01:37 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	eldest_child(t_ast **ast, t_token **tokens, bool *create_sibling,
 	if ((*tokens)->cmd == NULL)
 		return ;
 	unq_cmd = rm_quote((*tokens)->cmd);
-	exp_cmd = dollar_q_expansion(ft_split(unq_cmd, '\''));
+	exp_cmd = dollar_q_expansion(ft_split(unq_cmd, ' '));
 	free(unq_cmd);
 	(*ast)->child = create_ast_node(exp_cmd, 0);
 	(*ast)->child->parent = (*ast);
@@ -65,7 +65,7 @@ void	sibling(t_ast **ast, t_token **tokens, bool *create_sibling,
 	if ((*tokens)->cmd == NULL)
 		return ;
 	unq_cmd = rm_quote((*tokens)->cmd);
-	exp_cmd = dollar_q_expansion(ft_split(unq_cmd, '\''));
+	exp_cmd = dollar_q_expansion(ft_split(unq_cmd, ' '));
 	free(unq_cmd);
 	(*ast)->next = create_ast_node(exp_cmd, 0);
 	(*ast)->next->parent = (*ast)->parent;

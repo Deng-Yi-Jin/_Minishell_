@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:21:02 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/16 17:09:36 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/17 13:59:03 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	init_env(char **envp)
 void	init(char **envp)
 {
 	g_main = ft_malloc(sizeof(t_main));
-	g_main->nuclear_status = 1;
+	g_main->nuclear_status = 0;
 	init_env(envp);
 	init_signals();
 	welcome_msg();

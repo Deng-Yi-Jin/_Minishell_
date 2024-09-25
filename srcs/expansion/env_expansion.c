@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 08:37:26 by kytan             #+#    #+#             */
-/*   Updated: 2024/09/16 12:00:56 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/24 17:25:59 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@ char	*exp_dollar_env(char *env_v, char *output, int *j, size_t size)
 
 	if (!env_v || !env_v[0])
 		return (0);
+	if (*env_v == '$' && *(env_v + 1) == '?')
+	{
+		env_v += 2;
+		*j += snprintf(output, size - *j, "%i", g_main->nuclear_status);
+		return (env_v);
+	}
 	if (*env_v == '$')
 		env_v++;
 	start = env_v;

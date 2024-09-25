@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 09:59:30 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/16 16:18:18 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/24 09:49:29 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	exec_child_pid(t_exec *exec, char **envp, char *command_path)
 {
 	close(exec->fd[0]);
 	dup2(exec->fd[1], STDOUT_FILENO);
+	printf("#2 Exiting process %ld execve()\n", getpid);
 	execve(command_path, exec->cmd, envp);
 	exit(0);
 }
@@ -36,6 +37,7 @@ void	handle_cmd_path(t_exec *exec, char **envp, char *command_path)
 		exec->pid = fork();
 		if (exec->pid == 0)
 		{
+			printf("#3 Exiting process %ld execve()\n", getpid);
 			if (execve(command_path, exec->cmd, envp))
 				perror("execve");
 		}
