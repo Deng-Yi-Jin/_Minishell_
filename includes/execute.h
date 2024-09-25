@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:54:15 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/16 15:59:17 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/16 17:33:00 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXECUTE_H
 # define EXECUTE_H
 
-// # include "minishell.h"
 # include "parse.h"
 # define N_ARGS 2560
 # include <stddef.h>
@@ -97,7 +96,8 @@ int					execute_unset(char **args);
 
 int					get_outfilefd(char **redir_list);
 int					get_infilefd(char **redir_list);
-bool	get_redirfd(t_exec *exec, int *infilefd, int *outfilefd, char **envp);
+bool				get_redirfd(t_exec *exec, int *infilefd, int *outfilefd,
+						char **envp);
 
 void				child_outfd_setup(int outfile_fd);
 void				child_infd_setup(int infile_fd);

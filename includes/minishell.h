@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:06:06 by sinlee            #+#    #+#             */
-/*   Updated: 2024/09/16 16:47:00 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/16 17:33:54 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,5 +155,13 @@ void			print_token(t_token *tokens, bool to_first, char *str);
 void			test_traverse(void);
 void			print_my_env_vars(void);
 void			del(void *content);
+
+bool			error_return(t_token **tokens, char *input);
+bool			check_consecutive_tokens(t_token *token, t_token **tokens,
+					char *input);
+bool			check_first_token(t_token *token, t_token **tokens,
+					char *input);
+void			print_error_and_free(const char *error_message,
+					t_token **tokens, char *input);
 
 #endif

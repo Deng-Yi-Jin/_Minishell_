@@ -20,6 +20,7 @@
 # include "tokens.h"
 # include <stdbool.h>
 # include <stddef.h>
+# include <stdlib.h>
 
 typedef struct s_ast
 {
