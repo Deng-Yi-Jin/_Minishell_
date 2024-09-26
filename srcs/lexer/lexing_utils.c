@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 21:05:51 by root              #+#    #+#             */
-/*   Updated: 2024/09/16 16:25:38 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/25 23:26:40 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,25 @@
 
 void	quotation(char *input, int *i, int *count_words, char c)
 {
-	while (ft_symbol(input[*i]) == false && input[*i])
+	if (input[*i] == '\"' || input[*i] == '\'')
 	{
 		(*i)++;
 		(*count_words)++;
+		while (input[*i] != c && input[*i])
+		{
+			(*i)++;
+			(*count_words)++;
+		}
+		(*i)++;
+		(*count_words)++;
+	}
+	else
+	{
+		while (ft_symbol(input[*i]) == false && input[*i])
+		{
+			(*i)++;
+			(*count_words)++;
+		}
 	}
 }
 

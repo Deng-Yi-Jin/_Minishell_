@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 08:37:26 by kytan             #+#    #+#             */
-/*   Updated: 2024/09/16 11:43:46 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/26 07:16:55 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ char	*dollar_q_expansion(char **split_q)
 	i = -1;
 	while (split_q[++i])
 	{
-		if (ft_strchr(split_q[i], '$'))
+		if (ft_strchr(split_q[i], '\''))
+			split_q[i] = unquote_squote(split_q[i]);
+		else if (ft_strchr(split_q[i], '$'))
 			split_q[i] = expanded(split_q[i]);
 	}
 	output = full_expansion(split_q, "\'");
