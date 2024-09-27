@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 15:48:47 by kytan             #+#    #+#             */
-/*   Updated: 2024/09/16 15:58:26 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/27 10:26:03 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,20 @@ char	*valid_cmd_path(char *path, char *command)
 	return (NULL);
 }
 
+
+
 char	*find_command_path(char *command, char **envp)
 {
 	char	*path_env;
 	char	*path;
 
+	path_env = 0;
 	if ((command[0] == '.' && command[1] == '/' && !access(command + 2, X_OK)))
 		return (ft_strdup(command + 2));
 	if (!access(command, X_OK))
 		return (ft_strdup(command));
-	path_env = getenv("PATH");
+	if (find_env_vars("PATH"))
+		path_env = find_env_vars("PATH")->value;
 	if (path_env == NULL)
 		return (NULL);
 	path = ft_strdup(path_env);
@@ -88,7 +92,7 @@ int	is_command(char *cmd, char **envp)
 
 	if (is_builtin(cmd))
 		return (CMD);
-	command_path = find_command_path(cmd, envp);
+	command_path = find_command_path(cmd, g_main->envp);
 	if (command_path != NULL)
 	{
 		free(command_path);

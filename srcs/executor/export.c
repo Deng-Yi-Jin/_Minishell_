@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 11:32:57 by sinlee            #+#    #+#             */
-/*   Updated: 2024/09/16 16:25:36 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/26 15:44:10 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int	exec_export(char **args)
 		else
 			export_env(args[i], "");
 	}
+	update_g_envp();
 }
 
 int	execute_export(char **args)

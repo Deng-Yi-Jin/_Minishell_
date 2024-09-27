@@ -1,2 +1,24 @@
-#1 Exiting process 139728914759744 execve()
-cat lol.c
+Makefile
+README.md
+TODO.md
+hello.txt
+includes
+lib
+lol.c
+ls
+minishell
+objs
+srcs
+test
+Makefile
+README.md
+TODO.md
+hello.txt
+includes
+lib
+lol.c
+ls
+minishell
+objs
+srcs
+test

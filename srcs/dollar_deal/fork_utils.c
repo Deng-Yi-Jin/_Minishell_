@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 11:23:57 by kytan             #+#    #+#             */
-/*   Updated: 2024/09/24 09:49:10 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/26 15:55:05 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ char	*handle_fork(t_execute *execute, char *command_path,
 	if (execute->pid == 0)
 	{
 		close(execute->fd[0]);
-		printf("#0 Exiting process %ld execve()\n", getpid);
+		// printf("#0 Exiting process %ld execve()\n", getpid);
 		dup2(execute->fd[1], 1);
-		execve(command_path, cmd, envp);
+		execve(command_path, cmd, g_main->envp);
 		exit(0);
 	}
 	else
