@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:33:03 by djin              #+#    #+#             */
-/*   Updated: 2024/09/16 17:01:32 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/26 07:16:11 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,10 @@ void	form_ast(t_ast **ast, t_token **tokens, char **envp);
 
 //rm quote
 char	*unquote_str(char *str, char c);
+char	*unquote_squote(char *str);
 
 char	*rm_quote(char *str);
+
+// void	free_split(char **str);
 
 #endif

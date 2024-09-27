@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 10:18:48 by djin              #+#    #+#             */
-/*   Updated: 2024/09/16 16:22:42 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/25 23:22:10 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	print_stack(t_token *tokens)
 	{
 		printf("#%i TOKEN : [%s]\n", i, tokens->cmd);
 		printf("address : %p\n", tokens);
-		printf("type : %d\n\n", tokens->type);
+		printf("type : %d\n", tokens->type);
 		tokens = tokens->next;
 		i++;
 	}

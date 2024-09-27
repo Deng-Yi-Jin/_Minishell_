@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ast_contruct.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 14:22:26 by djin              #+#    #+#             */
 /*   Updated: 2024/09/27 12:35:04 by kytan            ###   ########.fr       */
@@ -61,11 +61,13 @@ void	sibling(t_ast **ast, t_token **tokens, bool *create_sibling,
 {
 	char	*exp_cmd;
 	char	*unq_cmd;
+	char	**split;
 
 	if ((*tokens)->cmd == NULL)
 		return ;
 	unq_cmd = rm_quote((*tokens)->cmd);
-	exp_cmd = dollar_q_expansion(ft_split(unq_cmd, ' '));
+	split = ft_split(unq_cmd, ' ');
+	exp_cmd = dollar_q_expansion(split);
 	free(unq_cmd);
 	(*ast)->next = create_ast_node(exp_cmd, 0);
 	(*ast)->next->parent = (*ast)->parent;

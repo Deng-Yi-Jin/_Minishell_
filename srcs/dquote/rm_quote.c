@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rm_quote.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 10:47:02 by geibo             #+#    #+#             */
-/*   Updated: 2024/09/09 18:32:26 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/26 07:16:24 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,27 @@ char	*unquote_str(char *str, char c)
 	return (new_str);
 }
 
+char	*unquote_squote(char *str)
+{
+	char	*new_str;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	new_str = ft_calloc(ft_strlen(str) + 1, sizeof(char));
+	while (str[i])
+	{
+		if (str[i] == '\'')
+			i++;
+		if (str[i])
+			new_str[j++] = str[i++];
+	}
+	new_str[j] = '\0';
+	free(str);
+	return (new_str);
+}
+
 char	*rm_quote(char *str)
 {
 	char	*new_str;
@@ -59,9 +80,7 @@ char	*rm_quote(char *str)
 	if (!str[0] || !str)
 		return (str);
 	quotes = quote_or_dquote(str);
-	if (quotes == SINGLE_QUOTE)
-		new_str = unquote_str(str, '\'');
-	else if (quotes == DOUBLE_QUOTE)
+	if (quotes == DOUBLE_QUOTE)
 		new_str = unquote_str(str, '\"');
 	else
 		new_str = unquote_str(str, '\0');

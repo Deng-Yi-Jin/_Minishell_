@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 19:00:34 by sinlee            #+#    #+#             */
-/*   Updated: 2024/09/16 16:46:36 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/25 23:27:11 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	parse_input(char *input, char **envp)
 	char	*working;
 
 	tempstring = dquote(input);
-	tempstring = trim_quotation(tempstring);
+	// tempstring = trim_quotation(tempstring);
 	working = tempstring;
 	tokens = (t_token **)malloc(sizeof(t_token *));
 	(*tokens) = NULL;
@@ -88,6 +88,7 @@ void	parse_input(char *input, char **envp)
 	if (tempstring)
 		free(tempstring);
 	parse(tokens, envp);
+	// print_stack(*tokens);
 	free_stack(tokens, del, true, NULL);
 	free(tokens);
 }
