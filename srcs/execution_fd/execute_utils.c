@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:38:25 by geibo             #+#    #+#             */
-/*   Updated: 2024/09/25 20:02:04 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/27 10:52:40 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,13 @@ void	run_cmd(char **envp, t_exec *exec, char *command_path, int *i)
 		check_match_cmd(exec, envp, i);
 	else if (!check_command(exec->cmd_list[*i], exec->cmd_list, envp))
 	{
-		command_path = find_command_path(exec->cmd_list[*i], envp);
+		command_path = find_command_path(exec->cmd_list[*i], g_main->envp);
 		if (!command_path)
 		{
 			printf("minishell: %s: command not found\n", exec->cmd_list[*i]);
 			exit(127);
 		}
-		// printf("#1 Exiting process %ld execve()\n", getpid);
-		// printf("command path = [%s]\n", command_path);
-		// int i = -1;
-		// while (exec->cmd_list[++i])
-		// 	printf("exec->cmd_list[%i] = %s\n", i, exec->cmd_list[i]);
+		// print_g_envp();
 		execve(command_path, exec->cmd_list, envp);
 		perror("execve");
 		exit(126);

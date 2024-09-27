@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   misc.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:18:19 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/16 14:40:49 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/26 15:29:10 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,26 @@ void	error_exit(char *str, bool is_perror)
 	exit(errno);
 }
 
+void	free_split_debug(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		printf("%d %p %s\n",i, str[i], str[i]);
+		free(str[i]);
+		i++;
+	}
+	printf("str %p\n", str);
+	free(str);
+}
+
 void	exit_success(void)
 {
 	printf("%sBELLA CIAO%s\n", BLUE_BOLD, RESET_COLOR);
 	free_env_vars();
+	free_split(g_main->envp);
 	exit(EXIT_SUCCESS);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:06:06 by sinlee            #+#    #+#             */
-/*   Updated: 2024/09/16 17:33:54 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/26 18:38:24 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,5 +162,8 @@ bool			check_first_token(t_token *token, t_token **tokens,
 					char *input);
 void			print_error_and_free(const char *error_message,
 					t_token **tokens, char *input);
+size_t		total_g_env_vars();
+void			update_g_envp();
+void			print_g_envp();
 
 #endif

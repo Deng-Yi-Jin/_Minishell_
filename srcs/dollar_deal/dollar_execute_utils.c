@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 04:03:10 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/16 09:52:36 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/26 22:56:50 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char	*executing_cmd(char **cmd, char **envp)
 	char		*result;
 	char		*command_path;
 
-	command_path = find_command_path(cmd[0], envp);
+	command_path = find_command_path(cmd[0], g_main->envp);
 	if (command_path == NULL)
 	{
 		if (execute_builtin(cmd[0], cmd, envp))
