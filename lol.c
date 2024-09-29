@@ -1,24 +1,3 @@
-Makefile
-README.md
-TODO.md
-hello.txt
-includes
-lib
-lol.c
-ls
-minishell
-objs
-srcs
-test
-Makefile
-README.md
-TODO.md
-hello.txt
-includes
-lib
-lol.c
-ls
-minishell
-objs
-srcs
-test
+args[0] = [cat]
+catargs[1] = [lol.c]
+ lol.c
