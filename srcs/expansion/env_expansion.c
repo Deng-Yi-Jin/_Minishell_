@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 08:37:26 by kytan             #+#    #+#             */
-/*   Updated: 2024/09/24 17:25:59 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/29 14:47:13 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,11 @@ char	*cp_to_expanded(char *split_q, char *output, size_t size)
 	j = 0;
 	while (*split_q)
 	{
-		if (*split_q == '$')
+		if (*split_q == '$' && *(split_q + 1))
 			split_q = exp_dollar_env(split_q, output + j, &j, size);
-		else if (*split_q != '$')
+		// else if (*split_q != '$')
+		// 	output[j++] = *split_q++;
+		else
 			output[j++] = *split_q++;
 	}
 	return (output);

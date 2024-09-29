@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 09:56:56 by sinlee            #+#    #+#             */
-/*   Updated: 2024/09/27 10:58:55 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/29 15:32:13 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	echo_args(char **args)
 	while (args[++i])
 	{
 		string = args[i];
-		printf("args[%i] = [%s]\n", i, args[i]);
+		// printf("args[%i] = [%s]\n", i, args[i]);
 		j = 0;
 		if (i != 0)
 			echo_char(' ');
