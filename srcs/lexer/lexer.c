@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 19:00:34 by sinlee            #+#    #+#             */
-/*   Updated: 2024/09/16 16:46:36 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/29 17:42:56 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+
 
 bool	error_return(t_token **tokens, char *input)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 00:17:49 by geibo             #+#    #+#             */
-/*   Updated: 2024/09/16 14:38:51 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/29 17:13:46 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	copy_cmd_to_list(t_exec *exec, int *i, int cmd_line)
 
 	j = *i;
 	k = 0;
+	// printf("CMD_LINE IN COPY_CMD_TO_LIST = %i\n", cmd_line);
 	while (k < cmd_line)
 	{
 		exec->cmd_list[k] = ft_strdup(exec->cmd[j]);
@@ -67,6 +68,7 @@ void	redirect(t_exec *exec, int *infilefd, int *outfilefd)
 	int	i;
 
 	i = 0;
+	// printf("REDIRECTION HAPPENS HERE\n");
 	while (exec->cmd[i])
 	{
 		if (is_redir(exec->cmd[i]))

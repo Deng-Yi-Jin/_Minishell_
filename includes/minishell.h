@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:06:06 by sinlee            #+#    #+#             */
-/*   Updated: 2024/09/26 18:38:24 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/30 05:25:25 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char			*dquote(char *input);
 
 void			perror_color(char *str);
 void			error_exit(char *str, bool is_perror);
-void			exit_success(void);
+void			execute_exit(int exit_status);
 
 char			*prompt_msg(char prompt[LOGIN_NAME_MAX + PATH_MAX + 20]);
 
@@ -165,5 +165,8 @@ void			print_error_and_free(const char *error_message,
 size_t		total_g_env_vars();
 void			update_g_envp();
 void			print_g_envp();
+void			print_tokens(t_token **tokens);
+bool			check_last_token(t_token *token, t_token **tokens, char *input)
+
 
 #endif

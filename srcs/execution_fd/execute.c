@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 09:08:05 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/26 22:30:51 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/29 17:12:56 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,16 @@ bool	execute_last_cmd(t_exec *exec, char **envp, char *command_path)
 	int	outfile;
 
 	i = 0;
+
 	if (get_redirfd(exec, &infile, &outfile, envp) == false)
 		return (false);
 	init_origio(origio);
 	manage_lastcmdredir(exec, infile, outfile);
+	if (!exec->cmd_list)
+	{
+		restore_fd(origio[0], origio[1]);
+		return (true);
+	}
 	if (check_command(exec->cmd_list[i], exec->cmd_list, envp)
 		&& exec->prev == NULL)
 		g_main->nuclear_status = execute_builtin(exec->cmd_list[i],

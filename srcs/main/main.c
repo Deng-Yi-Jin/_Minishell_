@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:01:17 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/07 18:39:52 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/29 18:52:22 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv, char **envp)
 	{
 		input = readline(prompt_msg(prompt));
 		if (!input || strcmp(input, "exit") == 0)
-			exit_success();
+			execute_exit(EXIT_SUCCESS);
 		if (input[0] != '\0')
 		{
 			add_history(input);
@@ -34,5 +34,5 @@ int	main(int argc, char **argv, char **envp)
 		}
 		free(input);
 	}
-	return (0);
+	return (123);
 }
