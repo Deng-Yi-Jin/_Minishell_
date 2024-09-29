@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:06:06 by sinlee            #+#    #+#             */
-/*   Updated: 2024/09/30 05:25:25 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/30 06:19:17 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ size_t		total_g_env_vars();
 void			update_g_envp();
 void			print_g_envp();
 void			print_tokens(t_token **tokens);
-bool			check_last_token(t_token *token, t_token **tokens, char *input)
+bool			check_last_token(t_token *token, t_token **tokens, char *input);
 
 
 #endif
