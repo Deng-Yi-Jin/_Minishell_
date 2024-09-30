@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:50:07 by geibo             #+#    #+#             */
-/*   Updated: 2024/09/30 05:21:54 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/30 09:51:17 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,10 +105,7 @@ t_exec	*renamed_here_doc(t_exec *exec, char **envp)
 	{
 		i = 0;
 		while (temp->cmd[i])
-		{
-			printf("temp->cmd[%i] = [%s]\n", i, temp->cmd);
 			open_here_doc_file(temp, &i);
-		}
 		temp = temp->next;
 	}
 	free_exec(exec);
