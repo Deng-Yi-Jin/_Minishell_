@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 09:08:05 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/29 17:12:56 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/30 09:46:55 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,11 +102,7 @@ void	start_command_exec(char *command_path, char **envp, t_exec *exec,
 	while (wait(&status) > 0)
 	{
 		if (WEXITSTATUS(status))
-		{
 			g_main->nuclear_status = WEXITSTATUS(status);
-			// printf("Child process exited with status: %d\n", status);
-		}
-		// printf("g_main->nuclear_status = %i\n", g_main->nuclear_status);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 19:00:34 by sinlee            #+#    #+#             */
-/*   Updated: 2024/09/29 17:42:56 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/30 14:14:19 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	parse_input(char *input, char **envp)
 	char	*working;
 
 	tempstring = dquote(input);
-	tempstring = trim_quotation(tempstring);
+	// tempstring = trim_quotation(tempstring);
 	working = tempstring;
 	tokens = (t_token **)malloc(sizeof(t_token *));
 	(*tokens) = NULL;

@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 16:27:25 by geibo             #+#    #+#             */
-/*   Updated: 2024/09/30 05:27:13 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/30 09:47:13 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ bool	check_consecutive_tokens(t_token *token, t_token **tokens, char *input)
 {
 	while (token)
 	{
-		// printf("token->cmd = [%s]\n", token->cmd);
-		// print_tokens(tokens);
 		if (token->type == PIPE && token->next && token->next->type == PIPE)
 		{
 			print_error_and_free("syntax error near unexpected token `||'",
