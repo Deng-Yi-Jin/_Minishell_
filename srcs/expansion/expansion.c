@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 08:37:26 by kytan             #+#    #+#             */
-/*   Updated: 2024/09/30 14:03:18 by kytan            ###   ########.fr       */
+/*   Updated: 2024/10/01 12:08:19 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*full_expansion(char **split, char *sep)
 	return (output);
 }
 
-char	*dollar_q_expansion(char **split_q)
+char	*env_expansion(char **split_q)
 {
 	char	*output;
 	int		i;
@@ -41,10 +41,12 @@ char	*dollar_q_expansion(char **split_q)
 	i = -1;
 	while (split_q[++i])
 	{
+		if (split_q[i][0] == '\'')
+			continue ;
 		if (ft_strchr(split_q[i], '$'))
 			split_q[i] = expanded(split_q[i]);
 	}
-	output = full_expansion(split_q, " ");
+	output = full_expansion(split_q, "");
 	free_split(split_q);
 	return (output);
 }

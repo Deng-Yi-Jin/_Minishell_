@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 10:47:02 by geibo             #+#    #+#             */
-/*   Updated: 2024/09/30 14:08:25 by kytan            ###   ########.fr       */
+/*   Updated: 2024/10/01 08:14:31 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ char	*rm_quote(char *str)
 	if (!str[0] || !str)
 		return (str);
 	quotes = quote_or_dquote(str);
-	// if (quotes == SINGLE_QUOTE)
-	// 	new_str = unquote_str(str, '\'');
 	if (quotes == DOUBLE_QUOTE)
 		new_str = unquote_str(str, '\"');
 	else

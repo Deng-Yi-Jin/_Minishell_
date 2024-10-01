@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:06:59 by geibo             #+#    #+#             */
-/*   Updated: 2024/09/30 09:46:17 by kytan            ###   ########.fr       */
+/*   Updated: 2024/10/01 09:40:47 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ bool	execute_dollar(t_ast **ast, int depth, char **envp)
 	execute_dollar(&((*ast)->child), depth + 1, envp);
 	if ((*ast)->type == DOLLAR)
 	{
-		printf("DOLLAR\n");
 		(*ast)->type = CMD;
 		(*ast)->cmd = execute_dollar_expansion(*ast, envp);
 	}

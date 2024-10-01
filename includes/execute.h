@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:54:15 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/16 17:33:00 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/30 15:08:36 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_exec				*redirection(t_exec *exec);
 char				*expansion(char **split);
 int					no_expansion_needed(char *s);
 char				*full_expansion(char **split, char *sep);
-char				*dollar_q_expansion(char **split_q);
+char				*env_expansion(char **split_q);
 
 char				*expanded(char *split_q);
 
