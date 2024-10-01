@@ -12,9 +12,6 @@
 
 #include "minishell.h"
 
-// echo '$USER''$USER'
-// echo ['$USER $USER']
-
 void	add_one_count(int *i, int *count_words)
 {
 	(*i)++;
@@ -57,10 +54,25 @@ void	quoted_string(char *input, int *i, int *count_words, char c)
 
 void	quotation(char *input, int *i, int *count_words, char c)
 {
-	while (ft_symbol(input[*i]) == false && input[*i])
+	if (input[*i] == '\"' || input[*i] == '\'')
 	{
 		(*i)++;
 		(*count_words)++;
+		while (input[*i] != c && input[*i])
+		{
+			(*i)++;
+			(*count_words)++;
+		}
+		(*i)++;
+		(*count_words)++;
+	}
+	else
+	{
+		while (ft_symbol(input[*i]) == false && input[*i])
+		{
+			(*i)++;
+			(*count_words)++;
+		}
 	}
 }
 
