@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   trim_quotation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 18:00:02 by geibo             #+#    #+#             */
-/*   Updated: 2024/09/16 16:24:55 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/30 14:12:55 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	count_non_quote_chars(const char *str)
 	len = 0;
 	while (str[i])
 	{
-		if (str[i] != '\"')
-			len++;
+		// if (str[i] != '\"')
+		// 	len++;
 		i++;
 	}
 	return (len);
@@ -47,9 +47,9 @@ void	copy_non_quote_chars(char *output, const char *str)
 	len = 0;
 	while (str[i])
 	{
-		if (str[i] == '\"')
-			i++;
-		else
+		// if (str[i] == '\"')
+		// 	i++;
+		// else
 			output[len++] = str[i++];
 	}
 	output[len] = '\0';

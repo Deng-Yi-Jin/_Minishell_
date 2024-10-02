@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   traverse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:06:59 by geibo             #+#    #+#             */
-/*   Updated: 2024/09/16 14:22:36 by geibo            ###   ########.fr       */
+/*   Updated: 2024/10/01 09:40:47 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// if (print == false && (*ast)->cmd != NULL)
-// printf("%s\n", (*ast)->cmd);
 bool	traverse(t_ast **ast, void (*f)(void *), int depth, bool print)
 {
 	t_ast	*temp;
@@ -65,7 +63,6 @@ bool	execute_dollar(t_ast **ast, int depth, char **envp)
 	execute_dollar(&((*ast)->child), depth + 1, envp);
 	if ((*ast)->type == DOLLAR)
 	{
-		printf("DOLLAR\n");
 		(*ast)->type = CMD;
 		(*ast)->cmd = execute_dollar_expansion(*ast, envp);
 	}

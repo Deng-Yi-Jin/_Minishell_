@@ -6,28 +6,12 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 08:37:26 by kytan             #+#    #+#             */
-/*   Updated: 2024/09/29 14:47:13 by kytan            ###   ########.fr       */
+/*   Updated: 2024/10/01 10:54:55 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	exp_flag(char *s, char *split_q)
-{
-	static int	i;
-	static char	*st_s;
-
-	if (st_s != split_q)
-	{
-		st_s = split_q;
-		i = 0;
-	}
-	if (*s == '\'')
-	{
-		i ^= 1;
-	}
-	return (i);
-}
 
 char	*exp_dollar_env(char *env_v, char *output, int *j, size_t size)
 {

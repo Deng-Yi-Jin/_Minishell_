@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 13:58:27 by djin              #+#    #+#             */
-/*   Updated: 2024/09/16 09:33:14 by kytan            ###   ########.fr       */
+/*   Updated: 2024/10/01 11:11:37 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define CMD_EXPANSION 15
 # define FLAGS 16
 # define REDIR 17
+# define QUOTED 18
 
 // enum Flags {
 // 	PIPE,

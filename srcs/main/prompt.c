@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sinlee <sinlee@student.42kl.edu.my>        +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 02:29:43 by codespace         #+#    #+#             */
-/*   Updated: 2023/08/19 22:58:04 by sinlee           ###   ########.fr       */
+/*   Updated: 2024/09/30 09:46:43 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-	// printf("QUOTES: %s", find_env_vars("QUOTES").value);
 char	*prompt_msg(char prompt[LOGIN_NAME_MAX + PATH_MAX + 20])
 {
 	char	*username;

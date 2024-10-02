@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 08:42:02 by kytan             #+#    #+#             */
-/*   Updated: 2024/09/29 15:15:33 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/29 21:29:35 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ size_t	calc_envlen(char *s, int *i)
 			exit_status = ft_itoa(g_main->nuclear_status);
 			j = ft_strlen(exit_status);
 			free(exit_status);
-			printf("ENV_LEN RETURNS %i\n", j);
 			return (j);
 		}
 	}
@@ -42,8 +41,6 @@ size_t	calc_envlen(char *s, int *i)
 	if (env_token)
 		envlen += ft_strlen(env_token->value);
 	free(env_key);
-	// printf("envlen returns %i\n", envlen);
-	printf("ENV_LEN RETURNS %zu\n", envlen);
 	return (envlen);
 }
 
@@ -57,15 +54,7 @@ size_t	calc_envsize(char *split_q)
 	while (split_q[i])
 	{
 		if (split_q[i] == '$' && split_q[i + 1])
-		{
-			printf("$A splitq[%i] = [%c] from [%s]\n", i, split_q[i], split_q + i);
 			size += calc_envlen(split_q, &i);
-		}
-		// else if (split_q[i] != '$')
-		// {
-		// 	size++;
-		// 	i++;
-		// }
 		else
 		{
 			size++;
