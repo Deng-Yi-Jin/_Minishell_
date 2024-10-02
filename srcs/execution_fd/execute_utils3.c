@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 19:01:41 by kytan             #+#    #+#             */
-/*   Updated: 2024/09/16 15:24:46 by geibo            ###   ########.fr       */
+/*   Updated: 2024/10/02 14:13:08 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,18 @@ void	free_redir_list(t_exec *exec)
 bool	get_redirfd(t_exec *exec, int *infilefd, int *outfilefd, char **envp)
 {
 	redirect(exec, infilefd, outfilefd);
-	if (!handle_file_descriptor(infilefd, get_infilefd, exec))
+	*infilefd = get_infilefd(exec->redir_list);
+	if (*infilefd == -1)
+	{
+		free_redir_list(exec);
+		return(false);
+	}
+	*outfilefd = get_outfilefd(exec->redir_list);
+	if (*outfilefd == -1)
+	{
+		free_redir_list(exec);
 		return (false);
-	if (!handle_file_descriptor(outfilefd, get_outfilefd, exec))
-		return (false);
+	}
 	free_redir_list(exec);
 	return (true);
 }
