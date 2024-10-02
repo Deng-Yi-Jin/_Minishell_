@@ -69,10 +69,18 @@ void	free_redir_list(t_exec *exec)
 bool	get_redirfd(t_exec *exec, int *infilefd, int *outfilefd, char **envp)
 {
 	redirect(exec, infilefd, outfilefd);
-	if (!handle_file_descriptor(infilefd, get_infilefd, exec))
+	*infilefd = get_infilefd(exec->redir_list);
+	if (*infilefd == -1)
+	{
+		free_redir_list(exec);
+		return(false);
+	}
+	*outfilefd = get_outfilefd(exec->redir_list);
+	if (*outfilefd == -1)
+	{
+		free_redir_list(exec);
 		return (false);
-	if (!handle_file_descriptor(outfilefd, get_outfilefd, exec))
-		return (false);
+	}
 	free_redir_list(exec);
 	return (true);
 }

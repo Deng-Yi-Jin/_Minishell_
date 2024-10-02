@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:54:15 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/30 15:08:36 by kytan            ###   ########.fr       */
+/*   Updated: 2024/10/02 14:02:28 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,10 @@ void				child_infd_setup(int infile_fd);
 pid_t				create_fork(void);
 void				dup2_error(void);
 void				close_fd(int *previous_fd, int *infile_fd);
+bool	handle_file_descriptor(int *fd, int (*get_fd_func)(char **),
+		t_exec *exec);
+int	count_cmd_line(t_exec *exec, int i);
+void	allocate_cmd_list(t_exec *exec, int cmd_line);
+void	copy_cmd_to_list(t_exec *exec);
 
 #endif

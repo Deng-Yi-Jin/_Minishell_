@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 00:17:49 by geibo             #+#    #+#             */
-/*   Updated: 2024/09/30 09:46:30 by kytan            ###   ########.fr       */
+/*   Updated: 2024/10/02 14:31:15 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,12 @@ int	count_cmd_line(t_exec *exec, int i)
 	int	cmd_line;
 
 	cmd_line = 0;
-	while (exec->cmd[i] != NULL && !is_redir(exec->cmd[i]))
+	while (exec->cmd[i] != NULL)
 	{
-		cmd_line++;
+		if (is_redir_out(exec->cmd[i]))
+			break;
+		if (!is_redir(exec->cmd[i]))
+			cmd_line++;
 		i++;
 	}
 	return (cmd_line);
@@ -40,26 +43,24 @@ void	allocate_cmd_list(t_exec *exec, int cmd_line)
 	}
 }
 
-void	copy_cmd_to_list(t_exec *exec, int *i, int cmd_line)
+void	copy_cmd_to_list(t_exec *exec)
 {
-	int	j;
-	int	k;
+	int word;
+	int	i;
 
-	j = *i;
-	k = 0;
-	while (k < cmd_line)
+	i = 0;
+	word = 0;
+	while (exec->cmd[word])
 	{
-		exec->cmd_list[k] = ft_strdup(exec->cmd[j]);
-		if (exec->cmd_list[k] == NULL)
+		if (is_redir_out(exec->cmd[word]))
+			break;
+		if (!is_redir(exec->cmd[word]))
 		{
-			perror("ft_strdup");
-			exit(EXIT_FAILURE);
+			exec->cmd_list[i] = ft_strdup(exec->cmd[word]);
+			i++;
 		}
-		k++;
-		j++;
+		word++;
 	}
-	exec->cmd_list[k] = NULL;
-	*i = j;
 }
 
 void	redirect(t_exec *exec, int *infilefd, int *outfilefd)
@@ -70,10 +71,13 @@ void	redirect(t_exec *exec, int *infilefd, int *outfilefd)
 	while (exec->cmd[i])
 	{
 		if (is_redir(exec->cmd[i]))
-			process_redirection(exec, &i);
-		else
-			process_command(exec, &i);
+		{
+			process_redirection(exec, 0);
+			break;
+		}
+		i++;
 	}
+	process_command(exec, 0);
 }
 
 int	return_after_redir(t_exec *exec, int i)
