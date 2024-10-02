@@ -3,28 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   expansion_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 08:42:02 by kytan             #+#    #+#             */
-/*   Updated: 2024/10/01 11:54:48 by kytan            ###   ########.fr       */
+/*   Updated: 2024/10/02 16:06:33 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static size_t   count_words(char const *s, char c)
-{
-	size_t  words;
-
-	words = 0;
-	while (*s)
-	{
-		if (*s != c && (*(s + 1) == c || *(s + 1) == 0))
-			words++;
-		s++;
-	}
-	return (words);
-}
 
 char	*ft_strldup(char *src, ptrdiff_t size)
 {
@@ -70,22 +56,26 @@ char	*add_quoted_string(char *p, char **word_element)
 	return (p);
 }
 
-
-void	print_string_array(char **split)
+static size_t	count_words(char const *s, char c)
 {
-	int	i;
+	size_t	words;
 
-	i = -1;
-	while (split[++i])
-		printf("split[%i] = [%s]\n", i, split[i]);
+	words = 0;
+	while (*s)
+	{
+		if (*s != c && (*(s + 1) == c || *(s + 1) == 0))
+			words++;
+		s++;
+	}
+	return (words);
 }
 
 char	**ft_splitq(char const *s, char c)
 {
-	char		**word_list;
+	char	**word_list;
 	size_t	words;
-	char		*p;
-	int			i;
+	char	*p;
+	int		i;
 
 	if (!s)
 		return (0);

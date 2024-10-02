@@ -3,40 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 10:05:43 by kytan             #+#    #+#             */
-/*   Updated: 2024/09/26 15:51:03 by kytan            ###   ########.fr       */
+/*   Updated: 2024/10/02 15:53:09 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	add_env_vars(char *key, char *value)
-{
-	int			i;
-	t_env_var	**new_env_vars;
-	int			num_env_vars;
-
-	if (key == NULL)
-		perror_color("Environment Variables Name CANNOT be NULL!");
-	num_env_vars = 0;
-	while (g_main->env_vars[num_env_vars]->key != NULL)
-		num_env_vars++;
-	new_env_vars = (t_env_var **)ft_malloc((num_env_vars + 2)
-			* sizeof(t_env_var *));
-	i = -1;
-	while (++i < num_env_vars)
-	{
-		new_env_vars[i] = malloc(sizeof(t_env_var));
-		new_env_vars[i]->key = g_main->env_vars[i]->key;
-		new_env_vars[i]->value = g_main->env_vars[i]->value;
-	}
-	init_new_env_var(new_env_vars, num_env_vars, key, value);
-	init_null_env_var(new_env_vars, num_env_vars, key, value);
-	free_darr(g_main->env_vars);
-	g_main->env_vars = new_env_vars;
-}
 
 void	modify_env_vars(char *key, char *value)
 {
@@ -85,22 +59,16 @@ void	free_env_vars(void)
 	}
 }
 
-void	delete_env_vars(char *key)
+static void	create_new_env_array(t_env_var **new, char *key)
 {
-	t_env_var	*unset;
-	t_env_var	**new;
-	int			i;
-	int			j;
+	int	i;
+	int	j;
 
 	i = -1;
 	j = 0;
-	unset = find_env_vars(key);
-	if (unset == NULL)
-		return ;
-	new = ft_malloc(new_vars_ct(unset->key) * sizeof(t_env_var *));
 	while (g_main->env_vars[++i]->key != NULL)
 	{
-		if (!ft_strcmp(g_main->env_vars[i]->key, unset->key))
+		if (!ft_strcmp(g_main->env_vars[i]->key, key))
 		{
 			free(g_main->env_vars[i]->key);
 			free(g_main->env_vars[i]->value);
@@ -110,6 +78,18 @@ void	delete_env_vars(char *key)
 			g_main->env_vars[i]->value);
 	}
 	new[j] = ft_calloc(1, sizeof(t_env_var));
+}
+
+void	delete_env_vars(char *key)
+{
+	t_env_var	*unset;
+	t_env_var	**new;
+
+	unset = find_env_vars(key);
+	if (unset == NULL)
+		return ;
+	new = ft_malloc(new_vars_ct(unset->key) * sizeof(t_env_var *));
+	create_new_env_array(new, key);
 	free_darr(g_main->env_vars);
 	g_main->env_vars = new;
 	update_g_envp();

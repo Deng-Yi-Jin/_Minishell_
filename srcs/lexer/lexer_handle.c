@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_handle.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 16:27:25 by geibo             #+#    #+#             */
-/*   Updated: 2024/09/30 09:47:13 by kytan            ###   ########.fr       */
+/*   Updated: 2024/10/02 15:33:22 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,49 +58,6 @@ void	print_tokens(t_token **tokens)
 	}
 }
 
-bool	check_consecutive_tokens(t_token *token, t_token **tokens, char *input)
-{
-	while (token)
-	{
-		if (token->type == PIPE && token->next && token->next->type == PIPE)
-		{
-			print_error_and_free("syntax error near unexpected token `||'",
-				tokens, input);
-			return (true);
-		}
-		if (token->type == HERE_DOC && token->next
-			&& token->next->type == HERE_DOC)
-		{
-			print_error_and_free("syntax error near unexpected token", tokens,
-				input);
-			return (true);
-		}
-		if (token->type == HERE_DOC && token->next
-			&& token->next->type == HERE_DOC)
-		{
-			print_error_and_free("syntax error near unexpected token", tokens,
-				input);
-			return (true);
-		}
-		if (token->type == REDIR_OUT_APPEND && token->next
-			&& token->next->type == REDIR_OUT)
-		{
-			print_error_and_free("syntax error near unexpected token `>'", tokens,
-				input);
-			return (true);
-		}
-		if (token->type == REDIR_OUT_APPEND && token->next
-			&& token->next->type == REDIR_OUT_APPEND)
-		{
-			print_error_and_free("syntax error near unexpected token `>>'", tokens,
-				input);
-			return (true);
-		}
-		token = token->next;
-	}
-	return (false);
-}
-
 bool	check_last_token(t_token *token, t_token **tokens, char *input)
 {
 	while (token->next && token->next->type != 0)
@@ -117,10 +74,11 @@ bool	check_last_token(t_token *token, t_token **tokens, char *input)
 			input);
 		return (true);
 	}
-	else if (token->type == HERE_DOC || token->type == REDIR_OUT || token->type == REDIR_OUT_APPEND)
+	else if (token->type == HERE_DOC || token->type == REDIR_OUT
+		|| token->type == REDIR_OUT_APPEND)
 	{
-		print_error_and_free("syntax error near unexpected token `newline'", tokens,
-			input);
+		print_error_and_free("syntax error near unexpected token `newline'",
+			tokens, input);
 		return (true);
 	}
 	return (false);

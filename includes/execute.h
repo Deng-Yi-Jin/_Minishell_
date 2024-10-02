@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:54:15 by codespace         #+#    #+#             */
-/*   Updated: 2024/10/02 14:02:28 by geibo            ###   ########.fr       */
+/*   Updated: 2024/10/02 15:59:08 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ char				*expanded(char *split_q);
 
 int					exp_flag(char *s, char *split_q);
 char				**ft_splitq(char const *s, char c);
+static size_t		count_words(char const *s, char c);
 
 char				*cp_to_expanded(char *split_q, char *output, size_t size);
 char				*exp_dollar_env(char *env_v, char *output, int *j,

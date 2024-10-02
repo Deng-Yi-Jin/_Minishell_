@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute_utils5.c                                   :+:      :+:    :+:   */
+/*   expansion_utils3.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/16 15:34:10 by geibo             #+#    #+#             */
-/*   Updated: 2024/10/02 15:50:48 by geibo            ###   ########.fr       */
+/*   Created: 2024/10/02 15:33:56 by geibo             #+#    #+#             */
+/*   Updated: 2024/10/02 16:06:37 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	handle_file_descriptor(int *fd, int (*get_fd_func)(char **),
-		t_exec *exec)
+char	*extract_value(char *env_key)
 {
-	*fd = get_fd_func(exec->redir_list);
-	if (*fd == -1)
-	{
-		free_redir_list(exec);
-		return (false);
-	}
-	return (true);
+	t_env_var	*env_token;
+	char		*env_value;
+
+	env_token = find_env_vars(env_key);
+	if (!env_token)
+		return ("");
+	env_value = env_token->value;
+	return (env_value);
 }
 
-void	execute(t_exec *exec, char **envp)
+void	print_string_array(char **split)
 {
-	char	*command_path;
-	int		saved_stdin;
+	int	i;
 
-	saved_stdin = dup(STDIN_FILENO);
-	start_command_exec(command_path, envp, exec, saved_stdin);
+	i = -1;
+	while (split[++i])
+		printf("split[%i] = [%s]\n", i, split[i]);
 }

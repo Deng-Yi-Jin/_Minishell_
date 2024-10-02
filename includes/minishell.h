@@ -3,22 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:06:06 by sinlee            #+#    #+#             */
-/*   Updated: 2024/09/30 06:19:17 by kytan            ###   ########.fr       */
+/*   Updated: 2024/10/02 16:05:27 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include "color.h"
-# include "execute.h"
-# include "libft.h"
-# include "parse.h"
-# include "redir.h"
-# include "tokens.h"
 # include <dirent.h>
 # include <errno.h>
 # include <fcntl.h>
@@ -36,6 +30,12 @@
 # include <term.h>
 # include <termios.h>
 # include <unistd.h>
+# include "color.h"
+# include "execute.h"
+# include "libft.h"
+# include "parse.h"
+# include "redir.h"
+# include "tokens.h"
 
 # define PATH_MAX 4096
 # define LOGIN_NAME_MAX 256
@@ -120,7 +120,6 @@ char			*ft_strfjoin(char *s1, char *s2);
 
 // Token linked listfunctions
 t_token			*lst_first_last(t_token *tokens, bool is_last);
-void			token_lstadd_back(t_token **lst, t_token *new);
 t_token			*add_tokens(t_token *tokens, char *cmd, int type);
 t_token			*create_token(char *cmd, int type);
 void			free_stack(t_token **tokens, void (*del)(void *), bool loop,
@@ -162,11 +161,10 @@ bool			check_first_token(t_token *token, t_token **tokens,
 					char *input);
 void			print_error_and_free(const char *error_message,
 					t_token **tokens, char *input);
-size_t		total_g_env_vars();
-void			update_g_envp();
-void			print_g_envp();
+size_t			total_g_env_vars(void);
+void			update_g_envp(void);
+void			print_g_envp(void);
 void			print_tokens(t_token **tokens);
 bool			check_last_token(t_token *token, t_token **tokens, char *input);
-
 
 #endif

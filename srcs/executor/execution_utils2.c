@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 09:59:30 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/26 23:23:06 by kytan            ###   ########.fr       */
+/*   Updated: 2024/10/02 15:27:54 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	exec_pipe(t_exec *exec, char **envp, char *command_path)
 	exec = exec->next;
 }
 
-void	update_g_envp()
+void	update_g_envp(void)
 {
 	char	**envp_array;
 	int		i;
@@ -78,7 +78,7 @@ void	update_g_envp()
 	envp_array = ft_calloc(total_g_env_vars() + 1, sizeof(char *));
 	while (g_main->env_vars[++i]->key != NULL)
 	{
-		envp_array[i] = ft_strdup(g_main->env_vars[i]->key); //PATH
+		envp_array[i] = ft_strdup(g_main->env_vars[i]->key);
 		envp_array[i] = ft_strfjoin(envp_array[i], "=");
 		envp_array[i] = ft_strfjoin(envp_array[i], g_main->env_vars[i]->value);
 	}

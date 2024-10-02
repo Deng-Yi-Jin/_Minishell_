@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:21:02 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/27 10:26:37 by kytan            ###   ########.fr       */
+/*   Updated: 2024/10/02 15:36:29 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 extern t_main	*g_main;
 
-size_t	total_g_env_vars()
+size_t	total_g_env_vars(void)
 {
 	size_t	size;
 
@@ -42,13 +42,16 @@ static void	init_env_vars(char **envp)
 		g_main->envp[i] = ft_strdup(envp[i]);
 }
 
-void	print_g_envp()
+void	print_g_envp(void)
 {
-	int			i;
+	int	i;
 
 	i = -1;
 	while (g_main->envp[++i] != NULL)
-		printf("g_main->envp[%i] = %p [%s] \n", i, g_main->envp[i], g_main->envp[i]);
+	{
+		printf("g_main->envp[%i] = %p [%s] \n", i, g_main->envp[i],
+			g_main->envp[i]);
+	}
 	if (g_main->envp[i] == NULL)
 		printf("(NULL)");
 }
