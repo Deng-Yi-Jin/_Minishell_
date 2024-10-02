@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:50:07 by geibo             #+#    #+#             */
-/*   Updated: 2024/09/16 14:06:38 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/30 13:46:41 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,9 @@ t_exec	*renamed_here_doc(t_exec *exec, char **envp)
 	{
 		i = 0;
 		while (temp->cmd[i])
+		{
 			open_here_doc_file(temp, &i);
+		}
 		temp = temp->next;
 	}
 	free_exec(exec);

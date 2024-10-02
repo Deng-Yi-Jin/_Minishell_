@@ -6,51 +6,84 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 08:42:02 by kytan             #+#    #+#             */
-/*   Updated: 2024/09/16 14:03:33 by kytan            ###   ########.fr       */
+/*   Updated: 2024/10/01 11:54:48 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static size_t	count_words(char const *s, char c)
+static size_t   count_words(char const *s, char c)
 {
-	size_t	words;
+	size_t  words;
 
 	words = 0;
 	while (*s)
 	{
 		if (*s != c && (*(s + 1) == c || *(s + 1) == 0))
 			words++;
-		if (*s == c && *(s + 1) == c)
-			words++;
 		s++;
 	}
 	return (words);
 }
 
-static char	*new_word(char *s, char c)
+char	*ft_strldup(char *src, ptrdiff_t size)
 {
-	char	*word;
-	int		chrs;
+	char	*dup;
 	int		i;
 
-	i = -1;
-	chrs = 0;
-	while (s[chrs] != c && s[chrs])
-		chrs++;
-	word = ft_calloc(chrs + 1, sizeof(char));
-	if (!word)
+	i = 0;
+	if (size <= 0 || !src)
 		return (0);
-	while (++i < chrs)
-		word[i] = s[i];
-	word[chrs] = 0;
-	return (word);
+	dup = malloc(size * sizeof(char));
+	if (!dup)
+		return (0);
+	while (*src && i + 1 < size)
+		dup[i++] = *src++;
+	if (i < size)
+		dup[i] = '\0';
+	return (dup);
+}
+
+char	*add_unquoted_string(char *p, char **word_element)
+{
+	char	*start;
+
+	start = p;
+	while (*p != '\'' && *p)
+		p++;
+	*word_element = ft_strldup(start, (p - start) + 1);
+	return (p);
+}
+
+char	*add_quoted_string(char *p, char **word_element)
+{
+	char	*start;
+
+	start = p;
+	if (*p == '\'')
+		p++;
+	while (*p != '\'' && *p)
+		p++;
+	if (*p == '\'')
+		p++;
+	*word_element = ft_strldup(start, (p - start) + 1);
+	return (p);
+}
+
+
+void	print_string_array(char **split)
+{
+	int	i;
+
+	i = -1;
+	while (split[++i])
+		printf("split[%i] = [%s]\n", i, split[i]);
 }
 
 char	**ft_splitq(char const *s, char c)
 {
 	char		**word_list;
-	size_t		words;
+	size_t	words;
 	char		*p;
 	int			i;
 
@@ -59,17 +92,15 @@ char	**ft_splitq(char const *s, char c)
 	i = 0;
 	p = (char *)s;
 	words = count_words(s, c);
-	word_list = malloc((words + 1) * sizeof(char *));
+	word_list = ft_calloc((words + 1), sizeof(char *));
 	if (!word_list)
 		return (0);
-	while (p)
+	while (*p)
 	{
-		if (*p == c && c)
-			p++;
-		if (!*p)
-			break ;
-		word_list[i++] = new_word(p, c);
-		p = ft_strchr(p, c);
+		if (*p == '\'')
+			p = add_quoted_string(p, word_list + i++);
+		else
+			p = add_unquoted_string(p, word_list + i++);
 	}
 	word_list[words] = 0;
 	return (word_list);

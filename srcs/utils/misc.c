@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:18:19 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/26 15:29:10 by kytan            ###   ########.fr       */
+/*   Updated: 2024/09/29 18:54:45 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,13 @@ void	free_split_debug(char **str)
 	free(str);
 }
 
-void	exit_success(void)
+void	execute_exit(int exit_status)
 {
 	printf("%sBELLA CIAO%s\n", BLUE_BOLD, RESET_COLOR);
 	free_env_vars();
 	free_split(g_main->envp);
-	exit(EXIT_SUCCESS);
+	g_main->nuclear_status = exit_status;
+	exit(exit_status);
 }
 
 void	free_jutsu(bool darr, char *key, char *value)

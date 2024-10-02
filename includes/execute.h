@@ -71,7 +71,7 @@ t_exec				*redirection(t_exec *exec);
 char				*expansion(char **split);
 int					no_expansion_needed(char *s);
 char				*full_expansion(char **split, char *sep);
-char				*dollar_q_expansion(char **split_q);
+char				*env_expansion(char **split_q);
 
 char				*expanded(char *split_q);
 

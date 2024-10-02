@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 00:17:49 by geibo             #+#    #+#             */
 /*   Updated: 2024/10/02 14:31:15 by geibo            ###   ########.fr       */

@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:38:25 by geibo             #+#    #+#             */
-/*   Updated: 2024/09/27 10:52:40 by kytan            ###   ########.fr       */
+/*   Updated: 2024/10/01 09:42:45 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	run_cmd(char **envp, t_exec *exec, char *command_path, int *i)
 			printf("minishell: %s: command not found\n", exec->cmd_list[*i]);
 			exit(127);
 		}
-		// print_g_envp();
 		execve(command_path, exec->cmd_list, envp);
 		perror("execve");
 		exit(126);

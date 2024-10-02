@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   temp_prompt.c                                      :+:      :+:    :+:   */
+/*   temp_prompt                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 02:29:43 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/16 16:21:36 by geibo            ###   ########.fr       */
+/*   Updated: 2024/10/01 12:10:25 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ char	*prompt_msg(char prompt[LOGIN_NAME_MAX + PATH_MAX + 20])
 		perror("getcwd");
 		exit(EXIT_FAILURE);
 	}
-	// printf("QUOTES: %s", find_env_vars("QUOTES").value);
 	if (!ft_strcmp(find_env_vars("QUOTES")->value, "1"))
 		prompt_quotes(prompt);
 	else

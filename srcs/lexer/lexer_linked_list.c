@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_linked_list.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 13:49:19 by djin              #+#    #+#             */
-/*   Updated: 2024/09/12 16:59:02 by geibo            ###   ########.fr       */
+/*   Updated: 2024/10/01 12:10:08 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ t_token	*create_token(char *cmd, int type)
 	return (newnode);
 }
 
-// creates a new token
 t_token	*add_tokens(t_token *tokens, char *input, int type)
 {
 	t_token	*new;

@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 19:00:34 by sinlee            #+#    #+#             */
-/*   Updated: 2024/09/25 23:27:11 by geibo            ###   ########.fr       */
+/*   Updated: 2024/09/30 14:14:19 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+
 
 bool	error_return(t_token **tokens, char *input)
 {
@@ -88,7 +90,6 @@ void	parse_input(char *input, char **envp)
 	if (tempstring)
 		free(tempstring);
 	parse(tokens, envp);
-	// print_stack(*tokens);
 	free_stack(tokens, del, true, NULL);
 	free(tokens);
 }
