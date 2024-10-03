@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 09:56:56 by sinlee            #+#    #+#             */
-/*   Updated: 2024/10/01 10:16:24 by kytan            ###   ########.fr       */
+/*   Updated: 2024/10/03 21:06:17 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	echo_args(char **args)
 int	execute_echo(char **args)
 {
 	int		i;
+	int		j;
 	bool	n_flag;
 	char	*single_arg_str;
 
@@ -62,6 +63,11 @@ int	execute_echo(char **args)
 	{
 		while (ft_strncmp(args[i], "-n", 2) == 0)
 		{
+			j = 1;
+			while (args[i][j] == 'n')
+				j++;
+			if (args[i][j] != '\0')
+				break ;
 			n_flag = true;
 			i++;
 		}
