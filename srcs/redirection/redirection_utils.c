@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 14:38:12 by geibo             #+#    #+#             */
-/*   Updated: 2024/10/02 14:21:44 by geibo            ###   ########.fr       */
+/*   Updated: 2024/10/02 15:25:20 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	process_command(t_exec *exec, int *i)
 	copy_cmd_to_list(exec);
 }
 
-int		count_redir(t_exec *exec, int i)
+int	count_redir(t_exec *exec, int i)
 {
 	int	redir_line;
 
@@ -56,7 +56,7 @@ void	copy_redir_to_list(t_exec *exec)
 {
 	int	word;
 	int	i;
-	
+
 	i = 0;
 	word = 0;
 	while (exec->cmd[word])

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexing_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 21:05:51 by root              #+#    #+#             */
-/*   Updated: 2024/10/01 12:09:46 by kytan            ###   ########.fr       */
+/*   Updated: 2024/10/02 15:31:55 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,32 +18,14 @@ void	add_one_count(int *i, int *count_words)
 	(*count_words)++;
 }
 
-
-int	exp_flag(char *s, char *split_q)
-{
-	static int	i;
-	static char	*st_s;
-
-	if (st_s != split_q)
-	{
-		st_s = split_q;
-		i = 0;
-	}
-	if (*s == '\'')
-	{
-		i ^= 1;
-	}
-	return (i);
-}
-
 void	quoted_string(char *input, int *i, int *count_words, char c)
 {
-	int		flag;
+	int	flag;
 
 	flag = 0;
 	while (input[*i])
 	{
-		if (!flag && ft_symbol(input[*i]) == true )
+		if (!flag && ft_symbol(input[*i]) == true)
 			break ;
 		if (input[*i] == '\'')
 			flag ^= 1;

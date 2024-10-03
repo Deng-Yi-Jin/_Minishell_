@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:54:15 by codespace         #+#    #+#             */
-/*   Updated: 2024/10/02 14:02:28 by geibo            ###   ########.fr       */
+/*   Updated: 2024/10/03 18:42:37 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include "parse.h"
 # define N_ARGS 2560
-# include <stddef.h>
 # include <stdbool.h>
+# include <stddef.h>
 
 typedef struct s_exec
 {
@@ -77,6 +77,7 @@ char				*expanded(char *split_q);
 
 int					exp_flag(char *s, char *split_q);
 char				**ft_splitq(char const *s, char c);
+static size_t		count_words(char const *s, char c);
 
 char				*cp_to_expanded(char *split_q, char *output, size_t size);
 char				*exp_dollar_env(char *env_v, char *output, int *j,
@@ -104,10 +105,10 @@ void				child_infd_setup(int infile_fd);
 pid_t				create_fork(void);
 void				dup2_error(void);
 void				close_fd(int *previous_fd, int *infile_fd);
-bool	handle_file_descriptor(int *fd, int (*get_fd_func)(char **),
-		t_exec *exec);
-int	count_cmd_line(t_exec *exec, int i);
-void	allocate_cmd_list(t_exec *exec, int cmd_line);
-void	copy_cmd_to_list(t_exec *exec);
+bool				handle_file_descriptor(int *fd, int (*get_fd_func)(char **),
+						t_exec *exec);
+int					count_cmd_line(t_exec *exec, int i);
+void				allocate_cmd_list(t_exec *exec, int cmd_line);
+void				copy_cmd_to_list(t_exec *exec);
 
 #endif

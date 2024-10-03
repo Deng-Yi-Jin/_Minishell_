@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   env_expansion.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 08:37:26 by kytan             #+#    #+#             */
-/*   Updated: 2024/10/01 10:54:55 by kytan            ###   ########.fr       */
+/*   Updated: 2024/10/02 15:28:14 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
 
 char	*exp_dollar_env(char *env_v, char *output, int *j, size_t size)
 {
@@ -51,8 +50,6 @@ char	*cp_to_expanded(char *split_q, char *output, size_t size)
 	{
 		if (*split_q == '$' && *(split_q + 1))
 			split_q = exp_dollar_env(split_q, output + j, &j, size);
-		// else if (*split_q != '$')
-		// 	output[j++] = *split_q++;
 		else
 			output[j++] = *split_q++;
 	}

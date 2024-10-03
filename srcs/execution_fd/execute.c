@@ -41,6 +41,21 @@ bool	execution(t_exec *exec, char **envp, char *command_path)
 	return (true);
 }
 
+static void	fork_and_execute(t_exec *exec, char **envp, char *command_path,
+		int infile)
+{
+	int	i;
+
+	i = 0;
+	if (create_fork() == 0)
+	{
+		handle_lastcmd_child(exec, infile);
+		run_cmd(g_main->envp, exec, command_path, &i);
+		exit(126);
+	}
+	handle_lastcmd_parent(exec);
+}
+
 bool	execute_last_cmd(t_exec *exec, char **envp, char *command_path)
 {
 	int	i;
@@ -49,7 +64,6 @@ bool	execute_last_cmd(t_exec *exec, char **envp, char *command_path)
 	int	outfile;
 
 	i = 0;
-
 	if (get_redirfd(exec, &infile, &outfile, envp) == false)
 		return (false);
 	init_origio(origio);
@@ -64,6 +78,16 @@ bool	execute_last_cmd(t_exec *exec, char **envp, char *command_path)
 		g_main->nuclear_status = execute_builtin(exec->cmd_list[i],
 				exec->cmd_list, envp);
 	else
+		fork_and_execute(exec, envp, command_path, infile);
+	restore_fd(origio[0], origio[1]);
+	return (true);
+}
+
+static void	wait_for_children(void)
+{
+	int	status;
+
+	while (wait(&status) > 0)
 	{
 		if (create_fork() == 0)
 		{
@@ -72,15 +96,15 @@ bool	execute_last_cmd(t_exec *exec, char **envp, char *command_path)
 			exit(126);
 		}
 		handle_lastcmd_parent(exec);
+		if (WEXITSTATUS(status))
+			g_main->nuclear_status = WEXITSTATUS(status);
 	}
-	restore_fd(origio[0], origio[1]);
 }
 
 void	start_command_exec(char *command_path, char **envp, t_exec *exec,
 		int saved_stdin)
 {
 	t_exec	*current_node;
-	int			status;
 
 	current_node = exec;
 	while (current_node)
@@ -99,18 +123,5 @@ void	start_command_exec(char *command_path, char **envp, t_exec *exec,
 		}
 		current_node = current_node->next;
 	}
-	while (wait(&status) > 0)
-	{
-		if (WEXITSTATUS(status))
-			g_main->nuclear_status = WEXITSTATUS(status);
-	}
-}
-
-void	execute(t_exec *exec, char **envp)
-{
-	char	*command_path;
-	int		saved_stdin;
-
-	saved_stdin = dup(STDIN_FILENO);
-	start_command_exec(command_path, envp, exec, saved_stdin);
+	wait_for_children();
 }

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   execution_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 09:59:30 by codespace         #+#    #+#             */
 /*   Updated: 2024/10/03 19:33:50 by kytan            ###   ########.fr       */
@@ -84,3 +84,4 @@ void	exec_pipe(t_exec *exec, char **envp, char *command_path)
 // 	}
 // 	envp = envp_array;
 // }
+

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 00:17:49 by geibo             #+#    #+#             */
-/*   Updated: 2024/10/02 14:31:15 by geibo            ###   ########.fr       */
+/*   Updated: 2024/10/02 15:25:12 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	count_cmd_line(t_exec *exec, int i)
 	while (exec->cmd[i] != NULL)
 	{
 		if (is_redir_out(exec->cmd[i]))
-			break;
+			break ;
 		if (!is_redir(exec->cmd[i]))
 			cmd_line++;
 		i++;
@@ -45,7 +45,7 @@ void	allocate_cmd_list(t_exec *exec, int cmd_line)
 
 void	copy_cmd_to_list(t_exec *exec)
 {
-	int word;
+	int	word;
 	int	i;
 
 	i = 0;
@@ -53,7 +53,7 @@ void	copy_cmd_to_list(t_exec *exec)
 	while (exec->cmd[word])
 	{
 		if (is_redir_out(exec->cmd[word]))
-			break;
+			break ;
 		if (!is_redir(exec->cmd[word]))
 		{
 			exec->cmd_list[i] = ft_strdup(exec->cmd[word]);
@@ -73,7 +73,7 @@ void	redirect(t_exec *exec, int *infilefd, int *outfilefd)
 		if (is_redir(exec->cmd[i]))
 		{
 			process_redirection(exec, 0);
-			break;
+			break ;
 		}
 		i++;
 	}

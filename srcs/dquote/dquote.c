@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dquote.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 12:30:20 by geibo             #+#    #+#             */
-/*   Updated: 2024/09/16 13:52:18 by kytan            ###   ########.fr       */
+/*   Updated: 2024/10/03 18:09:57 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,10 @@ char	*handle_quote(char **split, int word, char *output, char c)
 		output = ft_strdup(split[word]);
 	else
 		output = ft_strjoin(output, split[word]);
-	free(temp);
 	if (split[word + 1] != NULL)
 	{
 		temp = output;
 		output = ft_strjoin(output, " ");
-		free(temp);
 	}
 	if (c == '\"' || c == '\'')
 	{

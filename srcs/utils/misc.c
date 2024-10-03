@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   misc.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:18:19 by codespace         #+#    #+#             */
 /*   Updated: 2024/10/03 19:32:50 by kytan            ###   ########.fr       */
@@ -42,7 +42,7 @@ void	free_split_debug(char **str)
 	i = 0;
 	while (str[i])
 	{
-		printf("%d %p %s\n",i, str[i], str[i]);
+		printf("%d %p %s\n", i, str[i], str[i]);
 		free(str[i]);
 		i++;
 	}

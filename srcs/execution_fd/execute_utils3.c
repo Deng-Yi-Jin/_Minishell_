@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_utils3.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 19:01:41 by kytan             #+#    #+#             */
-/*   Updated: 2024/09/29 18:54:38 by kytan            ###   ########.fr       */
+/*   Updated: 2024/10/02 15:17:25 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ bool	get_redirfd(t_exec *exec, int *infilefd, int *outfilefd, char **envp)
 	if (*infilefd == -1)
 	{
 		free_redir_list(exec);
-		return(false);
+		return (false);
 	}
 	*outfilefd = get_outfilefd(exec->redir_list);
 	if (*outfilefd == -1)
