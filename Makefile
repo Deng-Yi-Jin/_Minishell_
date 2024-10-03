@@ -6,7 +6,7 @@
 #    By: geibo <geibo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 06:55:38 by codespace         #+#    #+#              #
-#    Updated: 2024/09/16 17:09:58 by geibo            ###   ########.fr        #
+#    Updated: 2024/10/03 17:58:38 by geibo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,19 +33,15 @@ DQUOTE = dquote
 EXECUTION_DIR = execution_fd
 HERE_DOC = here_doc
 PROMPT = prompt
-# SRCS_FILES = $(addprefix $(BUILTINS_DIR)/, cd.c echo.c env.c exit.c export.c pwd.c unset.c) \
-#              $(addprefix $(MAIN_DIR)/, minishell.c redir.c signal.c) \
-#              $(addprefix $(PARSING_DIR)/, line.c tokens.c expansions.c) \
-#              $(addprefix $(TOOLS_DIR)/, fd.c free.c token.c type.c expansions.c parsing.c)
 SRCS_FILES = $(addprefix $(MAIN_DIR)/, main.c initialize.c signals.c prompt.c) \
-			 $(addprefix $(DQUOTE)/, dquote.c dquote_utils.c rm_quote.c dquote_utils1.c) \
+			 $(addprefix $(DQUOTE)/, dquote.c dquote_utils.c rm_quote.c dquote_utils1.c ft_split.c) \
 			 $(addprefix $(DOLLAR)/, dollar_sign.c dollar_utils.c dollar_execute_utils.c fork_utils.c) \
 			 $(addprefix $(UTILS_DIR)/, misc.c ft_snprintf.c ft_malloc.c ft_strfjoin.c) \
 			 $(addprefix $(ENV_DIR)/, env.c env_utils.c env_utils1.c) \
-			 $(addprefix $(EXPAND)/, expansion.c env_expansion.c expansion_utils1.c expansion_utils2.c) \
+			 $(addprefix $(EXPAND)/, expansion.c env_expansion.c expansion_utils1.c expansion_utils2.c expansion_utils3.c) \
 			 $(addprefix $(GNL)/, get_next_line.c) \
 			 $(addprefix $(EXEC_DIR)/, commands.c cd.c welcome.c export.c execution_utils.c execution_utils2.c echo.c pwd.c env.c unset.c) \
-			 $(addprefix $(LEXER_DIR)/, lexer.c lexer_linked_list.c lexer_linked_list_utils.c lexing_utils.c lexer_check_separator.c trim_quotation.c lexer_handle.c) \
+			 $(addprefix $(LEXER_DIR)/, lexer.c lexer_linked_list.c lexer_linked_list_utils.c lexing_utils.c lexing_utils2.c lexer_check_separator.c trim_quotation.c lexer_handle.c) \
 			 $(addprefix $(PARSE_DIR)/, parse_linked_list.c parse.c ast_contruct.c parse_utils.c) \
 			 $(addprefix $(TRAVERSE_DIR)/, traverse.c traversing.c exec_utils.c) \
 			 $(addprefix $(REDIR_DIR)/, redirection.c redir_bool.c redirection_utils.c) \

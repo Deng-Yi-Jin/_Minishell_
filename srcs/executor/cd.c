@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 16:27:48 by kytan             #+#    #+#             */
-/*   Updated: 2024/09/16 15:47:36 by kytan            ###   ########.fr       */
+/*   Updated: 2024/10/03 17:32:28 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	execute_cd(char *args[N_ARGS], char **envp)
 	else
 		path = ft_strdup(args[1]);
 	if (chdir(path) != 0)
-		perror_color("cd");
+		perror_color(args[1]);
 	modify_env_vars("PWD", getcwd(NULL, 0));
 	ms_path = ft_malloc(PATH_MAX);
 	cwd = getcwd(NULL, 0);
