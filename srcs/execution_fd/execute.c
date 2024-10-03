@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 09:08:05 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/30 09:46:55 by kytan            ###   ########.fr       */
+/*   Updated: 2024/10/03 19:30:32 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool	execution(t_exec *exec, char **envp, char *command_path)
 	if (create_fork() == 0)
 	{
 		manage_pipe_child(exec, infilefd, outfilefd);
-		run_cmd(g_main->envp, exec, command_path, &i);
+		run_cmd(envp, exec, command_path, &i);
 	}
 	else
 		manage_pipe_parent(exec);
@@ -68,7 +68,7 @@ bool	execute_last_cmd(t_exec *exec, char **envp, char *command_path)
 		if (create_fork() == 0)
 		{
 			handle_lastcmd_child(exec, infile);
-			run_cmd(g_main->envp, exec, command_path, &i);
+			run_cmd(envp, exec, command_path, &i);
 			exit(126);
 		}
 		handle_lastcmd_parent(exec);

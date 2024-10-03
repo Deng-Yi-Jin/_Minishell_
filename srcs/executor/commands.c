@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 15:48:47 by kytan             #+#    #+#             */
-/*   Updated: 2024/09/30 13:46:29 by kytan            ###   ########.fr       */
+/*   Updated: 2024/10/03 19:30:32 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int	is_command(char *cmd, char **envp)
 
 	if (is_builtin(cmd))
 		return (CMD);
-	command_path = find_command_path(cmd, g_main->envp);
+	command_path = find_command_path(cmd, envp);
 	if (command_path != NULL)
 	{
 		free(command_path);

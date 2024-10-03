@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 10:05:43 by kytan             #+#    #+#             */
-/*   Updated: 2024/09/26 15:51:03 by kytan            ###   ########.fr       */
+/*   Updated: 2024/10/03 19:33:42 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,5 +112,4 @@ void	delete_env_vars(char *key)
 	new[j] = ft_calloc(1, sizeof(t_env_var));
 	free_darr(g_main->env_vars);
 	g_main->env_vars = new;
-	update_g_envp();
 }

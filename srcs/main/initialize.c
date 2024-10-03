@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:21:02 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/27 10:26:37 by kytan            ###   ########.fr       */
+/*   Updated: 2024/10/03 19:36:23 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,6 @@ static void	init_env_vars(char **envp)
 	add_env_vars(ft_strdup("NUM_QUOTES"), ft_strdup("0"));
 	add_env_vars(ft_strdup("QUOTES"), ft_strdup("0"));
 	add_env_vars(ft_strdup("PWD_MALLOC"), ft_strdup("0"));
-	g_main->envp = calloc(total_g_env_vars() + 1, sizeof(char *));
-	i = -1;
-	while (envp[++i])
-		g_main->envp[i] = ft_strdup(envp[i]);
-}
-
-void	print_g_envp()
-{
-	int			i;
-
-	i = -1;
-	while (g_main->envp[++i] != NULL)
-		printf("g_main->envp[%i] = %p [%s] \n", i, g_main->envp[i], g_main->envp[i]);
-	if (g_main->envp[i] == NULL)
-		printf("(NULL)");
 }
 
 void	init(char **envp)
@@ -61,3 +46,14 @@ void	init(char **envp)
 	init_signals();
 	welcome_msg();
 }
+
+// void	print_g_envp()
+// {
+// 	int			i;
+
+// 	i = -1;
+// 	while (envp[++i] != NULL)
+// 		printf("envp[%i] = %p [%s] \n", i, envp[i], envp[i]);
+// 	if (envp[i] == NULL)
+// 		printf("(NULL)");
+// }

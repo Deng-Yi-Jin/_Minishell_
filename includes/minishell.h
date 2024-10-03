@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:06:06 by sinlee            #+#    #+#             */
-/*   Updated: 2024/09/30 06:19:17 by kytan            ###   ########.fr       */
+/*   Updated: 2024/10/03 19:37:48 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ typedef struct env_var_s
 typedef struct s_main
 {
 	int			nuclear_status;
-	char		**envp;
 	t_env_var	**env_vars;
 }				t_main;
 
@@ -164,7 +163,7 @@ void			print_error_and_free(const char *error_message,
 					t_token **tokens, char *input);
 size_t		total_g_env_vars();
 void			update_g_envp();
-void			print_g_envp();
+// void			print_g_envp();
 void			print_tokens(t_token **tokens);
 bool			check_last_token(t_token *token, t_token **tokens, char *input);
 
