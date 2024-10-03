@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 00:17:49 by geibo             #+#    #+#             */
-/*   Updated: 2024/10/02 15:25:12 by geibo            ###   ########.fr       */
+/*   Updated: 2024/10/03 23:40:38 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	count_cmd_line(t_exec *exec, int i)
 	cmd_line = 0;
 	while (exec->cmd[i] != NULL)
 	{
-		if (is_redir_out(exec->cmd[i]))
+		if (is_redir(exec->cmd[i]))
 			break ;
 		if (!is_redir(exec->cmd[i]))
 			cmd_line++;
@@ -52,7 +52,7 @@ void	copy_cmd_to_list(t_exec *exec)
 	word = 0;
 	while (exec->cmd[word])
 	{
-		if (is_redir_out(exec->cmd[word]))
+		if (is_redir(exec->cmd[word]))
 			break ;
 		if (!is_redir(exec->cmd[word]))
 		{

@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 14:38:12 by geibo             #+#    #+#             */
-/*   Updated: 2024/10/02 15:25:20 by geibo            ###   ########.fr       */
+/*   Updated: 2024/10/04 00:02:07 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int	count_redir(t_exec *exec, int i)
 	redir_line = 0;
 	while (exec->cmd[i] != NULL)
 	{
-		if (is_redir_in(exec->cmd[i]))
+		if (is_redir_in(exec->cmd[i]) || ft_strcmp(exec->cmd[i], "<<") == 0)
 			redir_line++;
-		else if (is_redir_out(exec->cmd[i]))
+		else if (is_redir_out(exec->cmd[i]) || is_redir_append(exec->cmd[i]))
 			redir_line += 2;
 		i++;
 	}
@@ -61,13 +61,13 @@ void	copy_redir_to_list(t_exec *exec)
 	word = 0;
 	while (exec->cmd[word])
 	{
-		if (is_redir_in(exec->cmd[word]))
+		if (is_redir_in(exec->cmd[word]) || ft_strcmp(exec->cmd[word], "<<") == 0)
 		{
+			exec->redir_list[i++] = ft_strdup(exec->cmd[word++]);
 			exec->redir_list[i] = ft_strdup(exec->cmd[word]);
-			printf("%s\n", exec->redir_list[i]);
 			i++;
 		}
-		else if (is_redir_out(exec->cmd[word]))
+		else if (is_redir_out(exec->cmd[word]) || is_redir_append(exec->cmd[word]))
 		{
 			exec->redir_list[i++] = ft_strdup(exec->cmd[word++]);
 			exec->redir_list[i] = ft_strdup(exec->cmd[word]);

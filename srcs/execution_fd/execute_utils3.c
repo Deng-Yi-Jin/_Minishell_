@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 19:01:41 by kytan             #+#    #+#             */
-/*   Updated: 2024/10/02 15:17:25 by geibo            ###   ########.fr       */
+/*   Updated: 2024/10/03 23:59:57 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,17 @@ bool	check_command(char *inpt, char *args[N_ARGS], char **envp)
 
 void	free_redir_list(t_exec *exec)
 {
+	int	i;
+
+	i = 0;
 	if (exec->redir_list != NULL)
 	{
-		free(exec->redir_list[0]);
-		free(exec->redir_list[1]);
+		while (exec->redir_list[i] != NULL)
+		{
+			free(exec->redir_list[i]);
+			i++;
+		}
 		free(exec->redir_list);
-		exec->redir_list = NULL;
 	}
 }
 
