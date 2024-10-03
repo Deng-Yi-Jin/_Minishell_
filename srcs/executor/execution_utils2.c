@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 09:59:30 by codespace         #+#    #+#             */
-/*   Updated: 2024/10/02 15:27:54 by geibo            ###   ########.fr       */
+/*   Updated: 2024/10/03 21:14:32 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	exec_child_pid(t_exec *exec, char **envp, char *command_path)
 {
 	close(exec->fd[0]);
 	dup2(exec->fd[1], STDOUT_FILENO);
-	execve(command_path, exec->cmd, g_main->envp);
+	execve(command_path, exec->cmd, envp);
 	exit(0);
 }
 
@@ -36,7 +36,7 @@ void	handle_cmd_path(t_exec *exec, char **envp, char *command_path)
 		exec->pid = fork();
 		if (exec->pid == 0)
 		{
-			if (execve(command_path, exec->cmd, g_main->envp))
+			if (execve(command_path, exec->cmd, envp))
 				perror("execve");
 		}
 		else
@@ -60,7 +60,7 @@ void	exec_pipe(t_exec *exec, char **envp, char *command_path)
 		if (command_path != NULL)
 			free(command_path);
 		exec = exec->next;
-		command_path = find_command_path(exec->cmd[0], g_main->envp);
+		command_path = find_command_path(exec->cmd[0], envp);
 	}
 	handle_cmd_path(exec, envp, command_path);
 	if (command_path != NULL)
@@ -68,19 +68,19 @@ void	exec_pipe(t_exec *exec, char **envp, char *command_path)
 	exec = exec->next;
 }
 
-void	update_g_envp(void)
-{
-	char	**envp_array;
-	int		i;
+// void	update_g_envp(void)
+// {
+// 	char	**envp_array;
+// 	int		i;
 
-	i = -1;
-	free_split(g_main->envp);
-	envp_array = ft_calloc(total_g_env_vars() + 1, sizeof(char *));
-	while (g_main->env_vars[++i]->key != NULL)
-	{
-		envp_array[i] = ft_strdup(g_main->env_vars[i]->key);
-		envp_array[i] = ft_strfjoin(envp_array[i], "=");
-		envp_array[i] = ft_strfjoin(envp_array[i], g_main->env_vars[i]->value);
-	}
-	g_main->envp = envp_array;
-}
+// 	i = -1;
+// 	free_split(envp);
+// 	envp_array = ft_calloc(total_g_env_vars() + 1, sizeof(char *));
+// 	while (g_main->env_vars[++i]->key != NULL)
+// 	{
+// 		envp_array[i] = ft_strdup(g_main->env_vars[i]->key);
+// 		envp_array[i] = ft_strfjoin(envp_array[i], "=");
+// 		envp_array[i] = ft_strfjoin(envp_array[i], g_main->env_vars[i]->value);
+// 	}
+// 	envp = envp_array;
+// }

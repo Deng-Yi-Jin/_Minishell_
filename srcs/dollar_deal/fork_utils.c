@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 11:23:57 by kytan             #+#    #+#             */
-/*   Updated: 2024/09/29 18:55:01 by kytan            ###   ########.fr       */
+/*   Updated: 2024/10/03 21:13:07 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*handle_fork(t_execute *execute, char *command_path,
 	{
 		close(execute->fd[0]);
 		dup2(execute->fd[1], 1);
-		execve(command_path, cmd, g_main->envp);
+		execve(command_path, cmd, envp);
 		exit(0);
 	}
 	else

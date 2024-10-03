@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   misc.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:18:19 by codespace         #+#    #+#             */
-/*   Updated: 2024/10/02 15:29:08 by geibo            ###   ########.fr       */
+/*   Updated: 2024/10/03 21:14:15 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,16 @@ void	execute_exit(int exit_status)
 {
 	printf("%sBELLA CIAO%s\n", BLUE_BOLD, RESET_COLOR);
 	free_env_vars();
-	free_split(g_main->envp);
 	g_main->nuclear_status = exit_status;
 	exit(exit_status);
 }
 
-void	free_jutsu(bool darr, char *key, char *value)
-{
-	if (darr == true)
-		free_darr(g_main->envp);
-	if (key != NULL)
-		free(key);
-	if (value != NULL)
-		free(value);
-}
+// void	free_jutsu(bool darr, char *key, char *value)
+// {
+// 	if (darr == true)
+// 		free_darr(envp);
+// 	if (key != NULL)
+// 		free(key);
+// 	if (value != NULL)
+// 		free(value);
+// }

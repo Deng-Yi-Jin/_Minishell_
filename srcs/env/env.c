@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 10:05:43 by kytan             #+#    #+#             */
-/*   Updated: 2024/10/02 15:53:09 by geibo            ###   ########.fr       */
+/*   Updated: 2024/10/03 21:14:41 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,4 @@ void	delete_env_vars(char *key)
 	create_new_env_array(new, key);
 	free_darr(g_main->env_vars);
 	g_main->env_vars = new;
-	update_g_envp();
 }

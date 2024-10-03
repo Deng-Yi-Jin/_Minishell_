@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:38:25 by geibo             #+#    #+#             */
-/*   Updated: 2024/10/01 09:42:45 by kytan            ###   ########.fr       */
+/*   Updated: 2024/10/03 21:13:07 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	run_cmd(char **envp, t_exec *exec, char *command_path, int *i)
 		check_match_cmd(exec, envp, i);
 	else if (!check_command(exec->cmd_list[*i], exec->cmd_list, envp))
 	{
-		command_path = find_command_path(exec->cmd_list[*i], g_main->envp);
+		command_path = find_command_path(exec->cmd_list[*i], envp);
 		if (!command_path)
 		{
 			printf("minishell: %s: command not found\n", exec->cmd_list[*i]);

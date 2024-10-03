@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 15:48:47 by kytan             #+#    #+#             */
-/*   Updated: 2024/10/02 15:22:58 by geibo            ###   ########.fr       */
+/*   Updated: 2024/10/03 21:13:07 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	is_command(char *cmd, char **envp)
 
 	if (is_builtin(cmd))
 		return (CMD);
-	command_path = find_command_path(cmd, g_main->envp);
+	command_path = find_command_path(cmd, envp);
 	if (command_path != NULL)
 	{
 		free(command_path);
