@@ -6,7 +6,7 @@
 #    By: geibo <geibo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 06:55:38 by codespace         #+#    #+#              #
-#    Updated: 2024/10/02 16:02:59 by geibo            ###   ########.fr        #
+#    Updated: 2024/10/03 17:58:38 by geibo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ EXECUTION_DIR = execution_fd
 HERE_DOC = here_doc
 PROMPT = prompt
 SRCS_FILES = $(addprefix $(MAIN_DIR)/, main.c initialize.c signals.c prompt.c) \
-			 $(addprefix $(DQUOTE)/, dquote.c dquote_utils.c rm_quote.c dquote_utils1.c) \
+			 $(addprefix $(DQUOTE)/, dquote.c dquote_utils.c rm_quote.c dquote_utils1.c ft_split.c) \
 			 $(addprefix $(DOLLAR)/, dollar_sign.c dollar_utils.c dollar_execute_utils.c fork_utils.c) \
 			 $(addprefix $(UTILS_DIR)/, misc.c ft_snprintf.c ft_malloc.c ft_strfjoin.c) \
 			 $(addprefix $(ENV_DIR)/, env.c env_utils.c env_utils1.c) \

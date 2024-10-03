@@ -6,7 +6,7 @@
 /*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:06:06 by sinlee            #+#    #+#             */
-/*   Updated: 2024/10/02 16:05:27 by geibo            ###   ########.fr       */
+/*   Updated: 2024/10/03 18:02:23 by geibo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ char			*prompt_msg(char prompt[LOGIN_NAME_MAX + PATH_MAX + 20]);
 
 void			init(char **envp);
 void			init_signals(void);
+char			**ft_split(const char *str, const char *delim);
 
 int				execute_builtin(char *inpt, char *args[N_ARGS], char **envp);
 void			ft_free_path_env(char **path_env);
