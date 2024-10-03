@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:01:17 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/29 18:52:22 by kytan            ###   ########.fr       */
+/*   Updated: 2024/10/03 20:01:57 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		input = readline(prompt_msg(prompt));
-		if (!input || strcmp(input, "exit") == 0)
+		if (!input || ft_strcmp(input, "exit") == 0)
 			execute_exit(EXIT_SUCCESS);
 		if (input[0] != '\0')
 		{
