@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 09:56:56 by sinlee            #+#    #+#             */
-/*   Updated: 2024/10/03 19:35:52 by kytan            ###   ########.fr       */
+/*   Updated: 2024/10/03 19:49:15 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	execute_echo(char **args)
 	{
 		while (ft_strncmp(args[i], "-n", 2) == 0)
 		{
-			if (args[i][2] != 'n')
+			if (args[i][2] != 'n' && args[i][2] != '\0')
 				break ;
 			n_flag = true;
 			i++;
