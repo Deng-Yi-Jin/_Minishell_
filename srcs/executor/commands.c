@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 15:48:47 by kytan             #+#    #+#             */
-/*   Updated: 2024/10/03 21:13:07 by kytan            ###   ########.fr       */
+/*   Updated: 2024/10/04 10:14:24 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,8 @@ char	*find_command_path(char *command, char **envp)
 
 int	execute_builtin(char *inpt, char *args[N_ARGS], char **envp)
 {
-	if (!ft_strcmp(inpt, "exit"))
-		execute_exit(EXIT_SUCCESS);
-	else if (!ft_strcmp(inpt, "exit") && args[1])
-		execute_exit(ft_itoa(args[1]));
+	if (!ft_strcmp(inpt, "exit") && args[1])
+		execute_exit(ft_atoi(args[1]));
 	else if (!ft_strcmp(inpt, "cd"))
 		return (execute_cd(args, envp));
 	else if (!ft_strcmp(inpt, "fancy"))

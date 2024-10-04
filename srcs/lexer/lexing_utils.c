@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexing_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 21:05:51 by root              #+#    #+#             */
-/*   Updated: 2024/10/02 15:31:55 by geibo            ###   ########.fr       */
+/*   Updated: 2024/10/04 10:44:00 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	quoted_string(char *input, int *i, int *count_words, char c)
 	{
 		if (!flag && ft_symbol(input[*i]) == true)
 			break ;
-		if (input[*i] == '\'')
+		if (input[*i] == '\'' || input[*i] == '\"')
 			flag ^= 1;
 		(*i)++;
 		(*count_words)++;
