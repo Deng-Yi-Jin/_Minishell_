@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:06:06 by sinlee            #+#    #+#             */
-/*   Updated: 2024/10/03 21:12:47 by kytan            ###   ########.fr       */
+/*   Updated: 2024/10/04 11:02:41 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct env_var_s
 typedef struct s_main
 {
 	int				nuclear_status;
-	t_env_var	**env_vars;
+	t_env_var		**env_vars;
 }				t_main;
 
 typedef struct s_traverse

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:54:15 by codespace         #+#    #+#             */
-/*   Updated: 2024/10/03 22:48:36 by geibo            ###   ########.fr       */
+/*   Updated: 2024/10/04 11:03:17 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ bool				handle_file_descriptor(int *fd, int (*get_fd_func)(char **),
 int					count_cmd_line(t_exec *exec, int i);
 void				allocate_cmd_list(t_exec *exec, int cmd_line);
 void				copy_cmd_to_list(t_exec *exec);
-void				start_command_exec(char *command_path, char **envp, t_exec *exec,
-					int saved_stdin);
+void				start_command_exec(char *command_path, char **envp,
+						t_exec *exec, int saved_stdin);
 
 #endif
