@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 16:27:48 by kytan             #+#    #+#             */
-/*   Updated: 2024/10/03 17:32:28 by geibo            ###   ########.fr       */
+/*   Updated: 2024/10/04 15:51:19 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	cd_helper(char *ms_path, char **envp)
 {
 	char	*tmp;
 
-	if ((ft_strcmp(find_env_vars("PWD_MALLOC")->value, "1") == 0))
+	if ((ft_strncmp(find_env_vars("PWD_MALLOC")->value, "1", 2) == 0))
 	{
 		tmp = envp[find_env("PWD", envp)];
 		envp[find_env("PWD", envp)] = ms_path;

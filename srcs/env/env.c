@@ -6,7 +6,7 @@
 /*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 10:05:43 by kytan             #+#    #+#             */
-/*   Updated: 2024/10/03 21:14:41 by kytan            ###   ########.fr       */
+/*   Updated: 2024/10/04 15:55:14 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ t_env_var	*find_env_vars(char *key)
 
 	i = 0;
 	if (!key)
-		;
+	{
+		return (0);
+	}
 	while (g_main->env_vars[i]->key != NULL)
 	{
 		if (!ft_strcmp(g_main->env_vars[i]->key, key))

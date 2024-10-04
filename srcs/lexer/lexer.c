@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: geibo <geibo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kytan <kytan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 19:00:34 by sinlee            #+#    #+#             */
-/*   Updated: 2024/10/03 18:09:23 by geibo            ###   ########.fr       */
+/*   Updated: 2024/10/04 14:40:12 by kytan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ void	quoting(char *str, int *i, int *count_words, char c)
 	(*i)++;
 	(*count_words)++;
 }
+
+// echo hello >>> file.txt
 
 void	parse_input(char *input, char **envp)
 {
